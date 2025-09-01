@@ -1,17 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import fs from 'fs';
+import path from 'path';
 
 export async function getStaticPaths() {
   try {
-    const root = new URL('../../content/trends/', import.meta.url);
-
-    // Si aún no existe la carpeta (primer build), no generamos rutas.
-    try {
-      fs.readdirSync(root);
-    } catch {
-      return [];
-    }
+    const root = new URL('../../data/trends/', import.meta.url);
+    try { fs.readdirSync(root); } catch { return []; }
 
     function walk(dir) {
       const p = new URL('.', dir);
@@ -29,11 +24,10 @@ export async function getStaticPaths() {
     }
 
     const files = walk(root);
-    const paths = files.map((u) => {
+    return files.map((u) => {
       const d = JSON.parse(fs.readFileSync(u, 'utf-8')).date;
       return { params: { date: d } };
     });
-    return paths;
   } catch {
     return [];
   }
@@ -41,13 +35,10 @@ export async function getStaticPaths() {
 
 const { date } = Astro.params;
 
-// Cargar el índice del día pedido (si existe)
+// lee índice desde src/data
 let payload = { items: [] };
 try {
-  const idx = new URL(
-    `../../content/trends/${date.replaceAll('-', '/')}/index.json`,
-    import.meta.url
-  );
+  const idx = path.join(process.cwd(), 'src', 'data', 'trends', date.replaceAll('-', '/'), 'index.json');
   payload = JSON.parse(fs.readFileSync(idx, 'utf-8'));
 } catch {}
 ---
