@@ -1,82 +1,43 @@
 ---
 import Base from '../../layouts/Base.astro';
-import fs from 'fs';
 
-// No fallar si aún no hay contenido generado
+// Recolecta todos los .md generados en src/content/trends/**/*
 export async function getStaticPaths() {
-  try {
-    const root = new URL('../../content/trends/', import.meta.url);
+  const posts = await Astro.glob('../../content/trends/**/*.md');
 
-    // Si la carpeta aún no existe (primer build), no generamos rutas
-    try {
-      fs.readdirSync(root);
-    } catch {
-      return [];
-    }
-
-    function walk(dir) {
-      const p = new URL('.', dir);
-      const entries = fs.readdirSync(p);
-      let files = [];
-      for (const e of entries) {
-        const full = new URL(e + '/', p);
-        if (fs.statSync(full).isDirectory()) {
-          files = files.concat(walk(full));
-        } else if (e.endsWith('.md') && e !== 'index.json') {
-          files.push(new URL(e, p));
-        }
-      }
-      return files;
-    }
-
-    const files = walk(root);
-    const paths = files.map((u) => {
-      const txt = fs.readFileSync(u, 'utf-8');
-      const m = /slug:\s*\"([^\"]+)\"/.exec(txt) || [];
-      return { params: { slug: m[1] || 'item' } };
-    });
-    return paths;
-  } catch {
-    return [];
-  }
+  // Necesitamos que cada MD tenga frontmatter.slug (lo generamos en el script)
+  return posts
+    .filter((p) => p?.frontmatter?.slug)
+    .map((post) => ({
+      params: { slug: post.frontmatter.slug },
+      props: { post }
+    }));
 }
 
-const { slug } = Astro.params;
-
-function findBySlug(dir) {
-  const p = new URL('.', dir);
-  const entries = fs.readdirSync(p);
-  for (const e of entries) {
-    const full = new URL(e + '/', p);
-    if (fs.statSync(full).isDirectory()) {
-      const f = findBySlug(full);
-      if (f) return f;
-    } else if (e.endsWith('.md') && e !== 'index.json') {
-      const text = fs.readFileSync(full, 'utf-8');
-      const s = /slug:\s*\"([^\"]+)\"/.exec(text)?.[1];
-      if (s === slug) return text;
-    }
-  }
-  return null;
-}
-
-let txt = '';
-try {
-  txt = findBySlug(new URL('../../content/trends/', import.meta.url)) || '';
-} catch {}
-
-const title = /title:\s*\"([^\"]+)\"/.exec(txt || '')?.[1] || slug;
-const hero = /hero:\s*\"([^\"]+)\"/.exec(txt || '')?.[1] || '/placeholder.jpg';
+const { post } = Astro.props;
+const fm = post.frontmatter || {};
+const { Content } = await post.render();
 ---
 
-<Base title={`${title} — Teknovashop`}>
-  <article>
-    <img class="hero" src={hero} alt={title} />
-    <h1>{title}</h1>
+<Base title={`${fm.title || 'Producto'} — Teknovashop`}>
+  <article class="prose">
+    <h1>{fm.title}</h1>
+    {fm.hero ? (
+      <img src={fm.hero} alt={fm.title} class="hero" loading="lazy" />
+    ) : null}
 
-    {txt
-      ? <div set:html={txt.replace(/---([\s\S]*?)---/, '')} />
-      : <p>No hay contenido disponible todavía para este producto. Vuelve en breve.</p>
-    }
+    <p class="small">
+      {fm.niche ? (<><span class="badge">{fm.niche}</span> · </>) : null}
+      {typeof fm.score !== 'undefined' ? <>score {fm.score}</> : null}
+    </p>
+
+    <Content />
   </article>
+
+  <style>
+    .prose { max-width: 60rem; margin: 0 auto; padding: 1rem; }
+    .hero { width: 100%; height: auto; border-radius: .5rem; margin: .5rem 0 1rem; }
+    .badge { background: #eef; padding: .2rem .5rem; border-radius: .4rem; }
+    .small { color: #666; }
+  </style>
 </Base>
