@@ -1,9 +1,72 @@
 ---
-import Base from '../../layouts/Base.astro';import fs from 'fs';
-export async function getStaticPaths(){const root=new URL('../../content/trends/', import.meta.url);function walk(dir){const p=new URL('.',dir);const e=fs.readdirSync(p);let files=[];for(const x of e){const f=new URL(x+'/',p);if(fs.statSync(f).isDirectory()){files=files.concat(walk(f));}else if(x==='index.json'){files.push(new URL(x,p));}}return files;}const files=walk(root);const paths=files.map(u=>{const d=JSON.parse(fs.readFileSync(u,'utf-8')).date;return { params:{ date:d } };});return paths;}
-const { date } = Astro.params;const idx = new URL(`../../content/trends/${date.replaceAll('-','/')}/index.json`, import.meta.url);let payload={ items:[] };try{payload=JSON.parse(fs.readFileSync(idx,'utf-8'));}catch{}
+import Base from '../../layouts/Base.astro';
+import fs from 'fs';
+
+export async function getStaticPaths() {
+  try {
+    const root = new URL('../../content/trends/', import.meta.url);
+
+    // Si aún no existe la carpeta (primer build), no generamos rutas.
+    try {
+      fs.readdirSync(root);
+    } catch {
+      return [];
+    }
+
+    function walk(dir) {
+      const p = new URL('.', dir);
+      const entries = fs.readdirSync(p);
+      let files = [];
+      for (const e of entries) {
+        const full = new URL(e + '/', p);
+        if (fs.statSync(full).isDirectory()) {
+          files = files.concat(walk(full));
+        } else if (e === 'index.json') {
+          files.push(new URL(e, p));
+        }
+      }
+      return files;
+    }
+
+    const files = walk(root);
+    const paths = files.map((u) => {
+      const d = JSON.parse(fs.readFileSync(u, 'utf-8')).date;
+      return { params: { date: d } };
+    });
+    return paths;
+  } catch {
+    return [];
+  }
+}
+
+const { date } = Astro.params;
+
+// Cargar el índice del día pedido (si existe)
+let payload = { items: [] };
+try {
+  const idx = new URL(
+    `../../content/trends/${date.replaceAll('-', '/')}/index.json`,
+    import.meta.url
+  );
+  payload = JSON.parse(fs.readFileSync(idx, 'utf-8'));
+} catch {}
 ---
+
 <Base title={`Tendencias del ${date} — Teknovashop`}>
   <h1>Tendencias del {date}</h1>
-  <div class="grid">{payload.items.map(p => (<article class="card"><a href={`/producto/${p.slug}`}><img class="hero" src={p.hero||'/placeholder.jpg'} alt={p.title} loading="lazy"/></a><h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3><p class="small"><span class="badge">{p.niche}</span> · score {p.score}</p></article>))}</div>
+  {payload.items.length === 0 ? (
+    <p>No hay datos para esta fecha todavía. Vuelve en unos minutos.</p>
+  ) : (
+    <div class="grid">
+      {payload.items.map((p) => (
+        <article class="card">
+          <a href={`/producto/${p.slug}`}>
+            <img class="hero" src={p.hero || '/placeholder.jpg'} alt={p.title} loading="lazy" />
+          </a>
+          <h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3>
+          <p class="small"><span class="badge">{p.niche}</span> · score {p.score}</p>
+        </article>
+      ))}
+    </div>
+  )}
 </Base>
