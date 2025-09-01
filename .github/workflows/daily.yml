@@ -1,13 +1,17 @@
 name: daily-trends
+
 on:
   schedule:
     - cron: '0 5 * * *'   # cada día a las 07:00 hora Madrid aprox
   workflow_dispatch:       # permite lanzarlo manualmente
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}   # ✅ checkout con token
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -25,3 +29,5 @@ jobs:
           git add -A
           git commit -m "chore: daily trends [skip ci]" || echo "No changes"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # ✅ usar token para push
