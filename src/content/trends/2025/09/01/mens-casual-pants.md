@@ -1,7 +1,7 @@
 ---
 title: "Men’s casual pants?"
 slug: "mens-casual-pants"
-date: "2025-09-01T10:23:42.167Z"
+date: "2025-09-01T10:44:15.754Z"
 niche: "moda"
 score: 1
 hero: "/placeholder.jpg"

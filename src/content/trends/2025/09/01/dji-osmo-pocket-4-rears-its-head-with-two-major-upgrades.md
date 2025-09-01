@@ -1,7 +1,7 @@
 ---
 title: "Dji osmo pocket 4 rears its head with two major upgrades"
 slug: "dji-osmo-pocket-4-rears-its-head-with-two-major-upgrades"
-date: "2025-09-01T10:23:40.989Z"
+date: "2025-09-01T10:44:14.486Z"
 niche: "tecnologia"
 score: 1
 hero: "/placeholder.jpg"

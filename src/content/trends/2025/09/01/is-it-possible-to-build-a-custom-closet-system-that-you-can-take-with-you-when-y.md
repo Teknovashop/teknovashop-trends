@@ -1,7 +1,7 @@
 ---
 title: "Is it possible to build a custom closet system that you can \"take with you\" when you move? renter friendly stuff."
 slug: "is-it-possible-to-build-a-custom-closet-system-that-you-can-take-with-you-when-y"
-date: "2025-09-01T10:23:41.534Z"
+date: "2025-09-01T10:44:15.102Z"
 niche: "hogar"
 score: 1
 hero: "/placeholder.jpg"

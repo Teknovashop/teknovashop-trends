@@ -1,7 +1,7 @@
 ---
 title: "Bar restoration"
 slug: "bar-restoration"
-date: "2025-09-01T10:23:41.592Z"
+date: "2025-09-01T10:44:15.164Z"
 niche: "fitness"
 score: 1
 hero: "/placeholder.jpg"

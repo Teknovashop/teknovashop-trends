@@ -1,7 +1,7 @@
 ---
 title: "Help! basement smell is transferring to clothes while they're in the dryer : ("
 slug: "help-basement-smell-is-transferring-to-clothes-while-theyre-in-the-dryer"
-date: "2025-09-01T10:23:41.461Z"
+date: "2025-09-01T10:44:15.035Z"
 niche: "hogar"
 score: 1
 hero: "/placeholder.jpg"

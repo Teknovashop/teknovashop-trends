@@ -1,7 +1,7 @@
 ---
 title: "My home gym so far"
 slug: "my-home-gym-so-far"
-date: "2025-09-01T10:23:41.719Z"
+date: "2025-09-01T10:44:15.292Z"
 niche: "fitness"
 score: 1
 hero: "/placeholder.jpg"
