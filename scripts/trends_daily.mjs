@@ -14,11 +14,19 @@ const yyyy = today.getFullYear();
 const mm = String(today.getMonth() + 1).padStart(2, '0');
 const dd = String(today.getDate()).padStart(2, '0');
 
-const outDir = path.join(ROOT, 'src', 'content', 'trends', String(yyyy), mm, dd);
-fs.mkdirSync(outDir, { recursive: true });
+// ✅ Contenido (.md) en content/
+const outDirContent = path.join(ROOT, 'src', 'content', 'trends', String(yyyy), mm, dd);
+fs.mkdirSync(outDirContent, { recursive: true });
+
+// ✅ Índice (JSON) en data/
+const outDirData = path.join(ROOT, 'src', 'data', 'trends', String(yyyy), mm, dd);
+fs.mkdirSync(outDirData, { recursive: true });
+
+// ✅ Imágenes generadas
 const publicDir = path.join(ROOT, 'public', 'trends');
 fs.mkdirSync(publicDir, { recursive: true });
 
+// Opcional IA (Cloudflare)
 const cfAccount = process.env.CF_ACCOUNT_ID;
 const cfToken = process.env.CF_API_TOKEN;
 
@@ -173,15 +181,23 @@ ${review}
 **Dónde comparar precios**
 ${links}
 `;
-      fs.writeFileSync(path.join(outDir, `${slug}.md`), body, 'utf-8');
+      // ✅ MD en content/
+      fs.writeFileSync(path.join(outDirContent, `${slug}.md`), body, 'utf-8');
+
       items.push({ slug, title, niche, score: count, hero });
       log('Escrito', niche, slug);
     }
   }
 
+  // ✅ Índice en data/
   const indexPayload = { date: `${yyyy}-${mm}-${dd}`, items };
-  fs.writeFileSync(path.join(outDir, 'index.json'), JSON.stringify(indexPayload, null, 2), 'utf-8');
-  log('Total items', items.length, 'Salida', path.join('src/content/trends', `${yyyy}/${mm}/${dd}`));
+  fs.writeFileSync(
+    path.join(outDirData, 'index.json'),
+    JSON.stringify(indexPayload, null, 2),
+    'utf-8'
+  );
+
+  log('Total items', items.length, 'Salida', path.join('src/data/trends', `${yyyy}/${mm}/${dd}`));
 
   if (items.length === 0) {
     log('ATENCIÓN: 0 items generados. Revisa conectividad Reddit/Google Trends desde el runner.');
