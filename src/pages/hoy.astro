@@ -1,9 +1,35 @@
 ---
-import Base from '../layouts/Base.astro';import fs from 'fs';
-const t=new Date();const y=t.getFullYear();const m=String(t.getMonth()+1).padStart(2,'0');const d=String(t.getDate()).padStart(2,'0');
-let items=[];try{const p=new URL(`../content/trends/${y}/${m}/${d}/index.json`,import.meta.url);items=JSON.parse(fs.readFileSync(p,'utf-8')).items;}catch{items=[];}
+import Base from '../layouts/Base.astro';
+import fs from 'fs';
+import path from 'path';
+
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2,'0');
+const dd = String(today.getDate()).padStart(2,'0');
+
+let payload = { items: [] };
+try {
+  const idx = path.join(process.cwd(), 'src', 'data', 'trends', String(yyyy), mm, dd, 'index.json');
+  payload = JSON.parse(fs.readFileSync(idx, 'utf-8'));
+} catch {}
 ---
-<Base title="Tendencias de hoy — Teknovashop">
+
+<Base title="Tendencias de hoy">
   <h1>Tendencias de hoy</h1>
-  {items.length===0 ? (<p>No hay datos para hoy todavía.</p>) : (<div class="grid">{items.map(p => (<article class="card"><a href={`/producto/${p.slug}`}><img class="hero" src={p.hero||'/placeholder.jpg'} alt={p.title} loading="lazy"/></a><h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3><p class="small"><span class="badge">{p.niche}</span> · score {p.score}</p></article>))}</div>)}
+  {payload.items.length === 0 ? (
+    <p>No hay datos para hoy todavía.</p>
+  ) : (
+    <div class="grid">
+      {payload.items.map((p) => (
+        <article class="card">
+          <a href={`/producto/${p.slug}`}>
+            <img class="hero" src={p.hero || '/placeholder.jpg'} alt={p.title} loading="lazy" />
+          </a>
+          <h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3>
+          <p class="small"><span class="badge">{p.niche}</span> · score {p.score}</p>
+        </article>
+      ))}
+    </div>
+  )}
 </Base>
