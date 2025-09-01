@@ -1,10 +1,76 @@
 ---
-import Base from '../../layouts/Base.astro';import fs from 'fs';
-export async function getStaticPaths(){const root=new URL('../../content/trends/', import.meta.url);function walk(dir){const p=new URL('.',dir);const e=fs.readdirSync(p);let files=[];for(const x of e){const f=new URL(x+'/',p);if(fs.statSync(f).isDirectory()){files=files.concat(walk(f));}else if(x.endsWith('.md') && x!=='index.json'){files.push(new URL(x,p));}}return files;}const files=walk(root);const paths=files.map(u=>{const txt=fs.readFileSync(u,'utf-8');const m=/slug:\s*\"([^\"]+)\"/.exec(txt)||[];return { params:{ slug:m[1]||'item' } };});return paths;}
+import Base from '../../layouts/Base.astro';
+import fs from 'fs';
+
+// ✅ No fallar si aún no hay contenido generado
+export async function getStaticPaths() {
+  try {
+    const root = new URL('../../content/trends/', import.meta.url);
+    // comprobar existencia
+    try { fs.readdirSync(root); } catch { return []; }
+
+    function walk(dir) {
+      const p = new URL('.', dir);
+      const entries = fs.readdirSync(p);
+      let files = [];
+      for (const e of entries) {
+        const full = new URL(e + '/', p);
+        if (fs.statSync(full).isDirectory()) {
+          files = files.concat(walk(full));
+        } else if (e.endsWith('.md') && e !== 'index.json') {
+          files.push(new URL(e, p));
+        }
+      }
+      return files;
+    }
+
+    const files = walk(root);
+    const paths = files.map((u) => {
+      const txt = fs.readFileSync(u, 'utf-8');
+      const m = /slug:\s*\"([^\"]+)\"/.exec(txt) || [];
+      return { params: { slug: m[1] || 'item' } };
+    });
+    return paths;
+  } catch {
+    return [];
+  }
+}
+
 const { slug } = Astro.params;
-function findBySlug(dir){const p=new URL('.',dir);const e=fs.readdirSync(p);for(const x of e){const f=new URL(x+'/',p);if(fs.statSync(f).isDirectory()){const r=findBySlug(f);if(r) return r;}else if(x.endsWith('.md') && x!=='index.json'){const t=fs.readFileSync(f,'utf-8');const s=/slug:\s*\"([^\"]+)\"/.exec(t)?.[1];if(s===slug) return t;}}return null;}
-const txt = findBySlug(new URL('../../content/trends/', import.meta.url));const title=/title:\s*\"([^\"]+)\"/.exec(txt||'')?.[1]||slug;const hero=/hero:\s*\"([^\"]+)\"/.exec(txt||'')?.[1]||'/placeholder.jpg';
+
+// localizar el MD por slug (si no existe aún, mostramos fallback)
+function findBySlug(dir) {
+  const p = new URL('.', dir);
+  const entries = fs.readdirSync(p);
+  for (const e of entries) {
+    const full = new URL(e + '/', p);
+    if (fs.statSync(full).isDirectory()) {
+      const f = findBySlug(full);
+      if (f) return f;
+    } else if (e.endsWith('.md') && e !== 'index.json') {
+      const text = fs.readFileSync(full, 'utf-8');
+      const s = /slug:\s*\"([^\"]+)\"/.exec(text)?.[1];
+      if (s === slug) return text;
+    }
+  }
+  return null;
+}
+let txt = '';
+try {
+  txt = findBySlug(new URL('../../content/trends/', import.meta.url)) || '';
+} catch {}
+
+const title = /title:\s*\"([^\"]+)\"/.exec(txt || '')?.[1] || slug;
+const hero = /hero:\s*\"([^\"]+)\"/.exec(txt || '')?.[1] || '/placeholder.jpg';
 ---
+
 <Base title={`${title} — Teknovashop`}>
-  <article><img class="hero" src={hero} alt={title}/><h1>{title}</h1><div set:html={(txt||'').replace(/---([\s\S]*?)---/,'')} /></article>
+  <article>
+    <img class="hero" src={hero} alt={title} />
+    <h1>{title}</h1>
+    {txt
+      ? <div set:html={txt.replace(/---([\s\S]*?)---/, '')} />
+      : <p>No hay contenido disponible todavía para este producto. Vuelve en breve.</p>
+    }
+  </article>
 </Base>
