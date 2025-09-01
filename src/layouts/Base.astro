@@ -1,0 +1,6 @@
+---
+const { title="Teknovashop Tendencias",description="Ranking diario de productos",canonical }=Astro.props;
+---
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>{title}</title><meta name="description" content={description}/><link rel="stylesheet" href="/styles.css"/><link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml"/>{canonical && <link rel="canonical" href={canonical} />}</head>
+<body><header class="wrap"><a class="logo" href="/">Teknovashop <span style="color:#0ea5e9">Tendencias</span></a><nav><a href="/hoy">Hoy</a><a href="/archivo">Archivo</a><a href="/acerca">Acerca</a></nav></header><main class="wrap"><slot/></main><footer class="wrap small"><p>© {new Date().getFullYear()} Teknovashop · Algunos enlaces pueden ser de afiliado · <a href="/legal">Avisos legales</a></p></footer></body></html>

@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';import fs from 'fs';
+const root = new URL('../content/trends/', import.meta.url);
+function walk(dir){const p=new URL('.',dir);const e=fs.readdirSync(p);let files=[];for(const x of e){const f=new URL(x+'/',p);if(fs.statSync(f).isDirectory()){files=files.concat(walk(f));}else if(x==='index.json'){files.push(new URL(x,p));}}return files;}
+let days=[];try{days=walk(root).map(u=>JSON.parse(fs.readFileSync(u,'utf-8'))).sort((a,b)=>a.date<b.date?1:-1);}catch{days=[];}
+---
+<Base title="Archivo de tendencias — Teknovashop">
+  <h1>Archivo</h1>
+  {days.length===0 ? <p>Sin entradas aún.</p> : <ul>{days.map(d => (<li><a href={`/tendencias/${d.date}`}>{d.date}</a></li>))}</ul>}
+</Base>

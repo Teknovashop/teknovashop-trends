@@ -1,0 +1,42 @@
+{
+  "tecnologia": {
+    "subreddits": [
+      "gadgets",
+      "technology",
+      "Android",
+      "Apple",
+      "buildapcsales",
+      "MechanicalKeyboards"
+    ],
+    "amazon_cat": "tecnologia"
+  },
+  "hogar": {
+    "subreddits": [
+      "HomeImprovement",
+      "BuyItForLife",
+      "IKEA",
+      "HomeKit",
+      "HomeDecorating"
+    ],
+    "amazon_cat": "hogar"
+  },
+  "fitness": {
+    "subreddits": [
+      "homegym",
+      "xxfitness",
+      "Fitness",
+      "Running",
+      "nutrition"
+    ],
+    "amazon_cat": "fitness"
+  },
+  "moda": {
+    "subreddits": [
+      "malefashionadvice",
+      "femalefashionadvice",
+      "frugalmalefashion",
+      "streetwear"
+    ],
+    "amazon_cat": "moda"
+  }
+}

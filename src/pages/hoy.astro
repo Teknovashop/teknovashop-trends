@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';import fs from 'fs';
+const t=new Date();const y=t.getFullYear();const m=String(t.getMonth()+1).padStart(2,'0');const d=String(t.getDate()).padStart(2,'0');
+let items=[];try{const p=new URL(`../content/trends/${y}/${m}/${d}/index.json`,import.meta.url);items=JSON.parse(fs.readFileSync(p,'utf-8')).items;}catch{items=[];}
+---
+<Base title="Tendencias de hoy — Teknovashop">
+  <h1>Tendencias de hoy</h1>
+  {items.length===0 ? (<p>No hay datos para hoy todavía.</p>) : (<div class="grid">{items.map(p => (<article class="card"><a href={`/producto/${p.slug}`}><img class="hero" src={p.hero||'/placeholder.jpg'} alt={p.title} loading="lazy"/></a><h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3><p class="small"><span class="badge">{p.niche}</span> · score {p.score}</p></article>))}</div>)}
+</Base>

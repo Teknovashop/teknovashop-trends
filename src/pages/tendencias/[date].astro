@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';import fs from 'fs';
+export async function getStaticPaths(){const root=new URL('../../content/trends/', import.meta.url);function walk(dir){const p=new URL('.',dir);const e=fs.readdirSync(p);let files=[];for(const x of e){const f=new URL(x+'/',p);if(fs.statSync(f).isDirectory()){files=files.concat(walk(f));}else if(x==='index.json'){files.push(new URL(x,p));}}return files;}const files=walk(root);const paths=files.map(u=>{const d=JSON.parse(fs.readFileSync(u,'utf-8')).date;return { params:{ date:d } };});return paths;}
+const { date } = Astro.params;const idx = new URL(`../../content/trends/${date.replaceAll('-','/')}/index.json`, import.meta.url);let payload={ items:[] };try{payload=JSON.parse(fs.readFileSync(idx,'utf-8'));}catch{}
+---
+<Base title={`Tendencias del ${date} — Teknovashop`}>
+  <h1>Tendencias del {date}</h1>
+  <div class="grid">{payload.items.map(p => (<article class="card"><a href={`/producto/${p.slug}`}><img class="hero" src={p.hero||'/placeholder.jpg'} alt={p.title} loading="lazy"/></a><h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3><p class="small"><span class="badge">{p.niche}</span> · score {p.score}</p></article>))}</div>
+</Base>
