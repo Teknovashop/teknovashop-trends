@@ -1,7 +1,7 @@
 ---
 title: "Reolink elite floodlight wifi review: a top-tier light and security camera"
 slug: "reolink-elite-floodlight-wifi-review-a-top-tier-light-and-security-camera"
-date: "2025-09-01T10:44:14.371Z"
+date: "2025-09-01T10:57:57.722Z"
 niche: "tecnologia"
 score: 1
 hero: "/placeholder.jpg"

@@ -1,7 +1,7 @@
 ---
 title: "Pivooooot"
 slug: "pivooooot"
-date: "2025-09-01T10:44:15.226Z"
+date: "2025-09-01T10:57:58.534Z"
 niche: "fitness"
 score: 1
 hero: "/placeholder.jpg"

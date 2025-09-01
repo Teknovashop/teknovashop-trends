@@ -1,7 +1,7 @@
 ---
 title: "Billionaire mark cuban says that 'companies don’t understand’ how to implement ai right now—and that's an opportunity for gen z coming out of school"
 slug: "billionaire-mark-cuban-says-that-companies-dont-understand-how-to-implement-ai-r"
-date: "2025-09-01T10:44:14.699Z"
+date: "2025-09-01T10:57:57.948Z"
 niche: "tecnologia"
 score: 1
 hero: "/placeholder.jpg"

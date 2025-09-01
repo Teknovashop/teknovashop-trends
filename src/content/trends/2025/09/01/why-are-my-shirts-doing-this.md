@@ -1,7 +1,7 @@
 ---
 title: "Why are my shirts doing this?"
 slug: "why-are-my-shirts-doing-this"
-date: "2025-09-01T10:44:15.484Z"
+date: "2025-09-01T10:57:58.826Z"
 niche: "moda"
 score: 1
 hero: "/placeholder.jpg"

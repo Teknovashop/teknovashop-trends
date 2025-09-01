@@ -1,7 +1,7 @@
 ---
 title: "Nvidia says two mystery customers accounted for  of q2 revenue"
 slug: "nvidia-says-two-mystery-customers-accounted-for-of-q2-revenue"
-date: "2025-09-01T10:44:14.765Z"
+date: "2025-09-01T10:57:58.017Z"
 niche: "tecnologia"
 score: 1
 hero: "/placeholder.jpg"

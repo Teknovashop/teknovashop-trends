@@ -1,7 +1,7 @@
 ---
 title: "High quality, durable brands"
 slug: "high-quality-durable-brands"
-date: "2025-09-01T10:44:15.617Z"
+date: "2025-09-01T10:57:58.973Z"
 niche: "moda"
 score: 1
 hero: "/placeholder.jpg"

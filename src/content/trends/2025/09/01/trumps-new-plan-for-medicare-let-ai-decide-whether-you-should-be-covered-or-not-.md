@@ -1,7 +1,7 @@
 ---
 title: "Trump’s new plan for medicare: let ai decide whether you should be covered or not -- “this is exactly the same tactic that private insurers like unitedhealth use to delay and deny treatment”"
 slug: "trumps-new-plan-for-medicare-let-ai-decide-whether-you-should-be-covered-or-not-"
-date: "2025-09-01T10:44:14.627Z"
+date: "2025-09-01T10:57:57.870Z"
 niche: "tecnologia"
 score: 1
 hero: "/placeholder.jpg"

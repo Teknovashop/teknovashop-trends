@@ -1,7 +1,7 @@
 ---
 title: "I feel stupid. popcorn ceilings being dry scraped…"
 slug: "i-feel-stupid-popcorn-ceilings-being-dry-scraped"
-date: "2025-09-01T10:44:14.825Z"
+date: "2025-09-01T10:57:58.096Z"
 niche: "hogar"
 score: 1
 hero: "/placeholder.jpg"

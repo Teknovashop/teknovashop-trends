@@ -1,7 +1,7 @@
 ---
 title: "Continual improvement"
 slug: "continual-improvement"
-date: "2025-09-01T10:44:15.356Z"
+date: "2025-09-01T10:57:58.685Z"
 niche: "fitness"
 score: 1
 hero: "/placeholder.jpg"

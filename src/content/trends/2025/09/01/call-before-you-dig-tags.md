@@ -1,7 +1,7 @@
 ---
 title: "Call before you dig tags"
 slug: "call-before-you-dig-tags"
-date: "2025-09-01T10:44:14.964Z"
+date: "2025-09-01T10:57:58.235Z"
 niche: "hogar"
 score: 1
 hero: "/placeholder.jpg"
