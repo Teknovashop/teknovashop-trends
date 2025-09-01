@@ -5,29 +5,43 @@ on:
     - cron: '0 5 * * *'   # cada día a las 07:00 hora Madrid aprox
   workflow_dispatch:       # permite lanzarlo manualmente
 
+# ✅ Da permiso de escritura al GITHUB_TOKEN para poder hacer push
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}   # ✅ checkout con token
+          persist-credentials: true   # deja las credenciales listas para push
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - run: npm ci || npm i
+
       - name: Generar tendencias
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           AMAZON_TAG_ES: ${{ secrets.AMAZON_TAG_ES }}
         run: npm run trends:daily
+
+      # ✅ Solo añadimos el contenido generado, no node_modules
       - name: Commit & push
         run: |
-          git config user.name "autobot"
-          git config user.email "autobot@users.noreply.github.com"
-          git add -A
-          git commit -m "chore: daily trends [skip ci]" || echo "No changes"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # ✅ usar token para push
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Asegura que no haya nada más staged
+          git reset
+
+          # Añade SOLO lo generado
+          git add -A src/content/trends
+
+          git commit -m "chore: daily trends [skip ci]" || echo "No changes to commit"
+
+          # Push usando el token del job
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
