@@ -1,34 +1,36 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-// Recolecta todos los .md generados en src/content/trends/**/*
+// Cargamos todos los .md bajo src/content/trends/**/*
 export async function getStaticPaths() {
   const posts = await Astro.glob('../../content/trends/**/*.md');
 
-  // Necesitamos que cada MD tenga frontmatter.slug (lo generamos en el script)
+  // Cada "post" tiene: post.frontmatter y post.Content (componente)
   return posts
     .filter((p) => p?.frontmatter?.slug)
     .map((post) => ({
       params: { slug: post.frontmatter.slug },
-      props: { post }
+      props: {
+        frontmatter: post.frontmatter,
+        Content: post.Content,
+      },
     }));
 }
 
-const { post } = Astro.props;
-const fm = post.frontmatter || {};
-const { Content } = await post.render();
+const { frontmatter: fm, Content } = Astro.props;
 ---
 
-<Base title={`${fm.title || 'Producto'} — Teknovashop`}>
+<Base title={`${fm?.title || 'Producto'} — Teknovashop`}>
   <article class="prose">
-    <h1>{fm.title}</h1>
-    {fm.hero ? (
+    <h1>{fm?.title}</h1>
+
+    {fm?.hero ? (
       <img src={fm.hero} alt={fm.title} class="hero" loading="lazy" />
     ) : null}
 
     <p class="small">
-      {fm.niche ? (<><span class="badge">{fm.niche}</span> · </>) : null}
-      {typeof fm.score !== 'undefined' ? <>score {fm.score}</> : null}
+      {fm?.niche ? (<><span class="badge">{fm.niche}</span> · </>) : null}
+      {typeof fm?.score !== 'undefined' ? <>score {fm.score}</> : null}
     </p>
 
     <Content />
