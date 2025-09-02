@@ -1,45 +1,86 @@
 ---
 import Base from '../../layouts/Base.astro';
+import fs from 'fs';
+import path from 'path';
 
-// Cargamos todos los .md bajo src/content/trends/**/*
+// Lee todos los .md de src/content/trends/**/**/** y construye paths
 export async function getStaticPaths() {
-  const posts = await Astro.glob('../../content/trends/**/*.md');
+  const root = path.join(process.cwd(), 'src', 'content', 'trends');
+  function walk(dir) {
+    let out = [];
+    for (const name of fs.readdirSync(dir)) {
+      const full = path.join(dir, name);
+      const stat = fs.statSync(full);
+      if (stat.isDirectory()) out = out.concat(walk(full));
+      else if (name.endsWith('.md')) out.push(full);
+    }
+    return out;
+  }
 
-  // Cada "post" tiene: post.frontmatter y post.Content (componente)
-  return posts
-    .filter((p) => p?.frontmatter?.slug)
-    .map((post) => ({
-      params: { slug: post.frontmatter.slug },
-      props: {
-        frontmatter: post.frontmatter,
-        Content: post.Content,
-      },
-    }));
+  const files = fs.existsSync(root) ? walk(root) : [];
+  const pages = [];
+
+  for (const file of files) {
+    const raw = fs.readFileSync(file, 'utf-8');
+    const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+    if (!m) continue;
+
+    // Frontmatter simple
+    const fmText = m[1];
+    const body = m[2] || '';
+    const fm = {};
+    for (const line of fmText.split('\n')) {
+      const mm = line.match(/^(\w+):\s*(.*)$/);
+      if (mm) {
+        const k = mm[1];
+        let v = mm[2].trim();
+        if (v.startsWith('"') && v.endsWith('"')) v = v.slice(1, -1).replace(/\\"/g, '"');
+        if (/^\d+$/.test(v)) v = Number(v);
+        fm[k] = v;
+      }
+    }
+    if (!fm.slug) continue;
+
+    pages.push({
+      params: { slug: fm.slug },
+      props: { frontmatter: fm, body },
+    });
+  }
+
+  return pages;
 }
 
-const { frontmatter: fm, Content } = Astro.props;
+const { frontmatter, body } = Astro.props;
+const title = frontmatter?.title || 'Producto';
+const niche = frontmatter?.niche || '';
+const hero  = frontmatter?.hero  || '/brand/default-card.jpg';
 ---
 
-<Base title={`${fm?.title || 'Producto'} — Teknovashop`}>
-  <article class="prose">
-    <h1>{fm?.title}</h1>
+<Base title={`${title} — Teknovashop`} description="Review generada automáticamente y enlaces de comparación de precios" ogImage={hero}>
+  <article style="max-width:840px;">
+    <h1 style="font-size:clamp(24px,4vw,40px); margin:8px 0 16px;">{title}</h1>
+    <img src={hero} alt={title} style="width:100%; max-width:100%; border-radius:14px; aspect-ratio:16/9; object-fit:cover; border:1px solid #e2e8f0;" loading="eager" />
 
-    {fm?.hero ? (
-      <img src={fm.hero} alt={fm.title} class="hero" loading="lazy" />
-    ) : null}
-
-    <p class="small">
-      {fm?.niche ? (<><span class="badge">{fm.niche}</span> · </>) : null}
-      {typeof fm?.score !== 'undefined' ? <>score {fm.score}</> : null}
+    <p style="margin:12px 0 18px; color:#64748b;">
+      <span style="display:inline-block; padding:2px 10px; border-radius:999px; background:#eef2ff; color:#3730a3; font-weight:600;">{niche}</span>
     </p>
 
-    <Content />
+    <!-- Render sencillo del cuerpo en Markdown-lite (listas y párrafos) -->
+    <div style="line-height:1.65; font-size:17px;">
+      {body.split('\n').map((ln) => {
+        const t = ln.trim();
+        if (t.startsWith('**Dónde comparar precios**')) {
+          return <h2 style="margin:24px 0 8px;">Dónde comparar precios</h2>;
+        }
+        if (t.startsWith('- ')) {
+          return <li>{t.slice(2)}</li>;
+        }
+        if (t === '') return <br />;
+        if (t.startsWith('**') && t.endsWith('**')) {
+          return <strong>{t.replace(/\*\*/g,'')}</strong>;
+        }
+        return <p>{ln}</p>;
+      })}
+    </div>
   </article>
-
-  <style>
-    .prose { max-width: 60rem; margin: 0 auto; padding: 1rem; }
-    .hero { width: 100%; height: auto; border-radius: .5rem; margin: .5rem 0 1rem; }
-    .badge { background: #eef; padding: .2rem .5rem; border-radius: .4rem; }
-    .small { color: #666; }
-  </style>
 </Base>
