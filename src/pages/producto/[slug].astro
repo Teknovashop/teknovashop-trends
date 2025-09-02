@@ -14,7 +14,7 @@ type Item = {
   body?: string;
 };
 
-/** Parser front-matter muy simple (key: value) */
+/** Front-matter (key: value) súper simple */
 function parseFrontmatter(md: string): { data: Record<string, any>; content: string } {
   const m = md.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!m) return { data: {}, content: md };
@@ -36,57 +36,121 @@ function parseFrontmatter(md: string): { data: Record<string, any>; content: str
   return { data, content };
 }
 
-function walk(dir: string, out: string[] = []): string[] {
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-  for (const e of entries) {
-    const p = path.join(dir, e.name);
-    if (e.isDirectory()) walk(p, out);
-    else if (e.isFile() && p.endsWith('.md')) out.push(p);
-  }
-  return out;
-}
-
-function loadAllFromFS(): Item[] {
-  const rootUrl = new URL('../../content/trends/', import.meta.url);
-  const root = fileURLToPath(rootUrl);
-  if (!fs.existsSync(root)) return [];
-  const files = walk(root);
-  const items: Item[] = [];
-  for (const f of files) {
-    const md = fs.readFileSync(f, 'utf-8');
-    const { data, content } = parseFrontmatter(md);
-    const slug = (data.slug || path.basename(f, '.md')) as string;
-    items.push({
-      title: data.title || slug,
-      slug,
-      date: data.date,
-      niche: data.niche,
-      score: data.score ? Number(data.score) : undefined,
-      hero: data.hero || '/placeholder.jpg',
-      body: (content || '').trim(),
-    });
-  }
-  return items;
-}
-
-/** 🔒 No dependas de variables de módulo. Calcula aquí. */
+/** ✅ No dependas de variables/funciones de módulo: todo aquí dentro */
 export async function getStaticPaths() {
-  const items = loadAllFromFS();
-  if (!items.length) return [];
-  return items.map((it) => ({
-    params: { slug: it.slug },
-    props: { item: it },
-  }));
+  const items: Item[] = [];
+
+  // 1) Lee índices JSON generados por el script: /src/data/trends/YYYY/MM/DD/index.json
+  try {
+    const dataRoot = fileURLToPath(new URL('../../data/trends/', import.meta.url));
+    if (fs.existsSync(dataRoot)) {
+      const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
+      for (const y of years) {
+        const yDir = path.join(dataRoot, y);
+        const months = fs.readdirSync(yDir).filter((d) => /^\d{2}$/.test(d));
+        for (const m of months) {
+          const mDir = path.join(yDir, m);
+          const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
+          for (const d of days) {
+            const idx = path.join(mDir, d, 'index.json');
+            if (fs.existsSync(idx)) {
+              try {
+                const payload = JSON.parse(fs.readFileSync(idx, 'utf-8'));
+                for (const it of payload.items || []) {
+                  items.push({
+                    slug: it.slug,
+                    title: it.title,
+                    niche: it.niche,
+                    score: typeof it.score === 'number' ? it.score : undefined,
+                    hero: it.hero || '/placeholder.jpg',
+                    date: payload.date,
+                  });
+                }
+              } catch {}
+            }
+          }
+        }
+      }
+    }
+  } catch {}
+
+  // 2) Enriquecer con front-matter de los .md si existen: /src/content/trends/**/{slug}.md
+  if (items.length) {
+    try {
+      const contentRoot = fileURLToPath(new URL('../../content/trends/', import.meta.url));
+      if (fs.existsSync(contentRoot)) {
+        // índice rápido por slug
+        const map = new Map(items.map((i) => [i.slug, i]));
+        // recorrer recursivo
+        const stack = [contentRoot];
+        while (stack.length) {
+          const dir = stack.pop()!;
+          for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+            const p = path.join(dir, entry.name);
+            if (entry.isDirectory()) stack.push(p);
+            else if (entry.isFile() && p.endsWith('.md')) {
+              const md = fs.readFileSync(p, 'utf-8');
+              const { data } = parseFrontmatter(md);
+              const slug = (data.slug || path.basename(p, '.md')) as string;
+              const ex = map.get(slug);
+              if (ex) {
+                ex.title = data.title || ex.title || slug;
+                ex.niche = data.niche || ex.niche;
+                ex.score = typeof data.score === 'number' ? data.score : ex.score;
+                ex.hero = data.hero || ex.hero || '/placeholder.jpg';
+              }
+            }
+          }
+        }
+      }
+    } catch {}
+  }
+
+  // Paths
+  const seen = new Set<string>();
+  const paths = items
+    .filter((it) => it.slug && !seen.has(it.slug) && seen.add(it.slug))
+    .map((it) => ({ params: { slug: it.slug }, props: { item: it } }));
+
+  return paths;
 }
 
 const { slug } = Astro.params;
 const { item } = Astro.props as { item?: Item };
 
-// Si vinimos sin props (edge cases), buscamos directo por slug
+// Fallback por si llega sin props (no debería, pero mejor blindado)
 let cur: Item | undefined = item;
 if (!cur && slug) {
-  const items = loadAllFromFS();
-  cur = items.find((x) => x.slug === slug);
+  try {
+    const contentRoot = fileURLToPath(new URL('../../content/trends/', import.meta.url));
+    if (fs.existsSync(contentRoot)) {
+      const stack = [contentRoot];
+      while (stack.length && !cur) {
+        const dir = stack.pop()!;
+        for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+          const p = path.join(dir, e.name);
+          if (e.isDirectory()) stack.push(p);
+          else if (e.isFile() && p.endsWith('.md')) {
+            const md = fs.readFileSync(p, 'utf-8');
+            const { data, content } = parseFrontmatter(md);
+            const s = (data.slug || path.basename(p, '.md')) as string;
+            if (s === slug) {
+              cur = {
+                slug: s,
+                title: data.title || s,
+                date: data.date,
+                niche: data.niche,
+                score: typeof data.score === 'number' ? data.score : undefined,
+                hero: data.hero || '/placeholder.jpg',
+                body: (content || '').trim(),
+              };
+              break;
+            }
+          }
+        }
+      }
+    }
+  } catch {}
 }
 if (!cur) {
   cur = {
