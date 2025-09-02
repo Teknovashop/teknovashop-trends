@@ -4,207 +4,116 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-type Item = {
-  title?: string;
+type TrendItem = {
   slug: string;
-  date?: string;
+  title: string;
   niche?: string;
   score?: number;
   hero?: string;
-  body?: string;
+  links?: { label: string; url: string }[];
 };
 
-/** Front-matter (key: value) súper simple */
-function parseFrontmatter(md: string): { data: Record<string, any>; content: string } {
-  const m = md.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-  if (!m) return { data: {}, content: md };
-  const raw = m[1];
-  const content = m[2];
+type IndexPayload = { date: string; items: TrendItem[] };
 
-  const data: Record<string, any> = {};
-  for (const line of raw.split('\n')) {
-    const i = line.indexOf(':');
-    if (i === -1) continue;
-    const key = line.slice(0, i).trim();
-    let val = line.slice(i + 1).trim();
-    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-      val = val.slice(1, -1);
-    }
-    if (/^-?\d+(\.\d+)?$/.test(val)) data[key] = Number(val);
-    else data[key] = val;
-  }
-  return { data, content };
+function readJSON(p: string): IndexPayload | null {
+  try {
+    const raw = fs.readFileSync(p, 'utf-8');
+    const j = JSON.parse(raw);
+    if (j && typeof j === 'object' && Array.isArray(j.items)) return j as IndexPayload;
+  } catch {}
+  return null;
 }
 
-/** ✅ No dependas de variables/funciones de módulo: todo aquí dentro */
-export async function getStaticPaths() {
-  const items: Item[] = [];
+function gatherAllItems(): TrendItem[] {
+  const dataRoot = fileURLToPath(new URL('../../data/trends/', import.meta.url));
+  if (!fs.existsSync(dataRoot)) return [];
 
-  // 1) Lee índices JSON generados por el script: /src/data/trends/YYYY/MM/DD/index.json
-  try {
-    const dataRoot = fileURLToPath(new URL('../../data/trends/', import.meta.url));
-    if (fs.existsSync(dataRoot)) {
-      const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
-      for (const y of years) {
-        const yDir = path.join(dataRoot, y);
-        const months = fs.readdirSync(yDir).filter((d) => /^\d{2}$/.test(d));
-        for (const m of months) {
-          const mDir = path.join(yDir, m);
-          const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
-          for (const d of days) {
-            const idx = path.join(mDir, d, 'index.json');
-            if (fs.existsSync(idx)) {
-              try {
-                const payload = JSON.parse(fs.readFileSync(idx, 'utf-8'));
-                for (const it of payload.items || []) {
-                  items.push({
-                    slug: it.slug,
-                    title: it.title,
-                    niche: it.niche,
-                    score: typeof it.score === 'number' ? it.score : undefined,
-                    hero: it.hero || '/placeholder.jpg',
-                    date: payload.date,
-                  });
-                }
-              } catch {}
-            }
-          }
-        }
+  const items: TrendItem[] = [];
+  const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
+
+  for (const Y of years) {
+    const yDir = path.join(dataRoot, Y);
+    if (!fs.statSync(yDir).isDirectory()) continue;
+    const months = fs.readdirSync(yDir).filter((d) => /^\d{2}$/.test(d));
+    for (const M of months) {
+      const mDir = path.join(yDir, M);
+      if (!fs.statSync(mDir).isDirectory()) continue;
+      const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
+      for (const D of days) {
+        const idx = path.join(mDir, D, 'index.json');
+        const j = readJSON(idx);
+        if (j?.items?.length) items.push(...j.items);
       }
     }
-  } catch {}
-
-  // 2) Enriquecer con front-matter de los .md si existen: /src/content/trends/**/{slug}.md
-  if (items.length) {
-    try {
-      const contentRoot = fileURLToPath(new URL('../../content/trends/', import.meta.url));
-      if (fs.existsSync(contentRoot)) {
-        // índice rápido por slug
-        const map = new Map(items.map((i) => [i.slug, i]));
-        // recorrer recursivo
-        const stack = [contentRoot];
-        while (stack.length) {
-          const dir = stack.pop()!;
-          for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-            const p = path.join(dir, entry.name);
-            if (entry.isDirectory()) stack.push(p);
-            else if (entry.isFile() && p.endsWith('.md')) {
-              const md = fs.readFileSync(p, 'utf-8');
-              const { data } = parseFrontmatter(md);
-              const slug = (data.slug || path.basename(p, '.md')) as string;
-              const ex = map.get(slug);
-              if (ex) {
-                ex.title = data.title || ex.title || slug;
-                ex.niche = data.niche || ex.niche;
-                ex.score = typeof data.score === 'number' ? data.score : ex.score;
-                ex.hero = data.hero || ex.hero || '/placeholder.jpg';
-              }
-            }
-          }
-        }
-      }
-    } catch {}
   }
 
-  // Paths
-  const seen = new Set<string>();
-  const paths = items
-    .filter((it) => it.slug && !seen.has(it.slug) && seen.add(it.slug))
-    .map((it) => ({ params: { slug: it.slug }, props: { item: it } }));
+  // eliminar posibles duplicados por slug
+  const map = new Map<string, TrendItem>();
+  for (const it of items) {
+    if (it.slug && !map.has(it.slug)) map.set(it.slug, it);
+  }
+  return Array.from(map.values());
+}
 
+export async function getStaticPaths() {
+  const items = gatherAllItems();
+  const paths = items.map((it) => ({ params: { slug: it.slug } }));
   return paths;
 }
 
+const all = gatherAllItems();
 const { slug } = Astro.params;
-const { item } = Astro.props as { item?: Item };
-
-// Fallback por si llega sin props (no debería, pero mejor blindado)
-let cur: Item | undefined = item;
-if (!cur && slug) {
-  try {
-    const contentRoot = fileURLToPath(new URL('../../content/trends/', import.meta.url));
-    if (fs.existsSync(contentRoot)) {
-      const stack = [contentRoot];
-      while (stack.length && !cur) {
-        const dir = stack.pop()!;
-        for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-          const p = path.join(dir, e.name);
-          if (e.isDirectory()) stack.push(p);
-          else if (e.isFile() && p.endsWith('.md')) {
-            const md = fs.readFileSync(p, 'utf-8');
-            const { data, content } = parseFrontmatter(md);
-            const s = (data.slug || path.basename(p, '.md')) as string;
-            if (s === slug) {
-              cur = {
-                slug: s,
-                title: data.title || s,
-                date: data.date,
-                niche: data.niche,
-                score: typeof data.score === 'number' ? data.score : undefined,
-                hero: data.hero || '/placeholder.jpg',
-                body: (content || '').trim(),
-              };
-              break;
-            }
-          }
-        }
-      }
-    }
-  } catch {}
-}
-if (!cur) {
-  cur = {
-    slug: String(slug ?? ''),
-    title: 'Producto no encontrado',
-    niche: 'N/D',
-    score: 0,
-    hero: '/placeholder.jpg',
-    body: 'No hay contenido para este producto.',
-  };
-}
-
-function asHtml(text?: string) {
-  if (!text) return '';
-  return text
-    .replace(/\r\n/g, '\n')
-    .split('\n')
-    .map((l) => l.trim())
-    .filter((l) => l.length)
-    .join('<br/>');
-}
+const post = all.find((it) => it.slug === slug);
 ---
 
-<Base title={cur.title ? `${cur.title} — Teknovashop` : 'Teknovashop'}>
-  <article class="product">
-    <header class="head">
-      <h1>{cur.title}</h1>
+<Base title={post ? `${post.title} — Teknovashop` : 'Producto — Teknovashop'}>
+  {post ? (
+    <>
+      <h1>{post.title}</h1>
+
+      <img
+        src={post.hero || '/placeholder.jpg'}
+        alt={post.title}
+        class="hero"
+        loading="lazy"
+        decoding="async"
+        onerror="this.src='/placeholder.jpg'"
+      />
+
       <p class="meta">
-        {cur.niche && <span class="badge">{cur.niche}</span>}
-        {typeof cur.score === 'number' && <span class="score">· score {cur.score}</span>}
+        {post.niche && <span class="badge">{post.niche}</span>}
+        {typeof post.score === 'number' && <span class="score">· score {post.score}</span>}
       </p>
-    </header>
 
-    {cur.hero && (
-      <img class="hero" src={cur.hero} alt={cur.title} loading="eager" decoding="async" />
-    )}
+      <section class="review">
+        <p><strong>Resumen:</strong> tendencia del día.</p>
+        <p><strong>Pros:</strong> buena relación calidad/precio.</p>
+        <p><strong>Contras:</strong> depende del caso.</p>
+        <p><strong>Recomendación:</strong> compara precios y opiniones antes de comprar.</p>
+      </section>
 
-    <section class="content" set:html={asHtml(cur.body)} />
-  </article>
+      {Array.isArray(post.links) && post.links.length > 0 && (
+        <section>
+          <h2>Dónde comparar precios</h2>
+          <ul>
+            {post.links.map((l) => (
+              <li><a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </>
+  ) : (
+    <p>No se ha encontrado este producto.</p>
+  )}
 
   <style>
-    .product{max-width:900px;margin:0 auto;}
-    .head h1{margin:.3rem 0 0;}
-    .meta{color:#9fb3b8;margin:.3rem 0 1rem;}
+    .hero{width:100%;max-width:900px;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+    .meta{margin:.6rem 0 1rem;color:#9fb3b8}
     .badge{
       display:inline-block;background:rgba(0,196,199,.18);color:#93f7f9;
-      padding:.18rem .5rem;border-radius:999px;margin-right:.5rem;font-size:.85rem;
+      padding:.18rem .5rem;border-radius:999px;margin-right:.5rem;
     }
-    .score{font-size:.9rem;}
-    .hero{
-      width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.08);
-      background:#0d1319;margin:.5rem 0 1rem;
-    }
-    .content{color:#eaf3f7;font-size:1.02rem;line-height:1.6}
-    .content a{color:#00c4c7}
+    .review p{margin:.25rem 0}
   </style>
 </Base>
