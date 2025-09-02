@@ -1,20 +1,25 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-// Carga todos los MD generados en /src/content/trends/YYYY/MM/DD/*.md
-// OJO: la ruta debe ser RELATIVA al archivo actual (no con /src/...).
-const modules = import.meta.glob('../../content/trends/**/*.md', { eager: true });
-
-// Construye paths estáticos para todos los slugs encontrados
+/**
+ * Genera todas las rutas estáticas leyendo los MD de:
+ *   src/content/trends/YYYY/MM/DD/*.md
+ * OJO: la ruta es relativa a este archivo (src/pages/producto/[slug].astro)
+ */
 export async function getStaticPaths() {
-  const paths = [];
+  // Hacemos el glob *dentro* de la función para evitar problemas de ámbito
+  const modules = import.meta.glob('../../content/trends/**/*.md', { eager: true });
 
+  const paths = [];
   for (const mod of Object.values(modules)) {
-    const front = mod.frontmatter || {};
-    if (front.slug) {
+    // Cada módulo tiene .frontmatter y .default (componente de contenido)
+    const front = (mod as any)?.frontmatter ?? {};
+    const Content = (mod as any)?.default;
+
+    if (front?.slug && Content) {
       paths.push({
         params: { slug: front.slug },
-        props: { frontmatter: front, Content: mod.default },
+        props: { frontmatter: front, Content },
       });
     }
   }
@@ -44,6 +49,11 @@ export const prerender = true;
       aspect-ratio: 16/9;
       object-fit: cover;
     }
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-size: 1.03rem;
+    }
     .meta {
       display: flex;
       gap: .6rem;
@@ -55,11 +65,6 @@ export const prerender = true;
     .badge {
       display:inline-block; padding:.15rem .5rem; border-radius:999px;
       background: rgba(0,196,199,.15); color:#93f7f9; font-weight:600;
-    }
-    .content {
-      max-width: 1100px;
-      margin: 0 auto;
-      font-size: 1.03rem;
     }
     .content h1 { margin: .2rem 0 0.8rem; line-height: 1.15; }
     .content h2, .content h3 { margin-top: 1.2rem; }
