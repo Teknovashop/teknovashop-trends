@@ -1,53 +1,167 @@
 ---
-const { title = 'Teknovashop Tendencias', description = 'Tendencias diarias de productos con comparador de precios', ogImage = '/brand/teknovashop-tendencias.png' } = Astro.props;
+const {
+  title = 'Teknovashop Tendencias',
+  description = 'Tendencias diarias de productos en España: reseñas breves, pros y contras, y enlaces para comparar precios.',
+} = Astro.props;
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- Open Graph básico -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Favicon y hoja de estilos global opcional -->
+    <link rel="icon" href="/brand/teknovashop-tendencias.png" />
+    <link rel="stylesheet" href="/styles.css" />
     <style>
-      :root { --brand:#1967d2; --ink:#0f172a; --muted:#64748b; --ring:#e2e8f0; --bg:#ffffff; }
-      * { box-sizing:border-box; }
-      html,body { margin:0; padding:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial; color:var(--ink); background:var(--bg); }
-      a { color:var(--brand); text-decoration:none; }
-      a:hover { text-decoration:underline; }
-      header { position:sticky; top:0; z-index:20; background:#fff; border-bottom:1px solid var(--ring); }
-      .wrap { max-width:1100px; margin:0 auto; padding:16px; }
-      .brand { display:flex; align-items:center; gap:12px; font-weight:700; font-size:18px; }
-      .brand img { height:36px; width:auto; display:block; }
-      nav { margin-left:auto; display:flex; gap:18px; }
-      .row { display:flex; align-items:center; gap:24px; }
-      main.wrap { padding-top:24px; padding-bottom:56px; }
-      footer { border-top:1px solid var(--ring); padding:24px 0; color:var(--muted); }
+      :root{
+        --bg:#0b0f14;
+        --card:#0f151b;
+        --text:#eaf3f7;
+        --muted:rgba(255,255,255,.08);
+        --brand:#00c4c7;
+        --brand-2:#00a8aa;
+        --wrap-max:1100px;
+      }
+      *{ box-sizing:border-box; }
+      html,body{ margin:0; padding:0; }
+      body{
+        background: var(--bg);
+        color: var(--text);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
+        line-height:1.45;
+      }
+
+      /* Header */
+      header.top{
+        position: sticky; top:0; z-index:50;
+        backdrop-filter: saturate(120%) blur(8px);
+        background: linear-gradient(180deg, rgba(13,18,24,.85), rgba(13,18,24,.65));
+        border-bottom: 1px solid var(--muted);
+      }
+      .top-inner{
+        max-width: var(--wrap-max);
+        margin: 0 auto; padding: .8rem 1rem;
+        display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      }
+      .brand{
+        display:flex; align-items:center; gap:.7rem;
+        text-decoration:none; color:var(--text);
+      }
+      .brand img{
+        width:34px; height:34px; border-radius:9px; display:block;
+      }
+      .brand span{
+        font-weight:600; letter-spacing:.2px;
+      }
+      .brand span b{ color: var(--brand); font-weight:800; }
+
+      nav a{
+        color:#d9eef0; text-decoration:none; margin-left:1rem; font-weight:500;
+        padding:.35rem .55rem; border-radius:8px;
+      }
+      nav a:hover{ background: var(--muted); }
+
+      /* Main container */
+      .wrap{
+        max-width: var(--wrap-max);
+        margin: 1.3rem auto 2rem;
+        padding: 0 1rem;
+      }
+
+      /* Footer */
+      footer.foot{
+        border-top: 1px solid var(--muted);
+        padding: 1rem 0;
+        color: #b8c7cb;
+        background: #0c1217;
+      }
+      .foot-inner{
+        max-width: var(--wrap-max);
+        margin: 0 auto; padding: 0 1rem;
+      }
+      .foot a{ color: var(--brand); text-decoration: none; }
+      .foot a:hover{ text-decoration: underline; }
+
+      /* Headings y enlaces dentro del main */
+      h1,h2,h3{ line-height:1.2; }
+      a{ color: var(--brand); }
+      a:hover{ color: var(--brand-2); }
+
+      /* Tarjetas (por si no usas styles.css) */
+      .grid{
+        display:grid; gap: 1.25rem;
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      }
+      .card{
+        background: var(--card);
+        border: 1px solid var(--muted);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      }
+      .card .hero{
+        width:100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background: #0d1319;
+        display:block;
+      }
+      .card .body{ padding: 1rem; }
+      .badge{
+        display:inline-block; padding:.2rem .5rem; border-radius:999px;
+        background: rgba(0,196,199,.15); color:#93f7f9; font-size:.78rem;
+      }
+      .small{ color:#9fb3b8; font-size:.9rem; }
+      .btn{
+        display:inline-block; margin-top:.6rem; padding:.55rem .8rem;
+        background: var(--brand); color:#00292b; font-weight:700;
+        border-radius:10px; text-decoration:none;
+      }
+      .btn:hover{ filter: brightness(.95); }
+
+      /* Responsive ajustes mínimos */
+      @media (max-width: 560px){
+        nav a{ margin-left:.5rem; }
+        .brand span{ font-size:.98rem; }
+      }
     </style>
   </head>
+
   <body>
-    <header>
-      <div class="wrap row">
-        <a class="brand" href="/">
-          <img src="/brand/teknovashop-tendencias.png" alt="Teknovashop Tendencias" loading="eager" />
-          <span>Teknovashop <span style="color:var(--muted); font-weight:600;">Tendencias</span></span>
+    <header class="top">
+      <div class="top-inner">
+        <a href="/" class="brand">
+          <img src="/brand/teknovashop-tendencias.png" alt="Teknovashop" onerror="this.style.display='none'" />
+          <span>Teknovashop <b>Tendencias</b></span>
         </a>
         <nav>
-          <a href="/hoy/">Hoy</a>
-          <a href="/archivo/">Archivo</a>
-          <a href="/acerca/">Acerca</a>
+          <a href="/hoy">Hoy</a>
+          <a href="/archivo">Archivo</a>
+          <a href="/acerca">Acerca</a>
         </nav>
       </div>
     </header>
+
     <main class="wrap">
       <slot />
     </main>
-    <footer>
-      <div class="wrap">
-        © {new Date().getFullYear()} Teknovashop · Algunos enlaces pueden ser de afiliado · <a href="/legal/">Avisos legales</a>
+
+    <footer class="foot">
+      <div class="foot-inner">
+        <small>
+          © {new Date().getFullYear()} Teknovashop · Algunos enlaces pueden ser de afiliado ·
+          <a href="/legal"> Avisos legales</a>
+        </small>
       </div>
     </footer>
   </body>
