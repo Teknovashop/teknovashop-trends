@@ -1,36 +1,44 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-// Cargamos TODOS los JSON bajo src/data/.../index.json en build
-const _modules = import.meta.glob('../../data/**/index.json', {
-  eager: true,
-  import: 'default'
-});
+// Construye el índice leyendo TODOS los JSON en src/data/**/index.json
+function buildIndex() {
+  // Cargamos módulos de forma ansiosa (eager)
+  const mods = import.meta.glob('../../data/**/index.json', { eager: true }) as Record<string, any>;
 
-// Aplanamos a una lista de items y guardamos por slug
-const _items = [];
-for (const k of Object.keys(_modules)) {
-  const data = _modules[k];
-  if (!data || !Array.isArray(data.items)) continue;
-  const dateStr = data.date || '';
-  for (const it of data.items) {
-    if (it && typeof it.slug === 'string') {
-      _items.push({ ...it, date: it.date || dateStr });
+  const map = new Map<string, any>(); // slug -> item
+  const items: any[] = [];
+
+  for (const k of Object.keys(mods)) {
+    // Vite devuelve { default: data } para JSON
+    const mod = mods[k];
+    const data = mod && typeof mod === 'object' && 'default' in mod ? mod.default : mod;
+
+    if (!data || !Array.isArray(data.items)) continue;
+    const dateStr = data.date || '';
+
+    for (const it of data.items) {
+      if (it && typeof it.slug === 'string') {
+        const merged = { ...it, date: it.date || dateStr };
+        map.set(merged.slug, merged); // último gana
+        items.push(merged);
+      }
     }
   }
-}
-// dedup por slug (último gana)
-const _bySlug = new Map();
-for (const it of _items) _bySlug.set(it.slug, it);
 
-// Rutas estáticas (una por slug)
+  return { map, items };
+}
+
+// Genera rutas estáticas por cada slug encontrado
 export async function getStaticPaths() {
-  return Array.from(_bySlug.keys()).map((slug) => ({ params: { slug } }));
+  const { map } = buildIndex();
+  return Array.from(map.keys()).map((slug) => ({ params: { slug } }));
 }
 
-// Obtenemos el item actual
-const { slug } = Astro.params;
-const item = _bySlug.get(slug);
+// Obtenemos el item actual por slug
+const { slug } = Astro.params as { slug: string };
+const { map } = buildIndex();
+const item = map.get(slug);
 
 if (!item) {
   throw new Error(`Producto no encontrado: ${slug}`);
@@ -44,15 +52,15 @@ const dateStr = item.date || '';
 const summary = item.summary || 'Tendencia destacada del día.';
 const hero = (typeof item.hero === 'string' && item.hero) ? item.hero : '/placeholder.jpg';
 
-function toList(val) {
+function toList(val: any) {
   if (Array.isArray(val)) return val;
-  if (typeof val === 'string') return val.split('•').map(s => s.trim()).filter(Boolean);
+  if (typeof val === 'string') return val.split('•').map((s) => s.trim()).filter(Boolean);
   return [];
 }
 const pros = toList(item.pros);
 const cons = toList(item.cons);
 
-function safe(u) {
+function safe(u?: string | null) {
   if (!u || typeof u !== 'string') return null;
   try { return new URL(u).toString(); } catch { return null; }
 }
