@@ -1,10 +1,44 @@
 ---
-import Base from '../layouts/Base.astro';import fs from 'fs';
-const root = new URL('../content/trends/', import.meta.url);
-function walk(dir){const p=new URL('.',dir);const e=fs.readdirSync(p);let files=[];for(const x of e){const f=new URL(x+'/',p);if(fs.statSync(f).isDirectory()){files=files.concat(walk(f));}else if(x==='index.json'){files.push(new URL(x,p));}}return files;}
-let days=[];try{days=walk(root).map(u=>JSON.parse(fs.readFileSync(u,'utf-8'))).sort((a,b)=>a.date<b.date?1:-1);}catch{days=[];}
+import Base from '../layouts/Base.astro';
+import { gatherAllItems } from '../lib/trends';
+
+const all = gatherAllItems();
+// Agrupar por fecha
+const byDate = all.reduce<Record<string, typeof all>>((acc, it) => {
+  (acc[it.date] ??= []).push(it);
+  return acc;
+}, {});
+const dates = Object.keys(byDate).sort().reverse();
 ---
-<Base title="Archivo de tendencias — Teknovashop">
-  <h1>Archivo</h1>
-  {days.length===0 ? <p>Sin entradas aún.</p> : <ul>{days.map(d => (<li><a href={`/tendencias/${d.date}`}>{d.date}</a></li>))}</ul>}
+
+<Base title="Archivo" description="Archivo de tendencias">
+  <section class="wrap">
+    <h1>Archivo</h1>
+    {dates.length === 0 ? (
+      <p>Sin entradas aún.</p>
+    ) : (
+      dates.map(date => (
+        <div class="day">
+          <h2>{date}</h2>
+          <ul class="list">
+            {byDate[date].map(it => (
+              <li>
+                <a href={`/producto/${it.slug}`}>{it.title}</a>
+                <span class="muted"> · {it.niche}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    )}
+  </section>
+
+  <style>
+    .wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; }
+    .day { margin-bottom: 1.25rem; }
+    .list { padding-left: 1rem; }
+    .list li { margin: .25rem 0; }
+    .muted { opacity:.75; }
+  </style>
 </Base>
