@@ -1,5 +1,5 @@
 ---
-import Base from '@/layouts/Base.astro';
+import Base from '../../layouts/Base.astro';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -20,8 +20,6 @@ type Item = {
   hero?: string;
 };
 
-// Lee todos los index.json ubicados bajo src/data/.../index.json y devuelve la
-// lista de items con su fecha “inferida” del árbol de directorios.
 function loadAllItems(): Item[] {
   const root = path.join(Astro.srcDir, 'data');
   const results: Item[] = [];
@@ -49,20 +47,18 @@ function loadAllItems(): Item[] {
             }
           }
         } catch {
-          // Ignorar archivos corruptos para que el build no se caiga
+          // ignorar json inválidos
         }
       }
     }
   }
 
   scan([]);
-  // Quitar duplicados por slug (nos quedamos con el último encontrado)
   const map = new Map<string, Item>();
   for (const it of results) map.set(it.slug, it);
   return Array.from(map.values());
 }
 
-// Devuelve un item por slug
 function getBySlug(slug: string): Item | undefined {
   const items = loadAllItems();
   return items.find((it) => it.slug === slug);
@@ -76,12 +72,9 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-
-// Cargar el registro
 const record = getBySlug(String(slug));
 
 if (!record) {
-  // Lanzar un error controlado para que Vercel muestre 404 de forma limpia
   throw new Error(`Producto no encontrado: ${slug}`);
 }
 
