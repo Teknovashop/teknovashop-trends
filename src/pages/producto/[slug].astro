@@ -1,144 +1,55 @@
 ---
-// src/pages/producto/[slug].astro
 import Base from '../../layouts/Base.astro';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { gatherAllItems, getItemBySlug } from '../../lib/trends';
 
-// Carga TODOS los items del FS (utilidad reutilizable)
-function loadAllItems(): Array<{
-  slug: string;
-  title: string;
-  niche?: string;
-  score?: number;
-  hero?: string;
-  links?: { label: string; url: string }[];
-}> {
-  const dataRoot = fileURLToPath(new URL('../../data/trends/', import.meta.url));
-  if (!fs.existsSync(dataRoot)) return [];
-
-  const items: any[] = [];
-  const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
-
-  for (const Y of years) {
-    const yDir = path.join(dataRoot, Y);
-    if (!fs.statSync(yDir).isDirectory()) continue;
-    const months = fs.readdirSync(yDir).filter((d) => /^\d{2}$/.test(d));
-    for (const M of months) {
-      const mDir = path.join(yDir, M);
-      if (!fs.statSync(mDir).isDirectory()) continue;
-      const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
-      for (const D of days) {
-        const idx = path.join(mDir, D, 'index.json');
-        try {
-          const raw = fs.readFileSync(idx, 'utf-8');
-          const j = JSON.parse(raw);
-          if (j && Array.isArray(j.items)) items.push(...j.items);
-        } catch {}
-      }
-    }
-  }
-
-  // De-duplicar por slug (primer encuentro gana)
-  const map = new Map<string, any>();
-  for (const it of items) {
-    if (it?.slug && !map.has(it.slug)) map.set(it.slug, it);
-  }
-  return Array.from(map.values());
-}
-
-// ✅ Toda la lógica dentro: no depende de símbolos externos
 export async function getStaticPaths() {
-  // (re-escribe aquí el algoritmo para evitar “not defined”)
-  const dataRoot = fileURLToPath(new URL('../../data/trends/', import.meta.url));
-  let items: any[] = [];
-
-  if (fs.existsSync(dataRoot)) {
-    const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
-    for (const Y of years) {
-      const yDir = path.join(dataRoot, Y);
-      if (!fs.statSync(yDir).isDirectory()) continue;
-      const months = fs.readdirSync(yDir).filter((d) => /^\d{2}$/.test(d));
-      for (const M of months) {
-        const mDir = path.join(yDir, M);
-        if (!fs.statSync(mDir).isDirectory()) continue;
-        const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
-        for (const D of days) {
-          const idx = path.join(mDir, D, 'index.json');
-          try {
-            const raw = fs.readFileSync(idx, 'utf-8');
-            const j = JSON.parse(raw);
-            if (j && Array.isArray(j.items)) items.push(...j.items);
-          } catch {}
-        }
-      }
-    }
-  }
-
-  // De-duplicar por slug aquí también
-  const map = new Map<string, any>();
-  for (const it of items) {
-    if (it?.slug && !map.has(it.slug)) map.set(it.slug, it);
-  }
-  const unique = Array.from(map.values());
-
-  return unique.map((it) => ({ params: { slug: it.slug } }));
+  // Generamos TODAS las rutas a partir de los JSON
+  const items = gatherAllItems();
+  return items.map((it) => ({ params: { slug: it.slug } }));
 }
 
-// Datos para el render
-const all = loadAllItems();
 const { slug } = Astro.params;
-const post = all.find((it) => it.slug === slug);
+const item = slug ? getItemBySlug(slug) : null;
+
+if (!item) {
+  throw new Error('Producto no encontrado');
+}
 ---
 
-<Base title={post ? `${post.title} — Teknovashop` : 'Producto — Teknovashop'}>
-  {post ? (
-    <>
-      <h1>{post.title}</h1>
+<Base title={item.title} description={`Ficha de ${item.title}`}>
+  <section class="wrap">
+    <h1>{item.title}</h1>
 
-      <img
-        src={post.hero || '/placeholder.jpg'}
-        alt={post.title}
-        class="hero"
-        loading="lazy"
-        decoding="async"
-        onerror="this.src='/placeholder.jpg'"
-      />
+    <figure class="hero">
+      <img src={item.hero || '/placeholder.jpg'} alt={item.title} loading="eager" />
+    </figure>
 
-      <p class="meta">
-        {post.niche && <span class="badge">{post.niche}</span>}
-        {typeof post.score === 'number' && <span class="score">· score {post.score}</span>}
-      </p>
+    <p class="meta">
+      <span class="badge">{item.niche}</span>
+      {typeof item.score === 'number' && <span>· score {item.score}</span>}
+      {item.date && <span>· {item.date}</span>}
+    </p>
 
-      <section class="review">
-        <p><strong>Resumen:</strong> tendencia del día.</p>
-        <p><strong>Pros:</strong> buena relación calidad/precio.</p>
-        <p><strong>Contras:</strong> depende del caso.</p>
-        <p><strong>Recomendación:</strong> compara precios y opiniones antes de comprar.</p>
-      </section>
+    <div class="content">
+      <p><strong>Resumen:</strong> tendencia del día.</p>
+      <p><strong>Pros:</strong> buena relación calidad/precio. <strong>Contras:</strong> depende del caso.</p>
 
-      {Array.isArray(post.links) && post.links.length > 0 && (
-        <section>
-          <h2>Dónde comparar precios</h2>
-          <ul>
-            {post.links.map((l) => (
-              <li><a href={l.url} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
-            ))}
-          </ul>
-        </section>
-      )}
-    </>
-  ) : (
-    <p>No se ha encontrado este producto.</p>
-  )}
+      <h3>Dónde comparar precios</h3>
+      <ul>
+        <li><a href={`https://www.amazon.es/s?k=${encodeURIComponent(item.title)}&tag=teknovashop-21&language=es_ES`} target="_blank" rel="nofollow noopener">Amazon (ES)</a></li>
+        <li><a href={`https://es.aliexpress.com/wholesale?SearchText=${encodeURIComponent(item.title)}`} target="_blank" rel="nofollow noopener">AliExpress</a></li>
+        <li><a href={`https://es.shein.com/pdsearch/${encodeURIComponent(item.title)}/`} target="_blank" rel="nofollow noopener">SHEIN</a></li>
+      </ul>
+    </div>
+  </section>
 
   <style>
-    .hero{width:100%;max-width:900px;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
-    .meta{margin:.6rem 0 1rem;color:#9fb3b8}
-    .badge{
-      display:inline-block;background:rgba(0,196,199,.18);color:#93f7f9;
-      padding:.18rem .5rem;border-radius:999px;margin-right:.5rem;
-    }
-    .review p{margin:.25rem 0}
+    .wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { font-size: 2rem; margin-bottom: .75rem; }
+    .hero { margin: 0 0 1rem; border: 1px solid var(--card-border); border-radius: 12px; overflow: hidden; }
+    .hero img { width:100%; height:auto; display:block; }
+    .meta { opacity:.85; margin-bottom: 1rem; display:flex; gap:.5rem; align-items:center; }
+    .badge { background: var(--badge); color: var(--badge-fg); border-radius: 999px; padding: .15rem .55rem; font-size: .85rem; }
+    .content h3 { margin-top: 1.25rem; }
   </style>
 </Base>
