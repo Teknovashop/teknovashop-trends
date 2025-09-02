@@ -1,55 +1,79 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { gatherAllItems, getItemBySlug } from '../../lib/trends';
 
+// Carga todos los MD generados en /src/content/trends/YYYY/MM/DD/*.md
+const entries = import.meta.glob('/src/content/trends/**/*.md', { eager: true });
+
+// Build paths
 export async function getStaticPaths() {
-  // Generamos TODAS las rutas a partir de los JSON
-  const items = gatherAllItems();
-  return items.map((it) => ({ params: { slug: it.slug } }));
+  const paths = [];
+  for (const [, mod] of Object.entries(entries)) {
+    const front = mod.frontmatter || {};
+    if (front.slug) {
+      paths.push({
+        params: { slug: front.slug },
+        props: { frontmatter: front, Content: mod.default },
+      });
+    }
+  }
+  return paths;
 }
 
-const { slug } = Astro.params;
-const item = slug ? getItemBySlug(slug) : null;
-
-if (!item) {
-  throw new Error('Producto no encontrado');
-}
+const { frontmatter, Content } = Astro.props;
+const { title, niche, score, hero } = frontmatter;
 ---
 
-<Base title={item.title} description={`Ficha de ${item.title}`}>
-  <section class="wrap">
-    <h1>{item.title}</h1>
-
-    <figure class="hero">
-      <img src={item.hero || '/placeholder.jpg'} alt={item.title} loading="eager" />
-    </figure>
-
-    <p class="meta">
-      <span class="badge">{item.niche}</span>
-      {typeof item.score === 'number' && <span>· score {item.score}</span>}
-      {item.date && <span>· {item.date}</span>}
-    </p>
-
-    <div class="content">
-      <p><strong>Resumen:</strong> tendencia del día.</p>
-      <p><strong>Pros:</strong> buena relación calidad/precio. <strong>Contras:</strong> depende del caso.</p>
-
-      <h3>Dónde comparar precios</h3>
-      <ul>
-        <li><a href={`https://www.amazon.es/s?k=${encodeURIComponent(item.title)}&tag=teknovashop-21&language=es_ES`} target="_blank" rel="nofollow noopener">Amazon (ES)</a></li>
-        <li><a href={`https://es.aliexpress.com/wholesale?SearchText=${encodeURIComponent(item.title)}`} target="_blank" rel="nofollow noopener">AliExpress</a></li>
-        <li><a href={`https://es.shein.com/pdsearch/${encodeURIComponent(item.title)}/`} target="_blank" rel="nofollow noopener">SHEIN</a></li>
-      </ul>
-    </div>
-  </section>
-
+<Base title={title}>
   <style>
-    .wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; }
-    h1 { font-size: 2rem; margin-bottom: .75rem; }
-    .hero { margin: 0 0 1rem; border: 1px solid var(--card-border); border-radius: 12px; overflow: hidden; }
-    .hero img { width:100%; height:auto; display:block; }
-    .meta { opacity:.85; margin-bottom: 1rem; display:flex; gap:.5rem; align-items:center; }
-    .badge { background: var(--badge); color: var(--badge-fg); border-radius: 999px; padding: .15rem .55rem; font-size: .85rem; }
-    .content h3 { margin-top: 1.25rem; }
+    .hero-wrap {
+      max-width: 1100px;
+      margin: 0 auto 1rem;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0e141a;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .hero {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .meta {
+      display: flex;
+      gap: .6rem;
+      align-items: center;
+      margin: .35rem 0 1rem;
+      color: #b9c5cb;
+      font-size: .95rem;
+    }
+    .badge {
+      display:inline-block; padding:.15rem .5rem; border-radius:999px;
+      background: rgba(0,196,199,.15); color:#93f7f9; font-weight:600;
+    }
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-size: 1.03rem;
+    }
+    .content h2, .content h3 { margin-top: 1.2rem; }
+    .content ul { padding-left: 1.2rem; }
   </style>
+
+  <div class="hero-wrap">
+    <img class="hero" src={hero || '/placeholder.jpg'} alt={title} loading="eager" decoding="async" />
+  </div>
+
+  <div class="content">
+    <h1>{title}</h1>
+
+    <div class="meta">
+      <span class="badge">{niche}</span>
+      <span>· score {score}</span>
+    </div>
+
+    <article>
+      <Content />
+    </article>
+  </div>
 </Base>
