@@ -1,60 +1,53 @@
 // scripts/utils.mjs
+import slugifyLib from 'slugify';
 
-// ------------------------------
-// Utilidades de texto / slugs
-// ------------------------------
-export function slugify(str = '') {
-  return String(str)
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '') // acentos
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
-    .slice(0, 96);
+export function slugify(s) {
+  return slugifyLib(s, { lower: true, strict: true, locale: 'es' })
+    .replace(/-+/g, '-')
+    .slice(0, 80);
 }
 
-// ------------------------------
-// Prompts IA (ESPAÑOL - España)
-// ------------------------------
-export function reviewPromptES(title) {
-  return `Eres redactor de ecommerce en español (España). Escribe una mini-review (60–90 palabras) del producto "${title}".
-- Tono claro, útil y honesto, sin adornos.
-- Incluye secciones exactamente así:
-Pros:
-- (3 viñetas)
-Contras:
-- (2 viñetas)
-Recomendación: (1 frase final)
-No inventes especificaciones técnicas. No añadas títulos ni formatos extra.`;
+// ===== Afiliados =====
+export function affAmazonSearch(q, tag) {
+  // Asegúrate de pasar el tag correcto desde el script principal (o usa env)
+  const t = tag || process.env.AMAZON_TAG_ES || 'teknovashop25-21';
+  return `https://www.amazon.es/s?k=${encodeURIComponent(q)}&language=es_ES&tag=${encodeURIComponent(t)}`;
 }
 
+export function affAliExpressSearch(q) {
+  // puedes añadir tu sub_id si lo usas
+  return `https://es.aliexpress.com/wholesale?SearchText=${encodeURIComponent(q)}`;
+}
+
+export function affSheinSearch(q) {
+  return `https://es.shein.com/pdsearch/${encodeURIComponent(q)}/`;
+}
+
+// ===== Prompt CF (solo si usas Workers AI para generar imágenes) =====
 export function imagePrompt(title) {
-  // estética profesional alineada con tu marca (neón/tech, limpio)
-  return `Fotografía de producto: ${title}.
-Estilo: fotografía limpia de producto sobre fondo neutro, iluminación suave, estética tecnológica moderna con acentos neón azules/morados.
-Composición: formato 16:9 horizontal (1024x576), enfoque nítido, sin manos, sin texto, sin logotipos ni marcas.
-Aspecto realista y comercial.`;
+  return `Foto de producto realista del siguiente tema: "${title}" sobre fondo blanco, iluminación de estudio, enfoque nítido, 3/4, sin texto ni marca de agua.`;
 }
 
-// ------------------------------
-// Enlaces de afiliado
-// ------------------------------
+// ===== Refinar consulta de imagen =====
+export function refineImageQuery(title, niche = '') {
+  // Buscamos fotos tipo "packshot" o realistas de producto
+  const base = title
+    .replace(/\b(reseña|review|comparativa|opinión|news|noticia)\b/gi, '')
+    .trim();
 
-// Amazon ES: search con tag de tracking
-export function affAmazonSearch(query, tag = 'teknovashop-21') {
-  const q = encodeURIComponent(query);
-  return `https://www.amazon.es/s?k=${q}&tag=${encodeURIComponent(tag)}&language=es_ES`;
+  const extra =
+    niche === 'hogar'
+      ? ' producto electrodoméstico fondo blanco'
+      : ' producto tecnología fondo blanco';
+
+  return `${base} ${extra}`.trim();
 }
 
-// AliExpress: búsqueda simple con local ES
-export function affAliExpressSearch(query) {
-  const q = encodeURIComponent(query);
-  // Si tienes program afiliado, sustituye por tu enlace deep-link
-  return `https://es.aliexpress.com/wholesale?SearchText=${q}`;
-}
-
-// SHEIN: categoría general con query
-export function affSheinSearch(query) {
-  const q = encodeURIComponent(query);
-  return `https://es.shein.com/pdsearch/${q}/`;
+// Guardar binario a disco
+export async function saveBinaryToFile(url, filepath) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Descarga falló ${res.status}`);
+  const ab = await res.arrayBuffer();
+  const buf = Buffer.from(ab);
+  await fs.promises.writeFile(filepath, buf);
 }
