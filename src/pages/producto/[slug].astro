@@ -5,32 +5,19 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Tipos (opcionales para DX)
-type TrendItem = {
+// Carga TODOS los items del FS (utilidad reutilizable)
+function loadAllItems(): Array<{
   slug: string;
   title: string;
   niche?: string;
   score?: number;
   hero?: string;
   links?: { label: string; url: string }[];
-};
-type IndexPayload = { date: string; items: TrendItem[] };
-
-// Helpers seguros
-function readJSON(p: string): IndexPayload | null {
-  try {
-    const raw = fs.readFileSync(p, 'utf-8');
-    const j = JSON.parse(raw);
-    if (j && typeof j === 'object' && Array.isArray(j.items)) return j as IndexPayload;
-  } catch {}
-  return null;
-}
-
-function readAllItems(): TrendItem[] {
+}> {
   const dataRoot = fileURLToPath(new URL('../../data/trends/', import.meta.url));
   if (!fs.existsSync(dataRoot)) return [];
 
-  const items: TrendItem[] = [];
+  const items: any[] = [];
   const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
 
   for (const Y of years) {
@@ -43,28 +30,63 @@ function readAllItems(): TrendItem[] {
       const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
       for (const D of days) {
         const idx = path.join(mDir, D, 'index.json');
-        const j = readJSON(idx);
-        if (j?.items?.length) items.push(...j.items);
+        try {
+          const raw = fs.readFileSync(idx, 'utf-8');
+          const j = JSON.parse(raw);
+          if (j && Array.isArray(j.items)) items.push(...j.items);
+        } catch {}
       }
     }
   }
 
-  // Elimina duplicados por slug (nos quedamos con el primero)
-  const map = new Map<string, TrendItem>();
+  // De-duplicar por slug (primer encuentro gana)
+  const map = new Map<string, any>();
   for (const it of items) {
-    if (it.slug && !map.has(it.slug)) map.set(it.slug, it);
+    if (it?.slug && !map.has(it.slug)) map.set(it.slug, it);
   }
   return Array.from(map.values());
 }
 
-// ✅ Declarado ANTES del export (evita “not defined” en build)
+// ✅ Toda la lógica dentro: no depende de símbolos externos
 export async function getStaticPaths() {
-  const items = readAllItems();
-  return items.map((it) => ({ params: { slug: it.slug } }));
+  // (re-escribe aquí el algoritmo para evitar “not defined”)
+  const dataRoot = fileURLToPath(new URL('../../data/trends/', import.meta.url));
+  let items: any[] = [];
+
+  if (fs.existsSync(dataRoot)) {
+    const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
+    for (const Y of years) {
+      const yDir = path.join(dataRoot, Y);
+      if (!fs.statSync(yDir).isDirectory()) continue;
+      const months = fs.readdirSync(yDir).filter((d) => /^\d{2}$/.test(d));
+      for (const M of months) {
+        const mDir = path.join(yDir, M);
+        if (!fs.statSync(mDir).isDirectory()) continue;
+        const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
+        for (const D of days) {
+          const idx = path.join(mDir, D, 'index.json');
+          try {
+            const raw = fs.readFileSync(idx, 'utf-8');
+            const j = JSON.parse(raw);
+            if (j && Array.isArray(j.items)) items.push(...j.items);
+          } catch {}
+        }
+      }
+    }
+  }
+
+  // De-duplicar por slug aquí también
+  const map = new Map<string, any>();
+  for (const it of items) {
+    if (it?.slug && !map.has(it.slug)) map.set(it.slug, it);
+  }
+  const unique = Array.from(map.values());
+
+  return unique.map((it) => ({ params: { slug: it.slug } }));
 }
 
-// En el render buscamos el item por slug
-const all = readAllItems();
+// Datos para el render
+const all = loadAllItems();
 const { slug } = Astro.params;
 const post = all.find((it) => it.slug === slug);
 ---
