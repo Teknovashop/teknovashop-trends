@@ -1,90 +1,85 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Base from "@/layouts/Base.astro";
 
-/**
- * Genera todas las rutas estáticas leyendo los MD de:
- *   src/content/trends/YYYY/MM/DD/*.md
- * OJO: la ruta es relativa a este archivo (src/pages/producto/[slug].astro)
- */
-export async function getStaticPaths() {
-  // Hacemos el glob *dentro* de la función para evitar problemas de ámbito
-  const modules = import.meta.glob('../../content/trends/**/*.md', { eager: true });
+// Cargamos TODO el contenido generado (MD) de trends/**/**/**.md
+type Entry = {
+  frontmatter: {
+    title: string;
+    slug: string;
+    date?: string;
+    niche?: string;
+    score?: number;
+    hero?: string;
+  };
+  Content: unknown;
+};
 
-  const paths = [];
-  for (const mod of Object.values(modules)) {
-    // Cada módulo tiene .frontmatter y .default (componente de contenido)
-    const front = (mod as any)?.frontmatter ?? {};
-    const Content = (mod as any)?.default;
+const modules = import.meta.glob("/src/content/trends/**/*.md", { eager: true }) as Record<string, any>;
+const entries: Entry[] = Object.values(modules);
 
-    if (front?.slug && Content) {
-      paths.push({
-        params: { slug: front.slug },
-        props: { frontmatter: front, Content },
-      });
-    }
-  }
+const params = Astro.params as { slug: string };
+const post = entries.find(e => e?.frontmatter?.slug === params.slug);
 
-  return paths;
+if (!post) {
+  throw new Error(`No se encontró el producto con slug: ${params.slug}`);
 }
 
-const { frontmatter, Content } = Astro.props;
-const { title, niche, score, hero } = frontmatter;
-
-export const prerender = true;
+const fm = post.frontmatter;
+const Content = post.Content;
+const hero = fm.hero && fm.hero !== "/placeholder.jpg" ? fm.hero : "/placeholder.jpg";
 ---
 
-<Base title={title}>
-  <style>
-    .hero-wrap {
-      max-width: 1100px;
-      margin: 0 auto 1rem;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #0e141a;
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .hero {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-    }
-    .content {
-      max-width: 1100px;
-      margin: 0 auto;
-      font-size: 1.03rem;
-    }
-    .meta {
-      display: flex;
-      gap: .6rem;
-      align-items: center;
-      margin: .35rem 0 1rem;
-      color: #b9c5cb;
-      font-size: .95rem;
-    }
-    .badge {
-      display:inline-block; padding:.15rem .5rem; border-radius:999px;
-      background: rgba(0,196,199,.15); color:#93f7f9; font-weight:600;
-    }
-    .content h1 { margin: .2rem 0 0.8rem; line-height: 1.15; }
-    .content h2, .content h3 { margin-top: 1.2rem; }
-    .content ul { padding-left: 1.2rem; }
-  </style>
+<Base title={`${fm.title} · Teknovashop`}>
+  <article class="sheet">
+    <header class="head">
+      <h1>{fm.title}</h1>
+      <p class="meta">
+        <span class="badge">{fm.niche}</span>
+        {fm.score != null && <span class="muted">· score {String(fm.score)}</span>}
+        {fm.date && <span class="muted">· {fm.date.slice(0,10)}</span>}
+      </p>
+      <figure class="hero">
+        <img src={hero} alt={fm.title} />
+      </figure>
+    </header>
 
-  <div class="hero-wrap">
-    <img class="hero" src={hero || '/placeholder.jpg'} alt={title} loading="eager" decoding="async" />
-  </div>
-
-  <div class="content">
-    <h1>{title}</h1>
-
-    <div class="meta">
-      <span class="badge">{niche}</span>
-      <span>· score {score}</span>
-    </div>
-
-    <article>
+    <section class="content">
       <Content />
-    </article>
-  </div>
+    </section>
+  </article>
+
+  <style>
+    .sheet{ display:block; }
+    .head h1{ margin:0 0 .3rem; }
+    .meta{ color:#a8bbc0; margin:.25rem 0 1rem; }
+    .badge{
+      display:inline-block; padding:.2rem .55rem; border-radius:999px;
+      background: rgba(0,196,199,.18);
+      border: 1px solid rgba(0,196,199,.35);
+      color:#bffbff; font-weight:700; font-size:.78rem;
+      margin-right:.4rem;
+    }
+    .muted{ opacity:.8; margin-left:.35rem; }
+
+    .hero{
+      margin: .75rem 0 1.25rem; background:#0d1319; border:1px solid var(--muted);
+      border-radius:16px; overflow:hidden;
+    }
+    .hero img{
+      width:100%; max-height: 460px; object-fit: cover; display:block;
+    }
+
+    .content{
+      background: var(--card);
+      border: 1px solid var(--muted);
+      border-radius: 16px;
+      padding: 1.1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .content :global(p){ margin:.6rem 0; }
+    .content :global(ul){ margin:.4rem 0 .9rem 1.1rem; }
+    .content :global(li){ margin:.25rem 0; }
+    .content :global(strong){ color:#fff; }
+    .content :global(a){ font-weight:700; }
+  </style>
 </Base>
