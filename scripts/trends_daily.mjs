@@ -3,249 +3,279 @@ import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
 import trends from 'google-trends-api';
-import { slugify, affAmazonSearch, affAliExpressSearch, affSheinSearch } from './utils.mjs';
+import fetch from 'node-fetch';
 
+// === Config ===
 const ROOT = process.cwd();
-const niches = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'niches.json'), 'utf-8'));
+const NICHES = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'niches.json'), 'utf-8'));
 const AMAZON_TAG_ES = process.env.AMAZON_TAG_ES || 'teknovashop-21';
 
 const today = new Date();
-const yyyy = today.getFullYear();
+const yyyy = String(today.getFullYear());
 const mm = String(today.getMonth() + 1).padStart(2, '0');
 const dd = String(today.getDate()).padStart(2, '0');
 
-const outDirContent = path.join(ROOT, 'src', 'content', 'trends', String(yyyy), mm, dd);
+const outDirContent = path.join(ROOT, 'src', 'content', 'trends', yyyy, mm, dd);
 fs.mkdirSync(outDirContent, { recursive: true });
 
-const outDirData = path.join(ROOT, 'src', 'data', 'trends', String(yyyy), mm, dd);
+const outDirData = path.join(ROOT, 'src', 'data', 'trends', yyyy, mm, dd);
 fs.mkdirSync(outDirData, { recursive: true });
 
-// Opcional IA (Cloudflare)
-const cfAccount = process.env.CF_ACCOUNT_ID;
-const cfToken = process.env.CF_API_TOKEN;
+const publicDir = path.join(ROOT, 'public', 'trends');
+fs.mkdirSync(publicDir, { recursive: true });
 
-function log(...a) { console.log('[trends]', ...a); }
+// Opcional IA (Cloudflare Workers AI) — si no hay credenciales, usamos fallback
+const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
+const CF_API_TOKEN = process.env.CF_API_TOKEN;
 
-async function cfRun(model, payload) {
-  if (!cfAccount || !cfToken) throw new Error('CF creds missing');
-  const url = `https://api.cloudflare.com/client/v4/accounts/${cfAccount}/ai/run/${encodeURIComponent(model)}`;
+function log(...a){ console.log('[trends]', ...a); }
+
+// -------- Helpers --------
+
+// Texto -> slug
+function slugify(s){
+  return s
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g,'')
+    .trim()
+    .replace(/\s+/g,'-')
+    .slice(0, 90);
+}
+
+// Afiliación
+function affAmazonSearch(q, tag){
+  const u = new URL('https://www.amazon.es/s');
+  u.searchParams.set('k', q);
+  u.searchParams.set('tag', tag);
+  u.searchParams.set('language', 'es_ES');
+  return u.toString();
+}
+function affAliExpressSearch(q){
+  const u = new URL('https://es.aliexpress.com/wholesale');
+  u.searchParams.set('SearchText', q);
+  return u.toString();
+}
+function affSheinSearch(q){
+  const u = new URL('https://es.shein.com/pdsearch/' + encodeURIComponent(q) + '/');
+  return u.toString();
+}
+
+// Minitraductor EN -> ES (uso rápido sin depender de API externa)
+function traducirRapidoAEs(s){
+  // Si ya parece español, devolver tal cual (heurística muy simple)
+  if (/[áéíóúñ¿¡]/i.test(s)) return s;
+
+  // Diccionario mínimo para titulares frecuentes
+  const map = {
+    'review': 'reseña',
+    'camera': 'cámara',
+    'headphones': 'auriculares',
+    'wireless': 'inalámbrico',
+    'noise cancelling': 'cancelación de ruido',
+    'monitor': 'monitor',
+    'gaming': 'gaming',
+    'ssd': 'SSD',
+    'light': 'luz',
+    'security': 'seguridad',
+    'tablet': 'tableta',
+    'robot vacuum': 'robot aspirador',
+    'android': 'Android',
+    'iphone': 'iPhone',
+    'case': 'funda',
+    'upgrade': 'mejora'
+  };
+  let t = s.toLowerCase();
+  for (const [en, es] of Object.entries(map)) {
+    t = t.replaceAll(en, es);
+  }
+  // Capitaliza primera letra
+  t = t.replace(/^./, m => m.toUpperCase());
+  return t;
+}
+
+// Cloudflare Workers AI (si está disponible)
+async function cfRun(model, payload){
+  const url = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/ai/run/${encodeURIComponent(model)}`;
   const res = await fetch(url, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${cfToken}`, 'Content-Type': 'application/json' },
+    headers: {
+      Authorization: `Bearer ${CF_API_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error(`Workers AI ${res.status}`);
-  const json = await res.json();
-  return json?.result;
+  return await res.json();
 }
 
-async function translateES(text) {
-  const cleaned = text
-    .replace(/\s+review\b/gi, ' reseña')
-    .replace(/\bunder\s*\$?(\d+)/gi, 'por menos de $1 €')
-    .trim();
-  if (!cfAccount || !cfToken) return cleaned;
-  try {
-    const out = await cfRun('@cf/meta/m2m100-1.2b', {
-      text: cleaned, source_lang: 'en', target_lang: 'es'
-    });
-    const txt = out?.translated_text || out?.text || cleaned;
-    return txt.replace(/^\s*./, c => c.toUpperCase());
-  } catch (e) {
-    log('translate fallback:', e.message);
-    return cleaned;
-  }
-}
+async function genResumenES(titulo){
+  const system = `Eres redactor de comercio electrónico en español (España).
+Escribe una mini reseña de 60–90 palabras con formato Markdown:
+- Empieza con **Resumen**:
+- Luego **Pros** en viñetas (3)
+- Luego **Contras** en viñetas (2)
+- Cierra con **Recomendación**: una frase breve y honesta (sin inventar especificaciones).`;
 
-async function genReviewES(tituloES) {
-  if (!cfAccount || !cfToken) {
-    return `**Resumen**: tendencia del día.
+  if (!CF_ACCOUNT_ID || !CF_API_TOKEN) {
+    // Fallback breve y correcto en ES
+    return `**Resumen:** Tendencia del día.
 
 **Pros**
 - Buena relación calidad/precio
+- Fácil de usar
 - Útil para el uso diario
 
 **Contras**
 - Puede no encajar en todos los casos
 - Stock variable
 
-**Recomendación**: compara precios y opiniones antes de comprar.`;
+**Recomendación:** compara precios y opiniones antes de comprar.`;
   }
-  try {
-    const prompt = `Eres redactor de comercio en español (ES).
-Escribe una mini reseña (60–90 palabras) del siguiente producto/tendencia, con una lista breve de pros y contras y una recomendación final. No inventes especificaciones.
-
-TÍTULO: ${tituloES}`;
+  try{
     const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
-      messages: [{ role: 'user', content: prompt }]
+      messages: [
+        { role: 'system', content: system },
+        { role: 'user', content: `Producto: ${titulo}` }
+      ]
     });
-    return out?.response || out?.message || out || '';
-  } catch (e) {
-    log('review fallback:', e.message);
-    return `**Resumen**: tendencia del día.
+    return out?.result?.response?.trim() || out?.result?.message?.trim() || out?.result?.trim() || '';
+  }catch(e){
+    log('IA resumen fallback:', e.message);
+    return `**Resumen:** Tendencia del día.
 
 **Pros**
 - Buena relación calidad/precio
+- Fácil de usar
 - Útil para el uso diario
 
 **Contras**
 - Puede no encajar en todos los casos
 - Stock variable
 
-**Recomendación**: compara precios y opiniones antes de comprar.`;
+**Recomendación:** compara precios y opiniones antes de comprar.`;
   }
 }
 
-function heroFor(titleES) {
-  const q = encodeURIComponent(
-    titleES
-      .replace(/reseña|review|análisis/gi, '')
-      .replace(/comparativa/gi, 'product gadget')
-      .trim() || 'producto tecnología'
-  );
-  return `https://source.unsplash.com/1024x576/?${q}`;
+// Descarga una imagen “segura” a /public/trends/<slug>.jpg usando Unsplash Source
+async function descargarImagenDeProducto(titulo, slug){
+  try{
+    // Pedimos imagen 1024x576 con temática de producto, estudio, fondo blanco
+    const seed = `${titulo}, producto, estudio, fondo blanco`;
+    const entry = `https://source.unsplash.com/1024x576/?${encodeURIComponent(seed)}`;
+
+    // Source redirige — seguimos la redirección y descargamos el binario
+    const r1 = await fetch(entry, { redirect: 'manual' });
+    const finalURL = r1.headers.get('location') || entry;
+
+    const r2 = await fetch(finalURL);
+    if (!r2.ok) throw new Error(`HTTP ${r2.status}`);
+    const buf = Buffer.from(await r2.arrayBuffer());
+
+    const file = path.join(publicDir, `${slug}.jpg`);
+    fs.writeFileSync(file, buf);
+    return `/trends/${slug}.jpg`;
+  }catch(e){
+    log('Imagen fallback:', e.message);
+    return '/placeholder.jpg';
+  }
 }
 
-// === REDDIT con timeout y UA ===
-async function fetchRedditTitles(sub) {
-  const parser = new Parser({
-    headers: { 'User-Agent': 'TeknovashopTrendsBot/1.0 (+https://teknovashop-trends.vercel.app)' },
-    timeout: 10000
-  });
-  const url = `https://www.reddit.com/r/${sub}/top/.rss?t=day&limit=50`;
-  try {
+// RRS Reddit (títulos)
+async function fetchRedditTitles(sub){
+  const parser = new Parser({ headers: { 'User-Agent': 'TeknovashopTrendsBot/1.0 (contact: trends@teknovashop.com)' } });
+  const url = `https://www.reddit.com/r/${sub}/top/.rss?t=day`;
+  try{
     const feed = await parser.parseURL(url);
-    return (feed.items || []).map(it => it.title).slice(0, 40);
-  } catch (e) {
+    return (feed.items || []).map(it => it.title).slice(0, 30);
+  }catch(e){
     log('Reddit error', sub, e.message);
     return [];
   }
 }
 
-function looksLikeProduct(q) {
-  const kw = [
-    'best','review','deal','buy','price',
-    'headphones','keyboard','mouse','robot','vacuum','airfryer','chair',
-    'monitor','ssd','iphone','samsung','xiaomi','sneakers','jacket',
-    'lamp','coffee','tablet','laptop','router','camera','bbq',
-    'dumbbell','bike','mattress','unboxing','hands-on'
-  ];
+// Filtro rápido de “parece producto”
+function pareceProducto(q){
+  const kw = ['mejor','review','oferta','rebaja','comprar','precio',
+    'auriculares','teclado','raton','ratón','robot','aspirador','airfryer','silla',
+    'monitor','ssd','iphone','samsung','xiaomi','zapatillas','chaqueta',
+    'lampara','lámpara','cafetera','tablet','portatil','portátil','router','camara','cámara',
+    'barbacoa','mancuernas','bicicleta','colchon','colchón','tv','televisor','disco'];
   const s = q.toLowerCase();
   return kw.some(k => s.includes(k)) || /\b\d{2,}(\.\d+)?\s?(hz|w|mah|gb|tb|cm|mm)\b/i.test(q);
 }
 
-// === Google Trends fallback ===
-async function fetchGoogleTrendsFallback() {
-  try {
+// Fallback con Google Trends (EN->filtrado)
+async function fetchGoogleTrendsFallback(){
+  try{
     const res = await trends.realTimeTrends({ geo: 'ES', category: 'all', hl: 'es' });
     const payload = JSON.parse(res);
     const titles = [];
     for (const st of (payload?.storySummaries?.trendingStories || [])) {
-      for (const art of (st.articles || [])) if (art?.title) titles.push(art.title);
+      for (const art of (st.articles || [])) {
+        if (art?.title) titles.push(art.title);
+      }
     }
-    const uniq = [...new Set(titles)].slice(0, 40);
-    log('GoogleTrends candidatos', uniq.length);
+    const uniq = [...new Set(titles)].filter(pareceProducto).slice(0, 20);
     return uniq;
-  } catch (e) {
+  }catch(e){
     log('GoogleTrends error', e.message);
     return [];
   }
 }
 
-// === Semillas locales como red de seguridad ===
-function loadSeeds() {
-  const defaultSeeds = {
-    tecnologia: [
-      'Auriculares inalámbricos con cancelación de ruido',
-      'Monitor 27 pulgadas 144 Hz para gaming',
-      'Disco SSD NVMe 1 TB alta velocidad',
-      'Tablet Android compacta para estudiar',
-      'Cámara de seguridad wifi para exterior'
-    ],
-    hogar: [
-      'Robot aspirador con mapeo láser',
-      'Freidora de aire 5 litros',
-      'Lámpara LED regulable escritorio',
-      'Cafetera de cápsulas compacta',
-      'Purificador de aire HEPA'
-    ]
-  };
-  try {
-    const p = path.join(ROOT, 'src', 'data', 'seeds.json');
-    if (fs.existsSync(p)) {
-      return JSON.parse(fs.readFileSync(p, 'utf-8'));
-    }
-  } catch { /* ignore */ }
-  return defaultSeeds;
-}
-
-async function collectCandidates() {
+async function recolectarCandidatos(){
   const out = {};
-  for (const [niche, cfg] of Object.entries(niches)) {
+  for (const [niche, cfg] of Object.entries(NICHES)) {
     const titles = [];
-    for (const sub of cfg.subreddits) {
+    for (const sub of (cfg?.subreddits || [])) {
       const t = await fetchRedditTitles(sub);
       titles.push(...t);
     }
-
-    // Si Reddit vacío, tira de Google Trends
-    if (titles.length === 0) {
-      const gt = await fetchGoogleTrendsFallback();
-      titles.push(...gt);
-    }
-
-    // Si aún vacío, usa semillas locales
-    if (titles.length === 0) {
-      const seeds = loadSeeds();
-      titles.push(...(seeds[niche] || []));
-      log(`Usando semillas locales para "${niche}":`, titles.length);
-    }
-
     const cleaned = titles.map(t =>
       t.replace(/\[.*?\]|\(.*?\)|\b\d{2,}%\b|\b[\d,.]+\s?(%|eur|€|usd|\$)/gi, '').trim()
     );
-
-    // Conteo y filtro flexible
     const freq = {};
-    cleaned.forEach(t => { if (t.length >= 6) freq[t.toLowerCase()] = (freq[t.toLowerCase()] || 0) + 1; });
+    cleaned.forEach(t => { if (t.length >= 8) freq[t.toLowerCase()] = (freq[t.toLowerCase()] || 0) + 1; });
     let sorted = Object.entries(freq).sort((a,b)=>b[1]-a[1]).map(([title,count]) => ({ title, count }));
 
-    // Aplica filtro “producto”; si quedan pocos, relaja
-    let filtered = sorted.filter(x => looksLikeProduct(x.title));
-    if (filtered.length < 5 && sorted.length > 0) {
-      filtered = sorted.slice(0, 10); // relajamos filtro
-      log(`Filtro relajado en "${niche}" (tomando ${filtered.length})`);
+    if (sorted.length === 0) {
+      const gt = await fetchGoogleTrendsFallback();
+      sorted = gt.map(t => ({ title: t, count: 1 }));
     }
-
-    out[niche] = filtered.map(({title,count}) => ({ title: title.replace(/^./, m=>m.toUpperCase()), count }));
-    log('Niche', niche, 'candidatos finales', out[niche].length);
+    out[niche] = sorted.slice(0, 8); // cap por nicho
   }
   return out;
 }
 
-function buildLinks(q){
+function construirLinks(q){
   return [
     { label:'Amazon (ES)', url: affAmazonSearch(q, AMAZON_TAG_ES) },
     { label:'AliExpress',  url: affAliExpressSearch(q) },
-    { label:'SHEIN',       url: affSheinSearch(q) }
+    { label:'SHEIN',       url: affSheinSearch(q) },
   ];
 }
 
 async function main(){
   log('Inicio', `${yyyy}-${mm}-${dd}`);
-  const candidates = await collectCandidates();
+
+  const candidatos = await recolectarCandidatos();
 
   const items = [];
-  for (const [niche, arr] of Object.entries(candidates)) {
-    for (const { title, count } of (arr || []).slice(0,5)) {
-      const titleES = await translateES(title);
-      const hero = heroFor(titleES);
-      const review = await genReviewES(titleES);
-      const slug = slugify(titleES).slice(0,80) || `item-${Math.random().toString(36).slice(2,8)}`;
+  for (const [niche, arr] of Object.entries(candidatos)) {
+    for (const { title, count } of (arr || []).slice(0,6)) {
+      const tituloES = traducirRapidoAEs(title);
+      const slug = slugify(tituloES) || `item-${Math.random().toString(36).slice(2,8)}`;
+
+      // Imagen a /public/trends
+      const hero = await descargarImagenDeProducto(tituloES, slug);
+
+      // Texto ES (IA o fallback)
+      const resumen = await genResumenES(tituloES);
 
       const fm = [
         '---',
-        `title: "${titleES.replace(/"/g, '\\"')}"`,
+        `title: "${tituloES.replace(/"/g,'\\"')}"`,
         `slug: "${slug}"`,
         `date: "${new Date().toISOString()}"`,
         `niche: "${niche}"`,
@@ -254,29 +284,37 @@ async function main(){
         '---',
       ].join('\n');
 
-      const links = buildLinks(titleES).map(l => `- [${l.label}](${l.url})`).join('\n');
+      const links = construirLinks(tituloES)
+        .map(l => `- [${l.label}](${l.url})`)
+        .join('\n');
 
       const body = `${fm}
 
-${review}
+${resumen}
 
 **Dónde comparar precios**
+
 ${links}
 `;
 
       fs.writeFileSync(path.join(outDirContent, `${slug}.md`), body, 'utf-8');
-      items.push({ slug, title: titleES, niche, score: count, hero });
+      items.push({ slug, title: tituloES, niche, score: count, hero });
       log('OK', niche, slug);
     }
   }
 
+  // Índice JSON para las páginas
   const indexPayload = { date: `${yyyy}-${mm}-${dd}`, items };
-  fs.writeFileSync(path.join(outDirData, 'index.json'), JSON.stringify(indexPayload, null, 2), 'utf-8');
+  fs.writeFileSync(
+    path.join(outDirData, 'index.json'),
+    JSON.stringify(indexPayload, null, 2),
+    'utf-8'
+  );
 
-  log('Total items', items.length, '→', path.join('src/data/trends', `${yyyy}/${mm}/${dd}`));
-  if (items.length === 0) {
-    log('ATENCIÓN: 0 items (sin red o feeds vacíos). Activa semillas en src/data/seeds.json si hace falta.');
+  log('Generados', items.length, 'items');
+  if (items.length === 0){
+    log('ATENCIÓN: 0 items (revisa conectividad del runner y los subreddits)');
   }
 }
 
-main().catch(e => { console.error('Fallo crítico:', e); process.exit(1); });
+main().catch(e => { console.error(e); process.exit(1); });
