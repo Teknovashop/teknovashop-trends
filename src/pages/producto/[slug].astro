@@ -1,108 +1,92 @@
 ---
 import Base from '../../layouts/Base.astro';
-import fs from 'node:fs';
-import path from 'node:path';
 
-type Item = {
+/** Tipos útiles (opcionales) */
+type StoreLinks = {
+  amazon?: string;
+  aliexpress?: string;
+  shein?: string;
+};
+
+type ProductItem = {
   slug: string;
   title: string;
   niche?: string;
   score?: number;
-  date?: string;
+  hero?: string;
   summary?: string;
   pros?: string[] | string;
   cons?: string[] | string;
-  links?: {
-    amazon?: string;
-    aliexpress?: string;
-    shein?: string;
-  };
-  hero?: string;
+  links?: StoreLinks;
+  date?: string;
 };
 
-function loadAllItems(): Item[] {
-  const root = path.join(Astro.srcDir, 'data');
-  const results: Item[] = [];
+type DayData = {
+  date: string;
+  items: ProductItem[];
+};
 
-  function scan(relParts: string[] = []) {
-    const dir = path.join(root, ...relParts);
-    if (!fs.existsSync(dir)) return;
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
+/** Cargamos TODOS los JSON en src/data/**/index.json en tiempo de build */
+const modules = import.meta.glob('../../data/**/index.json', {
+  eager: true,
+  import: 'default'
+}) as Record<string, DayData>;
 
-    for (const e of entries) {
-      if (e.isDirectory()) {
-        scan([...relParts, e.name]);
-      } else if (e.isFile() && e.name === 'index.json') {
-        const file = path.join(dir, e.name);
-        try {
-          const json = JSON.parse(fs.readFileSync(file, 'utf8')) as {
-            date?: string;
-            items?: any[];
-          };
-          const dateStr = json?.date ?? relParts.join('/');
-          const items = Array.isArray(json?.items) ? json.items : [];
-          for (const it of items) {
-            if (it && typeof it.slug === 'string') {
-              results.push({ ...it, date: it.date ?? dateStr });
-            }
-          }
-        } catch {
-          // ignorar json inválidos
-        }
+/** Convertimos todos los JSON a una lista plana de items con su fecha */
+function allItems(): ProductItem[] {
+  const out: ProductItem[] = [];
+  for (const [, data] of Object.entries(modules)) {
+    if (!data || !Array.isArray(data.items)) continue;
+    for (const it of data.items) {
+      if (it && typeof it.slug === 'string') {
+        out.push({ ...it, date: it.date ?? data.date });
       }
     }
   }
-
-  scan([]);
-  const map = new Map<string, Item>();
-  for (const it of results) map.set(it.slug, it);
+  // dedup por slug (último gana)
+  const map = new Map<string, ProductItem>();
+  for (const it of out) map.set(it.slug, it);
   return Array.from(map.values());
 }
 
-function getBySlug(slug: string): Item | undefined {
-  const items = loadAllItems();
-  return items.find((it) => it.slug === slug);
-}
-
+/** Generamos todas las rutas estáticas basadas en los slugs */
 export async function getStaticPaths() {
-  const items = loadAllItems();
-  return items
-    .filter((it) => it?.slug)
-    .map((it) => ({ params: { slug: it.slug } }));
+  const items = allItems();
+  return items.map((it) => ({ params: { slug: it.slug } }));
 }
 
-const { slug } = Astro.params;
-const record = getBySlug(String(slug));
+/** Props y búsqueda del item actual */
+const { slug } = Astro.params as { slug: string };
+const items = allItems();
+const item = items.find((it) => it.slug === slug);
 
-if (!record) {
+if (!item) {
   throw new Error(`Producto no encontrado: ${slug}`);
 }
 
-const title = record.title ?? 'Producto';
-const niche = record.niche ?? '';
-const score = typeof record.score === 'number' ? record.score : undefined;
-const dateStr = record.date ?? '';
-const summary = record.summary ?? 'Tendencia destacada del día.';
-const hero = record.hero && typeof record.hero === 'string' ? record.hero : '/placeholder.jpg';
+/** Valores seguros para render */
+const title = item.title ?? 'Producto';
+const niche = item.niche ?? '';
+const score = typeof item.score === 'number' ? item.score : undefined;
+const dateStr = item.date ?? '';
+const summary = item.summary ?? 'Tendencia destacada del día.';
+const hero = (typeof item.hero === 'string' && item.hero) ? item.hero : '/placeholder.jpg';
 
 const pros: string[] =
-  Array.isArray(record.pros) ? record.pros :
-  typeof record.pros === 'string' ? record.pros.split('•').map(s => s.trim()).filter(Boolean) :
-  [];
+  Array.isArray(item.pros) ? item.pros :
+  typeof item.pros === 'string' ? item.pros.split('•').map(s => s.trim()).filter(Boolean) : [];
 
 const cons: string[] =
-  Array.isArray(record.cons) ? record.cons :
-  typeof record.cons === 'string' ? record.cons.split('•').map(s => s.trim()).filter(Boolean) :
-  [];
+  Array.isArray(item.cons) ? item.cons :
+  typeof item.cons === 'string' ? item.cons.split('•').map(s => s.trim()).filter(Boolean) : [];
 
-const links = record.links ?? {};
-function safeHref(u?: string) {
-  if (!u || typeof u !== 'string') return null;
+function safe(u?: string) {
+  if (!u) return null;
   try { return new URL(u).toString(); } catch { return null; }
 }
-const amazonURL = safeHref(links.amazon);
-const aliURL = safeHref(links.aliexpress);
-const sheinURL = safeHref(links.shein);
+const amazonURL = safe(item.links?.amazon);
+const aliURL = safe(item.links?.aliexpress);
+const sheinURL = safe(item.links?.shein);
 ---
 
 <Base title={title} description={summary}>
@@ -117,13 +101,7 @@ const sheinURL = safeHref(links.shein);
     </header>
 
     <figure class="hero-wrap">
-      <img
-        src={hero}
-        alt={title}
-        loading="lazy"
-        decoding="async"
-        class="hero"
-      />
+      <img class="hero" src={hero} alt={title} loading="lazy" decoding="async" />
     </figure>
 
     <section class="box">
