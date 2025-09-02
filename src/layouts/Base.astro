@@ -4,7 +4,6 @@ const {
   description = 'Tendencias diarias de productos en España: reseñas breves, pros y contras, y enlaces para comparar precios.',
 } = Astro.props;
 ---
-
 <html lang="es">
   <head>
     <meta charset="utf-8" />
@@ -13,49 +12,40 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Open Graph básico -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
 
-    <!-- Favicon y hoja de estilos global opcional -->
     <link rel="icon" href="/brand/teknovashop-tendencias.png" />
     <link rel="stylesheet" href="/styles.css" />
 
-    <!-- ===== Estilos con alto contraste en tema oscuro ===== -->
     <style>
       :root{
-        /* Paleta oscuro (alto contraste) */
-        --bg: #0c0f14;                 /* fondo principal */
-        --card: #111823;               /* tarjetas */
-        --text: #e9eef4;               /* texto principal */
-        --text-muted: #b7c3cf;         /* texto secundario */
-        --muted: #223041;              /* bordes/separadores */
-        --brand: #7cc8ff;              /* enlaces/cta */
-        --brand-2: #9ad6ff;            /* hover enlaces */
-        --badge-bg: #1b2a3a;           /* fondo chips */
-        --badge-fg: #d7ecff;           /* texto chips */
-        --hover: #17202a;              /* hover neutro */
-        --shadow: 0 10px 30px rgba(0,0,0,.35);
-        --wrap-max: 1100px;
+        --bg:#0b0f14;
+        --card:#0f151b;
+        --text:#eaf3f7;
+        --muted:rgba(255,255,255,.08);
+        --brand:#00c4c7;
+        --brand-2:#00a8aa;
+        --wrap-max:1100px;
       }
-
       *{ box-sizing:border-box; }
-      html,body{ margin:0; padding:0; color-scheme: dark; }
+      html,body{ margin:0; padding:0; }
       body{
         background: var(--bg);
         color: var(--text);
         font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
         line-height:1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       /* Header */
       header.top{
         position: sticky; top:0; z-index:50;
-        -webkit-backdrop-filter: saturate(120%) blur(10px);
-        backdrop-filter: saturate(120%) blur(10px);
-        background: color-mix(in oklab, var(--bg) 80%, transparent);
+        backdrop-filter: saturate(120%) blur(8px);
+        background: linear-gradient(180deg, rgba(13,18,24,.92), rgba(13,18,24,.72));
         border-bottom: 1px solid var(--muted);
       }
       .top-inner{
@@ -76,14 +66,11 @@ const {
       .brand span b{ color: var(--brand); font-weight:800; }
 
       nav a{
-        color: var(--text);
-        opacity: .9;
-        text-decoration:none; margin-left:1rem; font-weight:600;
-        padding:.35rem .55rem; border-radius:8px;
+        color:#d9eef0; text-decoration:none; margin-left:.5rem; font-weight:600;
+        padding:.4rem .65rem; border-radius:8px;
       }
-      nav a:hover{ background: var(--hover); opacity: 1; }
+      nav a:hover{ background: var(--muted); }
 
-      /* Main container */
       .wrap{
         max-width: var(--wrap-max);
         margin: 1.3rem auto 2rem;
@@ -94,65 +81,23 @@ const {
       footer.foot{
         border-top: 1px solid var(--muted);
         padding: 1rem 0;
-        color: var(--text-muted);
-        background: #0b1218;
+        color: #b8c7cb;
+        background: #0c1217;
       }
       .foot-inner{
         max-width: var(--wrap-max);
         margin: 0 auto; padding: 0 1rem;
       }
-      .foot a{ color: var(--brand); text-decoration: none; }
-      .foot a:hover{ color: var(--brand-2); text-decoration: underline; }
+      .foot a{ color: var(--brand); text-decoration: none; font-weight:600; }
+      .foot a:hover{ color: var(--brand-2); }
 
-      /* Headings y enlaces dentro del main */
-      h1,h2,h3{ line-height:1.2; color: var(--text); }
+      /* Tipografías & enlaces */
+      h1,h2,h3{ line-height:1.25; margin:0 0 .5rem; }
       a{ color: var(--brand); }
       a:hover{ color: var(--brand-2); }
 
-      /* Grid de tarjetas (fallback si no usas styles.css) */
-      .grid{
-        display:grid; gap: 1.25rem;
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      }
-      .card{
-        background: var(--card);
-        border: 1px solid var(--muted);
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-      }
-      .card:hover{
-        transform: translateY(-2px);
-        border-color: color-mix(in oklab, var(--brand) 45%, var(--muted));
-        box-shadow: 0 16px 36px rgba(0,0,0,.45);
-      }
-      .card .hero{
-        width:100%;
-        aspect-ratio: 16 / 9;
-        object-fit: cover;
-        background: #0d1319;
-        display:block;
-      }
-      .card .body{ padding: 1rem; }
-      .badge{
-        display:inline-block; padding:.2rem .6rem; border-radius:999px;
-        background: var(--badge-bg); color: var(--badge-fg); font-size:.78rem; font-weight:600;
-      }
-      .small{ color: var(--text-muted); font-size:.92rem; }
-      .btn{
-        display:inline-block; margin-top:.65rem; padding:.6rem .9rem;
-        background: var(--brand); color:#062233; font-weight:800;
-        border-radius:10px; text-decoration:none; border: 1px solid transparent;
-      }
-      .btn:hover{ filter: brightness(.98); border-color: color-mix(in oklab, var(--brand) 40%, #fff 0%); }
-
-      /* Imagen rota: oculta marco negro si no carga */
-      img[onerror]{ background:#0d1319; }
-
-      /* Responsive */
       @media (max-width: 560px){
-        nav a{ margin-left:.5rem; }
+        nav a{ margin-left:.25rem; }
         .brand span{ font-size:.98rem; }
       }
     </style>
