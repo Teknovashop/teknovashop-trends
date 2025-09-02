@@ -14,7 +14,7 @@ type Item = {
   body?: string;
 };
 
-/** Pequeño parser de front-matter (YAML muy simple: key: value) */
+/** Parser front-matter muy simple (key: value) */
 function parseFrontmatter(md: string): { data: Record<string, any>; content: string } {
   const m = md.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!m) return { data: {}, content: md };
@@ -30,16 +30,12 @@ function parseFrontmatter(md: string): { data: Record<string, any>; content: str
     if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
       val = val.slice(1, -1);
     }
-    if (/^-?\d+(\.\d+)?$/.test(val)) {
-      data[key] = Number(val);
-    } else {
-      data[key] = val;
-    }
+    if (/^-?\d+(\.\d+)?$/.test(val)) data[key] = Number(val);
+    else data[key] = val;
   }
   return { data, content };
 }
 
-/** Recorrido recursivo de ficheros */
 function walk(dir: string, out: string[] = []): string[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const e of entries) {
@@ -50,10 +46,9 @@ function walk(dir: string, out: string[] = []): string[] {
   return out;
 }
 
-/** Carga todas las tarjetas desde MD */
-function loadAll(): Item[] {
+function loadAllFromFS(): Item[] {
   const rootUrl = new URL('../../content/trends/', import.meta.url);
-  const root = fileURLToPath(rootUrl); // ruta del filesystem
+  const root = fileURLToPath(rootUrl);
   if (!fs.existsSync(root)) return [];
   const files = walk(root);
   const items: Item[] = [];
@@ -68,39 +63,42 @@ function loadAll(): Item[] {
       niche: data.niche,
       score: data.score ? Number(data.score) : undefined,
       hero: data.hero || '/placeholder.jpg',
-      body: content?.trim() || '',
+      body: (content || '').trim(),
     });
   }
   return items;
 }
 
-const all = loadAll();
-
+/** 🔒 No dependas de variables de módulo. Calcula aquí. */
 export async function getStaticPaths() {
-  // Si no hay items, devolvemos array vacío para que el build siga sin romper.
-  if (!all.length) return [];
-  return all.map((p) => ({
-    params: { slug: p.slug },
-    props: { item: p },
+  const items = loadAllFromFS();
+  if (!items.length) return [];
+  return items.map((it) => ({
+    params: { slug: it.slug },
+    props: { item: it },
   }));
 }
 
 const { slug } = Astro.params;
-const { item } = Astro.props as { item: Item };
+const { item } = Astro.props as { item?: Item };
 
-// Guardas de seguridad por si algo no cuadra
-const cur: Item =
-  item ||
-  all.find((x) => x.slug === slug) || {
-    slug: String(slug),
+// Si vinimos sin props (edge cases), buscamos directo por slug
+let cur: Item | undefined = item;
+if (!cur && slug) {
+  const items = loadAllFromFS();
+  cur = items.find((x) => x.slug === slug);
+}
+if (!cur) {
+  cur = {
+    slug: String(slug ?? ''),
     title: 'Producto no encontrado',
     niche: 'N/D',
     score: 0,
     hero: '/placeholder.jpg',
     body: 'No hay contenido para este producto.',
   };
+}
 
-// util sencillo para pasar líneas a <br/>
 function asHtml(text?: string) {
   if (!text) return '';
   return text
@@ -127,7 +125,6 @@ function asHtml(text?: string) {
     )}
 
     <section class="content" set:html={asHtml(cur.body)} />
-
   </article>
 
   <style>
@@ -141,7 +138,7 @@ function asHtml(text?: string) {
     .score{font-size:.9rem;}
     .hero{
       width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.08);
-      background:#0d1319;margin: .5rem 0 1rem;
+      background:#0d1319;margin:.5rem 0 1rem;
     }
     .content{color:#eaf3f7;font-size:1.02rem;line-height:1.6}
     .content a{color:#00c4c7}
