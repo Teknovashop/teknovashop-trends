@@ -1,6 +1,23 @@
 ---
 import Base from "../../layouts/Base.astro";
 
+/** 1) Generamos los paths estáticos para todos los slugs */
+export function getStaticPaths() {
+  // Cargamos TODO el contenido de /src/content/trends/**.md y devolvemos sus slugs
+  const mods = import.meta.glob("/src/content/trends/**/*.md", { eager: true }) as Record<
+    string,
+    { frontmatter: { slug: string } }
+  >;
+
+  const paths = Object.values(mods)
+    .map((m) => m?.frontmatter?.slug)
+    .filter(Boolean)
+    .map((slug) => ({ params: { slug } }));
+
+  return paths;
+}
+
+/** 2) En la página, buscamos el post por slug y renderizamos */
 type Entry = {
   frontmatter: {
     title: string;
@@ -13,11 +30,15 @@ type Entry = {
   Content: unknown;
 };
 
-const modules = import.meta.glob("/src/content/trends/**/*.md", { eager: true }) as Record<string, any>;
-const entries: Entry[] = Object.values(modules);
-
 const params = Astro.params as { slug: string };
-const post = entries.find(e => e?.frontmatter?.slug === params.slug);
+
+// Volvemos a globar de forma eager para obtener el contenido y el componente MD
+const modules = import.meta.glob("/src/content/trends/**/*.md", { eager: true }) as Record<
+  string,
+  Entry
+>;
+const posts: Entry[] = Object.values(modules);
+const post = posts.find((e) => e?.frontmatter?.slug === params.slug);
 
 if (!post) {
   throw new Error(`No se encontró el producto con slug: ${params.slug}`);
@@ -33,7 +54,7 @@ const hero = fm.hero && fm.hero !== "/placeholder.jpg" ? fm.hero : "/placeholder
     <header class="head">
       <h1>{fm.title}</h1>
       <p class="meta">
-        <span class="badge">{fm.niche}</span>
+        {fm.niche && <span class="badge">{fm.niche}</span>}
         {fm.score != null && <span class="muted">· score {String(fm.score)}</span>}
         {fm.date && <span class="muted">· {fm.date.slice(0,10)}</span>}
       </p>
