@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-/** Tipos útiles (opcionales) */
+// Tipos útiles (opcionales)
 type StoreLinks = {
   amazon?: string;
   aliexpress?: string;
@@ -26,13 +26,13 @@ type DayData = {
   items: ProductItem[];
 };
 
-/** Cargamos TODOS los JSON en src/data/**/index.json en tiempo de build */
+// Cargar TODOS los JSON ubicados bajo src/data/.../index.json en tiempo de build
 const modules = import.meta.glob('../../data/**/index.json', {
   eager: true,
   import: 'default'
 }) as Record<string, DayData>;
 
-/** Convertimos todos los JSON a una lista plana de items con su fecha */
+// Convertir todos los JSON a una lista plana de items con su fecha
 function allItems(): ProductItem[] {
   const out: ProductItem[] = [];
   for (const [, data] of Object.entries(modules)) {
@@ -43,19 +43,19 @@ function allItems(): ProductItem[] {
       }
     }
   }
-  // dedup por slug (último gana)
+  // Quitar duplicados por slug (último gana)
   const map = new Map<string, ProductItem>();
   for (const it of out) map.set(it.slug, it);
   return Array.from(map.values());
 }
 
-/** Generamos todas las rutas estáticas basadas en los slugs */
+// Generar rutas estáticas por slug
 export async function getStaticPaths() {
   const items = allItems();
   return items.map((it) => ({ params: { slug: it.slug } }));
 }
 
-/** Props y búsqueda del item actual */
+// Buscar el item actual
 const { slug } = Astro.params as { slug: string };
 const items = allItems();
 const item = items.find((it) => it.slug === slug);
@@ -64,7 +64,7 @@ if (!item) {
   throw new Error(`Producto no encontrado: ${slug}`);
 }
 
-/** Valores seguros para render */
+// Valores seguros para render
 const title = item.title ?? 'Producto';
 const niche = item.niche ?? '';
 const score = typeof item.score === 'number' ? item.score : undefined;
