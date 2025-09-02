@@ -20,7 +20,8 @@ type Item = {
   hero?: string;
 };
 
-/** Lee todos los index.json dentro de src/data/**/index.json y devuelve items con su fecha */
+// Lee todos los index.json ubicados bajo src/data/.../index.json y devuelve la
+// lista de items con su fecha “inferida” del árbol de directorios.
 function loadAllItems(): Item[] {
   const root = path.join(Astro.srcDir, 'data');
   const results: Item[] = [];
@@ -61,7 +62,7 @@ function loadAllItems(): Item[] {
   return Array.from(map.values());
 }
 
-/** Devuelve un item por slug */
+// Devuelve un item por slug
 function getBySlug(slug: string): Item | undefined {
   const items = loadAllItems();
   return items.find((it) => it.slug === slug);
@@ -69,7 +70,6 @@ function getBySlug(slug: string): Item | undefined {
 
 export async function getStaticPaths() {
   const items = loadAllItems();
-  // Genera paths solo para slugs válidos
   return items
     .filter((it) => it?.slug)
     .map((it) => ({ params: { slug: it.slug } }));
