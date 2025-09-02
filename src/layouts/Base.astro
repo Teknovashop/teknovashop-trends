@@ -1,6 +1,54 @@
 ---
-const { title="Teknovashop Tendencias",description="Ranking diario de productos",canonical }=Astro.props;
+const { title = 'Teknovashop Tendencias', description = 'Tendencias diarias de productos con comparador de precios', ogImage = '/brand/teknovashop-tendencias.png' } = Astro.props;
 ---
-<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>{title}</title><meta name="description" content={description}/><link rel="stylesheet" href="/styles.css"/><link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml"/>{canonical && <link rel="canonical" href={canonical} />}</head>
-<body><header class="wrap"><a class="logo" href="/">Teknovashop <span style="color:#0ea5e9">Tendencias</span></a><nav><a href="/hoy">Hoy</a><a href="/archivo">Archivo</a><a href="/acerca">Acerca</a></nav></header><main class="wrap"><slot/></main><footer class="wrap small"><p>© {new Date().getFullYear()} Teknovashop · Algunos enlaces pueden ser de afiliado · <a href="/legal">Avisos legales</a></p></footer></body></html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <style>
+      :root { --brand:#1967d2; --ink:#0f172a; --muted:#64748b; --ring:#e2e8f0; --bg:#ffffff; }
+      * { box-sizing:border-box; }
+      html,body { margin:0; padding:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial; color:var(--ink); background:var(--bg); }
+      a { color:var(--brand); text-decoration:none; }
+      a:hover { text-decoration:underline; }
+      header { position:sticky; top:0; z-index:20; background:#fff; border-bottom:1px solid var(--ring); }
+      .wrap { max-width:1100px; margin:0 auto; padding:16px; }
+      .brand { display:flex; align-items:center; gap:12px; font-weight:700; font-size:18px; }
+      .brand img { height:36px; width:auto; display:block; }
+      nav { margin-left:auto; display:flex; gap:18px; }
+      .row { display:flex; align-items:center; gap:24px; }
+      main.wrap { padding-top:24px; padding-bottom:56px; }
+      footer { border-top:1px solid var(--ring); padding:24px 0; color:var(--muted); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap row">
+        <a class="brand" href="/">
+          <img src="/brand/teknovashop-tendencias.png" alt="Teknovashop Tendencias" loading="eager" />
+          <span>Teknovashop <span style="color:var(--muted); font-weight:600;">Tendencias</span></span>
+        </a>
+        <nav>
+          <a href="/hoy/">Hoy</a>
+          <a href="/archivo/">Archivo</a>
+          <a href="/acerca/">Acerca</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer>
+      <div class="wrap">
+        © {new Date().getFullYear()} Teknovashop · Algunos enlaces pueden ser de afiliado · <a href="/legal/">Avisos legales</a>
+      </div>
+    </footer>
+  </body>
+</html>
