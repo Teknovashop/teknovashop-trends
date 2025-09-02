@@ -1,4 +1,75 @@
 {
   "date": "2025-09-02",
-  "items": []
+  "items": [
+    {
+      "slug": "auriculares-inalambricos-con-cancelacion-de-ruido",
+      "title": "Auriculares inalámbricos con cancelación de ruido",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?Auriculares%20inal%C3%A1mbricos%20con%20cancelaci%C3%B3n%20de%20ruido"
+    },
+    {
+      "slug": "monitor-27-pulgadas-144-hz-para-gaming",
+      "title": "Monitor 27 pulgadas 144 hz para gaming",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?Monitor%2027%20pulgadas%20144%20hz%20para%20gaming"
+    },
+    {
+      "slug": "disco-ssd-nvme-1-tb-alta-velocidad",
+      "title": "Disco ssd nvme 1 tb alta velocidad",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?Disco%20ssd%20nvme%201%20tb%20alta%20velocidad"
+    },
+    {
+      "slug": "tablet-android-compacta-para-estudiar",
+      "title": "Tablet android compacta para estudiar",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?Tablet%20android%20compacta%20para%20estudiar"
+    },
+    {
+      "slug": "camara-de-seguridad-wifi-para-exterior",
+      "title": "Cámara de seguridad wifi para exterior",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?C%C3%A1mara%20de%20seguridad%20wifi%20para%20exterior"
+    },
+    {
+      "slug": "robot-aspirador-con-mapeo-laser",
+      "title": "Robot aspirador con mapeo láser",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?Robot%20aspirador%20con%20mapeo%20l%C3%A1ser"
+    },
+    {
+      "slug": "freidora-de-aire-5-litros",
+      "title": "Freidora de aire 5 litros",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?Freidora%20de%20aire%205%20litros"
+    },
+    {
+      "slug": "lampara-led-regulable-escritorio",
+      "title": "Lámpara led regulable escritorio",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?L%C3%A1mpara%20led%20regulable%20escritorio"
+    },
+    {
+      "slug": "cafetera-de-capsulas-compacta",
+      "title": "Cafetera de cápsulas compacta",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?Cafetera%20de%20c%C3%A1psulas%20compacta"
+    },
+    {
+      "slug": "purificador-de-aire-hepa",
+      "title": "Purificador de aire hepa",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://source.unsplash.com/1024x576/?Purificador%20de%20aire%20hepa"
+    }
+  ]
 }
