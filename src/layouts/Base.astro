@@ -41,7 +41,6 @@ const {
         -moz-osx-font-smoothing: grayscale;
       }
 
-      /* Header */
       header.top{
         position: sticky; top:0; z-index:50;
         backdrop-filter: saturate(120%) blur(8px);
@@ -57,12 +56,8 @@ const {
         display:flex; align-items:center; gap:.7rem;
         text-decoration:none; color:var(--text);
       }
-      .brand img{
-        width:34px; height:34px; border-radius:9px; display:block;
-      }
-      .brand span{
-        font-weight:700; letter-spacing:.2px;
-      }
+      .brand img{ width:34px; height:34px; border-radius:9px; display:block; }
+      .brand span{ font-weight:700; letter-spacing:.2px; }
       .brand span b{ color: var(--brand); font-weight:800; }
 
       nav a{
@@ -77,21 +72,16 @@ const {
         padding: 0 1rem;
       }
 
-      /* Footer */
       footer.foot{
         border-top: 1px solid var(--muted);
         padding: 1rem 0;
         color: #b8c7cb;
         background: #0c1217;
       }
-      .foot-inner{
-        max-width: var(--wrap-max);
-        margin: 0 auto; padding: 0 1rem;
-      }
+      .foot-inner{ max-width: var(--wrap-max); margin: 0 auto; padding: 0 1rem; }
       .foot a{ color: var(--brand); text-decoration: none; font-weight:600; }
       .foot a:hover{ color: var(--brand-2); }
 
-      /* Tipografías & enlaces */
       h1,h2,h3{ line-height:1.25; margin:0 0 .5rem; }
       a{ color: var(--brand); }
       a:hover{ color: var(--brand-2); }
@@ -108,7 +98,7 @@ const {
       <div class="top-inner">
         <a href="/" class="brand">
           <img src="/brand/teknovashop-tendencias.png" alt="Teknovashop" onerror="this.style.display='none'" />
-          <span>Teknovashop <b>Tendencias</b></span>
+        <span>Teknovashop <b>Tendencias</b></span>
         </a>
         <nav>
           <a href="/hoy">Hoy</a>
