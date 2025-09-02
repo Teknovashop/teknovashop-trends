@@ -2,12 +2,14 @@
 import Base from '../../layouts/Base.astro';
 
 // Carga todos los MD generados en /src/content/trends/YYYY/MM/DD/*.md
-const entries = import.meta.glob('/src/content/trends/**/*.md', { eager: true });
+// OJO: la ruta debe ser RELATIVA al archivo actual (no con /src/...).
+const modules = import.meta.glob('../../content/trends/**/*.md', { eager: true });
 
-// Build paths
+// Construye paths estáticos para todos los slugs encontrados
 export async function getStaticPaths() {
   const paths = [];
-  for (const [, mod] of Object.entries(entries)) {
+
+  for (const mod of Object.values(modules)) {
     const front = mod.frontmatter || {};
     if (front.slug) {
       paths.push({
@@ -16,11 +18,14 @@ export async function getStaticPaths() {
       });
     }
   }
+
   return paths;
 }
 
 const { frontmatter, Content } = Astro.props;
 const { title, niche, score, hero } = frontmatter;
+
+export const prerender = true;
 ---
 
 <Base title={title}>
@@ -56,6 +61,7 @@ const { title, niche, score, hero } = frontmatter;
       margin: 0 auto;
       font-size: 1.03rem;
     }
+    .content h1 { margin: .2rem 0 0.8rem; line-height: 1.15; }
     .content h2, .content h3 { margin-top: 1.2rem; }
     .content ul { padding-left: 1.2rem; }
   </style>
