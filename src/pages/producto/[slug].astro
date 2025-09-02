@@ -1,92 +1,64 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-// Tipos útiles (opcionales)
-type StoreLinks = {
-  amazon?: string;
-  aliexpress?: string;
-  shein?: string;
-};
-
-type ProductItem = {
-  slug: string;
-  title: string;
-  niche?: string;
-  score?: number;
-  hero?: string;
-  summary?: string;
-  pros?: string[] | string;
-  cons?: string[] | string;
-  links?: StoreLinks;
-  date?: string;
-};
-
-type DayData = {
-  date: string;
-  items: ProductItem[];
-};
-
-// Cargar TODOS los JSON ubicados bajo src/data/.../index.json en tiempo de build
-const modules = import.meta.glob('../../data/**/index.json', {
+// Cargamos TODOS los JSON bajo src/data/.../index.json en build
+const _modules = import.meta.glob('../../data/**/index.json', {
   eager: true,
   import: 'default'
-}) as Record<string, DayData>;
+});
 
-// Convertir todos los JSON a una lista plana de items con su fecha
-function allItems(): ProductItem[] {
-  const out: ProductItem[] = [];
-  for (const [, data] of Object.entries(modules)) {
-    if (!data || !Array.isArray(data.items)) continue;
-    for (const it of data.items) {
-      if (it && typeof it.slug === 'string') {
-        out.push({ ...it, date: it.date ?? data.date });
-      }
+// Aplanamos a una lista de items y guardamos por slug
+const _items = [];
+for (const k of Object.keys(_modules)) {
+  const data = _modules[k];
+  if (!data || !Array.isArray(data.items)) continue;
+  const dateStr = data.date || '';
+  for (const it of data.items) {
+    if (it && typeof it.slug === 'string') {
+      _items.push({ ...it, date: it.date || dateStr });
     }
   }
-  // Quitar duplicados por slug (último gana)
-  const map = new Map<string, ProductItem>();
-  for (const it of out) map.set(it.slug, it);
-  return Array.from(map.values());
 }
+// dedup por slug (último gana)
+const _bySlug = new Map();
+for (const it of _items) _bySlug.set(it.slug, it);
 
-// Generar rutas estáticas por slug
+// Rutas estáticas (una por slug)
 export async function getStaticPaths() {
-  const items = allItems();
-  return items.map((it) => ({ params: { slug: it.slug } }));
+  return Array.from(_bySlug.keys()).map((slug) => ({ params: { slug } }));
 }
 
-// Buscar el item actual
-const { slug } = Astro.params as { slug: string };
-const items = allItems();
-const item = items.find((it) => it.slug === slug);
+// Obtenemos el item actual
+const { slug } = Astro.params;
+const item = _bySlug.get(slug);
 
 if (!item) {
   throw new Error(`Producto no encontrado: ${slug}`);
 }
 
 // Valores seguros para render
-const title = item.title ?? 'Producto';
-const niche = item.niche ?? '';
-const score = typeof item.score === 'number' ? item.score : undefined;
-const dateStr = item.date ?? '';
-const summary = item.summary ?? 'Tendencia destacada del día.';
+const title = item.title || 'Producto';
+const niche = item.niche || '';
+const score = typeof item.score === 'number' ? item.score : null;
+const dateStr = item.date || '';
+const summary = item.summary || 'Tendencia destacada del día.';
 const hero = (typeof item.hero === 'string' && item.hero) ? item.hero : '/placeholder.jpg';
 
-const pros: string[] =
-  Array.isArray(item.pros) ? item.pros :
-  typeof item.pros === 'string' ? item.pros.split('•').map(s => s.trim()).filter(Boolean) : [];
+function toList(val) {
+  if (Array.isArray(val)) return val;
+  if (typeof val === 'string') return val.split('•').map(s => s.trim()).filter(Boolean);
+  return [];
+}
+const pros = toList(item.pros);
+const cons = toList(item.cons);
 
-const cons: string[] =
-  Array.isArray(item.cons) ? item.cons :
-  typeof item.cons === 'string' ? item.cons.split('•').map(s => s.trim()).filter(Boolean) : [];
-
-function safe(u?: string) {
-  if (!u) return null;
+function safe(u) {
+  if (!u || typeof u !== 'string') return null;
   try { return new URL(u).toString(); } catch { return null; }
 }
-const amazonURL = safe(item.links?.amazon);
-const aliURL = safe(item.links?.aliexpress);
-const sheinURL = safe(item.links?.shein);
+const amazonURL = safe(item?.links?.amazon);
+const aliURL    = safe(item?.links?.aliexpress);
+const sheinURL  = safe(item?.links?.shein);
 ---
 
 <Base title={title} description={summary}>
@@ -95,7 +67,7 @@ const sheinURL = safe(item.links?.shein);
       <h1 class="ttl">{title}</h1>
       <div class="meta">
         {niche && <span class="badge">{niche}</span>}
-        {typeof score === 'number' && <span class="muted">· score {score}</span>}
+        {score !== null && <span class="muted">· score {score}</span>}
         {dateStr && <span class="muted">· {dateStr}</span>}
       </div>
     </header>
