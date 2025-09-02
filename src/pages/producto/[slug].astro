@@ -1,105 +1,185 @@
 ---
-import Base from "../../layouts/Base.astro";
-
-/** 1) Generamos los paths estáticos para todos los slugs */
-export function getStaticPaths() {
-  // Cargamos TODO el contenido de /src/content/trends/**.md y devolvemos sus slugs
-  const mods = import.meta.glob("/src/content/trends/**/*.md", { eager: true }) as Record<
-    string,
-    { frontmatter: { slug: string } }
-  >;
-
-  const paths = Object.values(mods)
-    .map((m) => m?.frontmatter?.slug)
-    .filter(Boolean)
-    .map((slug) => ({ params: { slug } }));
-
-  return paths;
-}
-
-/** 2) En la página, buscamos el post por slug y renderizamos */
-type Entry = {
-  frontmatter: {
-    title: string;
-    slug: string;
-    date?: string;
-    niche?: string;
-    score?: number;
-    hero?: string;
-  };
-  Content: unknown;
+/**
+ * Página de detalle de producto/tendencia.
+ * Genera todas las rutas leyendo TODOS los ficheros JSON en src/data/trends/**/index.json
+ */
+type StoreLinks = {
+  amazon?: string;
+  aliexpress?: string;
+  shein?: string;
 };
 
-const params = Astro.params as { slug: string };
+type ProductItem = {
+  slug: string;
+  title: string;
+  niche?: string;
+  score?: number;
+  hero?: string;               // URL imagen
+  summary?: string;            // resumen corto
+  pros?: string[];             // puntos a favor
+  cons?: string[];             // puntos en contra
+  links?: StoreLinks;          // enlaces ya construidos por el script
+  date?: string;               // opcional, por si viene en el item
+};
 
-// Volvemos a globar de forma eager para obtener el contenido y el componente MD
-const modules = import.meta.glob("/src/content/trends/**/*.md", { eager: true }) as Record<
-  string,
-  Entry
->;
-const posts: Entry[] = Object.values(modules);
-const post = posts.find((e) => e?.frontmatter?.slug === params.slug);
+type DayData = {
+  date: string;
+  items: ProductItem[];
+};
 
-if (!post) {
-  throw new Error(`No se encontró el producto con slug: ${params.slug}`);
+// 1) Generamos TODAS las rutas posibles a partir de los JSON guardados por el script diario
+export async function getStaticPaths() {
+  // importamos cada index.json y nos quedamos con su "default"
+  const modules = import.meta.glob('../../data/trends/**/index.json', {
+    eager: true,
+    import: 'default'
+  }) as Record<string, DayData>;
+
+  const entries: Array<{ params: { slug: string }; props: { item: ProductItem; date: string } }> = [];
+
+  for (const [_, data] of Object.entries(modules)) {
+    if (!data || !Array.isArray(data.items)) continue;
+    for (const item of data.items) {
+      if (!item?.slug) continue;
+      entries.push({
+        params: { slug: item.slug },
+        props: { item, date: item.date ?? data.date }
+      });
+    }
+  }
+
+  return entries;
 }
 
-const fm = post.frontmatter;
-const Content = post.Content;
-const hero = fm.hero && fm.hero !== "/placeholder.jpg" ? fm.hero : "/placeholder.jpg";
+// 2) Props que recibe cada página
+const { item, date } = Astro.props as { item: ProductItem; date: string };
+
+// fallback por si faltara algo
+const title = item.title ?? 'Tendencia';
+const hero = item.hero ?? '/placeholder.jpg';
+const niche = item.niche ?? 'tecnología';
+const score = typeof item.score === 'number' ? item.score : 1;
+const summary = item.summary ?? 'Tendencia destacada del día.';
+
+// Si el script aún no mete enlaces listos, construimos búsquedas de reserva
+const AMAZON_TAG = 'teknovashop25-21'; // usa tu tag ES
+function amazonSearch(q: string) {
+  const base = 'https://www.amazon.es/s';
+  const params = new URLSearchParams({ k: q, language: 'es_ES', tag: AMAZON_TAG });
+  return `${base}?${params.toString()}`;
+}
+function aliexpressSearch(q: string) {
+  return `https://es.aliexpress.com/wholesale?SearchText=${encodeURIComponent(q)}`;
+}
+function sheinSearch(q: string) {
+  return `https://es.shein.com/pdsearch/${encodeURIComponent(q)}/?src_identifier=fc%3Ditem_search%60sc%3D${encodeURIComponent(q)}`;
+}
+
+const links: StoreLinks = {
+  amazon: item.links?.amazon ?? amazonSearch(title),
+  aliexpress: item.links?.aliexpress ?? aliexpressSearch(title),
+  shein: item.links?.shein ?? sheinSearch(title),
+};
 ---
 
-<Base title={`${fm.title} · Teknovashop`}>
-  <article class="sheet">
-    <header class="head">
-      <h1>{fm.title}</h1>
-      <p class="meta">
-        {fm.niche && <span class="badge">{fm.niche}</span>}
-        {fm.score != null && <span class="muted">· score {String(fm.score)}</span>}
-        {fm.date && <span class="muted">· {fm.date.slice(0,10)}</span>}
-      </p>
-      <figure class="hero">
-        <img src={hero} alt={fm.title} />
-      </figure>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title} · Teknovashop Tendencias</title>
+    <meta name="description" content={summary} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/brand/teknovashop-tendencias.png" />
+    <style>
+      :root{
+        --bg:#0b0f14;
+        --card:#0f151b;
+        --text:#eaf3f7;
+        --muted:rgba(255,255,255,.08);
+        --brand:#00c4c7;
+        --brand-2:#00a8aa;
+        --wrap-max:1100px;
+      }
+      *{ box-sizing:border-box; }
+      html,body{ margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial; }
+      a{ color: var(--brand); text-decoration:none; }
+      a:hover{ color: var(--brand-2); }
+      .wrap{ max-width:var(--wrap-max); margin: 1.25rem auto 3rem; padding: 0 1rem; }
+      header.top{ border-bottom:1px solid var(--muted); background:#0c1217; position:sticky; top:0; z-index:10;}
+      .top-inner{ max-width:var(--wrap-max); margin:0 auto; padding:.8rem 1rem; display:flex; align-items:center; gap:.75rem; }
+      .brand{ display:flex; align-items:center; gap:.6rem; color:var(--text); }
+      .brand img{ width:30px; height:30px; border-radius:8px; display:block; }
+      h1{ margin:.6rem 0 0; font-size:clamp(1.4rem, 2.4vw, 2rem); }
+      .meta{ display:flex; gap:.5rem; align-items:center; margin:.35rem 0 1rem; color:#9fb3b8; font-size:.92rem; }
+      .badge{ background:rgba(0,196,199,.15); color:#93f7f9; padding:.2rem .55rem; border-radius:999px; font-size:.78rem; }
+      .hero-wrap{ margin: .8rem 0 1.2rem; border-radius:16px; overflow:hidden; border:1px solid var(--muted); background:var(--card); }
+      .hero{
+        width:100%; height: clamp(220px, 40vw, 420px);
+        object-fit: cover; display:block;
+      }
+      .card{ background:var(--card); border:1px solid var(--muted); border-radius:16px; padding:1rem; }
+      ul{ margin:.4rem 0 .8rem 1.25rem; }
+      footer.foot{ border-top:1px solid var(--muted); color:#b8c7cb; padding:1rem 0; background:#0c1217; }
+      .foot-inner{ max-width:var(--wrap-max); margin:0 auto; padding:0 1rem; }
+      .stores a{ display:inline-block; margin:.25rem .6rem .25rem 0; padding:.55rem .8rem; border-radius:10px; background:var(--brand); color:#00292b; font-weight:700; }
+      .stores a:hover{ filter:brightness(.96); }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top-inner">
+        <a href="/" class="brand">
+          <img src="/brand/teknovashop-tendencias.png" alt="Teknovashop" />
+          <strong>Teknovashop Tendencias</strong>
+        </a>
+      </div>
     </header>
 
-    <section class="content">
-      <Content />
-    </section>
-  </article>
+    <main class="wrap">
+      <h1>{title}</h1>
+      <div class="meta">
+        <span class="badge">{niche}</span>
+        <span>· score {score}</span>
+        <span>· {date}</span>
+      </div>
 
-  <style>
-    .sheet{ display:block; }
-    .head h1{ margin:0 0 .3rem; }
-    .meta{ color:#a8bbc0; margin:.25rem 0 1rem; }
-    .badge{
-      display:inline-block; padding:.2rem .55rem; border-radius:999px;
-      background: rgba(0,196,199,.18);
-      border: 1px solid rgba(0,196,199,.35);
-      color:#bffbff; font-weight:700; font-size:.78rem;
-      margin-right:.4rem;
-    }
-    .muted{ opacity:.8; margin-left:.35rem; }
+      <div class="hero-wrap">
+        <img class="hero" src={hero} alt={title} loading="eager" />
+      </div>
 
-    .hero{
-      margin: .75rem 0 1.25rem; background:#0d1319; border:1px solid var(--muted);
-      border-radius:16px; overflow:hidden;
-    }
-    .hero img{
-      width:100%; max-height: 460px; object-fit: cover; display:block;
-    }
+      <section class="card">
+        <p><strong>Resumen:</strong> {summary}</p>
 
-    .content{
-      background: var(--card);
-      border: 1px solid var(--muted);
-      border-radius: 16px;
-      padding: 1.1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .content :global(p){ margin:.6rem 0; }
-    .content :global(ul){ margin:.4rem 0 .9rem 1.1rem; }
-    .content :global(li){ margin:.25rem 0; }
-    .content :global(strong){ color:#fff; }
-    .content :global(a){ font-weight:700; }
-  </style>
-</Base>
+        {item.pros && item.pros.length > 0 && (
+          <>
+            <h3>Pros</h3>
+            <ul>
+              {item.pros.map((p) => <li>{p}</li>)}
+            </ul>
+          </>
+        )}
+
+        {item.cons && item.cons.length > 0 && (
+          <>
+            <h3>Contras</h3>
+            <ul>
+              {item.cons.map((c) => <li>{c}</li>)}
+            </ul>
+          </>
+        )}
+
+        <h3>Dónde comparar precios</h3>
+        <div class="stores">
+          <a href={links.amazon} rel="nofollow noopener" target="_blank">Amazon (ES)</a>
+          <a href={links.aliexpress} rel="nofollow noopener" target="_blank">AliExpress</a>
+          <a href={links.shein} rel="nofollow noopener" target="_blank">SHEIN</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-inner">
+        <small>© {new Date().getFullYear()} Teknovashop · Algunos enlaces pueden ser de afiliado · <a href="/legal">Avisos legales</a></small>
+      </div>
+    </footer>
+  </body>
+</html>
