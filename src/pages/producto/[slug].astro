@@ -1,57 +1,149 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+type Item = {
+  title?: string;
+  slug: string;
+  date?: string;
+  niche?: string;
+  score?: number;
+  hero?: string;
+  body?: string;
+};
+
+/** Pequeño parser de front-matter (YAML muy simple: key: value) */
+function parseFrontmatter(md: string): { data: Record<string, any>; content: string } {
+  const m = md.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!m) return { data: {}, content: md };
+  const raw = m[1];
+  const content = m[2];
+
+  const data: Record<string, any> = {};
+  for (const line of raw.split('\n')) {
+    const i = line.indexOf(':');
+    if (i === -1) continue;
+    const key = line.slice(0, i).trim();
+    let val = line.slice(i + 1).trim();
+    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+      val = val.slice(1, -1);
+    }
+    if (/^-?\d+(\.\d+)?$/.test(val)) {
+      data[key] = Number(val);
+    } else {
+      data[key] = val;
+    }
+  }
+  return { data, content };
+}
+
+/** Recorrido recursivo de ficheros */
+function walk(dir: string, out: string[] = []): string[] {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const e of entries) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) walk(p, out);
+    else if (e.isFile() && p.endsWith('.md')) out.push(p);
+  }
+  return out;
+}
+
+/** Carga todas las tarjetas desde MD */
+function loadAll(): Item[] {
+  const rootUrl = new URL('../../content/trends/', import.meta.url);
+  const root = fileURLToPath(rootUrl); // ruta del filesystem
+  if (!fs.existsSync(root)) return [];
+  const files = walk(root);
+  const items: Item[] = [];
+  for (const f of files) {
+    const md = fs.readFileSync(f, 'utf-8');
+    const { data, content } = parseFrontmatter(md);
+    const slug = (data.slug || path.basename(f, '.md')) as string;
+    items.push({
+      title: data.title || slug,
+      slug,
+      date: data.date,
+      niche: data.niche,
+      score: data.score ? Number(data.score) : undefined,
+      hero: data.hero || '/placeholder.jpg',
+      body: content?.trim() || '',
+    });
+  }
+  return items;
+}
+
+const all = loadAll();
+
+export async function getStaticPaths() {
+  // Si no hay items, devolvemos array vacío para que el build siga sin romper.
+  if (!all.length) return [];
+  return all.map((p) => ({
+    params: { slug: p.slug },
+    props: { item: p },
+  }));
+}
 
 const { slug } = Astro.params;
+const { item } = Astro.props as { item: Item };
 
-// Buscamos la entrada en la colección "trends"
-const entries = await getCollection('trends');
-const post = entries.find((e) => e.slug === slug);
+// Guardas de seguridad por si algo no cuadra
+const cur: Item =
+  item ||
+  all.find((x) => x.slug === slug) || {
+    slug: String(slug),
+    title: 'Producto no encontrado',
+    niche: 'N/D',
+    score: 0,
+    hero: '/placeholder.jpg',
+    body: 'No hay contenido para este producto.',
+  };
 
-if (!post) {
-  throw new Error('Producto no encontrado');
+// util sencillo para pasar líneas a <br/>
+function asHtml(text?: string) {
+  if (!text) return '';
+  return text
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l.length)
+    .join('<br/>');
 }
-
-const { Content } = await post.render();
 ---
 
-<Base title={`${post.data.title} — Teknovashop`}>
-  <h1>{post.data.title}</h1>
+<Base title={cur.title ? `${cur.title} — Teknovashop` : 'Teknovashop'}>
+  <article class="product">
+    <header class="head">
+      <h1>{cur.title}</h1>
+      <p class="meta">
+        {cur.niche && <span class="badge">{cur.niche}</span>}
+        {typeof cur.score === 'number' && <span class="score">· score {cur.score}</span>}
+      </p>
+    </header>
 
-  {post.data.hero && (
-    <img class="hero" src={post.data.hero} alt={post.data.title} loading="lazy"
-         onerror={`this.onerror=null;this.src='/placeholder.jpg';`} />
-  )}
+    {cur.hero && (
+      <img class="hero" src={cur.hero} alt={cur.title} loading="eager" decoding="async" />
+    )}
 
-  <p class="meta">
-    <span class="badge">{post.data.niche}</span> · score {post.data.score}
-  </p>
+    <section class="content" set:html={asHtml(cur.body)} />
 
-  <div class="prose">
-    <Content />
-  </div>
+  </article>
+
+  <style>
+    .product{max-width:900px;margin:0 auto;}
+    .head h1{margin:.3rem 0 0;}
+    .meta{color:#9fb3b8;margin:.3rem 0 1rem;}
+    .badge{
+      display:inline-block;background:rgba(0,196,199,.18);color:#93f7f9;
+      padding:.18rem .5rem;border-radius:999px;margin-right:.5rem;font-size:.85rem;
+    }
+    .score{font-size:.9rem;}
+    .hero{
+      width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.08);
+      background:#0d1319;margin: .5rem 0 1rem;
+    }
+    .content{color:#eaf3f7;font-size:1.02rem;line-height:1.6}
+    .content a{color:#00c4c7}
+  </style>
 </Base>
-
-<style>
-.hero{
-  width:100%;
-  max-width:980px;
-  aspect-ratio:16/9;
-  object-fit:cover;
-  border-radius:16px;
-  background:#f3f5f7;
-  display:block;
-}
-.meta{ color:#5e6; margin:.75rem 0 1rem; }
-.badge{
-  display:inline-block;
-  font-size:.75rem;
-  padding:.2rem .5rem;
-  color:#155;
-  background:#e6fffc;
-  border-radius:999px;
-}
-.prose :where(p,ul,ol){ line-height:1.6; }
-.prose ul{ padding-left:1.2rem; }
-.prose a{ color:#0aa; text-decoration:underline; }
-</style>
