@@ -1,150 +1,60 @@
 ---
 import Base from '../layouts/Base.astro';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { getTodayOrLatest } from '../lib/trends';
 
-type TrendItem = {
-  slug: string;
-  title: string;
-  niche?: string;
-  score?: number;
-  hero?: string;
-};
-
-type IndexPayload = { date: string; items: TrendItem[] };
-
-function readJSON(p: string): IndexPayload | null {
-  try {
-    const raw = fs.readFileSync(p, 'utf-8');
-    const j = JSON.parse(raw);
-    if (j && typeof j === 'object' && Array.isArray(j.items)) return j as IndexPayload;
-  } catch {}
-  return null;
-}
-
-function todayParts(tz = 'Europe/Madrid') {
-  const d = new Date();
-  const y = d.toLocaleString('en-GB', { timeZone: tz, year: 'numeric' });
-  const m = d.toLocaleString('en-GB', { timeZone: tz, month: '2-digit' });
-  const dd = d.toLocaleString('en-GB', { timeZone: tz, day: '2-digit' });
-  return { y, m, dd };
-}
-
-// busca el index de hoy y si no hay, el último disponible con items
-function loadIndex(): { data: IndexPayload | null; fromToday: boolean } {
-  const dataRoot = fileURLToPath(new URL('../data/trends/', import.meta.url));
-  const { y, m, dd } = todayParts(); // zona Europe/Madrid
-  const todayPath = path.join(dataRoot, y, m, dd, 'index.json');
-
-  const today = readJSON(todayPath);
-  if (today && today.items.length > 0) return { data: today, fromToday: true };
-
-  if (!fs.existsSync(dataRoot)) return { data: null, fromToday: false };
-
-  const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
-  const candidates: { p: string; date: string }[] = [];
-
-  for (const Y of years) {
-    const yDir = path.join(dataRoot, Y);
-    if (!fs.statSync(yDir).isDirectory()) continue;
-    const months = fs.readdirSync(yDir).filter((d) => /^\d{2}$/.test(d));
-    for (const M of months) {
-      const mDir = path.join(yDir, M);
-      if (!fs.statSync(mDir).isDirectory()) continue;
-      const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
-      for (const D of days) {
-        const dDir = path.join(mDir, D);
-        const idx = path.join(dDir, 'index.json');
-        if (fs.existsSync(idx)) candidates.push({ p: idx, date: `${Y}-${M}-${D}` });
-      }
-    }
-  }
-
-  candidates.sort((a, b) => (a.date < b.date ? 1 : -1));
-  for (const c of candidates) {
-    const j = readJSON(c.p);
-    if (j && j.items.length > 0) return { data: j, fromToday: false };
-  }
-  return { data: null, fromToday: false };
-}
-
-const { data, fromToday } = loadIndex();
-const payload = data;
+const payload = getTodayOrLatest();
+const items = payload?.data?.items ?? [];
+const fecha = payload?.dateLabel ?? '';
 ---
 
-<Base title="Tendencias de hoy — Teknovashop">
-  <h1>Tendencias de hoy</h1>
-
-  {payload && !fromToday && (
-    <p class="notice">
-      No hay datos para hoy. Mostrando el último disponible: <strong>{payload.date}</strong>.
-    </p>
-  )}
-
-  {!payload && (<p>No hay datos para hoy todavía.</p>)}
-
-  {payload && payload.items.length > 0 && (
-    <div class="grid">
-      {payload.items.map((p) => (
-        <article class="card">
-          <a class="imgwrap" href={`/producto/${p.slug}`}>
-            <img
-              src={p.hero || '/placeholder.jpg'}
-              alt={p.title}
-              loading="lazy"
-              decoding="async"
-              onerror="this.src='/placeholder.jpg'"
-            />
-          </a>
-          <h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3>
-          <p class="meta">
-            {p.niche && <span class="badge">{p.niche}</span>}
-            {typeof p.score === 'number' && <span class="score">· score {p.score}</span>}
-          </p>
-          <p><a class="btn" href={`/producto/${p.slug}`}>Ver detalles</a></p>
-        </article>
-      ))}
-    </div>
-  )}
+<Base title="Tendencias" description="Tendencias de hoy">
+  <section class="wrap">
+    <h1>Tendencias de hoy</h1>
+    {items.length === 0 ? (
+      <p>No hay datos para hoy todavía.</p>
+    ) : (
+      <>
+        {fecha && <p class="sub">Mostrando: {fecha}</p>}
+        <div class="grid">
+          {items.map((item) => (
+            <article class="card">
+              <a href={`/producto/${item.slug}`} class="thumb" aria-label={item.title}>
+                <img
+                  src={item.hero || '/placeholder.jpg'}
+                  alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <div class="body">
+                <a href={`/producto/${item.slug}`} class="title">{item.title}</a>
+                <div class="meta">
+                  <span class="badge">{item.niche}</span>
+                  {typeof item.score === 'number' && <span class="score">· score {item.score}</span>}
+                </div>
+                <a href={`/producto/${item.slug}`} class="btn">Ver detalles</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </>
+    )}
+  </section>
 
   <style>
-    .notice{
-      margin:.5rem 0 1rem;
-      padding:.6rem .8rem;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(0,196,199,.06);
-      border-radius:10px;
-      color:#a7dfe0;
-      font-size:.95rem;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-      gap:18px;
-    }
-    .card{
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:14px;
-      padding:12px;
-      background:rgba(255,255,255,.02);
-    }
-    .imgwrap{
-      display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.06);
-      background:#0d1319;
-    }
-    img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-    h3{margin:.6rem 0 .25rem;line-height:1.25}
-    .meta{color:#9fb3b8;font-size:.92rem}
-    .badge{
-      display:inline-block;background:rgba(0,196,199,.18);color:#93f7f9;
-      padding:.18rem .5rem;border-radius:999px;margin-right:.5rem;
-    }
-    .btn{
-      display:inline-block;margin-top:.4rem;padding:.45rem .7rem;border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);text-decoration:none;color:#dff6f7;
-      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
-    }
-    .btn:hover{border-color:rgba(255,255,255,.2)}
+    .wrap { max-width: 1150px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { font-size: 2.25rem; margin: 0 0 0.5rem; }
+    .sub { opacity: .8; margin-bottom: 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(290px,1fr)); gap: 1rem; }
+    .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+    .thumb { display:block; aspect-ratio: 16/9; background: #0b0e11; }
+    .thumb img { width:100%; height:100%; object-fit: cover; }
+    .body { padding: .9rem; display:flex; gap:.6rem; flex-direction:column; }
+    .title { font-weight: 700; line-height:1.2; text-decoration:none; color: var(--fg); }
+    .title:hover { text-decoration: underline; }
+    .meta { font-size:.9rem; opacity:.85; display:flex; align-items:center; gap:.5rem; }
+    .badge { background: var(--badge); color: var(--badge-fg); border-radius: 999px; padding: .15rem .55rem; font-size: .8rem; }
+    .btn { align-self: flex-start; border: 1px solid var(--card-border); padding:.45rem .7rem; border-radius: 10px; text-decoration:none; }
+    .btn:hover { background: var(--hover); }
   </style>
 </Base>
