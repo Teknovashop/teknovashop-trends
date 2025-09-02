@@ -3,33 +3,52 @@ import Base from '../layouts/Base.astro';
 import fs from 'fs';
 import path from 'path';
 
+const ROOT = Astro.site ? new URL('.', Astro.site).pathname : process.cwd();
 const today = new Date();
 const yyyy = today.getFullYear();
-const mm = String(today.getMonth() + 1).padStart(2,'0');
-const dd = String(today.getDate()).padStart(2,'0');
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const dd = String(today.getDate()).padStart(2, '0');
 
-let payload = { items: [] };
+// Índice del día generado por scripts/trends_daily.mjs
+const indexPath = path.join(process.cwd(), 'src', 'data', 'trends', String(yyyy), mm, dd, 'index.json');
+
+let payload = { date: `${yyyy}-${mm}-${dd}`, items: [] };
 try {
-  const idx = path.join(process.cwd(), 'src', 'data', 'trends', String(yyyy), mm, dd, 'index.json');
-  payload = JSON.parse(fs.readFileSync(idx, 'utf-8'));
-} catch {}
+  payload = JSON.parse(fs.readFileSync(indexPath, 'utf-8'));
+} catch { /* si hoy no hay datos, se muestra vacío */ }
+
+const items = (payload.items || []);
 ---
 
-<Base title="Tendencias de hoy">
-  <h1>Tendencias de hoy</h1>
-  {payload.items.length === 0 ? (
+<Base title="Tendencias de hoy — Teknovashop" description="Descubre las tendencias de hoy y compara precios en Amazon, AliExpress y SHEIN.">
+  <h1 style="font-size:clamp(26px,4vw,42px); margin:8px 0 16px;">Tendencias de hoy</h1>
+
+  {items.length === 0 && (
     <p>No hay datos para hoy todavía.</p>
-  ) : (
-    <div class="grid">
-      {payload.items.map((p) => (
-        <article class="card">
-          <a href={`/producto/${p.slug}`}>
-            <img class="hero" src={p.hero || '/placeholder.jpg'} alt={p.title} loading="lazy" />
-          </a>
-          <h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3>
-          <p class="small"><span class="badge">{p.niche}</span> · score {p.score}</p>
-        </article>
-      ))}
-    </div>
   )}
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;">
+    {items.map((p) => (
+      <article style="border:1px solid #e2e8f0; border-radius:16px; overflow:hidden; background:#fff;">
+        <a href={`/producto/${p.slug}/`} style="display:block; aspect-ratio:16/9; background:#f8fafc;">
+          <img
+            src={p.hero || '/brand/default-card.jpg'}
+            alt={p.title}
+            loading="lazy"
+            style="width:100%; height:100%; object-fit:cover; display:block;"
+          />
+        </a>
+        <div style="padding:14px 14px 16px;">
+          <h3 style="margin:0 0 8px; font-size:18px; line-height:1.25;">
+            <a href={`/producto/${p.slug}/`} style="text-decoration:none; color:#0f172a;">{p.title}</a>
+          </h3>
+          <p style="margin:0 0 12px; font-size:12px; color:#64748b;">
+            <span style="display:inline-block; padding:2px 8px; border-radius:999px; background:#eef2ff; color:#3730a3; font-weight:600;">{p.niche}</span>
+            <span> · score {p.score}</span>
+          </p>
+          <a href={`/producto/${p.slug}/`} style="display:inline-block; padding:8px 10px; border:1px solid #e2e8f0; border-radius:10px; text-decoration:none;">Ver detalles</a>
+        </div>
+      </article>
+    ))}
+  </div>
 </Base>
