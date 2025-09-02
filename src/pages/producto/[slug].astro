@@ -1,66 +1,74 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-// Construye el índice leyendo TODOS los JSON en src/data/**/index.json
-function buildIndex() {
-  // Cargamos módulos de forma ansiosa (eager)
-  const mods = import.meta.glob('../../data/**/index.json', { eager: true }) as Record<string, any>;
+/* =========================
+   1) Generar rutas estáticas
+   ========================= */
+export async function getStaticPaths() {
+  // Carga ansiosa de todos los JSON bajo src/data/**/index.json
+  const mods = import.meta.glob('../../data/**/index.json', { eager: true });
 
-  const map = new Map<string, any>(); // slug -> item
-  const items: any[] = [];
-
+  // Aplana a items y guarda por slug (último gana)
+  const bySlug = new Map();
   for (const k of Object.keys(mods)) {
-    // Vite devuelve { default: data } para JSON
-    const mod = mods[k];
+    const mod = (mods as any)[k];
     const data = mod && typeof mod === 'object' && 'default' in mod ? mod.default : mod;
-
     if (!data || !Array.isArray(data.items)) continue;
     const dateStr = data.date || '';
-
     for (const it of data.items) {
       if (it && typeof it.slug === 'string') {
         const merged = { ...it, date: it.date || dateStr };
-        map.set(merged.slug, merged); // último gana
-        items.push(merged);
+        bySlug.set(merged.slug, merged);
       }
     }
   }
 
-  return { map, items };
+  return Array.from(bySlug.keys()).map((slug) => ({ params: { slug } }));
 }
 
-// Genera rutas estáticas por cada slug encontrado
-export async function getStaticPaths() {
-  const { map } = buildIndex();
-  return Array.from(map.keys()).map((slug) => ({ params: { slug } }));
-}
-
-// Obtenemos el item actual por slug
+/* =========================
+   2) Cargar el producto actual
+   ========================= */
 const { slug } = Astro.params as { slug: string };
-const { map } = buildIndex();
-const item = map.get(slug);
 
+// Repetimos el aplanado (barato y robusto)
+const _mods = import.meta.glob('../../data/**/index.json', { eager: true });
+const _bySlug = new Map();
+for (const k of Object.keys(_mods)) {
+  const mod = (_mods as any)[k];
+  const data = mod && typeof mod === 'object' && 'default' in mod ? mod.default : mod;
+  if (!data || !Array.isArray(data.items)) continue;
+  const dateStr = data.date || '';
+  for (const it of data.items) {
+    if (it && typeof it.slug === 'string') {
+      const merged = { ...it, date: it.date || dateStr };
+      _bySlug.set(merged.slug, merged);
+    }
+  }
+}
+
+const item = _bySlug.get(slug);
 if (!item) {
   throw new Error(`Producto no encontrado: ${slug}`);
 }
 
 // Valores seguros para render
-const title = item.title || 'Producto';
-const niche = item.niche || '';
-const score = typeof item.score === 'number' ? item.score : null;
+const title   = item.title || 'Producto';
+const niche   = item.niche || '';
+const score   = typeof item.score === 'number' ? item.score : null;
 const dateStr = item.date || '';
 const summary = item.summary || 'Tendencia destacada del día.';
-const hero = (typeof item.hero === 'string' && item.hero) ? item.hero : '/placeholder.jpg';
+const hero    = (typeof item.hero === 'string' && item.hero) ? item.hero : '/placeholder.jpg';
 
-function toList(val: any) {
-  if (Array.isArray(val)) return val;
-  if (typeof val === 'string') return val.split('•').map((s) => s.trim()).filter(Boolean);
+function toList(v: any) {
+  if (Array.isArray(v)) return v;
+  if (typeof v === 'string') return v.split('•').map(s => s.trim()).filter(Boolean);
   return [];
 }
 const pros = toList(item.pros);
 const cons = toList(item.cons);
 
-function safe(u?: string | null) {
+function safe(u?: string) {
   if (!u || typeof u !== 'string') return null;
   try { return new URL(u).toString(); } catch { return null; }
 }
