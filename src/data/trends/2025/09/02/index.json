@@ -2,32 +2,144 @@
   "date": "2025-09-02",
   "items": [
     {
-      "slug": "auriculares-inalambricos-con-cancelacion-de-ruido",
-      "title": "Auriculares inalámbricos con cancelación de ruido",
-      "niche": "tecnología",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/5697260/pexels-photo-5697260.jpeg?auto=compress&cs=tinysrgb&h=350"
+      "slug": "youtube-is-now-flagging-accounts-on-premium-family-plans-that-arent-in-the-same-",
+      "title": "Youtube is now flagging accounts on premium family plans that aren't in the same household",
+      "niche": "tecnologia",
+      "score": 2,
+      "hero": "/trends/youtube-is-now-flagging-accounts-on-premium-family-plans-that-arent-in-the-same-.jpg"
     },
     {
-      "slug": "monitor-27-pulgadas-144-hz-para-gaming",
-      "title": "Monitor 27 pulgadas 144 Hz para gaming",
-      "niche": "tecnología",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/3977908/pexels-photo-3977908.jpeg?auto=compress&cs=tinysrgb&h=350"
+      "slug": "meta-might-be-scanning-your-phones-entire-camera-roll",
+      "title": "Meta might be scanning your phone's entire camera roll",
+      "niche": "tecnologia",
+      "score": 3,
+      "hero": "/trends/meta-might-be-scanning-your-phones-entire-camera-roll.jpg"
     },
     {
-      "slug": "disco-ssd-nvme-1-tb-alta-velocidad",
-      "title": "Disco SSD NVMe 1TB alta velocidad",
-      "niche": "tecnología",
+      "slug": "trump-admin-wants-to-own-patents-of-new-inventions-in-exchange-for-university-fu",
+      "title": "Trump admin wants to own patents of new inventions in exchange for university funding",
+      "niche": "tecnologia",
       "score": 1,
-      "hero": "https://images.pexels.com/photos/28666524/pexels-photo-28666524.jpeg?auto=compress&cs=tinysrgb&h=350"
+      "hero": "/trends/trump-admin-wants-to-own-patents-of-new-inventions-in-exchange-for-university-fu.jpg"
     },
     {
-      "slug": "robot-aspirador-mapeo-laser",
-      "title": "Robot aspirador con mapeo láser",
+      "slug": "revopoint-launches-3-new-3d-scanners-inspire-2-giveaway",
+      "title": "Revopoint launches 3 new 3d scanners + inspire 2 giveaway!",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/trends/revopoint-launches-3-new-3d-scanners-inspire-2-giveaway.jpg"
+    },
+    {
+      "slug": "age-verification-legislation-is-tanking-traffic-to-sites-that-comply-and-rewardi",
+      "title": "Age verification legislation is tanking traffic to sites that comply, and rewarding those that don't",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/trends/age-verification-legislation-is-tanking-traffic-to-sites-that-comply-and-rewardi.jpg"
+    },
+    {
+      "slug": "next-door-neighbor-has-older-friends-come-over-when-they-leave-they-hit-my-mailb",
+      "title": "Next door neighbor has older friends come over. when they leave they hit my mailbox. it’s happened 3 times now. looking for break away ideas.",
       "niche": "hogar",
       "score": 1,
-      "hero": "https://images.pexels.com/photos/29988981/pexels-photo-29988981.jpeg?auto=compress&cs=tinysrgb&h=350"
+      "hero": "/trends/next-door-neighbor-has-older-friends-come-over-when-they-leave-they-hit-my-mailb.jpg"
+    },
+    {
+      "slug": "what-causes-the-bottom-30cm-of-basement-support-columns-to-rust",
+      "title": "What causes the bottom 30cm of basement support columns to rust?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/trends/what-causes-the-bottom-30cm-of-basement-support-columns-to-rust.jpg"
+    },
+    {
+      "slug": "bad-or-horrible-my-parents-basement",
+      "title": "Bad or horrible? my parent's basement.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/trends/bad-or-horrible-my-parents-basement.jpg"
+    },
+    {
+      "slug": "how-much-to-smooth-out-slope-of-a-backyard-or-regrade",
+      "title": "How much to “smooth out slope” of a backyard? or regrade?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/trends/how-much-to-smooth-out-slope-of-a-backyard-or-regrade.jpg"
+    },
+    {
+      "slug": "daily-discussion-thread",
+      "title": "Daily discussion thread",
+      "niche": "fitness",
+      "score": 2,
+      "hero": "/trends/daily-discussion-thread.jpg"
+    },
+    {
+      "slug": "started-from-very-little",
+      "title": "Started from very little",
+      "niche": "fitness",
+      "score": 1,
+      "hero": "/trends/started-from-very-little.jpg"
+    },
+    {
+      "slug": "little-diy-deadlift-platform-project",
+      "title": "Little diy deadlift platform project",
+      "niche": "fitness",
+      "score": 1,
+      "hero": "/trends/little-diy-deadlift-platform-project.jpg"
+    },
+    {
+      "slug": "drop-in-tub-regret",
+      "title": "Drop in tub regret?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/trends/drop-in-tub-regret.jpg"
+    },
+    {
+      "slug": "best-rack-configuration",
+      "title": "Best rack configuration",
+      "niche": "fitness",
+      "score": 1,
+      "hero": "/trends/best-rack-configuration.jpg"
+    },
+    {
+      "slug": "daily-simple-questions-thread",
+      "title": "Daily simple questions thread",
+      "niche": "fitness",
+      "score": 2,
+      "hero": "/trends/daily-simple-questions-thread.jpg"
+    },
+    {
+      "slug": "my-tailor-passed-away",
+      "title": "My tailor passed away.",
+      "niche": "moda",
+      "score": 1,
+      "hero": "/trends/my-tailor-passed-away.jpg"
+    },
+    {
+      "slug": "how-not-to-look-like-a-suburban-minivan-driving-boring-dad",
+      "title": "How not to look like a suburban minivan driving boring dad",
+      "niche": "moda",
+      "score": 1,
+      "hero": "/trends/how-not-to-look-like-a-suburban-minivan-driving-boring-dad.jpg"
+    },
+    {
+      "slug": "whats-one-trend-you-hope-does-make-a-comeback",
+      "title": "What's one trend you hope does make a comeback?",
+      "niche": "moda",
+      "score": 1,
+      "hero": "/trends/whats-one-trend-you-hope-does-make-a-comeback.jpg"
+    },
+    {
+      "slug": "dress-shirts-under-dollar140",
+      "title": "Dress shirts under $140?",
+      "niche": "moda",
+      "score": 1,
+      "hero": "/trends/dress-shirts-under-dollar140.jpg"
+    },
+    {
+      "slug": "do-you-care-how-your-clothes-are-made-or-just-how-they-look-on-you",
+      "title": "Do you care how your clothes are made or just how they look on you?",
+      "niche": "moda",
+      "score": 1,
+      "hero": "/trends/do-you-care-how-your-clothes-are-made-or-just-how-they-look-on-you.jpg"
     }
   ]
 }
