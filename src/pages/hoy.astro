@@ -2,90 +2,149 @@
 import Base from '../layouts/Base.astro';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const today = new Date();
-const yyyy = String(today.getFullYear());
-const mm = String(today.getMonth()+1).padStart(2,'0');
-const dd = String(today.getDate()).padStart(2,'0');
+type TrendItem = {
+  slug: string;
+  title: string;
+  niche?: string;
+  score?: number;
+  hero?: string;
+};
 
-let payload = { date: `${yyyy}-${mm}-${dd}`, items: [] };
+type IndexPayload = { date: string; items: TrendItem[] };
 
-try {
-  const p = path.join(Astro.root, 'src', 'data', 'trends', yyyy, mm, dd, 'index.json');
-  payload = JSON.parse(fs.readFileSync(p, 'utf-8'));
-} catch {}
+function readJSON(p: string): IndexPayload | null {
+  try {
+    const raw = fs.readFileSync(p, 'utf-8');
+    const j = JSON.parse(raw);
+    if (j && typeof j === 'object' && Array.isArray(j.items)) return j as IndexPayload;
+  } catch {}
+  return null;
+}
 
-const items = payload.items || [];
+function todayParts(tz = 'Europe/Madrid') {
+  const d = new Date();
+  const y = d.toLocaleString('en-GB', { timeZone: tz, year: 'numeric' });
+  const m = d.toLocaleString('en-GB', { timeZone: tz, month: '2-digit' });
+  const dd = d.toLocaleString('en-GB', { timeZone: tz, day: '2-digit' });
+  return { y, m, dd };
+}
+
+// busca el index de hoy y si no hay, el último disponible con items
+function loadIndex(): { data: IndexPayload | null; fromToday: boolean } {
+  const dataRoot = fileURLToPath(new URL('../data/trends/', import.meta.url));
+  const { y, m, dd } = todayParts(); // zona Europe/Madrid
+  const todayPath = path.join(dataRoot, y, m, dd, 'index.json');
+
+  const today = readJSON(todayPath);
+  if (today && today.items.length > 0) return { data: today, fromToday: true };
+
+  if (!fs.existsSync(dataRoot)) return { data: null, fromToday: false };
+
+  const years = fs.readdirSync(dataRoot).filter((d) => /^\d{4}$/.test(d));
+  const candidates: { p: string; date: string }[] = [];
+
+  for (const Y of years) {
+    const yDir = path.join(dataRoot, Y);
+    if (!fs.statSync(yDir).isDirectory()) continue;
+    const months = fs.readdirSync(yDir).filter((d) => /^\d{2}$/.test(d));
+    for (const M of months) {
+      const mDir = path.join(yDir, M);
+      if (!fs.statSync(mDir).isDirectory()) continue;
+      const days = fs.readdirSync(mDir).filter((d) => /^\d{2}$/.test(d));
+      for (const D of days) {
+        const dDir = path.join(mDir, D);
+        const idx = path.join(dDir, 'index.json');
+        if (fs.existsSync(idx)) candidates.push({ p: idx, date: `${Y}-${M}-${D}` });
+      }
+    }
+  }
+
+  candidates.sort((a, b) => (a.date < b.date ? 1 : -1));
+  for (const c of candidates) {
+    const j = readJSON(c.p);
+    if (j && j.items.length > 0) return { data: j, fromToday: false };
+  }
+  return { data: null, fromToday: false };
+}
+
+const { data, fromToday } = loadIndex();
+const payload = data;
 ---
 
 <Base title="Tendencias de hoy — Teknovashop">
   <h1>Tendencias de hoy</h1>
 
-  {items.length === 0 ? (
-    <p>No hay datos para hoy todavía.</p>
-  ) : (
+  {payload && !fromToday && (
+    <p class="notice">
+      No hay datos para hoy. Mostrando el último disponible: <strong>{payload.date}</strong>.
+    </p>
+  )}
+
+  {!payload && (<p>No hay datos para hoy todavía.</p>)}
+
+  {payload && payload.items.length > 0 && (
     <div class="grid">
-      {items.map((p) => (
+      {payload.items.map((p) => (
         <article class="card">
-          <a href={`/producto/${p.slug}`}>
+          <a class="imgwrap" href={`/producto/${p.slug}`}>
             <img
-              class="hero"
               src={p.hero || '/placeholder.jpg'}
               alt={p.title}
               loading="lazy"
-              onerror={`this.onerror=null;this.src='/placeholder.jpg';`}
+              decoding="async"
+              onerror="this.src='/placeholder.jpg'"
             />
           </a>
-          <div class="body">
-            <h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3>
-            <p class="small">
-              <span class="badge">{p.niche}</span> · score {p.score}
-            </p>
-            <a class="btn" href={`/producto/${p.slug}`}>Ver detalles</a>
-          </div>
+          <h3><a href={`/producto/${p.slug}`}>{p.title}</a></h3>
+          <p class="meta">
+            {p.niche && <span class="badge">{p.niche}</span>}
+            {typeof p.score === 'number' && <span class="score">· score {p.score}</span>}
+          </p>
+          <p><a class="btn" href={`/producto/${p.slug}`}>Ver detalles</a></p>
         </article>
       ))}
     </div>
   )}
-</Base>
 
-<style>
-.grid{
-  display:grid;
-  gap:1.25rem;
-  grid-template-columns: repeat(auto-fill, minmax(290px,1fr));
-}
-.card{
-  border:1px solid var(--muted);
-  border-radius:16px;
-  overflow:hidden;
-  background: var(--panel);
-  box-shadow: 0 4px 20px rgba(0,0,0,.06);
-}
-.hero{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
-  background:#f3f5f7;
-}
-.body{ padding:1rem; }
-.badge{
-  display:inline-block;
-  font-size:.75rem;
-  padding:.2rem .5rem;
-  color:#155;
-  background:#e6fffc;
-  border-radius:999px;
-}
-.small{ color:#5e6; font-size:.85rem; }
-.btn{
-  display:inline-block;
-  margin-top:.6rem;
-  padding:.5rem .75rem;
-  border-radius:10px;
-  background:#0aa;
-  color:white;
-  text-decoration:none;
-}
-.btn:hover{ filter:brightness(.95); }
-</style>
+  <style>
+    .notice{
+      margin:.5rem 0 1rem;
+      padding:.6rem .8rem;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,196,199,.06);
+      border-radius:10px;
+      color:#a7dfe0;
+      font-size:.95rem;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:18px;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(255,255,255,.02);
+    }
+    .imgwrap{
+      display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.06);
+      background:#0d1319;
+    }
+    img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+    h3{margin:.6rem 0 .25rem;line-height:1.25}
+    .meta{color:#9fb3b8;font-size:.92rem}
+    .badge{
+      display:inline-block;background:rgba(0,196,199,.18);color:#93f7f9;
+      padding:.18rem .5rem;border-radius:999px;margin-right:.5rem;
+    }
+    .btn{
+      display:inline-block;margin-top:.4rem;padding:.45rem .7rem;border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);text-decoration:none;color:#dff6f7;
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+    }
+    .btn:hover{border-color:rgba(255,255,255,.2)}
+  </style>
+</Base>
