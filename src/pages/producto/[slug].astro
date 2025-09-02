@@ -1,9 +1,11 @@
 ---
+// src/pages/producto/[slug].astro
 import Base from '../../layouts/Base.astro';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// Tipos (opcionales para DX)
 type TrendItem = {
   slug: string;
   title: string;
@@ -12,9 +14,9 @@ type TrendItem = {
   hero?: string;
   links?: { label: string; url: string }[];
 };
-
 type IndexPayload = { date: string; items: TrendItem[] };
 
+// Helpers seguros
 function readJSON(p: string): IndexPayload | null {
   try {
     const raw = fs.readFileSync(p, 'utf-8');
@@ -24,7 +26,7 @@ function readJSON(p: string): IndexPayload | null {
   return null;
 }
 
-function gatherAllItems(): TrendItem[] {
+function readAllItems(): TrendItem[] {
   const dataRoot = fileURLToPath(new URL('../../data/trends/', import.meta.url));
   if (!fs.existsSync(dataRoot)) return [];
 
@@ -47,7 +49,7 @@ function gatherAllItems(): TrendItem[] {
     }
   }
 
-  // eliminar posibles duplicados por slug
+  // Elimina duplicados por slug (nos quedamos con el primero)
   const map = new Map<string, TrendItem>();
   for (const it of items) {
     if (it.slug && !map.has(it.slug)) map.set(it.slug, it);
@@ -55,13 +57,14 @@ function gatherAllItems(): TrendItem[] {
   return Array.from(map.values());
 }
 
+// ✅ Declarado ANTES del export (evita “not defined” en build)
 export async function getStaticPaths() {
-  const items = gatherAllItems();
-  const paths = items.map((it) => ({ params: { slug: it.slug } }));
-  return paths;
+  const items = readAllItems();
+  return items.map((it) => ({ params: { slug: it.slug } }));
 }
 
-const all = gatherAllItems();
+// En el render buscamos el item por slug
+const all = readAllItems();
 const { slug } = Astro.params;
 const post = all.find((it) => it.slug === slug);
 ---
