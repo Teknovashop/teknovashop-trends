@@ -3,13 +3,14 @@ import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel/serverless';
 import path from 'node:path';
 
-// Nota:
-// - output: 'hybrid' para poder desplegar rutas /api en Vercel (serverless).
-// - alias "@": apunta a ./src para que import "@/..." funcione en todos los .astro/.ts.
-// - No hace falta tocar nada más: tu Base.astro y el resto seguirán tal cual.
+// Usa PUBLIC_SITE_URL si la defines en Vercel; si no, cae al dominio por defecto.
+const SITE =
+  process.env.PUBLIC_SITE_URL?.trim() ||
+  'https://teknovashop-trends.vercel.app';
 
 export default defineConfig({
-  output: 'hybrid',
+  site: SITE,            // <- requerido por @astrojs/rss
+  output: 'hybrid',      // para /api en Vercel
   adapter: vercel(),
   vite: {
     resolve: {
