@@ -1,14 +1,35 @@
-// Minimal serverless endpoint (Vercel/Astro) para identificar producto a partir de imagen o URL.
-// Requiere OPENAI_API_KEY en los secrets (ya lo tienes).
+// src/pages/api/identify-product.ts
+// Endpoint serverless (Vercel/Astro) para identificar producto a partir de imagen o URL.
+// Requiere OPENAI_API_KEY en Vercel (Settings → Environment Variables).
 
 export const prerender = false;
+// Fuerza Node runtime (no Edge) para que process.env esté disponible en Vercel Serverless
+export const runtime = 'node';
 
-export async function POST({ request }) {
+type BodyIn = {
+  imageDataUrl?: string;
+  pageUrl?: string;
+  hint?: string;
+};
+
+export async function POST({ request }: { request: Request }) {
   try {
-    const { imageDataUrl, pageUrl, hint } = await request.json();
+    const { imageDataUrl, pageUrl, hint } = (await request.json()) as BodyIn;
 
     if (!imageDataUrl && !pageUrl && !hint) {
-      return new Response(JSON.stringify({ error: 'Falta imageDataUrl o pageUrl o hint' }), { status: 400 });
+      return json({ error: 'Falta imageDataUrl o pageUrl o hint' }, 400);
+    }
+
+    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    if (!OPENAI_API_KEY) {
+      // Mensaje claro si la variable no está disponible en el runtime
+      return json(
+        {
+          error:
+            'Falta OPENAI_API_KEY en el entorno del servidor. Añádela en Vercel → Settings → Environment Variables (Production/Preview) y redeploy.',
+        },
+        500
+      );
     }
 
     const sys = `Eres un asistente experto en retail. 
@@ -20,48 +41,61 @@ Si te pasan una URL, extrae el posible nombre real (marca+modelo).
 No inventes datos.`;
 
     const userParts: any[] = [];
-    if (hint) userParts.push({ type: "text", text: `Pista del usuario: ${hint}` });
-    if (pageUrl) userParts.push({ type: "text", text: `URL de producto o referencia: ${pageUrl}` });
+    if (hint) userParts.push({ type: 'text', text: `Pista del usuario: ${hint}` });
+    if (pageUrl) userParts.push({ type: 'text', text: `URL de producto o referencia: ${pageUrl}` });
     if (imageDataUrl) {
       userParts.push({
-        type: "input_image",
-        image_url: { url: imageDataUrl }
+        type: 'input_image',
+        image_url: { url: imageDataUrl },
       });
     }
 
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
+    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
       headers: {
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-        "Content-Type": "application/json"
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model: 'gpt-4o-mini',
         temperature: 0.2,
         messages: [
-          { role: "system", content: sys },
-          { role: "user", content: userParts }
+          { role: 'system', content: sys },
+          { role: 'user', content: userParts },
         ],
-        response_format: { type: "json_object" }
-      })
+        response_format: { type: 'json_object' },
+      }),
     });
 
     if (!res.ok) {
       const errTxt = await res.text();
-      return new Response(JSON.stringify({ error: 'OpenAI error', detail: errTxt }), { status: 500 });
+      return json({ error: 'OpenAI error', detail: safeTruncate(errTxt, 2000) }, 500);
     }
 
     const data = await res.json();
-    const text = data?.choices?.[0]?.message?.content || "{}";
-    let parsed;
-    try { parsed = JSON.parse(text); } catch { parsed = { query: hint || "", attrs: [], confidence: 0.3 }; }
+    const text = data?.choices?.[0]?.message?.content || '{}';
 
-    return new Response(JSON.stringify(parsed), {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    });
+    let parsed: any;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      parsed = { query: hint || '', attrs: [], confidence: 0.3 };
+    }
 
+    return json(parsed, 200);
   } catch (e: any) {
-    return new Response(JSON.stringify({ error: e?.message || 'Unknown error' }), { status: 500 });
+    return json({ error: e?.message || 'Unknown error' }, 500);
   }
+}
+
+// Helpers
+function json(obj: unknown, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+function safeTruncate(s: string, n: number) {
+  if (!s) return s;
+  return s.length > n ? s.slice(0, n) + '…' : s;
 }
