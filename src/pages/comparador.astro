@@ -1,106 +1,136 @@
 ---
-import Base from "@/layouts/Base.astro";
-
-const title = "Comparador de precios (informativo)";
-const description = "Busca un producto y te mostramos dónde encontrarlo por país. Enlaces informativos, sin afiliación.";
+import Base from '../layouts/Base.astro';
 ---
 
-<Base {title} {description}>
-  <section class="wrap">
-    <h1>Comparador de precios (informativo)</h1>
-    <p class="small">
-      Escribe un producto (mejor con marca y modelo) y elige un país. Te mostraremos
-      búsquedas directas en varias tiendas/plataformas. No usamos enlaces de afiliado.
-      Próximamente: integración con APIs oficiales para mostrar precios reales.
-    </p>
+<Base title="Comparador | Teknovashop Tendencias" description="Compara precios informativos en múltiples países y tiendas. Sin afiliación ni compra, sólo búsqueda.">
+  <h1>Comparador de precios (informativo)</h1>
+  <p class="small">Introduce un producto (nombre, modelo, EAN/GTIN opcional) y te generamos búsquedas directas en varias tiendas y países. <b>No vendemos ni afiliamos</b>: sólo te llevamos al buscador correspondiente.</p>
 
-    <form id="cmp-form" class="cmp" autocomplete="off">
-      <input id="q" name="q" type="text" placeholder="Ej.: Xiaomi Redmi Note 13 Pro 256GB" required />
-      <select id="country" name="country" required>
-        <option value="ES">España</option>
-        <option value="FR">Francia</option>
-        <option value="DE">Alemania</option>
-        <option value="IT">Italia</option>
-        <option value="PT">Portugal</option>
-        <option value="UK">Reino Unido</option>
-        <option value="US">Estados Unidos</option>
-        <option value="CA">Canadá</option>
-        <option value="MX">México</option>
-        <option value="BR">Brasil</option>
-        <option value="AR">Argentina</option>
-        <option value="CL">Chile</option>
-        <option value="CO">Colombia</option>
-        <option value="GLOBAL">Global</option>
+  <form id="cmp" class="cmp">
+    <div class="row">
+      <label>Producto</label>
+      <input id="q" name="q" type="text" placeholder="Ej: Monitor 27 pulgadas 144 Hz" required />
+    </div>
+
+    <div class="row">
+      <label>EAN / GTIN (opcional)</label>
+      <input id="gtin" name="gtin" type="text" placeholder="Ej: 4710333871234" />
+    </div>
+
+    <div class="row">
+      <label>País</label>
+      <select id="cc" name="cc">
+        <option value="ES" selected>España (ES)</option>
+        <option value="FR">Francia (FR)</option>
+        <option value="DE">Alemania (DE)</option>
+        <option value="IT">Italia (IT)</option>
+        <option value="GB">Reino Unido (GB)</option>
+        <option value="US">Estados Unidos (US)</option>
+        <option value="MX">México (MX)</option>
       </select>
-      <button type="submit">Buscar</button>
-    </form>
+    </div>
 
-    <div id="result" class="grid" aria-live="polite"></div>
+    <button class="btn" type="submit">Generar comparativas</button>
+  </form>
 
-    <p class="small" style="margin-top:1rem;">
-      * Nota: Para calcular “mejor precio” real necesitaremos APIs oficiales de cada retailer/comparator.
-      Esta versión sólo enlaza búsquedas públicas sin seguimiento ni afiliación.
-    </p>
-  </section>
+  <section id="out" class="results" aria-live="polite"></section>
 
   <style>
-    .wrap{max-width:1100px;margin:1.3rem auto 2rem;padding:0 1rem}
-    .small{color:#9fb3b8}
-    form.cmp{display:flex;gap:.5rem;margin:1rem 0;flex-wrap:wrap}
-    form.cmp input{flex:1;min-width:260px;padding:.8rem;border-radius:10px;border:1px solid var(--muted);background:var(--card);color:var(--text)}
-    form.cmp select{padding:.8rem;border-radius:10px;border:1px solid var(--muted);background:var(--card);color:var(--text)}
-    form.cmp button{padding:.8rem 1rem;border-radius:10px;background:var(--brand);color:#022;font-weight:700;border:0}
-    .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:1rem}
-    .card{background:var(--card);border:1px solid var(--muted);border-radius:16px;overflow:hidden}
-    .card header{display:flex;align-items:center;gap:.6rem;padding:1rem;border-bottom:1px solid var(--muted)}
-    .favicon{width:18px;height:18px;border-radius:4px;background:var(--muted);display:inline-block}
-    .body{padding:1rem}
-    .badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;background:rgba(0,196,199,.15);color:#93f7f9;font-size:.78rem}
-    .btn{display:inline-block;margin-top:.6rem;padding:.55rem .8rem;background:var(--brand);color:#00292b;font-weight:700;border-radius:10px;text-decoration:none}
-    .btn:hover{filter:brightness(.95)}
-    .hint{font-size:.85rem;color:#9fb3b8;margin-top:.25rem}
+    .cmp{margin:1rem 0 1.25rem; padding:1rem; border:1px solid var(--muted); border-radius:14px; background:var(--card);}
+    .cmp .row{display:flex; gap:.75rem; align-items:center; margin:.6rem 0; flex-wrap:wrap;}
+    .cmp label{min-width:150px; color:#cfe6ea; font-weight:600;}
+    .cmp input,.cmp select{
+      flex:1 1 320px; padding:.6rem .7rem; border-radius:10px; border:1px solid var(--muted);
+      background:#0b1116; color:var(--text);
+    }
+    .results{margin-top:1rem; display:grid; gap:1rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));}
+    .card{background:var(--card); border:1px solid var(--muted); border-radius:14px; padding:1rem;}
+    .card h3{margin:.1rem 0 .5rem;}
+    .links{display:flex; flex-direction:column; gap:.4rem;}
+    .links a{display:inline-block; padding:.5rem .6rem; border:1px solid var(--muted); border-radius:10px; text-decoration:none;}
+    .small{ color:#9fb3b8; }
   </style>
 
-  <script is:inline>
-    const form = document.getElementById('cmp-form');
-    const result = document.getElementById('result');
+  <script>
+    const form = document.getElementById('cmp');
+    const out = document.getElementById('out');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      result.innerHTML = '<p>Cargando…</p>';
-      const q = document.getElementById('q').value.trim();
-      const country = document.getElementById('country').value;
+    const tlds = {
+      ES: { amazon:'es', ebay:'es', google:'es', idealo:'es', mercado:'es', pccomp:'es' },
+      FR: { amazon:'fr', ebay:'fr', google:'fr', idealo:'fr' },
+      DE: { amazon:'de', ebay:'de', google:'de', idealo:'de' },
+      IT: { amazon:'it', ebay:'it', google:'it', idealo:'it' },
+      GB: { amazon:'co.uk', ebay:'co.uk', google:'co.uk', idealo:'co.uk' },
+      US: { amazon:'com', ebay:'com', google:'com', idealo:'com' },
+      MX: { amazon:'com.mx', ebay:'com.mx', google:'com.mx', mercado:'com.mx' }
+    };
 
-      try {
-        const r = await fetch(`/api/compare?q=${encodeURIComponent(q)}&country=${country}`);
-        if (!r.ok) throw new Error('Error en el comparador');
-        const data = await r.json();
+    function enc(s){ return encodeURIComponent(s).replace(/%20/g,'+'); }
 
-        if (!data.items?.length) {
-          result.innerHTML = '<p>No se encontraron fuentes adecuadas para tu búsqueda.</p>';
-          return;
-        }
+    function buildLinks(q, gtin, cc){
+      const t = tlds[cc] || tlds.ES;
+      const qFull = gtin ? `${q} ${gtin}` : q;
 
-        result.innerHTML = data.items.map(item => `
-          <article class="card">
-            <header>
-              <span class="favicon" style="background-image:url('https://www.google.com/s2/favicons?domain=${new URL(item.url).hostname}&sz=32');background-size:cover;"></span>
-              <div>
-                <strong>${item.store}</strong>
-                <div class="hint">${new URL(item.url).hostname}</div>
-              </div>
-            </header>
-            <div class="body">
-              <span class="badge">${data.country}</span>
-              <h3 style="margin:.6rem 0 .4rem">${item.title}</h3>
-              <p class="small">Abriremos una búsqueda pública con los filtros correctos.</p>
-              <a class="btn" href="${item.url}" target="_blank" rel="noopener nofollow">Ver resultados</a>
-            </div>
-          </article>
-        `).join('');
-      } catch (err) {
-        result.innerHTML = '<p>Hubo un problema. Inténtalo de nuevo.</p>';
+      const links = [];
+
+      // Google Shopping
+      links.push({
+        group: 'Metabuscadores',
+        items: [
+          { label: 'Google Shopping', url: `https://www.google.${t.google}/search?tbm=shop&q=${enc(qFull)}` },
+          { label: 'Búsqueda web (Google)', url: `https://www.google.${t.google}/search?q=${enc(qFull)}` }
+        ]
+      });
+
+      // Marketplaces
+      const mk = [];
+      if (t.amazon) mk.push({ label: 'Amazon', url: `https://www.amazon.${t.amazon}/s?k=${enc(qFull)}&language=es_ES` });
+      if (t.ebay)   mk.push({ label: 'eBay',   url: `https://www.ebay.${t.ebay}/sch/i.html?_nkw=${enc(qFull)}` });
+      if (cc==='ES' || cc==='MX'){
+        if (t.mercado) mk.push({ label: 'MercadoLibre', url: `https://listado.mercadolibre.${t.mercado}/${enc(qFull)}` });
       }
+      links.push({ group: 'Marketplaces', items: mk });
+
+      // Comparadores locales
+      const comps = [];
+      if (['ES','FR','DE','IT','GB'].includes(cc)){
+        comps.push({ label: 'idealo', url: `https://www.idealo.${t.idealo}/search?q=${enc(qFull)}` });
+      }
+      if (cc==='ES'){
+        comps.push({ label: 'pccomponentes (buscador)', url: `https://www.pccomponentes.${t.pccomp}/buscar/?query=${enc(qFull)}` });
+      }
+      links.push({ group: 'Comparadores', items: comps });
+
+      return links.filter(g => g.items.length>0);
+    }
+
+    function render(q, gtin, cc){
+      const groups = buildLinks(q, gtin, cc);
+      out.innerHTML = '';
+      groups.forEach(g=>{
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${g.group}</h3>
+          <div class="links">
+            ${g.items.map(i=>`<a target="_blank" rel="noopener noreferrer" href="${i.url}">${i.label}</a>`).join('')}
+          </div>
+        `;
+        out.appendChild(card);
+      });
+
+      if (groups.length === 0){
+        out.innerHTML = `<p class="small">Sin resultados configurados para el país seleccionado.</p>`;
+      }
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const q = document.getElementById('q').value.trim();
+      const gtin = document.getElementById('gtin').value.trim();
+      const cc = document.getElementById('cc').value;
+      if(!q){ out.innerHTML = '<p class="small">Escribe un término de búsqueda.</p>'; return; }
+      render(q, gtin, cc);
     });
   </script>
 </Base>
