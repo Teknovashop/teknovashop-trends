@@ -10,8 +10,8 @@
     "trends:daily": "node scripts/trends_daily.mjs"
   },
   "dependencies": {
-    "astro": "^4.14.0",
-    "@astrojs/rss": "^4.0.7",
+    "astro": "^5.1.0",
+    "@astrojs/rss": "^5.0.1",
     "@astrojs/vercel": "8.1.0",
     "google-trends-api": "^4.9.2",
     "gray-matter": "^4.0.3",
