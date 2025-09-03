@@ -1,9 +1,8 @@
 // src/pages/api/identify-product.ts
-// Endpoint serverless (Vercel/Astro) para identificar producto a partir de imagen o URL.
-// Requiere OPENAI_API_KEY en Vercel (Settings → Environment Variables).
+// Endpoint serverless (Vercel/Astro) para identificar producto con imagen/URL.
+// Requiere OPENAI_API_KEY en Vercel (Project → Settings → Environment Variables).
 
 export const prerender = false;
-// Fuerza Node runtime (no Edge) para que process.env esté disponible en Vercel Serverless
 export const runtime = 'node';
 
 type BodyIn = {
@@ -20,13 +19,12 @@ export async function POST({ request }: { request: Request }) {
       return json({ error: 'Falta imageDataUrl o pageUrl o hint' }, 400);
     }
 
-    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+    const OPENAI_API_KEY = process.env.OPENAI_API_KEY?.trim();
     if (!OPENAI_API_KEY) {
-      // Mensaje claro si la variable no está disponible en el runtime
       return json(
         {
           error:
-            'Falta OPENAI_API_KEY en el entorno del servidor. Añádela en Vercel → Settings → Environment Variables (Production/Preview) y redeploy.',
+            'Falta OPENAI_API_KEY en el entorno del servidor. Añádela en Vercel → Project → Settings → Environment Variables (Production y Preview) y redeploy con Clear Cache.',
         },
         500
       );
@@ -34,21 +32,16 @@ export async function POST({ request }: { request: Request }) {
 
     const sys = `Eres un asistente experto en retail. 
 Devuelve un JSON compacto con: 
-- "query": string breve para buscar el producto (marca + modelo + variante si aplica),
-- "attrs": lista corta de atributos clave detectados (p.ej. 27", 144Hz, VA, USB-C, 1TB, etc),
-- "confidence": número 0-1 sobre tu seguridad.
-Si te pasan una URL, extrae el posible nombre real (marca+modelo).
+- "query": string breve (marca + modelo + variante),
+- "attrs": lista corta de atributos (p.ej. 27", 144Hz, VA, USB-C, 1TB...),
+- "confidence": número 0-1.
+Si te pasan una URL, extrae el posible nombre real.
 No inventes datos.`;
 
     const userParts: any[] = [];
     if (hint) userParts.push({ type: 'text', text: `Pista del usuario: ${hint}` });
-    if (pageUrl) userParts.push({ type: 'text', text: `URL de producto o referencia: ${pageUrl}` });
-    if (imageDataUrl) {
-      userParts.push({
-        type: 'input_image',
-        image_url: { url: imageDataUrl },
-      });
-    }
+    if (pageUrl) userParts.push({ type: 'text', text: `URL: ${pageUrl}` });
+    if (imageDataUrl) userParts.push({ type: 'input_image', image_url: { url: imageDataUrl } });
 
     const res = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
