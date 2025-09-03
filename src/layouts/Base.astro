@@ -3,6 +3,10 @@ const {
   title = 'Teknovashop Tendencias',
   description = 'Tendencias diarias de productos en España: reseñas breves, pros y contras, y enlaces para comparar precios.',
 } = Astro.props;
+
+// Ruta actual para marcar pestaña activa
+const current = Astro.url.pathname || '/';
+const isActive = (path) => current === path || current.startsWith(path + '/');
 ---
 <html lang="es">
   <head>
@@ -12,6 +16,7 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
 
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -25,7 +30,7 @@ const {
         --bg:#0b0f14;
         --card:#0f151b;
         --text:#eaf3f7;
-        --muted:rgba(255,255,255,.08);
+        --muted:rgba(255,255,255,.10);
         --brand:#00c4c7;
         --brand-2:#00a8aa;
         --wrap-max:1100px;
@@ -41,6 +46,21 @@ const {
         -moz-osx-font-smoothing: grayscale;
       }
 
+      /* Accesibilidad */
+      .skip{
+        position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+      }
+      .skip:focus{
+        position:static;width:auto;height:auto;display:inline-block;
+        background:var(--brand);color:#022;padding:.35rem .6rem;border-radius:8px;margin:.5rem;
+      }
+      :focus-visible{
+        outline:2px solid var(--brand);
+        outline-offset:2px;
+        border-radius:6px;
+      }
+
+      /* Header */
       header.top{
         position: sticky; top:0; z-index:50;
         backdrop-filter: saturate(120%) blur(8px);
@@ -60,18 +80,29 @@ const {
       .brand span{ font-weight:700; letter-spacing:.2px; }
       .brand span b{ color: var(--brand); font-weight:800; }
 
+      nav{
+        display:flex; align-items:center; gap:.25rem; flex-wrap:wrap;
+      }
       nav a{
-        color:#d9eef0; text-decoration:none; margin-left:.5rem; font-weight:600;
-        padding:.4rem .65rem; border-radius:8px;
+        color:#eaf3f7; text-decoration:none;
+        padding:.45rem .7rem; border-radius:10px; font-weight:700;
+        border:1px solid transparent;
       }
       nav a:hover{ background: var(--muted); }
+      nav a.active{
+        background: var(--brand);
+        color:#022;
+        border-color: transparent;
+      }
 
+      /* Main container */
       .wrap{
         max-width: var(--wrap-max);
         margin: 1.3rem auto 2rem;
         padding: 0 1rem;
       }
 
+      /* Footer */
       footer.foot{
         border-top: 1px solid var(--muted);
         padding: 1rem 0;
@@ -82,33 +113,38 @@ const {
       .foot a{ color: var(--brand); text-decoration: none; font-weight:600; }
       .foot a:hover{ color: var(--brand-2); }
 
+      /* Textos y enlaces */
       h1,h2,h3{ line-height:1.25; margin:0 0 .5rem; }
       a{ color: var(--brand); }
       a:hover{ color: var(--brand-2); }
 
       @media (max-width: 560px){
-        nav a{ margin-left:.25rem; }
         .brand span{ font-size:.98rem; }
+        nav a{ padding:.4rem .6rem; }
       }
     </style>
   </head>
 
   <body>
+    <a href="#main" class="skip">Saltar al contenido</a>
+
     <header class="top">
       <div class="top-inner">
         <a href="/" class="brand">
           <img src="/brand/teknovashop-tendencias.png" alt="Teknovashop" onerror="this.style.display='none'" />
-        <span>Teknovashop <b>Tendencias</b></span>
+          <span>Teknovashop <b>Tendencias</b></span>
         </a>
+
         <nav>
-          <a href="/hoy">Hoy</a>
-          <a href="/archivo">Archivo</a>
-          <a href="/acerca">Acerca</a>
+          <a href="/hoy" class={isActive('/hoy') ? 'active' : ''}>Hoy</a>
+          <a href="/archivo" class={isActive('/archivo') ? 'active' : ''}>Archivo</a>
+          <a href="/comparador" class={isActive('/comparador') ? 'active' : ''}>Comparador</a>
+          <a href="/acerca" class={isActive('/acerca') ? 'active' : ''}>Acerca</a>
         </nav>
       </div>
     </header>
 
-    <main class="wrap">
+    <main id="main" class="wrap">
       <slot />
     </main>
 
