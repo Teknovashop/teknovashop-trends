@@ -1,11 +1,11 @@
 import { defineConfig } from 'astro/config';
 import vercel from '@astrojs/vercel/serverless';
 
-// URL pública para cosas como RSS (si tienes la variable, se usará)
+// Si tienes la variable de entorno, úsala; si no, un fallback razonable:
 const site = process.env.PUBLIC_SITE_URL || 'https://teknovashop-trends.vercel.app';
 
 export default defineConfig({
   site,
-  output: 'hybrid',       // puedes dejar "static" si no usas /api; con 'hybrid' mantienes /api/compare
+  output: 'hybrid',    // Mantén 'hybrid' si usas /api; usa 'static' si no tienes endpoints
   adapter: vercel()
 });
