@@ -7,16 +7,17 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "trends:daily": "node scripts/trends_daily.mjs",
-    "products:daily": "node scripts/products_daily.mjs"
+    "trends:daily": "node scripts/trends_daily.mjs"
   },
   "dependencies": {
     "astro": "^4.14.0",
     "@astrojs/rss": "^4.0.7",
-    "rss-parser": "^3.13.0",
-    "marked": "^12.0.2",
+    "@astrojs/vercel": "^7.0.0",
+    "google-trends-api": "^4.9.2",
     "gray-matter": "^4.0.3",
-    "slugify": "^1.6.6",
-    "google-trends-api": "^4.9.2"
+    "marked": "^12.0.2",
+    "openai": "^4.0.0",
+    "rss-parser": "^3.13.0",
+    "slugify": "^1.6.6"
   }
 }
