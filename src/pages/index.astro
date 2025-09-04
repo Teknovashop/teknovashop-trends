@@ -1,84 +1,202 @@
 ---
 import Base from "@/layouts/Base.astro";
-import TrustBar from "@/components/TrustBar.astro";
-import SectionHero from "@/components/SectionHero.astro";
 
-const meta = {
-  title: "Teknovashop · Productos inteligentes seleccionados",
-  description: "Guías de compra, comparativas y reseñas claras de productos inteligentes. Nicho definido, UX excelente, confianza y contenido útil."
-};
+/** Cargamos el último index.json para pintar destacados */
+type TrendItem = { slug: string; title: string; niche: string; hero?: string; score?: number };
+type TrendIndex = { date: string; items: TrendItem[] };
+
+const indexes = import.meta.glob("./data/trends/**/index.json", {
+  eager: true,
+  import: "default",
+}) as Record<string, TrendIndex>;
+
+const all = Object.entries(indexes).map(([path, data]) => ({ path, data }));
+function parseDate(d?: string){ if(!d) return 0; const t = Date.parse(d); return Number.isNaN(t)?0:t; }
+all.sort((a,b)=> (parseDate(b.data?.date)||Date.parse(b.path)) - (parseDate(a.data?.date)||Date.parse(a.path)));
+const latest = all[0]?.data;
+const featured = (latest?.items ?? []).slice(0, 6);
 ---
-<Base title={meta.title} description={meta.description}>
 
-  <SectionHero
-    title="Productos inteligentes, bien explicados"
-    subtitle="Nos centramos en un nicho: tecnología útil para el día a día. Te damos comparativas, guías y reseñas sin humo para decidir rápido."
-  />
-
-  <TrustBar />
-
-  <!-- Sección 1: UX y velocidad -->
-  <section class="section" style="margin-top:2rem;">
-    <h2>Experiencia de usuario impecable</h2>
-    <p class="section-lead">Sitio rápido, navegación clara y proceso de decisión sin fricciones.</p>
-
-    <div class="grid-3">
-      <div class="card">
-        <h3>Comparador informativo</h3>
-        <p>Busca por nombre o referencia y te llevamos a las tiendas y comparadores relevantes por país. Sin afiliados, solo información.</p>
-        <a class="btn" href="/comparador">Abrir comparador</a>
+<Base title="Teknovashop · Productos inteligentes con criterio" description="Plataforma de nicho para productos inteligentes. Tendencias diarias, comparador informativo y contenido de valor para comprar con criterio.">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1>Productos inteligentes, <span>con criterio</span></h1>
+        <p>Especialistas en tecnología útil para el día a día. Tendencias revisadas, comparador informativo y guías claras para acertar.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="/hoy">Ver tendencias de hoy</a>
+          <a class="btn btn-ghost" href="/comparador">Comparar precios</a>
+        </div>
+        <small class="note">El comparador es informativo (sin afiliados). Las tendencias pueden contener enlaces de afiliado.</small>
       </div>
-
-      <div class="card">
-        <h3>Guías y reseñas</h3>
-        <p>Contenido que aporta: guías de compra, “qué mirar”, pros y contras reales y enlaces para ampliar.</p>
-        <a class="btn" href="/archivo">Ver contenido</a>
-      </div>
-
-      <div class="card">
+      <div class="hero-card">
+        <div class="badge">NOVEDAD</div>
         <h3>Tendencias diarias</h3>
-        <p>Cada día, una selección curada de lo que más se busca. Ideal para detectar oportunidades y productos calientes.</p>
-        <a class="btn" href="/hoy">Tendencias de hoy</a>
+        <p>Analizamos lo que se está moviendo en la comunidad tech y te lo servimos filtrado, en español.</p>
+        <a class="mini" href="/archivo">Ver archivo &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- Sección 2: Confianza -->
-  <section class="section" style="margin-top:2rem;">
-    <h2>Confianza que se ve</h2>
-    <p class="section-lead">Reseñas verificadas, señalización de seguridad y transparencia en los enlaces.</p>
+  <!-- 5 PUNTOS FUERTES -->
+  <section class="strengths">
+    <h2>Por qué Teknovashop</h2>
+    <div class="cols">
+      <article class="s-card">
+        <h3>1) Nicho bien definido</h3>
+        <p>Plataforma especializada en <b>productos inteligentes</b>. Construimos selección de alta calidad y marca confiable.</p>
+      </article>
+      <article class="s-card">
+        <h3>2) UX excepcional</h3>
+        <p>Web rápida y clara. Desde ver una tendencia hasta llegar al análisis o comparar, todo fluye sin fricción.</p>
+      </article>
+      <article class="s-card">
+        <h3>3) Contenido de valor</h3>
+        <p>Guías, comparativas y reseñas <b>útiles</b>. Menos ruido, más decisiones informadas (y mejor SEO).</p>
+      </article>
+      <article class="s-card">
+        <h3>4) Confianza y reseñas</h3>
+        <p>Valoraciones visibles y metodología. Tecnología = confianza; te la ganamos con rigor.</p>
+      </article>
+      <article class="s-card">
+        <h3>5) Marketing de nicho</h3>
+        <p>Mostramos los productos en acción (IG/TikTok) y colaboramos con <b>tech reviewers</b> del nicho.</p>
+      </article>
+    </div>
+  </section>
 
-    <div class="grid-2">
-      <div class="card">
-        <h3>Reseñas y verificación</h3>
-        <p>Mostramos la valoración media y destacamos reseñas verificadas. Nada de opiniones “fantasma”.</p>
+  <!-- DESTACADOS -->
+  <section class="featured">
+    <div class="head">
+      <h2>Destacados de hoy</h2>
+      <a class="mini" href="/hoy">Ver todo &rarr;</a>
+    </div>
+    <div class="grid">
+      {
+        featured.map((it) => (
+          <a class="f-card" href={`/producto/${it.slug}/`}>
+            <div class="pic">
+              <img src={it.hero || "/placeholder.jpg"} alt={it.title} loading="lazy" />
+              <span class="chip">{it.niche}</span>
+            </div>
+            <h3>{it.title}</h3>
+          </a>
+        ))
+      }
+      {featured.length === 0 && <p class="muted">Aún no hay destacados. Vuelve más tarde.</p>}
+    </div>
+  </section>
+
+  <!-- BLOQUE CONTENIDO -->
+  <section class="content-bloc">
+    <div class="c-inner">
+      <div>
+        <h3>Comparador informativo</h3>
+        <p>Pega un nombre o una URL de producto y te abrimos búsquedas relevantes por país y tienda. <b>Sin afiliados</b>.</p>
+        <a class="btn btn-primary" href="/comparador">Probar comparador</a>
       </div>
-      <div class="card">
-        <h3>Seguridad</h3>
-        <p>Cifrado, buenas prácticas y aviso claro cuando un enlace puede ser de afiliado. Sin sorpresas.</p>
+      <div class="sep"></div>
+      <div>
+        <h3>Guías y archivos</h3>
+        <p>Consulta tendencias anteriores y nuestras mejores comparativas y guías para comprar con cabeza.</p>
+        <a class="btn btn-ghost" href="/archivo">Ver archivo</a>
       </div>
     </div>
   </section>
 
-  <!-- Sección 3: Marketing de nicho -->
-  <section class="section" style="margin-top:2rem;">
-    <h2>Marketing de nicho efectivo</h2>
-    <p class="section-lead">Productos inteligentes en acción: redes sociales, micro-influencers y comunidad.</p>
+  <style>
+    :root{
+      --bg-soft:#0e141a;
+      --panel:#121923;
+      --ink:#eaf3f7;
+      --ink-soft:#a9bcc1;
+      --accent:#00c4c7;
+      --accent-2:#009ea1;
+      --ring: rgba(0,196,199,.25);
+    }
 
-    <div class="grid-3">
-      <div class="card">
-        <h3>Instagram & TikTok</h3>
-        <p>Clips cortos mostrando utilidad real y comparativas rápidas. CTA directo al comparador o guía.</p>
-      </div>
-      <div class="card">
-        <h3>Tech reviewers</h3>
-        <p>Colaboraciones con creadores especializados del nicho. Alcance cualificado en lugar de volumen.</p>
-      </div>
-      <div class="card">
-        <h3>Newsletter</h3>
-        <p>Un resumen semanal: 3 hallazgos, 1 guía y 1 chollo. Valor antes que venta.</p>
-      </div>
-    </div>
-  </section>
+    /* HERO */
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding: clamp(1rem, 2.5vw, 1.6rem);
+      margin: .4rem 0 1.2rem;
+    }
+    .hero-inner{
+      display:grid; grid-template-columns: 1.4fr .9fr; gap:1rem; align-items:stretch;
+    }
+    @media (max-width:860px){ .hero-inner{ grid-template-columns: 1fr; } }
 
+    .hero-copy h1{
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin:.2rem 0 .5rem; font-weight:900; letter-spacing:.2px;
+    }
+    .hero-copy h1 span{ color: var(--accent); }
+    .hero-copy p{ color: var(--ink-soft); margin:0 0 .8rem; max-width: 54ch; }
+    .cta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:.3rem; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.45rem;
+      padding:.65rem .95rem; border-radius:12px; font-weight:900; text-decoration:none; border:1px solid rgba(255,255,255,.12);
+    }
+    .btn-primary{ background: var(--accent); color:#003134; border-color: transparent; }
+    .btn-primary:hover{ filter:brightness(.95); }
+    .btn-ghost{ background: rgba(255,255,255,.06); color:var(--ink); }
+    .btn-ghost:hover{ background: rgba(255,255,255,.08); }
+    .note{ color: var(--ink-soft); display:block; margin-top:.3rem; }
+
+    .hero-card{
+      background: var(--panel);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px; padding:1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .hero-card .badge{
+      display:inline-block; padding:.18rem .5rem; border-radius:999px; background:#e6fbfb; color:#0a2f30; font-size:.75rem; font-weight:900;
+      margin-bottom:.4rem;
+    }
+    .hero-card h3{ margin:.1rem 0 .3rem; }
+    .hero-card p{ color: var(--ink-soft); margin:0 0 .4rem; }
+    .mini{ color: var(--accent); text-decoration:none; font-weight:800; }
+    .mini:hover{ color: var(--accent-2); }
+
+    /* STRENGTHS */
+    .strengths{ margin: 1.2rem 0; }
+    .strengths h2{ margin:0 0 .8rem; }
+    .cols{ display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap:.8rem; }
+    .s-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:.9rem;
+    }
+    .s-card p{ color: var(--ink-soft); }
+
+    /* FEATURED */
+    .featured{ margin:1.2rem 0; }
+    .featured .head{ display:flex; align-items:center; justify-content:space-between; gap:.6rem; margin-bottom:.6rem; }
+    .featured .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:.9rem; }
+    .f-card{
+      display:block; background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden; text-decoration:none;
+      transition: transform .16s ease, border-color .16s ease;
+    }
+    .f-card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
+    .pic{ position:relative; aspect-ratio: 16/9; overflow:hidden; }
+    .pic img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .chip{
+      position:absolute; left:.6rem; bottom:.6rem; background:#eef3ff; color:#1d2b50; border-radius:999px; padding:.2rem .55rem; font-size:.72rem; font-weight:900;
+      box-shadow:0 6px 14px rgba(0,0,0,.18);
+    }
+    .f-card h3{ padding:.7rem .8rem .85rem; color: var(--ink); font-size:1rem; }
+
+    /* CONTENT BLOc */
+    .content-bloc{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px; margin:1.2rem 0 1.6rem; padding:1rem;
+    }
+    .c-inner{ display:grid; grid-template-columns: 1fr 20px 1fr; gap:.8rem; align-items:center; }
+    .sep{ width:1px; height:100%; background: rgba(255,255,255,.12); justify-self:center; }
+    @media (max-width:800px){ .c-inner{ grid-template-columns: 1fr; } .sep{ display:none; } }
+
+    .muted{ color: #a9bcc1; }
+  </style>
 </Base>
