@@ -694,6 +694,13 @@ declare module 'astro:content' {
   collection: "trends";
   data: any
 } & { render(): Render[".md"] };
+"2025/09/04/jbl-acaba-de-anunciar-su-altavoz-de-fiesta-portatil-con-bateria-mas-grande-hasta.md": {
+	id: "2025/09/04/jbl-acaba-de-anunciar-su-altavoz-de-fiesta-portatil-con-bateria-mas-grande-hasta.md";
+  slug: "jbl-acaba-de-anunciar-su-altavoz-de-fiesta-portatil-con-bateria-mas-grande-hasta";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
 "2025/09/04/jbl-just-announced-its-largest-ever-battery-powered-party-speaker.md": {
 	id: "2025/09/04/jbl-just-announced-its-largest-ever-battery-powered-party-speaker.md";
   slug: "jbl-just-announced-its-largest-ever-battery-powered-party-speaker";
@@ -704,6 +711,13 @@ declare module 'astro:content' {
 "2025/09/04/just-finished-of-my-recent-diy-master-bathroom-remodel-very-happy-my-vision-came.md": {
 	id: "2025/09/04/just-finished-of-my-recent-diy-master-bathroom-remodel-very-happy-my-vision-came.md";
   slug: "just-finished-of-my-recent-diy-master-bathroom-remodel-very-happy-my-vision-came";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/la-serie-fenix-8-pro-de-garmin-finalmente-te-permite-dejar-el-telefono-en-casa-m.md": {
+	id: "2025/09/04/la-serie-fenix-8-pro-de-garmin-finalmente-te-permite-dejar-el-telefono-en-casa-m.md";
+  slug: "la-serie-fenix-8-pro-de-garmin-finalmente-te-permite-dejar-el-telefono-en-casa-m";
   body: string;
   collection: "trends";
   data: any
@@ -739,6 +753,13 @@ declare module 'astro:content' {
 "2025/09/04/tesco-tries-out-in-store-avocado-scanners-to-assess-ripeness.md": {
 	id: "2025/09/04/tesco-tries-out-in-store-avocado-scanners-to-assess-ripeness.md";
   slug: "tesco-tries-out-in-store-avocado-scanners-to-assess-ripeness";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/una-mochila-giroscopica-ofrece-una-solucion-para-los-problemas-de-equilibrio.md": {
+	id: "2025/09/04/una-mochila-giroscopica-ofrece-una-solucion-para-los-problemas-de-equilibrio.md";
+  slug: "una-mochila-giroscopica-ofrece-una-solucion-para-los-problemas-de-equilibrio";
   body: string;
   collection: "trends";
   data: any
