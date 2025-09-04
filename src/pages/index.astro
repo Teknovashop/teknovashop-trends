@@ -1,47 +1,52 @@
 ---
-import Base from "@/layouts/Base.astro";
+import Base from "../layouts/Base.astro";
+
+const pageTitle = "Teknovashop Inteligentes";
+const pageDesc =
+  "Especialistas en tecnología útil para el día a día. Tendencias revisadas, comparador informativo y guías claras para acertar.";
 ---
 
-<Base title="Teknovashop · Productos inteligentes con criterio" description="Plataforma de nicho para productos inteligentes. Tendencias diarias (productos), noticias relevantes, comparador informativo y guías en español.">
-  <section class="hero">
-    <div class="left">
-      <h1>Productos inteligentes, <span class="color">con criterio</span></h1>
-      <p class="lead">
-        Especialistas en tecnología útil para el día a día. Tendencias revisadas, comparador informativo y guías claras para acertar.
+<Base title={pageTitle} description={pageDesc}>
+  <!-- Hero -->
+  <section style="display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;margin: .6rem 0 1.4rem;">
+    <div>
+      <h1 style="font-size:clamp(1.8rem,2.4vw,2.4rem);margin:0 0 .35rem;">
+        Productos inteligentes, <span style="color:var(--brand)">con criterio</span>
+      </h1>
+      <p style="margin:.2rem 0 1rem;color:var(--ink-soft);max-width:54ch;">
+        Especialistas en tecnología útil para el día a día.
+        Tendencias revisadas, comparador informativo y guías claras para acertar.
       </p>
-      <div class="cta">
-        <a class="btn" href="/hoy/">Ver tendencias de hoy</a>
-        <a class="btn ghost" href="/comparador/">Comparar precios</a>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+        <a class="btn btn-primary" href="/hoy">Ver tendencias de hoy</a>
+        <a class="btn btn-ghost" href="/comparador">Comparar precios</a>
       </div>
+      <small style="display:block;margin-top:.5rem;color:var(--ink-soft);">
+        El comparador es informativo (sin afiliados). Las tendencias pueden contener enlaces de afiliado.
+      </small>
     </div>
 
-    <aside class="badge">
-      <div class="pill">NOVEDAD</div>
-      <h3>Tendencias diarias</h3>
-      <p>Analizamos lo que se mueve en la comunidad tech y te lo servimos en español.</p>
-      <a class="link" href="/hoy/">Ver productos →</a>
-      <hr/>
-      <h3>Noticias relevantes</h3>
-      <p>Las conversaciones que importan hoy en tecnología.</p>
-      <a class="link" href="/noticias/">Ver noticias →</a>
-    </aside>
-  </section>
+    <!-- Bloque NOVEDAD (dos tarjetas con más aire) -->
+    <section class="novelty">
+      <span class="pill">NOVEDAD</span>
 
-  <!-- Resto de tu home (puntos fuertes, etc.) -->
-  <style>
-    .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap:24px; align-items:start }
-    .left h1{ font-size:2.2rem; line-height:1.1; margin:0 0 .5rem }
-    .color{ color:#0ea5e9 }
-    .lead{ color:#475569; margin:0 0 1rem }
-    .cta{ display:flex; gap:.5rem; flex-wrap:wrap }
-    .btn{ background:#0ea5e9; color:#fff; font-weight:800; border:0; padding:.7rem 1rem; border-radius:12px; text-decoration:none }
-    .btn.ghost{ background:#e6f7f7; color:#065f5b }
-    .badge{ background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:1rem }
-    .pill{ display:inline-block; background:#ecfccb; color:#3f6212; font-weight:800; font-size:.75rem; padding:.2rem .5rem; border-radius:999px; margin-bottom:.4rem }
-    .badge h3{ margin:.2rem 0 }
-    .badge p{ color:#475569; margin:.2rem 0 .6rem }
-    .badge hr{ border:0; border-top:1px dashed #e5e7eb; margin:.6rem 0 }
-    .link{ color:#0ea5e9; font-weight:800; text-decoration:none }
-    @media (max-width:900px){ .hero{ grid-template-columns: 1fr; } }
-  </style>
+      <div class="nov-card">
+        <h3>Tendencias diarias</h3>
+        <p>
+          Analizamos lo que se mueve en la comunidad tech y te lo servimos en español.
+        </p>
+        <a class="btn btn-primary" href="/hoy" aria-label="Ver productos tendencia de hoy">Ver productos</a>
+      </div>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <div class="nov-card">
+        <h3>Noticias relevantes</h3>
+        <p>
+          Las conversaciones que importan hoy en tecnología.
+        </p>
+        <a class="btn btn-ghost" href="/noticias" aria-label="Ver noticias relevantes">Ver noticias</a>
+      </div>
+    </section>
+  </section>
 </Base>
