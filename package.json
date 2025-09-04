@@ -7,8 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "trends:daily": "node scripts/trends_daily.mjs",
-    "products:daily": "npm run trends:daily"
+    "trends:daily": "node scripts/trends_daily.mjs"
   },
   "engines": {
     "node": "20.x"
@@ -17,6 +16,7 @@
     "astro": "^4.16.19",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/vercel": "^7.6.0",
+    "@supabase/supabase-js": "^2.45.0",
     "google-trends-api": "^4.9.2",
     "gray-matter": "^4.0.3",
     "marked": "^12.0.2",
