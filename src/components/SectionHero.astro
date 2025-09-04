@@ -1,0 +1,24 @@
+---
+const {
+  title = 'Tu plataforma de nicho para productos inteligentes',
+  subtitle = 'Seleccionamos lo mejor, lo comparamos sin humo y te ayudamos a comprar bien.',
+  ctas = [
+    { href: '/hoy', label: 'Ver tendencias de hoy' },
+    { href: '/comparador', label: 'Usar comparador' },
+  ],
+  image = '/brand/teknovashop-tendencias.png'
+} = Astro.props;
+---
+<section class="hero">
+  <div>
+    <span class="tag">Nicho definido</span>
+    <h1>{title}</h1>
+    <p class="lead">{subtitle}</p>
+    <div class="row gap-8">
+      {ctas.map(c => <a class="btn" href={c.href}>{c.label}</a>)}
+    </div>
+  </div>
+  <div class="card soft">
+    <img src={image} alt="" width="640" height="360" style="max-width:100%; border-radius:12px;" loading="lazy" />
+  </div>
+</section>
