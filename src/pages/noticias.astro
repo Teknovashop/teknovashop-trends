@@ -1,66 +1,39 @@
 ---
 import Base from "@/layouts/Base.astro";
-import fs from "fs";
-import path from "path";
 
-const ROOT = process.cwd(); // <-- usar cwd
-
-function findLatestNews() {
-  try {
-    const base = path.join(ROOT, "src", "data", "news");
-    if (!fs.existsSync(base)) return null;
-
-    const years = fs.readdirSync(base).filter(Boolean).sort().reverse();
-    for (const y of years) {
-      const ydir = path.join(base, y);
-      const months = fs.readdirSync(ydir).filter(Boolean).sort().reverse();
-      for (const m of months) {
-        const mdir = path.join(ydir, m);
-        const days = fs.readdirSync(mdir).filter(Boolean).sort().reverse();
-        for (const d of days) {
-          const idx = path.join(mdir, d, "index.json");
-          if (fs.existsSync(idx)) {
-            try { return JSON.parse(fs.readFileSync(idx, "utf-8")); }
-            catch { /* ignore malformed */ }
-          }
-        }
-      }
-    }
-  } catch { /* no-op */ }
-  return null;
-}
-
-const data = findLatestNews();
-const items = data?.items || [];
+// Carga todos los índices de noticias y escoje el más reciente por ruta
+const all = import.meta.glob("../data/news/**/index.json", { eager: true }) as Record<string, any>;
+const keys = Object.keys(all).sort().reverse();
+const latest = keys[0] ? (all[keys[0]] as any).default || all[keys[0]] : { items: [] };
+const news = latest.items || [];
 ---
 
-<Base title="Noticias · Teknovashop" description="Noticias seleccionadas en español sobre tecnología y productos inteligentes.">
-  <h1>Noticias</h1>
-  <p class="lead">Actualidad del ecosistema tech en español.</p>
+<Base title="Noticias relevantes · Tech" description="Noticias y conversaciones relevantes en la comunidad tech, en español.">
+  <h1>Noticias relevantes</h1>
+  <p class="sub">Lo que se está comentando hoy en la comunidad tech. Enlaces a Google News para ampliar.</p>
 
-  {items.length === 0 ? (
-    <p>No hay noticias por ahora.</p>
+  {news.length === 0 ? (
+    <p>No hay noticias generadas hoy todavía.</p>
   ) : (
     <div class="grid">
-      {items.map(it => (
-        <a class="card" href={`/producto/${it.slug}/`}>
-          <img src={it.hero} alt={it.title} loading="lazy" />
-          <div class="meta">
-            <span class="badge">{it.niche || 'tecnología'}</span>
-          </div>
-          <h3>{it.title}</h3>
-          <small>score {it.score || 1}</small>
+      {news.map((n:any) => (
+        <a class="card" href={n.url} target="_blank" rel="noopener">
+          <img src={n.hero || '/placeholder-news.jpg'} alt={n.title} loading="lazy" />
+          <div class="cat">{n.niche || 'tecnologia'}</div>
+          <h3>{n.title}</h3>
+          <small class="muted">score {n.score || 1}</small>
         </a>
       ))}
     </div>
   )}
 
   <style>
-    .lead{ color:#475569; margin:.3rem 0 1rem }
-    .grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
-    .card{ display:block; background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:12px; text-decoration:none; color:#0f172a; }
-    .card:hover{ border-color:#94a3b8; box-shadow:0 6px 24px rgba(2,6,23,.06); }
-    .card img{ width:100%; height:160px; object-fit:cover; border-radius:12px; }
-    .badge{ font-size:.75rem; background:#eef2ff; color:#3730a3; padding:.2rem .5rem; border-radius:999px; }
+    .sub{ color:#475569; margin:.25rem 0 1rem }
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); }
+    .card{ display:block; background:#fff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; text-decoration:none; color:#0f172a; }
+    .card img{ width:100%; height:160px; object-fit:cover; display:block }
+    .cat{ margin:.6rem .75rem 0; display:inline-block; background:#eef2ff; color:#3730a3; padding:.25rem .5rem; border-radius:12px; font-size:.8rem; font-weight:700 }
+    .card h3{ margin:.4rem .75rem .3rem; font-size:1rem; line-height:1.2 }
+    .muted{ margin:0 .75rem 1rem; color:#64748b }
   </style>
 </Base>
