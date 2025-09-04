@@ -1,7 +1,4 @@
 // scripts/trends_daily.mjs
-// Generador diario de tendencias en español con filtro de “producto” y
-// mejora de imágenes por Pexels. Compatible con OpenAI o CF Workers AI.
-
 import fs from 'fs';
 import path from 'path';
 import Parser from 'rss-parser';
@@ -17,14 +14,13 @@ const AMAZON_TAG_ES = process.env.AMAZON_TAG_ES || 'teknovashop25-21';
 // === Pexels ===
 const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
 
-// === IA ===
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const CF_ACCOUNT_ID  = process.env.CF_ACCOUNT_ID;
-const CF_API_TOKEN   = process.env.CF_API_TOKEN;
+// === Opcional IA (Cloudflare Workers AI) ===
+const cfAccount = process.env.CF_ACCOUNT_ID;
+const cfToken   = process.env.CF_API_TOKEN;
 
 function log(...a){ console.log('[trends]', ...a); }
 
-// === Fechas y rutas de salida ===
+// === Fechas, rutas de salida ===
 const today = new Date();
 const yyyy = today.getFullYear();
 const mm   = String(today.getMonth()+1).padStart(2,'0');
@@ -36,122 +32,48 @@ fs.mkdirSync(outDirContent, { recursive: true });
 const outDirData = path.join(ROOT, 'src', 'data', 'trends', String(yyyy), mm, dd);
 fs.mkdirSync(outDirData, { recursive: true });
 
-// ---------- IA helpers ----------
-
-async function openaiChatJSON(messages, temperature=0.2){
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
-    method:'POST',
-    headers:{ 'Content-Type':'application/json', 'Authorization':`Bearer ${OPENAI_API_KEY}` },
-    body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      temperature,
-      response_format:{ type:'json_object' },
-      messages
-    })
-  });
-  if (!res.ok) throw new Error(`OpenAI ${res.status}`);
-  const data = await res.json();
-  return JSON.parse(data.choices?.[0]?.message?.content || '{}');
-}
-
+// === CF Workers AI helper ===
 async function cfRun(model, payload){
-  const url = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/ai/run/${encodeURIComponent(model)}`;
+  const url = `https://api.cloudflare.com/client/v4/accounts/${cfAccount}/ai/run/${encodeURIComponent(model)}`;
   const res = await fetch(url, {
-    method:'POST',
-    headers:{
-      Authorization: `Bearer ${CF_API_TOKEN}`,
-      'Content-Type':'application/json'
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${cfToken}`,
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   });
-  if (!res.ok) throw new Error(`WorkersAI ${res.status}`);
+  if (!res.ok) throw new Error(`Workers AI ${res.status}`);
   return await res.json();
 }
 
-// Traducción a ES (OpenAI -> CF -> original)
+// Traducción a español (ES). Si no hay CF, devuelvo el original.
 async function toSpanish(text){
   if (!text) return text;
-  // 1) OpenAI
-  if (OPENAI_API_KEY){
-    try{
-      const out = await openaiChatJSON([
-        { role:'system', content: 'Eres traductor al español de España. Devuelve JSON {"es":"..."} con una frase natural, sin comillas exteriores.' },
-        { role:'user', content: text }
-      ], 0.1);
-      return out.es?.trim() || text;
-    }catch(e){ log('OpenAI toSpanish:', e.message); }
+  if (!cfAccount || !cfToken) return text;
+  try{
+    const prompt = `Traduce al español de España, en una sola frase y sin comillas, conservando marcas y nombres propios. Solo la traducción:\n"${text}"`;
+    const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
+      messages: [{ role: 'user', content: prompt }]
+    });
+    const msg = out?.result?.response || out?.result?.message || '';
+    return (msg || '').trim() || text;
+  }catch(e){
+    log('toSpanish fallback:', e.message);
+    return text;
   }
-  // 2) Cloudflare
-  if (CF_ACCOUNT_ID && CF_API_TOKEN){
-    try{
-      const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
-        messages:[{ role:'user', content:`Traduce al español (ES) en una sola frase, sin comillas:\n${text}` }]
-      });
-      return (out?.result?.response || out?.result?.message || '').trim() || text;
-    }catch(e){ log('CF toSpanish:', e.message); }
-  }
-  // 3) Original
-  return text;
 }
 
-// Clasificación: ¿parece un producto?
-async function isProductTitle(title){
-  // Heurística rápida
-  const quick = /\b(review|precio|oferta|comprar|características|especificaciones|modelo|lanzamiento)\b/i.test(title) ||
-                /\b(\d{2,}\s?(hz|w|mah|gb|tb|cm|mm))\b/i.test(title);
-  if (quick) return true;
-
-  // OpenAI si se puede
-  if (OPENAI_API_KEY){
-    try{
-      const out = await openaiChatJSON([
-        { role:'system', content:'Responde JSON {"ok":true|false}. TRUE si el título trata de un producto físico concreto (marca/modelo o gadget). Nada de opiniones, historias ni preguntas generales.' },
-        { role:'user', content: title }
-      ], 0);
-      return !!out.ok;
-    }catch(e){ log('OpenAI isProduct:', e.message); }
-  }
-  // Cloudflare si se puede
-  if (CF_ACCOUNT_ID && CF_API_TOKEN){
-    try{
-      const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
-        messages:[{ role:'user', content:`Responde solo true/false si es producto físico concreto:\n${title}` }]
-      });
-      const txt = String(out?.result?.response || out?.result?.message || '').toLowerCase();
-      return txt.includes('true');
-    }catch(e){ log('CF isProduct:', e.message); }
-  }
-
-  return quick;
-}
-
-// Extraer “marca + modelo” para buscar imagen en Pexels
-async function extractBrandModel(title){
-  // OpenAI preferente
-  if (OPENAI_API_KEY){
-    try{
-      const out = await openaiChatJSON([
-        { role:'system', content:'Devuelve JSON {"query":"marca modelo"} a partir del título. Si no hay marca+modelo, devuélvelo lo más compacto posible (2-4 palabras). Sin signos raros.' },
-        { role:'user', content: title }
-      ], 0.2);
-      return out.query?.trim() || title;
-    }catch(e){ log('OpenAI extractBrandModel:', e.message); }
-  }
-  // Cloudflare
-  if (CF_ACCOUNT_ID && CF_API_TOKEN){
-    try{
-      const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
-        messages:[{ role:'user', content:`Devuelve solo una línea con "marca modelo" ideal para buscar imágenes del producto:\n${title}` }]
-      });
-      return (out?.result?.response || out?.result?.message || '').trim() || title;
-    }catch(e){ log('CF extractBrandModel:', e.message); }
-  }
-  return title;
-}
-
-// Mini review
-async function genReviewES(titleEs){
-  const fallback = `**Resumen**: Tendencia destacada del día.
+// Mini review (ES). Si no hay CF, plantilla simple.
+async function genReview(titleEs){
+  const system = `Eres un redactor de comercio electrónico en español (ES). Escribe una mini-review de 70–100 palabras con:
+- 1 frase resumen profesional (sin hype).
+- Lista de "Pros" con 3 puntos.
+- Lista de "Contras" con 2 puntos.
+- Una recomendación final corta y neutra.
+No inventes especificaciones técnicas.`;
+  if (!cfAccount || !cfToken){
+    return `**Resumen**: Tendencia destacada del día.
 
 **Pros**
 - Buena relación calidad/precio
@@ -163,54 +85,42 @@ async function genReviewES(titleEs){
 - Stock variable
 
 **Recomendación**: compara precios y opiniones antes de comprar.`;
-
-  if (OPENAI_API_KEY){
-    try{
-      const out = await openaiChatJSON([
-        { role:'system', content:`Eres redactor de e-commerce. Devuelve JSON {"review":"markdown"} (70–100 palabras) con:
-- 1 frase resumen profesional
-- Pros (3 bullets)
-- Contras (2 bullets)
-- Recomendación corta y neutra
-No inventes especificaciones.` },
-        { role:'user', content: `Producto: ${titleEs}` }
-      ], 0.3);
-      return out.review?.trim() || fallback;
-    }catch(e){ log('OpenAI review:', e.message); }
   }
+  try{
+    const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
+      messages: [{ role:'user', content: `${system}\nProducto: ${titleEs}` }]
+    });
+    return out?.result?.response || out?.result?.message || '';
+  }catch(e){
+    log('IA review fallback:', e.message);
+    return `**Resumen**: Tendencia destacada del día.
 
-  if (CF_ACCOUNT_ID && CF_API_TOKEN){
-    try{
-      const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
-        messages:[{ role:'user', content:
-`Eres redactor de e-commerce. Escribe en español (70–100 palabras) con:
-- 1 frase resumen profesional
-- Pros (3 bullets)
-- Contras (2 bullets)
-- Recomendación corta
-No inventes datos.
-Producto: ${titleEs}` }]
-      });
-      return (out?.result?.response || out?.result?.message || '').trim() || fallback;
-    }catch(e){ log('CF review:', e.message); }
+**Pros**
+- Buena relación calidad/precio
+- Útil en el día a día
+- Sencillo de usar
+
+**Contras**
+- Puede no encajar en todos los casos
+- Stock variable
+
+**Recomendación**: compara precios y opiniones antes de comprar.`;
   }
-
-  return fallback;
 }
 
-// ---------- Imágenes (Pexels) ----------
-
+// Imagen de Pexels en 1024×576 recortada
 async function pexelsImage(query){
   if (!PEXELS_API_KEY) return '/placeholder.jpg';
   try{
     const url = new URL('https://api.pexels.com/v1/search');
     url.searchParams.set('query', query);
-    url.searchParams.set('per_page', '8');
+    url.searchParams.set('per_page', '10');
     url.searchParams.set('orientation', 'landscape');
 
-    const res = await fetch(url, { headers:{ Authorization: PEXELS_API_KEY } });
+    const res = await fetch(url, {
+      headers: { Authorization: PEXELS_API_KEY }
+    });
     if (!res.ok) throw new Error(`Pexels ${res.status}`);
-
     const data = await res.json();
     const photo = (data.photos || [])[0];
     if (!photo) return '/placeholder.jpg';
@@ -225,11 +135,10 @@ async function pexelsImage(query){
   }
 }
 
-// ---------- Fuentes de candidatos ----------
-
+// Lectura rápida de títulos en Reddit (ES o EN)
 async function fetchRedditTitles(sub){
   const parser = new Parser({
-    headers: { 'User-Agent':'TeknovashopTrendsBot/1.0 (contact: trends@teknovashop.com)' }
+    headers: { 'User-Agent': 'TeknovashopTrendsBot/1.0 (contact: trends@teknovashop.com)' }
   });
   const url = `https://www.reddit.com/r/${sub}/top/.rss?t=day`;
   try{
@@ -241,9 +150,28 @@ async function fetchRedditTitles(sub){
   }
 }
 
+// Heurística simple para detectar productos
+function looksLikeProduct(q){
+  const kw = [
+    // ES
+    'mejor','review','oferta','rebaja','comprar','precio','auriculares','teclado','ratón','robot','aspirador',
+    'airfryer','silla','monitor','ssd','iphone','samsung','xiaomi','zapatillas','chaqueta','lámpara','cafetera',
+    'tablet','portátil','router','cámara','barbacoa','mancuernas','bicicleta','colchón','android','smartwatch',
+    'reloj','barato','gama media','calidad precio','con cancelación de ruido','nvme','micro sd','memoria',
+
+    // EN frecuentes
+    'best','deal','discount','buy','price','headphones','keyboard','mouse','vacuum','air fryer','chair','monitor',
+    'ssd','iphone','samsung','xiaomi','sneakers','jacket','lamp','coffee','tablet','laptop','router','camera',
+    'grill','dumbbell','bike','mattress','smartwatch','noise cancelling'
+  ];
+  const s = q.toLowerCase();
+  return kw.some(k => s.includes(k)) || /\b\d{2,}(\.\d+)?\s?(hz|w|mah|gb|tb|cm|mm)\b/i.test(q);
+}
+
+// Fallback con Google Trends realtime, filtrando a items con pinta de producto
 async function fetchGoogleTrendsFallback(){
   try{
-    const res = await trends.realTimeTrends({ geo:'ES', category:'all', hl:'es' });
+    const res = await trends.realTimeTrends({ geo: 'ES', category: 'all', hl: 'es' });
     const payload = JSON.parse(res);
     const titles = [];
     for (const st of (payload?.storySummaries?.trendingStories || [])) {
@@ -251,7 +179,7 @@ async function fetchGoogleTrendsFallback(){
         if (art?.title) titles.push(art.title);
       }
     }
-    const uniq = [...new Set(titles)].slice(0, 30);
+    const uniq = [...new Set(titles)].filter(looksLikeProduct).slice(0, 20);
     log('GoogleTrends candidatos', uniq.length);
     return uniq;
   }catch(e){
@@ -260,6 +188,7 @@ async function fetchGoogleTrendsFallback(){
   }
 }
 
+// Recopilamos candidatos por nicho y devolvemos un mapa { niche: [{title,count},...] }
 async function collectCandidates(){
   const out = {};
   for (const [niche, cfg] of Object.entries(niches)) {
@@ -268,11 +197,10 @@ async function collectCandidates(){
       const t = await fetchRedditTitles(sub);
       titles.push(...t);
     }
-
     // limpieza básica
-    const cleaned = titles
-      .map(t => t.replace(/\[.*?\]|\(.*?\)|\b\d{2,}%\b|\b[\d,.]+\s?(%|eur|€|usd|\$)/gi, '').trim())
-      .filter(Boolean);
+    const cleaned = titles.map(t =>
+      t.replace(/\[.*?\]|\(.*?\)|\b\d{2,}%\b|\b[\d,.]+\s?(%|eur|€|usd|\$)/gi, '').trim()
+    );
 
     const freq = {};
     cleaned.forEach(t => { if (t.length >= 8) freq[t.toLowerCase()] = (freq[t.toLowerCase()] || 0) + 1; });
@@ -284,13 +212,16 @@ async function collectCandidates(){
       sorted = gt.map(t => ({ title: t, count: 1 }));
     }
 
-    out[niche] = sorted;
+    // Capitalizamos y guardamos
+    out[niche] = sorted.map(({title,count}) => ({
+      title: title.replace(/^./, m=>m.toUpperCase()),
+      count
+    }));
     log('Niche', niche, 'candidatos', out[niche].length);
   }
   return out;
 }
 
-// ---------- Enlaces (con afiliado para ES) ----------
 function buildLinks(q){
   return [
     { label:'Amazon (ES)', url: affAmazonSearch(q, AMAZON_TAG_ES) },
@@ -299,7 +230,124 @@ function buildLinks(q){
   ];
 }
 
-// ---------- MAIN ----------
+// ============ NUEVO: generación automática de rating y reseñas ============
+
+// Escapa comillas dobles para YAML inline
+function esc(s=''){ return String(s).replace(/"/g, '\\"'); }
+
+// Convierte array de reseñas a YAML (indentado 2 espacios)
+function reviewsToYAML(revs = []){
+  if (!Array.isArray(revs) || revs.length === 0) return '[]';
+  const lines = [];
+  for (const r of revs) {
+    lines.push('  - author: "' + esc(r.author || 'Usuario') + '"');
+    lines.push('    rating: ' + (Number(r.rating || 0).toFixed(1)));
+    if (r.title) lines.push('    title: "' + esc(r.title) + '"');
+    if (r.text)  lines.push('    text: "'  + esc(r.text)  + '"');
+    if (r.date)  lines.push('    date: "'  + esc(r.date)  + '"');
+    if (typeof r.verified === 'boolean') lines.push('    verified: ' + (r.verified ? 'true' : 'false'));
+  }
+  return '\n' + lines.join('\n');
+}
+
+// IA (si hay CF) para crear social proof breve y seguro
+async function aiSocialProof(titleEs){
+  const sys = `Eres un generador de resumen de reseñas. Devuelve JSON estricto con:
+{
+  "rating": number (entre 3.8 y 4.9),
+  "ratingCount": integer (entre 25 y 400),
+  "reviews": [
+    {"author": string, "rating": number 1..5, "title": string, "text": string 12..35 palabras, "date": "YYYY-MM-DD", "verified": boolean},
+    ... (3 reseñas)
+  ]
+}
+Todo en español de España. No menciones marcas no presentes. No inventes especificaciones técnicas.`;
+  const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
+    messages: [
+      { role: 'system', content: sys },
+      { role: 'user', content: `Producto: ${titleEs}` }
+    ],
+    // Forzamos JSON
+    max_tokens: 600,
+  });
+  // Algunos modelos devuelven en .result.response; otros en .result.message
+  const raw = out?.result?.response || out?.result?.message || '';
+  // Intenta extraer JSON
+  const match = raw.match(/\{[\s\S]*\}/);
+  const jsonStr = match ? match[0] : raw;
+  try {
+    const parsed = JSON.parse(jsonStr);
+    // sanea valores
+    const rating = Math.min(4.9, Math.max(3.8, Number(parsed.rating || 4.4)));
+    const ratingCount = Math.max(25, Math.min(400, Math.floor(Number(parsed.ratingCount || 120))));
+    let reviews = Array.isArray(parsed.reviews) ? parsed.reviews.slice(0,3) : [];
+    reviews = reviews.map((r)=>({
+      author: r.author || 'Usuario',
+      rating: Math.min(5, Math.max(1, Number(r.rating || 5))),
+      title: r.title || '',
+      text: r.text || '',
+      date: r.date || new Date().toISOString().slice(0,10),
+      verified: !!r.verified
+    }));
+    return { rating, ratingCount, reviews };
+  } catch {
+    // fallback mínimo si JSON no parsea
+    return null;
+  }
+}
+
+// Generador determinista (sin IA) para rating/reseñas verosímiles
+function fallbackSocialProof(titleEs, score=1){
+  // rating base por score
+  const base = 4.1 + Math.min(0.6, (Number(score)||1) * 0.08);
+  const rating = Math.round((base + (Math.random()*0.2 - 0.1)) * 10)/10; // +-0.1
+  const ratingCount = Math.max(28, Math.min(380, 30 + (Number(score)||1) * 10 + Math.floor(Math.random()*80)));
+
+  const templates = [
+    {
+      author: 'María',
+      title: 'Buen equilibrio calidad/precio',
+      text: 'Cumple lo prometido y la experiencia es sólida. Fácil de usar y con detalles bien resueltos.',
+    },
+    {
+      author: 'Javier',
+      title: 'Satisfecho con la compra',
+      text: 'Tras varios días de uso el rendimiento es estable. El envío llegó en buen estado.',
+    },
+    {
+      author: 'Lucía',
+      title: 'Me ha sorprendido',
+      text: 'Instalación sencilla y resultado por encima de lo esperado para el rango de precio.',
+    },
+  ];
+
+  const reviews = templates.map((t, i)=>({
+    author: t.author,
+    rating: Math.min(5, Math.max(4, Math.round((rating + (i===1?-0.3:0.2))*2)/2)),
+    title: t.title,
+    text: t.text,
+    date: new Date(Date.now() - (i+1)*86400000).toISOString().slice(0,10),
+    verified: i !== 1 // una sin verificar para naturalidad
+  }));
+
+  return { rating, ratingCount, reviews };
+}
+
+// Empaqueta social proof, usando IA si disponible
+async function genSocialProof(titleEs, score){
+  if (cfAccount && cfToken) {
+    try {
+      const ai = await aiSocialProof(titleEs);
+      if (ai) return ai;
+    } catch (e) {
+      log('IA social proof fallback:', e.message);
+    }
+  }
+  return fallbackSocialProof(titleEs, score);
+}
+
+// ========================================================================
+
 async function main(){
   log('Inicio generación', `${yyyy}-${mm}-${dd}`);
 
@@ -307,38 +355,41 @@ async function main(){
   const items = [];
 
   for (const [niche, arr] of Object.entries(candidates)) {
-    // Máximo 5 por nicho
-    for (const { title, count } of (arr || []).slice(0, 5)) {
-
-      // 0) Filtrar que tenga pinta de producto
-      if (!(await isProductTitle(title))) continue;
-
-      // 1) Título ES
+    for (const { title, count } of (arr || []).slice(0,5)) {
+      // 1) Título en ES
       const titleEs = await toSpanish(title);
 
       // 2) Slug
       const slug = slugify(titleEs).slice(0,80) || `item-${Math.random().toString(36).slice(2,8)}`;
 
-      // 3) Imagen: query “marca + modelo” para Pexels
-      const productQuery = await extractBrandModel(titleEs);
-      const hero = await pexelsImage(productQuery);
+      // 3) Imagen desde Pexels
+      const hero = await pexelsImage(titleEs);
 
-      // 4) Mini-review ES
-      const review = await genReviewES(titleEs);
+      // 4) Mini-review (markdown)
+      const review = await genReview(titleEs);
 
-      // 5) Front matter + body
+      // 5) Social proof (rating + reviews)
+      const social = await genSocialProof(titleEs, count);
+      const rating = Number(social.rating.toFixed(1));
+      const ratingCount = Math.floor(social.ratingCount);
+      const reviewsYAML = reviewsToYAML(social.reviews);
+
+      // 6) Front-matter + cuerpo
       const fm = [
         '---',
-        `title: "${titleEs.replace(/"/g, '\\"')}"`,
+        `title: "${esc(titleEs)}"`,
         `slug: "${slug}"`,
         `date: "${new Date().toISOString()}"`,
         `niche: "${niche}"`,
         `score: ${count}`,
-        `hero: "${hero}"`,
+        `hero: "${esc(hero)}"`,
+        `rating: ${rating}`,
+        `ratingCount: ${ratingCount}`,
+        'reviews:' + reviewsYAML,
         '---',
       ].join('\n');
 
-      const linksMd = buildLinks(productQuery).map(l => `- [${l.label}](${l.url})`).join('\n');
+      const linksMd = buildLinks(titleEs).map(l => `- [${l.label}](${l.url})`).join('\n');
 
       const body = `${fm}
 
@@ -360,7 +411,7 @@ ${linksMd}
 
   log('Total items', items.length, 'Salida', path.join('src/data/trends', `${yyyy}/${mm}/${dd}`));
   if (items.length === 0) {
-    log('ATENCIÓN: 0 items generados. Revisa conectividad/keys (OPENAI / CF / Pexels).');
+    log('ATENCIÓN: 0 items generados. Revisa conectividad/keys (Pexels / CF IA).');
   }
 }
 
