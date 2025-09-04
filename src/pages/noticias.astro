@@ -3,27 +3,30 @@ import Base from "@/layouts/Base.astro";
 import fs from "fs";
 import path from "path";
 
-const ROOT = Astro.config.root?.pathname ?? process.cwd();
+const ROOT = process.cwd(); // <-- usar cwd
 
 function findLatestNews() {
-  const base = path.join(ROOT, "src", "data", "news");
-  if (!fs.existsSync(base)) return null;
-  const years = fs.readdirSync(base).sort().reverse();
-  for (const y of years) {
-    const ydir = path.join(base, y);
-    const months = fs.readdirSync(ydir).sort().reverse();
-    for (const m of months) {
-      const mdir = path.join(ydir, m);
-      const days = fs.readdirSync(mdir).sort().reverse();
-      for (const d of days) {
-        const idx = path.join(mdir, d, "index.json");
-        if (fs.existsSync(idx)) {
-          try { return JSON.parse(fs.readFileSync(idx, "utf-8")); }
-          catch { /* ignore */ }
+  try {
+    const base = path.join(ROOT, "src", "data", "news");
+    if (!fs.existsSync(base)) return null;
+
+    const years = fs.readdirSync(base).filter(Boolean).sort().reverse();
+    for (const y of years) {
+      const ydir = path.join(base, y);
+      const months = fs.readdirSync(ydir).filter(Boolean).sort().reverse();
+      for (const m of months) {
+        const mdir = path.join(ydir, m);
+        const days = fs.readdirSync(mdir).filter(Boolean).sort().reverse();
+        for (const d of days) {
+          const idx = path.join(mdir, d, "index.json");
+          if (fs.existsSync(idx)) {
+            try { return JSON.parse(fs.readFileSync(idx, "utf-8")); }
+            catch { /* ignore malformed */ }
+          }
         }
       }
     }
-  }
+  } catch { /* no-op */ }
   return null;
 }
 
@@ -31,7 +34,7 @@ const data = findLatestNews();
 const items = data?.items || [];
 ---
 
-<Base title="Noticias · Teknovashop" description="Noticias seleccionadas en español sobre tecnología y ecosistema de productos inteligentes.">
+<Base title="Noticias · Teknovashop" description="Noticias seleccionadas en español sobre tecnología y productos inteligentes.">
   <h1>Noticias</h1>
   <p class="lead">Actualidad del ecosistema tech en español.</p>
 
