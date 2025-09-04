@@ -8,141 +8,72 @@ import { slugify, affAmazonSearch, affAliExpressSearch, affSheinSearch } from '.
 const ROOT = process.cwd();
 const niches = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'niches.json'), 'utf-8'));
 
-// === Afiliados (solo enlaces informativos/comparativos) ===
+// === Afiliados (solo se usan en la mini-sección de "Dónde comparar") ===
 const AMAZON_TAG_ES = process.env.AMAZON_TAG_ES || 'teknovashop25-21';
 
-// === Pexels (imágenes) ===
+// === Pexels (para hero de productos) ===
 const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
 
-// === IA: Cloudflare y OpenAI (fallback) ===
+// === Opcional IA (Cloudflare) para traducción y mini-review ===
 const cfAccount = process.env.CF_ACCOUNT_ID;
 const cfToken   = process.env.CF_API_TOKEN;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 function log(...a){ console.log('[trends]', ...a); }
 
-// === Fecha y rutas ===
+// === Fechas, rutas de salida ===
 const today = new Date();
 const yyyy = today.getFullYear();
 const mm   = String(today.getMonth()+1).padStart(2,'0');
 const dd   = String(today.getDate()).padStart(2,'0');
 
-// carpetas productos
-const outDirContentProd = path.join(ROOT, 'src', 'content', 'trends', String(yyyy), mm, dd);
-fs.mkdirSync(outDirContentProd, { recursive: true });
-const outDirDataProd = path.join(ROOT, 'src', 'data', 'trends', String(yyyy), mm, dd);
-fs.mkdirSync(outDirDataProd, { recursive: true });
+const outDirContent = path.join(ROOT, 'src', 'content', 'trends', String(yyyy), mm, dd);
+fs.mkdirSync(outDirContent, { recursive: true });
 
-// carpetas noticias
-const outDirContentNews = path.join(ROOT, 'src', 'content', 'news', String(yyyy), mm, dd);
-fs.mkdirSync(outDirContentNews, { recursive: true });
-const outDirDataNews = path.join(ROOT, 'src', 'data', 'news', String(yyyy), mm, dd);
-fs.mkdirSync(outDirDataNews, { recursive: true });
+const outDirTrendsData = path.join(ROOT, 'src', 'data', 'trends', String(yyyy), mm, dd);
+fs.mkdirSync(outDirTrendsData, { recursive: true });
 
-// === Cloudflare Workers AI ===
+const outDirNewsData = path.join(ROOT, 'src', 'data', 'news', String(yyyy), mm, dd);
+fs.mkdirSync(outDirNewsData, { recursive: true });
+
+// === CF Workers AI helper ===
 async function cfRun(model, payload){
   const url = `https://api.cloudflare.com/client/v4/accounts/${cfAccount}/ai/run/${encodeURIComponent(model)}`;
   const res = await fetch(url, {
     method: 'POST',
-    headers: {
-      Authorization: `Bearer ${cfToken}`,
-      'Content-Type': 'application/json'
-    },
+    headers: { Authorization: `Bearer ${cfToken}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error(`Workers AI ${res.status}`);
   return await res.json();
 }
 
-// === OpenAI fallback (si CF falla o no hay claves) ===
-async function openaiChatJSON(messages) {
-  if (!OPENAI_API_KEY) throw new Error('No OPENAI_API_KEY');
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
-    method:'POST',
-    headers:{
-      'Authorization': `Bearer ${OPENAI_API_KEY}`,
-      'Content-Type':'application/json'
-    },
-    body: JSON.stringify({
-      model: 'gpt-4o-mini',
-      temperature: 0.2,
-      response_format: { type: 'json_object' },
-      messages
-    })
-  });
-  if (!res.ok) throw new Error('OpenAI error '+res.status);
-  const data = await res.json();
-  const txt = data?.choices?.[0]?.message?.content || '{}';
-  return JSON.parse(txt);
-}
-
-// === Traducción fiable a español (CF → fallback OpenAI → original) ===
+// Traducción a ES. Si no hay CF, devolvemos el original y forzamos capitalización ES básica.
 async function toSpanish(text){
   if (!text) return text;
-
-  // 1) Cloudflare
-  if (cfAccount && cfToken) {
-    try {
-      const prompt = `Traduce al español de España, en una sola frase natural y sin comillas. Conserva marcas y nombres propios. Solo la traducción:\n"${text}"`;
-      const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
-        messages: [{ role:'user', content: prompt }]
-      });
-      const msg = out?.result?.response || out?.result?.message || '';
-      const res = (msg || '').trim();
-      if (res) return res;
-    } catch(e){ log('CF translate fail →', e.message); }
+  if (!cfAccount || !cfToken) return text; // en tu flujo ya te funciona; cae en ES porque la mayoría de títulos ya llegan en ES
+  try{
+    const prompt = `Traduce al español de España, en una sola frase y sin comillas, conservando marcas y nombres propios. Solo la traducción:\n"${text}"`;
+    const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
+      messages: [{ role: 'user', content: prompt }]
+    });
+    const msg = out?.result?.response || out?.result?.message || '';
+    return (msg || '').trim() || text;
+  }catch(e){
+    log('toSpanish fallback:', e.message);
+    return text;
   }
-
-  // 2) OpenAI
-  if (OPENAI_API_KEY) {
-    try {
-      const obj = await openaiChatJSON([
-        { role:'system', content:'Eres un traductor profesional (es-ES). Responde JSON {"es": "..."}' },
-        { role:'user', content:`Traduce al español de España (una frase, sin comillas) este texto: ${text}` }
-      ]);
-      if (obj?.es) return String(obj.es).trim();
-    } catch(e){ log('OpenAI translate fail →', e.message); }
-  }
-
-  // 3) Original si todo falla
-  return text;
 }
 
-// === Mini review en español ===
+// Mini review (ES). Si no hay CF, plantilla simple.
 async function genReview(titleEs){
-  // Cloudflare primero
-  if (cfAccount && cfToken){
-    try {
-      const sys = `Eres redactor e-commerce (es-ES). 70–100 palabras, tono profesional y útil.
-- 1 frase resumen sin hype
-- Pros: 3 bullets
-- Contras: 2 bullets
-- Recomendación final corta y neutra.`;
-      const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
-        messages: [{ role:'user', content:`${sys}\nProducto: ${titleEs}` }]
-      });
-      const txt = out?.result?.response || out?.result?.message || '';
-      if (txt) return txt.trim();
-    } catch(e){ log('CF review fail →', e.message); }
-  }
-
-  // OpenAI fallback
-  if (OPENAI_API_KEY){
-    try {
-      const obj = await openaiChatJSON([
-        { role:'system', content:'Devuelve JSON {"md": "..."} con el markdown pedido.' },
-        { role:'user', content:`Escribe una mini-review (es-ES) de 70–100 palabras para "${titleEs}" con:
-- **Resumen** (1 frase)
-- **Pros** (3 bullets)
-- **Contras** (2 bullets)
-- **Recomendación** (1 frase)` }
-      ]);
-      if (obj?.md) return String(obj.md);
-    } catch(e){ log('OpenAI review fail →', e.message); }
-  }
-
-  // Plantilla si todo falla
-  return `**Resumen**: Tendencia destacada del día.
+  const system = `Eres un redactor de comercio electrónico en español (ES). Redacta una mini-review de 70–100 palabras con:
+- 1 frase resumen profesional (sin hype).
+- Lista de "Pros" con 3 puntos.
+- Lista de "Contras" con 2 puntos.
+- Recomendación final neutra.
+No inventes especificaciones.`;
+  if (!cfAccount || !cfToken){
+    return `**Resumen**: Tendencia destacada del día.
 
 **Pros**
 - Buena relación calidad/precio
@@ -154,9 +85,30 @@ async function genReview(titleEs){
 - Stock variable
 
 **Recomendación**: compara precios y opiniones antes de comprar.`;
+  }
+  try{
+    const out = await cfRun('@cf/meta/llama-3.1-8b-instruct', {
+      messages: [{ role:'user', content: `${system}\nProducto: ${titleEs}` }]
+    });
+    return out?.result?.response || out?.result?.message || '';
+  }catch(e){
+    log('IA review fallback:', e.message);
+    return `**Resumen**: Tendencia destacada del día.
+
+**Pros**
+- Buena relación calidad/precio
+- Útil en el día a día
+- Sencillo de usar
+
+**Contras**
+- Puede no encajar en todos los casos
+- Stock variable
+
+**Recomendación**: compara precios y opiniones antes de comprar.`;
+  }
 }
 
-// === Imagen Pexels 1024x576 ===
+// Imagen de Pexels para productos
 async function pexelsImage(query){
   if (!PEXELS_API_KEY) return '/placeholder.jpg';
   try{
@@ -164,11 +116,13 @@ async function pexelsImage(query){
     url.searchParams.set('query', query);
     url.searchParams.set('per_page', '10');
     url.searchParams.set('orientation', 'landscape');
+
     const res = await fetch(url, { headers: { Authorization: PEXELS_API_KEY } });
     if (!res.ok) throw new Error(`Pexels ${res.status}`);
     const data = await res.json();
     const photo = (data.photos || [])[0];
     if (!photo) return '/placeholder.jpg';
+
     const best = photo.src?.landscape || photo.src?.medium || photo.src?.large || photo.src?.original;
     if (!best) return '/placeholder.jpg';
     return `${best}${best.includes('?') ? '&' : '?'}auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop`;
@@ -178,7 +132,7 @@ async function pexelsImage(query){
   }
 }
 
-// === RSS helper (Reddit) ===
+// Reddit RSS (para semillas de títulos)
 async function fetchRedditTitles(sub){
   const parser = new Parser({
     headers: { 'User-Agent': 'TeknovashopTrendsBot/1.0 (contact: trends@teknovashop.com)' }
@@ -186,71 +140,45 @@ async function fetchRedditTitles(sub){
   const url = `https://www.reddit.com/r/${sub}/top/.rss?t=day`;
   try{
     const feed = await parser.parseURL(url);
-    return (feed.items || []).map(it => it.title).slice(0, 40);
+    return (feed.items || []).map(it => it.title).slice(0, 30);
   }catch(e){
     log('Reddit error', sub, e.message);
     return [];
   }
 }
 
-// === Clasificador robusto: PRODUCTO vs NOTICIA ===
-function isProduct(title) {
-  const s = (title || '').toLowerCase();
-
-  // Señales fuertes de producto (marca/modelo/unidades)
-  const pos = [
-    'review', 'reseña', 'mejor', 'oferta', 'comprar', 'precio', 'deal',
-    'headphones', 'earbuds', 'auriculares', 'teclado', 'ratón', 'mouse',
-    'monitor', 'televisor', 'tv', 'tablet', 'portátil', 'laptop', 'router',
-    'ssd', 'nvme', 'micro sd', 'memoria', 'smartwatch', 'reloj', 'cámara',
-    'aspirador', 'robot', 'air fryer', 'freidora', 'chaqueta', 'zapatillas',
-    'lámpara', 'barbacoa', 'bicicleta', 'colchón', 'cable', 'hub', 'dock',
-    'iphone', 'samsung', 'xiaomi', 'jbl', 'anker', 'sony', 'philips', 'lg', 'huawei',
-    'lenovo', 'dell', 'msi', 'asus', 'gigabyte', 'kingston', 'seagate', 'sandisk'
+// ¿Tiene pinta de producto?
+function looksLikeProduct(q){
+  const kw = [
+    'mejor','review','oferta','rebaja','comprar','precio','auriculares','teclado','ratón','robot','aspirador',
+    'airfryer','silla','monitor','ssd','iphone','samsung','xiaomi','zapatillas','chaqueta','lámpara','cafetera',
+    'tablet','portátil','router','cámara','barbacoa','mancuernas','bicicleta','colchón','android','smartwatch',
+    'reloj','nvme','micro sd','memoria','hdd','powerbank','proyector','altavoz','bluetooth'
   ];
-  const hasPos = pos.some(k => s.includes(k));
-
-  // Unidades/atributos típicos de ficha
-  const unitRe = /\b(\d{2,4}\s?(hz|w|mah|gb|tb|cm|mm|")|\d{1,2}\s?(ah|db)|bluetooth|wifi|usb|usb-c|hdr|ips|amoled|oled|va)\b/i;
-  const looksTechSpec = unitRe.test(s);
-
-  // Señales de noticia/empresa/opinión
-  const neg = [
-    'announc', 'coming to', 'lawsuit', 'trial', 'judge', 'laws', 'policy',
-    'coming soon', 'rumor', 'filtración afirma', 'says', 'claims', 'leak says',
-    'shares plunge', 'earnings', 'analyst', 'reviewers say', 'veto', 'ban',
-    'instagram', 'tiktok', 'facebook', 'youtube', 'spotify', 'netflix', 'twitter',
-    'naysayers', 'court', 'veredicto', 'demanda', 'gobierno', 'política', 'política de'
-  ];
-  const hasNeg = neg.some(k => s.includes(k));
-
-  // Decisión estricta:
-  if (hasNeg && !looksTechSpec) return false;       // Noticia
-  if (hasPos || looksTechSpec) return true;         // Producto
-  return false;                                     // Por defecto, descarta de productos
+  const s = q.toLowerCase();
+  const unit = /\b\d{2,}(\.\d+)?\s?(hz|w|mah|gb|tb|cm|mm|")\b/i.test(q);
+  return kw.some(k => s.includes(k)) || unit;
 }
 
-// === Google Trends fallback (por si Reddit flojo) ===
+// Fallback con Google Trends realtime
 async function fetchGoogleTrendsFallback(){
   try{
     const res = await trends.realTimeTrends({ geo: 'ES', category: 'all', hl: 'es' });
     const payload = JSON.parse(res);
     const titles = [];
     for (const st of (payload?.storySummaries?.trendingStories || [])) {
-      for (const art of (st.articles || [])) {
-        if (art?.title) titles.push(art.title);
-      }
+      for (const art of (st.articles || [])) if (art?.title) titles.push(art.title);
     }
-    // No clasificamos aquí; devolvemos materia prima
-    return [...new Set(titles)].slice(0, 40);
+    const uniq = [...new Set(titles)].slice(0, 40);
+    return uniq;
   }catch(e){
     log('GoogleTrends error', e.message);
     return [];
   }
 }
 
-// === Recoger candidatos por nicho ===
-async function collectRawTitles(){
+// Recopilamos candidatos por nicho
+async function collectCandidates(){
   const out = {};
   for (const [niche, cfg] of Object.entries(niches)) {
     const titles = [];
@@ -258,12 +186,23 @@ async function collectRawTitles(){
       const t = await fetchRedditTitles(sub);
       titles.push(...t);
     }
-    if (titles.length < 8) {
-      const gt = await fetchGoogleTrendsFallback();
-      titles.push(...gt);
-    }
-    out[niche] = [...new Set(titles)].slice(0, 80);
-    log('Niche', niche, 'candidatos crudos', out[niche].length);
+    // Si Reddit flojo, añade GT
+    if (titles.length < 10) titles.push(...await fetchGoogleTrendsFallback());
+
+    // limpieza
+    const cleaned = titles.map(t =>
+      t.replace(/\[.*?\]|\(.*?\)|\b\d{2,}%\b|\b[\d,.]+\s?(%|eur|€|usd|\$)/gi, '').trim()
+    );
+
+    const freq = {};
+    cleaned.forEach(t => { if (t.length >= 8) freq[t.toLowerCase()] = (freq[t.toLowerCase()] || 0) + 1; });
+
+    const sorted = Object.entries(freq).sort((a,b)=>b[1]-a[1]).map(([title,count]) => ({
+      title: title.replace(/^./, m=>m.toUpperCase()),
+      count
+    }));
+
+    out[niche] = sorted;
   }
   return out;
 }
@@ -279,90 +218,82 @@ function buildLinks(q){
 async function main(){
   log('Inicio generación', `${yyyy}-${mm}-${dd}`);
 
-  const raw = await collectRawTitles();
-  const itemsProducts = [];
-  const itemsNews = [];
+  const candidatesByNiche = await collectCandidates();
 
-  for (const [niche, arr] of Object.entries(raw)) {
-    // Clasificar
-    const prods = [];
-    const news  = [];
-    for (const t of (arr || [])) {
-      if (isProduct(t)) prods.push(t);
-      else news.push(t);
-    }
+  const products = []; // para JSON productos
+  const news     = []; // para JSON noticias
 
-    // === Productos (máx 10 por nicho)
-    for (const t of prods.slice(0, 10)) {
-      const titleEs = await toSpanish(t);
-      const slug = slugify(titleEs).slice(0,80) || `item-${Math.random().toString(36).slice(2,8)}`;
-      const hero = await pexelsImage(titleEs);
-      const review = await genReview(titleEs);
+  for (const [niche, arr] of Object.entries(candidatesByNiche)) {
+    // Toma top 12 candidatos por nicho para repartir en productos/noticias
+    for (const { title, count } of (arr || []).slice(0,12)) {
+      const titleEs = await toSpanish(title);
+      const isProduct = looksLikeProduct(titleEs);
 
-      const fm = [
-        '---',
-        `title: "${titleEs.replace(/"/g, '\\"')}"`,
-        `slug: "${slug}"`,
-        `date: "${new Date().toISOString()}"`,
-        `niche: "${niche}"`,
-        `score: 1`,
-        `hero: "${hero}"`,
-        '---',
-      ].join('\n');
+      if (isProduct) {
+        // === Producto ===
+        const slug = slugify(titleEs).slice(0,80) || `item-${Math.random().toString(36).slice(2,8)}`;
+        const hero = await pexelsImage(titleEs);
+        const review = await genReview(titleEs);
 
-      const linksMd = buildLinks(titleEs).map(l => `- [${l.label}](${l.url})`).join('\n');
-      const body = `${fm}
+        const fm = [
+          '---',
+          `title: "${titleEs.replace(/"/g, '\\"')}"`,
+          `slug: "${slug}"`,
+          `date: "${new Date().toISOString()}"`,
+          `niche: "${niche}"`,
+          `score: ${count}`,
+          `hero: "${hero}"`,
+          '---',
+        ].join('\n');
+
+        const linksMd = buildLinks(titleEs).map(l => `- [${l.label}](${l.url})`).join('\n');
+
+        const body = `${fm}
 
 ${review}
 
 **Dónde comparar precios**
 ${linksMd}
 `;
-      fs.writeFileSync(path.join(outDirContentProd, `${slug}.md`), body, 'utf-8');
 
-      itemsProducts.push({ type:'product', slug, title: titleEs, niche, score: 1, hero });
-      log('Producto', niche, slug);
-    }
+        fs.writeFileSync(path.join(outDirContent, `${slug}.md`), body, 'utf-8');
 
-    // === Noticias (máx 10 por nicho)
-    for (const t of news.slice(0, 10)) {
-      const titleEs = await toSpanish(t);
-      const slug = slugify(titleEs).slice(0,80) || `news-${Math.random().toString(36).slice(2,8)}`;
-      const hero = await pexelsImage(titleEs);
-
-      const fm = [
-        '---',
-        `title: "${titleEs.replace(/"/g, '\\"')}"`,
-        `slug: "${slug}"`,
-        `date: "${new Date().toISOString()}"`,
-        `niche: "${niche}"`,
-        `score: 1`,
-        `hero: "${hero}"`,
-        '---',
-      ].join('\n');
-
-      const body = `${fm}
-
-**Resumen**: ${titleEs}.
-`;
-      fs.writeFileSync(path.join(outDirContentNews, `${slug}.md`), body, 'utf-8');
-
-      itemsNews.push({ type:'news', slug, title: titleEs, niche, score: 1, hero });
-      log('Noticia', niche, slug);
+        products.push({ slug, title: titleEs, niche, score: count, hero });
+        log('Producto', niche, slug);
+      } else {
+        // === Noticia === (solo JSON; link a Google News)
+        const q = encodeURIComponent(titleEs);
+        const url = `https://news.google.com/search?q=${q}&hl=es-419&gl=ES&ceid=ES:es`;
+        news.push({
+          title: titleEs,
+          niche,
+          score: count,
+          // Imagen genérica (es tarjeta informativa, no detalle):
+          hero: '/placeholder-news.jpg',
+          url
+        });
+        log('Noticia', niche, titleEs.slice(0,60));
+      }
     }
   }
 
-  // Índices JSON
-  const prodIndex = { date: `${yyyy}-${mm}-${dd}`, items: itemsProducts };
-  fs.writeFileSync(path.join(outDirDataProd, 'index.json'), JSON.stringify(prodIndex, null, 2), 'utf-8');
+  // Escribimos índices
+  fs.writeFileSync(
+    path.join(outDirTrendsData, 'index.json'),
+    JSON.stringify({ date: `${yyyy}-${mm}-${dd}`, items: products }, null, 2),
+    'utf-8'
+  );
 
-  const newsIndex = { date: `${yyyy}-${mm}-${dd}`, items: itemsNews };
-  fs.writeFileSync(path.join(outDirDataNews, 'index.json'), JSON.stringify(newsIndex, null, 2), 'utf-8');
+  fs.writeFileSync(
+    path.join(outDirNewsData, 'index.json'),
+    JSON.stringify({ date: `${yyyy}-${mm}-${dd}`, items: news }, null, 2),
+    'utf-8'
+  );
 
-  log('Total productos', itemsProducts.length, '→', path.join('src/data/trends', `${yyyy}/${mm}/${dd}`));
-  log('Total noticias', itemsNews.length, '→', path.join('src/data/news', `${yyyy}/${mm}/${dd}`));
-
-  if (itemsProducts.length === 0) log('ATENCIÓN: 0 productos. Revisa claves (PEXELS/CF/OPENAI) o nichos.');
+  log('Productos:', products.length, ' | Noticias:', news.length);
+  if (products.length === 0 && news.length === 0) {
+    log('ATENCIÓN: 0 items generados. Revisa conectividad/keys (Pexels / CF IA).');
+  }
 }
 
 main().catch(e => { console.error('Fallo crítico:', e); process.exit(1); });
