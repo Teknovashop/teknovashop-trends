@@ -1,11 +1,8 @@
 ---
 const {
-  title = 'Teknovashop · Productos inteligentes seleccionados',
-  description = 'Plataforma de nicho para productos inteligentes: comparativas, guías y reseñas claras para comprar bien.',
+  title = 'Teknovashop Inteligentes',
+  description = 'Plataforma de nicho para productos inteligentes: tendencias diarias, comparador informativo y guías claras.',
 } = Astro.props;
-
-const url = Astro.url?.origin || 'https://teknovashop.com';
-const canonical = `${url}${Astro.url?.pathname || '/'}`;
 ---
 
 <html lang="es">
@@ -14,108 +11,147 @@ const canonical = `${url}${Astro.url?.pathname || '/'}`;
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-
-    <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/brand/teknovashop-tendencias.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Tipografía del sistema para máximo rendimiento -->
-    <link rel="stylesheet" href="/styles.css" />
-
-    <!-- OpenGraph / Twitter -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Teknovashop" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={`${url}/brand/teknovashop-tendencias.png`} />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <!-- JSON-LD: Organización + Buscador interno -->
-    <script type="application/ld+json">
-      {JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: 'Teknovashop',
-        url,
-        logo: `${url}/brand/teknovashop-tendencias.png`,
-        sameAs: ['https://www.instagram.com/', 'https://www.tiktok.com/']
-      })}
-    </script>
-    <script type="application/ld+json">
-      {JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        url,
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: `${url}/comparador?q={search_term_string}`,
-          'query-input': 'required name=search_term_string'
-        }
-      })}
-    </script>
-
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <link rel="icon" href="/brand/teknovashop-tendencias.png" />
+    <link rel="stylesheet" href="/styles.css" />
     <style>
-      /* Pequeños estilos de cabecera para resaltar la pestaña activa */
-      .nav a.active{ background: var(--surface-3); color: var(--ink-1); }
+      :root{
+        /* Tema claro suave */
+        --bg:#f7fbfe;
+        --panel:#ffffff;
+        --ink:#0e1c22;
+        --ink-soft:#5a7078;
+        --muted:#e7eef3;
+        --brand:#00b9bd;
+        --brand-2:#008e91;
+        --wrap-max:1100px;
+      }
+      *{ box-sizing:border-box; }
+      html,body{ margin:0; padding:0; }
+      body{
+        background: var(--bg);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans';
+        line-height:1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      header.top{
+        position: sticky; top:0; z-index:50;
+        backdrop-filter: saturate(120%) blur(8px);
+        background: rgba(255,255,255,.85);
+        border-bottom: 1px solid var(--muted);
+      }
+      .top-inner{
+        max-width: var(--wrap-max);
+        margin: 0 auto; padding: .8rem 1rem;
+        display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      }
+      .brand{
+        display:flex; align-items:center; gap:.7rem;
+        text-decoration:none; color:var(--ink);
+      }
+      .brand img{ width:34px; height:34px; border-radius:9px; display:block; }
+      .brand span{ font-weight:800; letter-spacing:.2px; }
+      .brand span b{ color: var(--brand); font-weight:900; }
+
+      nav a{
+        color:var(--ink); text-decoration:none; margin-left:.5rem; font-weight:700;
+        padding:.45rem .7rem; border-radius:10px;
+      }
+      nav a:hover{ background: var(--muted); }
+      nav a.active{ background: var(--brand); color:#003133; }
+
+      .wrap{
+        max-width: var(--wrap-max);
+        margin: 1.1rem auto 2rem;
+        padding: 0 1rem;
+      }
+
+      /* Botones base (para que el .btn-ghost sea visible en claro) */
+      .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.45rem;
+        padding:.65rem .95rem; border-radius:12px; font-weight:900; text-decoration:none;
+        border:1px solid #cfe3ea;
+      }
+      .btn-primary{ background: var(--brand); color:#003133; border-color: transparent; }
+      .btn-primary:hover{ filter:brightness(.95); }
+      .btn-ghost{ background:#eef6f9; color:#0b2a2d; }
+      .btn-ghost:hover{ background:#e4f1f4; }
+
+      footer.foot{
+        border-top: 1px solid var(--muted);
+        padding: 1rem 0 1.2rem;
+        color: var(--ink-soft);
+        background: #f3f8fb;
+      }
+      .foot-inner{ max-width: var(--wrap-max); margin: 0 auto; padding: 0 1rem; }
+      .foot a{ color: var(--brand); text-decoration: none; font-weight:800; }
+      .foot a:hover{ color: var(--brand-2); }
+      .social{ display:flex; gap:.7rem; flex-wrap:wrap; margin:.6rem 0 0; }
+      .social a{ display:inline-flex; align-items:center; gap:.45rem; background:#eaf3f7; padding:.4rem .6rem; border-radius:10px; border:1px solid #dbe9ee; color:#0c2a2d; text-decoration:none; font-weight:800; }
+      .social a:hover{ background:#e2eef3; }
+
+      h1,h2,h3{ line-height:1.25; margin:0 0 .5rem; }
+      a{ color: var(--brand); }
+      a:hover{ color: var(--brand-2); }
+
+      @media (max-width: 560px){
+        nav a{ margin-left:.25rem; }
+        .brand span{ font-size:.98rem; }
+      }
     </style>
   </head>
-  <body>
-    <header class="site-top">
-      <div class="wrap row-between gap-16">
-        <a class="brand row-center gap-12" href="/" aria-label="Teknovashop inicio">
-          <img src="/brand/teknovashop-tendencias.png" width="36" height="36" alt="" class="logo" loading="eager" />
-          <span class="brand-title">Teknovashop <b>Inteligentes</b></span>
-        </a>
 
-        <nav class="nav row-center gap-4" aria-label="Principal">
-          <a href="/hoy" class={Astro.url.pathname.startsWith('/hoy') ? 'active' : ''}>Hoy</a>
-          <a href="/archivo" class={Astro.url.pathname.startsWith('/archivo') ? 'active' : ''}>Archivo</a>
-          <a href="/comparador" class={Astro.url.pathname.startsWith('/comparador') ? 'active' : ''}>Comparador</a>
-          <a href="/acerca" class={Astro.url.pathname.startsWith('/acerca') ? 'active' : ''}>Acerca</a>
+  <body>
+    <header class="top">
+      <div class="top-inner">
+        <a href="/" class="brand">
+          <img src="/brand/teknovashop-tendencias.png" alt="Teknovashop" onerror="this.style.display='none'" />
+          <span>Teknovashop <b>Inteligentes</b></span>
+        </a>
+        <nav>
+          <a href="/hoy">Hoy</a>
+          <a href="/archivo">Archivo</a>
+          <a href="/comparador">Comparador</a>
+          <a href="/acerca">Acerca</a>
         </nav>
       </div>
     </header>
 
-    <main class="wrap main">
+    <main class="wrap">
       <slot />
     </main>
 
-    <footer class="site-foot">
-      <div class="wrap">
-        <div class="foot-grid">
-          <div>
-            <div class="row-center gap-12">
-              <img src="/brand/teknovashop-tendencias.png" alt="" width="28" height="28" class="logo" />
-              <strong>Teknovashop</strong>
-            </div>
-            <p class="muted mt-8">Plataforma de nicho para productos inteligentes: seleccionamos, comparamos y explicamos.</p>
-          </div>
+    <footer class="foot">
+      <div class="foot-inner">
+        <small>
+          © {new Date().getFullYear()} Teknovashop · Algunos enlaces pueden ser de afiliado ·
+          <a href="/legal"> Avisos legales</a>
+        </small>
 
-          <div>
-            <h4>Enlaces</h4>
-            <ul class="list">
-              <li><a href="/hoy">Tendencias de hoy</a></li>
-              <li><a href="/archivo">Archivo</a></li>
-              <li><a href="/comparador">Comparador</a></li>
-              <li><a href="/acerca">Acerca</a></li>
-              <li><a href="/legal">Avisos legales</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>Boletín</h4>
-            <p class="muted">Un email a la semana con chollos y guías útiles (sin spam).</p>
-            <form class="row gap-8 mt-8" onsubmit="event.preventDefault(); alert('¡Gracias!');">
-              <input class="input" type="email" placeholder="tu@email.com" aria-label="Correo" required />
-              <button class="btn">Suscribirme</button>
-            </form>
-          </div>
-        </div>
-
-        <div class="foot-meta">
-          <small>© {new Date().getFullYear()} Teknovashop · Algunos enlaces pueden ser de afiliado · <a href="/legal">Avisos legales</a></small>
+        <!-- Redes -->
+        <div class="social">
+          <a href="https://www.instagram.com/tu_usuario" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.tiktok.com/@tu_usuario" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://www.youtube.com/@tu_usuario" target="_blank" rel="noopener">YouTube</a>
+          <a href="mailto:hola@teknovashop.com">Contacto</a>
         </div>
       </div>
     </footer>
+
+    <script is:raw>
+      // Marcar nav activo
+      const navLinks = document.querySelectorAll('header nav a');
+      navLinks.forEach(a => {
+        try{
+          const u = new URL(a.href);
+          if (location.pathname === u.pathname) a.classList.add('active');
+        }catch{}
+      });
+    </script>
   </body>
 </html>
