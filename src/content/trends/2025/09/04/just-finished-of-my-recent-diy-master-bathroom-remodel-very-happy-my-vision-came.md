@@ -1,12 +1,12 @@
 ---
 title: "Just finished  of my recent diy master bathroom remodel! very happy my vision came to life after two long months of work."
 slug: "just-finished-of-my-recent-diy-master-bathroom-remodel-very-happy-my-vision-came"
-date: "2025-09-04T11:13:55.450Z"
+date: "2025-09-04T11:32:43.010Z"
 niche: "hogar"
 score: 1
 hero: "https://images.pexels.com/photos/3844524/pexels-photo-3844524.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
 rating: 4.1
-ratingCount: 116
+ratingCount: 94
 reviews:
   - author: "María"
     rating: 4.5

@@ -1,12 +1,12 @@
 ---
 title: "If you could only wear one pair of sunglasses for the rest of your life, which ones are making the cut?"
 slug: "if-you-could-only-wear-one-pair-of-sunglasses-for-the-rest-of-your-life-which-on"
-date: "2025-09-04T11:13:58.197Z"
+date: "2025-09-04T11:32:46.885Z"
 niche: "moda"
 score: 1
 hero: "https://images.pexels.com/photos/1040790/pexels-photo-1040790.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
 rating: 4.2
-ratingCount: 42
+ratingCount: 75
 reviews:
   - author: "María"
     rating: 4.5

@@ -1,12 +1,12 @@
 ---
 title: "Favorite heavyweight t-shirts?"
 slug: "favorite-heavyweight-t-shirts"
-date: "2025-09-04T11:13:59.432Z"
+date: "2025-09-04T11:32:48.767Z"
 niche: "moda"
 score: 1
 hero: "https://images.pexels.com/photos/8295027/pexels-photo-8295027.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
 rating: 4.3
-ratingCount: 41
+ratingCount: 62
 reviews:
   - author: "María"
     rating: 4.5

@@ -1,12 +1,12 @@
 ---
 title: "Suit traditions: english vs italian vs american cuts — what’s the real difference in how they wear?"
 slug: "suit-traditions-english-vs-italian-vs-american-cuts-what-s-the-real-difference-i"
-date: "2025-09-04T11:13:59.150Z"
+date: "2025-09-04T11:32:48.321Z"
 niche: "moda"
 score: 1
 hero: "https://images.pexels.com/photos/19153799/pexels-photo-19153799.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
 rating: 4.1
-ratingCount: 67
+ratingCount: 40
 reviews:
   - author: "María"
     rating: 4.5

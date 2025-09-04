@@ -1,12 +1,12 @@
 ---
 title: "Well that was a nightmare building"
 slug: "well-that-was-a-nightmare-building"
-date: "2025-09-04T11:13:57.170Z"
+date: "2025-09-04T11:32:45.394Z"
 niche: "fitness"
 score: 1
 hero: "https://images.pexels.com/photos/4874503/pexels-photo-4874503.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-rating: 4.3
-ratingCount: 104
+rating: 4.2
+ratingCount: 76
 reviews:
   - author: "María"
     rating: 4.5

@@ -1,12 +1,12 @@
 ---
 title: "Tesco tries out in-store avocado scanners to assess ripeness"
 slug: "tesco-tries-out-in-store-avocado-scanners-to-assess-ripeness"
-date: "2025-09-04T11:13:53.266Z"
+date: "2025-09-04T11:32:39.700Z"
 niche: "tecnologia"
 score: 1
 hero: "https://images.pexels.com/photos/2304053/pexels-photo-2304053.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-rating: 4.1
-ratingCount: 53
+rating: 4.2
+ratingCount: 80
 reviews:
   - author: "María"
     rating: 4.5

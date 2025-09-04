@@ -1,12 +1,12 @@
 ---
 title: "Acer chromebook plus spin 514 review: the new chromeos sweet spot"
 slug: "acer-chromebook-plus-spin-514-review-the-new-chromeos-sweet-spot"
-date: "2025-09-04T11:13:54.303Z"
+date: "2025-09-04T11:32:41.411Z"
 niche: "tecnologia"
 score: 1
 hero: "https://images.pexels.com/photos/16576790/pexels-photo-16576790.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-rating: 4.2
-ratingCount: 96
+rating: 4.1
+ratingCount: 91
 reviews:
   - author: "María"
     rating: 4.5

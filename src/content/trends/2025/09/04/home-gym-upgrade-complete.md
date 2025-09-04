@@ -1,12 +1,12 @@
 ---
 title: "Home gym upgrade complete"
 slug: "home-gym-upgrade-complete"
-date: "2025-09-04T11:13:56.530Z"
+date: "2025-09-04T11:32:44.514Z"
 niche: "fitness"
 score: 1
 hero: "https://images.pexels.com/photos/6972784/pexels-photo-6972784.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
 rating: 4.2
-ratingCount: 85
+ratingCount: 92
 reviews:
   - author: "María"
     rating: 4.5

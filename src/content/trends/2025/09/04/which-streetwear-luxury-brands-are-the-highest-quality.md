@@ -1,12 +1,12 @@
 ---
 title: "Which streetwear luxury brands are the highest quality?"
 slug: "which-streetwear-luxury-brands-are-the-highest-quality"
-date: "2025-09-04T11:13:58.805Z"
+date: "2025-09-04T11:32:47.850Z"
 niche: "moda"
 score: 1
 hero: "https://images.pexels.com/photos/4061395/pexels-photo-4061395.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-rating: 4.1
-ratingCount: 87
+rating: 4.2
+ratingCount: 45
 reviews:
   - author: "María"
     rating: 4.5

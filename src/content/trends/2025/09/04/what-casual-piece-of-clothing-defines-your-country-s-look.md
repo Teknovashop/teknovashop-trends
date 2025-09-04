@@ -1,12 +1,12 @@
 ---
 title: "What casual piece of clothing defines your country’s look?"
 slug: "what-casual-piece-of-clothing-defines-your-country-s-look"
-date: "2025-09-04T11:13:58.517Z"
+date: "2025-09-04T11:32:47.455Z"
 niche: "moda"
 score: 1
 hero: "https://images.pexels.com/photos/6069958/pexels-photo-6069958.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
 rating: 4.2
-ratingCount: 116
+ratingCount: 89
 reviews:
   - author: "María"
     rating: 4.5
