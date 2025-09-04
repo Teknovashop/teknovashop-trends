@@ -2,24 +2,30 @@
 import Base from "@/layouts/Base.astro";
 import Reviews from "@/components/Reviews.astro";
 
-// Slug desde la ruta dinámica
-const { slug } = Astro.params as { slug: string };
+/** 
+ * Enumeramos todos los .md que tengan frontmatter.slug para generar páginas
+ * como /producto/<slug>
+ */
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../../content/**/*.md', { eager: true });
 
-// Cargamos TODOS los .md de contenido (trends/news, etc.)
-const mdModules = import.meta.glob('../../content/**/*.md', { eager: true });
-
-// Buscamos el que tenga frontmatter.slug === slug
-let entry: any = null;
-for (const [_, mod] of Object.entries(mdModules)) {
-  const fm = (mod as any).frontmatter || (mod as any).metadata;
-  if (fm?.slug === slug) {
-    entry = mod;
-    break;
+  const paths: any[] = [];
+  for (const [_p, mod] of Object.entries(modules)) {
+    const fm = (mod as any).frontmatter || (mod as any).metadata;
+    if (fm?.slug) {
+      paths.push({
+        params: { slug: fm.slug },
+        props: { entry: mod }, // Pasamos el módulo para no volver a resolverlo
+      });
+    }
   }
+  return paths;
 }
 
+// Recibimos el módulo markdown ya resuelto desde getStaticPaths
+const { entry } = Astro.props as any;
 if (!entry) {
-  throw new Error(`Producto no encontrado: ${slug}`);
+  throw new Error('Entrada no encontrada para este slug');
 }
 
 const frontmatter = entry.frontmatter || entry.metadata;
