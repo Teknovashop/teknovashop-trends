@@ -27,6 +27,14 @@
     },
     {
       "type": "product",
+      "slug": "el-presidente-de-venezuela-nicolas-maduro-piensa-que-los-espias-estadounidenses-",
+      "title": "El presidente de Venezuela, Nicolás Maduro, piensa que los espías estadounidenses no pueden hackear los teléfonos Huawei.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3812729/pexels-photo-3812729.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
+    },
+    {
+      "type": "product",
       "slug": "sony-impone-un-muro-de-pago-de-5-dolares-al-mes-en-un-telefono-de-2000-dolares-l",
       "title": "Sony impone un muro de pago de 5 dólares al mes en un teléfono de 2000 dólares | Louis Rossmann",
       "niche": "tecnologia",
@@ -43,19 +51,19 @@
     },
     {
       "type": "product",
-      "slug": "conoce-el-samsung-galaxy-s25-fe-la-puerta-de-entrada-a-la-inteligencia-artificia",
-      "title": "Conoce el Samsung Galaxy S25 FE: La puerta de entrada a la inteligencia artificial de Galaxy y a lo esencial de los teléfonos insignia",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/3801516/pexels-photo-3801516.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
       "slug": "conoce-la-serie-samsung-galaxy-tab-s11-todo-lo-que-esperas-de-una-tableta-premiu",
       "title": "Conoce la serie Samsung Galaxy Tab S11: Todo lo que esperas de una tableta premium.",
       "niche": "tecnologia",
       "score": 1,
       "hero": "https://images.pexels.com/photos/214488/pexels-photo-214488.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
+    },
+    {
+      "type": "product",
+      "slug": "conoce-el-samsung-galaxy-s25-fe-la-puerta-de-entrada-a-la-inteligencia-artificia",
+      "title": "Conoce el Samsung Galaxy S25 FE: La puerta de entrada a la inteligencia artificial de Galaxy y a lo esencial de los buques insignia",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3801516/pexels-photo-3801516.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
     },
     {
       "type": "product",
@@ -75,14 +83,6 @@
     },
     {
       "type": "product",
-      "slug": "la-base-del-iphone-17-pro-podria-costar-200-dolares-mas-pero-con-el-doble-de-alm",
-      "title": "La base del iPhone 17 Pro podría costar 200 dólares más, pero con el doble de almacenamiento.",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/28593318/pexels-photo-28593318.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
       "slug": "tratando-con-hormigas",
       "title": "Tratando con hormigas",
       "niche": "hogar",
@@ -99,16 +99,8 @@
     },
     {
       "type": "product",
-      "slug": "cuales-son-las-mejores-mesas-o-tableros-de-ikea-para-personas-con-un-presupuesto",
-      "title": "¿Cuáles son las mejores mesas o tableros de IKEA para personas con un presupuesto ajustado?",
-      "niche": "hogar",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/5522288/pexels-photo-5522288.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
       "slug": "las-luces-philips-hue-se-vuelven-mas-grandes-mas-brillantes-y-mas-baratas-con-un",
-      "title": "Las luces Philips Hue se vuelven más grandes, más brillantes y más baratas con una importante renovación de productos",
+      "title": "Las luces Philips Hue se vuelven más grandes, más brillantes y más baratas con una importante renovación de productos.",
       "niche": "hogar",
       "score": 1,
       "hero": "https://images.pexels.com/photos/19341988/pexels-photo-19341988.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
