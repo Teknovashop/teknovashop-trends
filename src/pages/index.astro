@@ -1,206 +1,47 @@
 ---
 import Base from "@/layouts/Base.astro";
-
-/** Tipos */
-type TrendItem = { slug: string; title: string; niche: string; hero?: string; score?: number };
-type TrendIndex = { date: string; items: TrendItem[] };
-
-/** 1) Intentamos leer el último index.json desde src/data/trends/... */
-const indexes = import.meta.glob("@/data/trends/**/index.json", {
-  eager: true,
-  import: "default",
-}) as Record<string, TrendIndex>;
-
-function toTime(v?: string){ const t = v ? Date.parse(v) : 0; return Number.isNaN(t)?0:t; }
-const allIdx = Object.entries(indexes).map(([path, data]) => ({ path, data }));
-allIdx.sort((a,b)=> (toTime(b.data?.date)||Date.parse(b.path)) - (toTime(a.data?.date)||Date.parse(a.path)));
-const latest = allIdx[0]?.data;
-let featured: TrendItem[] = (latest?.items ?? []).slice(0, 6);
-
-/** 2) Si no hay “featured”, caemos a los MD más recientes */
-if (!featured?.length) {
-  const md = import.meta.glob("@/content/trends/**/*.md", { eager: true }) as Record<
-    string,
-    { frontmatter: Record<string, any> }
-  >;
-  const entries = Object.entries(md).map(([path, mod]) => {
-    const fm = mod.frontmatter || {};
-    return {
-      slug: fm.slug || path.split("/").pop()?.replace(".md",""),
-      title: fm.title || "Tendencia",
-      niche: fm.niche || "general",
-      hero: fm.hero || "/placeholder.jpg",
-      score: fm.score || 1,
-      date: fm.date ? Date.parse(fm.date) : 0,
-      rating: fm.rating,
-      ratingCount: fm.ratingCount ?? fm.reviews,
-    };
-  });
-  entries.sort((a,b)=> b.date - a.date);
-  featured = entries.slice(0,6).map(({slug,title,niche,hero,score}) => ({slug,title,niche,hero,score}));
-}
-
-/** 3) Para pintar rating real desde los MD */
-const mdModules = import.meta.glob("@/content/trends/**/*.md", { eager: true }) as Record<
-  string,
-  { frontmatter: Record<string, any> }
->;
-function fmBySlug(slug: string){
-  const entry = Object.entries(mdModules).find(([p]) => p.endsWith(`/${slug}.md`));
-  return entry?.[1]?.frontmatter ?? {};
-}
-function starsHTML(rating?: number) {
-  if (!rating || rating <= 0) return "";
-  const r = Math.max(0, Math.min(5, rating));
-  const full = Math.floor(r);
-  const half = r - full >= 0.5 ? 1 : 0;
-  const empty = 5 - full - half;
-  const star = (filled=true)=> filled
-    ? `<svg width="14" height="14" viewBox="0 0 24 24"><path fill="#f6c94a" d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.402 8.168L12 18.896 4.664 23.165l1.402-8.168L.132 9.21l8.2-1.192L12 .587z"/></svg>`
-    : `<svg width="14" height="14" viewBox="0 0 24 24"><path fill="#d7dee3" d="M22.765 9.21l-7.09-1.03L12 .587 8.325 8.18l-7.09 1.03 5.13 5.002-1.21 7.053L12 18.896l6.845 3.37-1.21-7.053 5.13-5.002z"/></svg>`;
-  let html = "";
-  for (let i=0;i<full;i++) html += star(true);
-  if (half) html += star(true);
-  for (let i=0;i<empty;i++) html += star(false);
-  return html;
-}
 ---
 
-<Base title="Teknovashop · Productos inteligentes con criterio" description="Plataforma de nicho para productos inteligentes. Tendencias diarias, comparador informativo y guías claras para acertar.">
-  <!-- HERO -->
+<Base title="Teknovashop · Productos inteligentes con criterio" description="Plataforma de nicho para productos inteligentes. Tendencias diarias (productos), noticias relevantes, comparador informativo y guías en español.">
   <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <h1>Productos inteligentes, <span>con criterio</span></h1>
-        <p>Especialistas en tecnología útil para el día a día. Tendencias revisadas, comparador informativo y guías claras para acertar.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="/hoy">Ver tendencias de hoy</a>
-          <a class="btn btn-ghost" href="/comparador">Comparar precios</a>
-        </div>
-        <small class="note">El comparador es informativo (sin afiliados). Las tendencias pueden contener enlaces de afiliado.</small>
-      </div>
-      <div class="hero-card">
-        <div class="badge">NOVEDAD</div>
-        <h3>Tendencias diarias</h3>
-        <p>Analizamos lo que se mueve en la comunidad tech y te lo servimos en español.</p>
-        <a class="mini" href="/archivo">Ver archivo →</a>
+    <div class="left">
+      <h1>Productos inteligentes, <span class="color">con criterio</span></h1>
+      <p class="lead">
+        Especialistas en tecnología útil para el día a día. Tendencias revisadas, comparador informativo y guías claras para acertar.
+      </p>
+      <div class="cta">
+        <a class="btn" href="/hoy/">Ver tendencias de hoy</a>
+        <a class="btn ghost" href="/comparador/">Comparar precios</a>
       </div>
     </div>
+
+    <aside class="badge">
+      <div class="pill">NOVEDAD</div>
+      <h3>Tendencias diarias</h3>
+      <p>Analizamos lo que se mueve en la comunidad tech y te lo servimos en español.</p>
+      <a class="link" href="/hoy/">Ver productos →</a>
+      <hr/>
+      <h3>Noticias relevantes</h3>
+      <p>Las conversaciones que importan hoy en tecnología.</p>
+      <a class="link" href="/noticias/">Ver noticias →</a>
+    </aside>
   </section>
 
-  <!-- Puntos fuertes (resumen) -->
-  <section class="strengths">
-    <h2>Por qué Teknovashop</h2>
-    <div class="cols">
-      <article class="s-card"><h3>1) Nicho definido</h3><p>Especialistas en <b>productos inteligentes</b>. Selección de calidad y marca confiable.</p></article>
-      <article class="s-card"><h3>2) UX excepcional</h3><p>Rápida, clara y sin fricciones: de la tendencia a comparar, todo fluye.</p></article>
-      <article class="s-card"><h3>3) Contenido de valor</h3><p>Guías, comparativas y reseñas útiles. Menos ruido, mejores decisiones (y SEO).</p></article>
-      <article class="s-card"><h3>4) Confianza/valoraciones</h3><p>Metodología y transparencia. Enseñamos valoraciones cuando proceden.</p></article>
-      <article class="s-card"><h3>5) Marketing de nicho</h3><p>Mostramos los productos en acción y colaboramos con <b>tech reviewers</b>.</p></article>
-    </div>
-  </section>
-
-  <!-- Destacados -->
-  <section class="featured">
-    <div class="head">
-      <h2>Destacados de hoy</h2>
-      <a class="mini" href="/hoy">Ver todo →</a>
-    </div>
-
-    <div class="grid">
-      {
-        featured.map((it) => {
-          const fm = fmBySlug(it.slug);
-          const title = fm.title || it.title;
-          const hero = fm.hero || it.hero || "/placeholder.jpg";
-          const rating = typeof fm.rating === "number" ? fm.rating : undefined;
-          const ratingCount =
-            typeof fm.ratingCount === "number" ? fm.ratingCount :
-            typeof fm.reviews === "number" ? fm.reviews : undefined;
-
-          return (
-            <a class="f-card" href={`/producto/${it.slug}/`}>
-              <div class="pic">
-                <img src={hero} alt={title} loading="lazy" />
-                <span class="chip">{it.niche}</span>
-              </div>
-              <h3>{title}</h3>
-              {
-                rating && (
-                  <div class="feat-rating" set:html={`
-                    ${starsHTML(rating)}
-                    <small>${rating.toFixed(1)}${ratingCount ? ` · ${ratingCount.toLocaleString('es-ES')}` : ""}</small>
-                  `} />
-                )
-              }
-            </a>
-          );
-        })
-      }
-      {featured.length === 0 && <p class="muted">Aún no hay destacados. Vuelve más tarde.</p>}
-    </div>
-  </section>
-
-  <!-- CTA comparador + archivo -->
-  <section class="content-bloc">
-    <div class="c-inner">
-      <div>
-        <h3>Comparador informativo</h3>
-        <p>Pega un nombre o una URL de producto y te abrimos búsquedas relevantes por país y tienda. <b>Sin afiliados</b>.</p>
-        <a class="btn btn-primary" href="/comparador">Probar comparador</a>
-      </div>
-      <div class="sep"></div>
-      <div>
-        <h3>Guías y archivos</h3>
-        <p>Consulta tendencias anteriores y nuestras mejores comparativas y guías para comprar con cabeza.</p>
-        <a class="btn btn-ghost" href="/archivo">Ver archivo</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- Resto de tu home (puntos fuertes, etc.) -->
   <style>
-    /* Copiamos estilos clave del layout para secciones */
-    .hero{
-      background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.35));
-      border:1px solid #d9e7ed; border-radius:20px; padding: clamp(1rem, 2.5vw, 1.6rem); margin:.4rem 0 1.2rem;
-    }
-    .hero-inner{ display:grid; grid-template-columns: 1.4fr .9fr; gap:1rem; align-items:stretch; }
-    @media (max-width:860px){ .hero-inner{ grid-template-columns: 1fr; } }
-    .hero-copy h1{ font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin:.2rem 0 .5rem; font-weight:900; letter-spacing:.2px; }
-    .hero-copy h1 span{ color:#00b9bd; }
-    .hero-copy p{ color:#5a7078; margin:0 0 .8rem; max-width:54ch; }
-    .cta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:.3rem; }
-    .note{ color:#5a7078; display:block; margin-top:.3rem; }
-
-    .hero-card{ background:#ffffff; border:1px solid #d9e7ed; border-radius:16px; padding:1rem; box-shadow:0 8px 24px rgba(26,86,94,.08); }
-    .hero-card .badge{ display:inline-block; padding:.18rem .5rem; border-radius:999px; background:#e6fbfb; color:#0a2f30; font-size:.75rem; font-weight:900; margin-bottom:.4rem; }
-    .hero-card h3{ margin:.1rem 0 .3rem; }
-    .hero-card p{ color:#5a7078; margin:0 0 .4rem; }
-    .mini{ color:#00b9bd; text-decoration:none; font-weight:800; }
-    .mini:hover{ color:#008e91; }
-
-    .strengths{ margin: 1.2rem 0; }
-    .strengths h2{ margin:0 0 .8rem; }
-    .cols{ display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap:.8rem; }
-    .s-card{ background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.55)); border:1px solid #d9e7ed; border-radius:14px; padding:.9rem; }
-    .s-card p{ color:#5a7078; }
-
-    .featured{ margin:1.2rem 0; }
-    .featured .head{ display:flex; align-items:center; justify-content:space-between; gap:.6rem; margin-bottom:.6rem; }
-    .featured .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:.9rem; }
-    .f-card{ display:block; background:#ffffff; border:1px solid #d9e7ed; border-radius:14px; overflow:hidden; text-decoration:none; transition: transform .16s ease, box-shadow .16s ease; box-shadow:0 8px 24px rgba(26,86,94,.06); }
-    .f-card:hover{ transform: translateY(-2px); box-shadow:0 10px 28px rgba(26,86,94,.1); }
-    .pic{ position:relative; aspect-ratio: 16/9; overflow:hidden; }
-    .pic img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .chip{ position:absolute; left:.6rem; bottom:.6rem; background:#0e2d30; color:#d9ffff; border-radius:999px; padding:.2rem .55rem; font-size:.72rem; font-weight:900; box-shadow:0 6px 14px rgba(0,0,0,.18); }
-    .f-card h3{ padding:.6rem .8rem 0; color:#0e1c22; font-size:1rem; }
-    .feat-rating{ display:flex; align-items:center; gap:.35rem; padding:.45rem .8rem .8rem; color:#5a7078; }
-
-    .content-bloc{ background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.45)); border:1px solid #d9e7ed; border-radius:16px; margin:1.2rem 0 1.6rem; padding:1rem; }
-    .c-inner{ display:grid; grid-template-columns: 1fr 20px 1fr; gap:.8rem; align-items:center; }
-    .sep{ width:1px; height:100%; background:#d9e7ed; justify-self:center; }
-    @media (max-width:800px){ .c-inner{ grid-template-columns: 1fr; } .sep{ display:none; } }
-
-    .muted{ color:#5a7078; }
+    .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap:24px; align-items:start }
+    .left h1{ font-size:2.2rem; line-height:1.1; margin:0 0 .5rem }
+    .color{ color:#0ea5e9 }
+    .lead{ color:#475569; margin:0 0 1rem }
+    .cta{ display:flex; gap:.5rem; flex-wrap:wrap }
+    .btn{ background:#0ea5e9; color:#fff; font-weight:800; border:0; padding:.7rem 1rem; border-radius:12px; text-decoration:none }
+    .btn.ghost{ background:#e6f7f7; color:#065f5b }
+    .badge{ background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:1rem }
+    .pill{ display:inline-block; background:#ecfccb; color:#3f6212; font-weight:800; font-size:.75rem; padding:.2rem .5rem; border-radius:999px; margin-bottom:.4rem }
+    .badge h3{ margin:.2rem 0 }
+    .badge p{ color:#475569; margin:.2rem 0 .6rem }
+    .badge hr{ border:0; border-top:1px dashed #e5e7eb; margin:.6rem 0 }
+    .link{ color:#0ea5e9; font-weight:800; text-decoration:none }
+    @media (max-width:900px){ .hero{ grid-template-columns: 1fr; } }
   </style>
 </Base>
