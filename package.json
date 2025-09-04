@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "trends:daily": "node scripts/trends_daily.mjs"
+    "trends:daily": "node scripts/trends_daily.mjs",
+    "products:daily": "npm run trends:daily"
   },
   "engines": {
     "node": "20.x"
