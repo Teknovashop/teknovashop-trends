@@ -117,6 +117,7 @@ const {
           <a href="/hoy">Hoy</a>
           <a href="/archivo">Archivo</a>
           <a href="/comparador">Comparador</a>
+          <a href="/noticias">Noticias</a>
           <a href="/acerca">Acerca</a>
         </nav>
       </div>
@@ -144,12 +145,13 @@ const {
     </footer>
 
     <script is:raw>
-      // Marcar nav activo
-      const navLinks = document.querySelectorAll('header nav a');
-      navLinks.forEach(a => {
+      // Marcar nav activo (tolerante con / final)
+      const norm = (p) => (p.endsWith('/') ? p.slice(0, -1) : p);
+      const here = norm(location.pathname);
+      document.querySelectorAll('header nav a').forEach(a => {
         try{
           const u = new URL(a.href);
-          if (location.pathname === u.pathname) a.classList.add('active');
+          if (here === norm(u.pathname)) a.classList.add('active');
         }catch{}
       });
     </script>
