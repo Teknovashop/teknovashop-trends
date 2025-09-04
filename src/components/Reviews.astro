@@ -1,0 +1,82 @@
+---
+const { slug, title } = Astro.props as { slug:string; title:string };
+---
+<section class="reviews">
+  <h2>Reseñas de clientes</h2>
+  <div id="rev-head" class="head">
+    <div class="stars" id="rev-stars" aria-label="Valoración media"></div>
+    <small id="rev-count"></small>
+  </div>
+
+  <form id="rev-form" class="card" on:submit="return false;">
+    <input type="text" name="hp" id="hp" style="display:none" />
+    <label>Nombre</label>
+    <input name="name" id="name" required maxlength="40" placeholder="Tu nombre" />
+    <label>Valoración</label>
+    <select name="rating" id="rating">
+      <option value="5">5 - Excelente</option>
+      <option value="4">4 - Muy buena</option>
+      <option value="3">3 - Normal</option>
+      <option value="2">2 - Mejorable</option>
+      <option value="1">1 - Mala</option>
+    </select>
+    <label>Comentario</label>
+    <textarea name="comment" id="comment" required minlength="10" maxlength="1200" placeholder="Cuenta tu experiencia..."></textarea>
+    <button class="btn" id="send">Enviar reseña</button>
+    <div id="msg" class="msg"></div>
+  </form>
+
+  <div id="rev-list" class="list"></div>
+</section>
+
+<style>
+  .reviews{ margin-top:2rem }
+  .head{ display:flex; gap:.7rem; align-items:center; margin-bottom:.5rem }
+  .stars{ font-size:1.1rem }
+  .card{ display:grid; gap:.5rem; padding:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:12px }
+  .btn{ background:#0ea5e9; border:0; color:#fff; padding:.6rem .9rem; border-radius:10px; cursor:pointer; font-weight:700 }
+  input, textarea, select{ padding:.55rem .7rem; border-radius:8px; border:1px solid #e5e7eb }
+  .list{ margin-top:1rem; display:grid; gap:.7rem }
+  .item{ border:1px solid #e5e7eb; background:#fff; border-radius:12px; padding:.75rem }
+  .meta{ display:flex; gap:.5rem; align-items:center; margin-bottom:.35rem; color:#4b5563; font-size:.9rem }
+  .msg{ font-size:.9rem; color:#065f46 }
+</style>
+
+<script is:raw>
+  const slug = ${JSON.stringify(slug)};
+  function starify(n){
+    const full = '★'.repeat(Math.round(n));
+    const empty = '☆'.repeat(5-Math.round(n));
+    return `<span title="${n}/5">${full}${empty}</span>`;
+  }
+  async function load(){
+    const res = await fetch(`/api/reviews/${encodeURIComponent(slug)}?limit=30`);
+    const data = await res.json();
+    document.getElementById('rev-stars').innerHTML = starify(data.avg || 0);
+    document.getElementById('rev-count').innerText = data.count ? `${data.count} reseñas` : 'Sé el primero en opinar';
+    const list = document.getElementById('rev-list');
+    list.innerHTML = (data.items || []).map(it => `
+      <div class="item">
+        <div class="meta"><b>${it.name}</b> · ${new Date(it.created_at).toLocaleDateString()} · ${starify(it.rating)}</div>
+        <div>${(it.comment || '').replace(/</g,'&lt;')}</div>
+      </div>
+    `).join('');
+  }
+  load();
+
+  document.getElementById('send').addEventListener('click', async ()=>{
+    const name = (document.getElementById('name').value || '').trim();
+    const rating = document.getElementById('rating').value;
+    const comment = (document.getElementById('comment').value || '').trim();
+    const msg = document.getElementById('msg');
+    msg.textContent = 'Enviando...';
+    const res = await fetch('/api/reviews', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ slug, name, rating, comment, hp:'' })
+    });
+    const data = await res.json();
+    if (data.ok){ msg.textContent = '¡Gracias! Tu reseña aparecerá en unos segundos.'; load(); (document.getElementById('rev-form') as any).reset?.(); }
+    else { msg.textContent = data.error || 'Error al enviar'; }
+  });
+</script>
