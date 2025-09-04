@@ -2,108 +2,25 @@
   "date": "2025-09-04",
   "items": [
     {
-      "type": "product",
-      "slug": "los-robots-de-entrega-listos-para-caminar-y-rodar-en-el-proyecto-de-correos-suiz",
-      "title": "Los robots de entrega listos para caminar y rodar en el proyecto de Correos Suizo",
+      "slug": "delivery-robots-set-to-walk-n-roll-in-swiss-post-project",
+      "title": "Delivery robots set to walk n' roll in swiss post project",
       "niche": "tecnologia",
       "score": 1,
-      "hero": "https://images.pexels.com/photos/19854781/pexels-photo-19854781.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
+      "hero": "https://images.pexels.com/photos/20196723/pexels-photo-20196723.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
     },
     {
-      "type": "product",
-      "slug": "estacion-de-acoplamiento-de-objetos-de-ciencia-ficcion-para-mesa-sabes-donde-des",
-      "title": "Estación de acoplamiento de objetos de ciencia ficción para mesa – Sabes dónde despegar para tu misión diaria",
+      "slug": "tabletop-sci-fi-object-docking-station-you-know-where-to-lift-off-for-you-daily-",
+      "title": "Tabletop sci-fi object docking station – you know where to lift off for you daily mission",
       "niche": "tecnologia",
       "score": 1,
-      "hero": "https://images.pexels.com/photos/2007390/pexels-photo-2007390.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
+      "hero": "https://images.pexels.com/photos/5612818/pexels-photo-5612818.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
     },
     {
-      "type": "product",
-      "slug": "el-altavoz-bluetooth-grip-de-jbl-tambien-funciona-como-una-elegante-luz-de-lectu",
-      "title": "El altavoz Bluetooth Grip de JBL también funciona como una elegante luz de lectura.",
+      "slug": "jbl-s-grip-bluetooth-speaker-doubles-as-a-snazzy-reading-light",
+      "title": "Jbl's grip bluetooth speaker doubles as a snazzy reading light",
       "niche": "tecnologia",
       "score": 1,
-      "hero": "https://images.pexels.com/photos/20285555/pexels-photo-20285555.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "el-presidente-de-venezuela-nicolas-maduro-piensa-que-los-espias-estadounidenses-",
-      "title": "El presidente de Venezuela, Nicolás Maduro, piensa que los espías estadounidenses no pueden hackear los teléfonos Huawei.",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/3812729/pexels-photo-3812729.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "sony-impone-un-muro-de-pago-de-5-dolares-al-mes-en-un-telefono-de-2000-dolares-l",
-      "title": "Sony impone un muro de pago de 5 dólares al mes en un teléfono de 2000 dólares | Louis Rossmann",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/13063893/pexels-photo-13063893.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "el-divertido-y-pequeno-proyector-playcube-de-tcl-ya-no-es-un-concepto-de-google-",
-      "title": "El divertido y pequeño proyector PlayCube de TCL ya no es un concepto de Google TV.",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "conoce-la-serie-samsung-galaxy-tab-s11-todo-lo-que-esperas-de-una-tableta-premiu",
-      "title": "Conoce la serie Samsung Galaxy Tab S11: Todo lo que esperas de una tableta premium.",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/214488/pexels-photo-214488.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "conoce-el-samsung-galaxy-s25-fe-la-puerta-de-entrada-a-la-inteligencia-artificia",
-      "title": "Conoce el Samsung Galaxy S25 FE: La puerta de entrada a la inteligencia artificial de Galaxy y a lo esencial de los buques insignia",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/3801516/pexels-photo-3801516.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "el-iphone-17-air-comenzara-en-1-099-dolares-con-256-gb-de-almacenamiento-1-tb-po",
-      "title": "El iPhone 17 Air comenzará en 1.099 dólares con 256 GB de almacenamiento, 1 TB por 1.499 dólares.",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/15941869/pexels-photo-15941869.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "la-inteligencia-de-apple-puede-estar-rezagada-respecto-a-la-de-sus-competidores-",
-      "title": "La inteligencia de Apple puede estar rezagada respecto a la de sus competidores, pero eso no molesta a la mayoría de los compradores de iPhone.",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/19023584/pexels-photo-19023584.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "tratando-con-hormigas",
-      "title": "Tratando con hormigas",
-      "niche": "hogar",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/5697260/pexels-photo-5697260.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "opiniones-sobre-la-lavadora-secadora-maytag-frente-a-la-speedqueen-tc5-y-la-seca",
-      "title": "¿Opiniones sobre la lavadora/secadora Maytag frente a la SpeedQueen TC5 y la secadora LG?",
-      "niche": "hogar",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/2525903/pexels-photo-2525903.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
-      "type": "product",
-      "slug": "las-luces-philips-hue-se-vuelven-mas-grandes-mas-brillantes-y-mas-baratas-con-un",
-      "title": "Las luces Philips Hue se vuelven más grandes, más brillantes y más baratas con una importante renovación de productos.",
-      "niche": "hogar",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/19341988/pexels-photo-19341988.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
+      "hero": "https://images.pexels.com/photos/880864/pexels-photo-880864.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
     }
   ]
 }
