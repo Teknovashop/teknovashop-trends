@@ -1,10 +1,31 @@
 ---
 title: "Sony to downgrade ps5 with less storage for the same price claims leak"
 slug: "sony-to-downgrade-ps5-with-less-storage-for-the-same-price-claims-leak"
-date: "2025-09-04T09:14:10.703Z"
+date: "2025-09-04T11:13:52.970Z"
 niche: "tecnologia"
 score: 1
 hero: "https://images.pexels.com/photos/2718645/pexels-photo-2718645.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
+rating: 4.2
+ratingCount: 60
+reviews:
+  - author: "María"
+    rating: 4.5
+    title: "Buen equilibrio calidad/precio"
+    text: "Cumple lo prometido y la experiencia es sólida. Fácil de usar y con detalles bien resueltos."
+    date: "2025-09-03"
+    verified: true
+  - author: "Javier"
+    rating: 4.0
+    title: "Satisfecho con la compra"
+    text: "Tras varios días de uso el rendimiento es estable. El envío llegó en buen estado."
+    date: "2025-09-02"
+    verified: false
+  - author: "Lucía"
+    rating: 4.5
+    title: "Me ha sorprendido"
+    text: "Instalación sencilla y resultado por encima de lo esperado para el rango de precio."
+    date: "2025-09-01"
+    verified: true
 ---
 
 **Resumen**: Tendencia destacada del día.

@@ -1,12 +1,12 @@
 ---
-title: "My weekend cabinet repaint is a peeling nightmare, what did i screw up?"
-slug: "my-weekend-cabinet-repaint-is-a-peeling-nightmare-what-did-i-screw-up"
-date: "2025-09-04T11:13:55.855Z"
-niche: "hogar"
+title: "Acer chromebook plus spin 514 review: the new chromeos sweet spot"
+slug: "acer-chromebook-plus-spin-514-review-the-new-chromeos-sweet-spot"
+date: "2025-09-04T11:13:54.303Z"
+niche: "tecnologia"
 score: 1
-hero: "https://images.pexels.com/photos/7794447/pexels-photo-7794447.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-rating: 4.1
-ratingCount: 51
+hero: "https://images.pexels.com/photos/16576790/pexels-photo-16576790.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
+rating: 4.2
+ratingCount: 96
 reviews:
   - author: "María"
     rating: 4.5
@@ -42,6 +42,6 @@ reviews:
 **Recomendación**: compara precios y opiniones antes de comprar.
 
 **Dónde comparar precios**
-- [Amazon (ES)](https://www.amazon.es/s?k=My+weekend+cabinet+repaint+is+a+peeling+nightmare%2C+what+did+i+screw+up%3F&language=es_ES&tag=teknovashop25-21)
-- [AliExpress](https://es.aliexpress.com/wholesale?SearchText=My+weekend+cabinet+repaint+is+a+peeling+nightmare%2C+what+did+i+screw+up%3F)
-- [SHEIN](https://es.shein.com/pdsearch?keyword=My+weekend+cabinet+repaint+is+a+peeling+nightmare%2C+what+did+i+screw+up%3F)
+- [Amazon (ES)](https://www.amazon.es/s?k=Acer+chromebook+plus+spin+514+review%3A+the+new+chromeos+sweet+spot&language=es_ES&tag=teknovashop25-21)
+- [AliExpress](https://es.aliexpress.com/wholesale?SearchText=Acer+chromebook+plus+spin+514+review%3A+the+new+chromeos+sweet+spot)
+- [SHEIN](https://es.shein.com/pdsearch?keyword=Acer+chromebook+plus+spin+514+review%3A+the+new+chromeos+sweet+spot)
