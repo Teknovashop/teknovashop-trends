@@ -1,7 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 
-// Cargamos todos los index.json generados por el cron y elegimos el más reciente
+/** Tipos */
 type TrendItem = {
   slug: string;
   title: string;
@@ -9,30 +9,21 @@ type TrendItem = {
   score?: number;
   hero?: string;
 };
+type TrendIndex = { date: string; items: TrendItem[] };
 
-type TrendIndex = {
-  date: string; // YYYY-MM-DD
-  items: TrendItem[];
-};
-
-// Eager para resolver en build/SSR
-const modules = import.meta.glob("../data/trends/**/index.json", {
+/** 1) Cargamos todos los index.json y elegimos el más reciente */
+const indexes = import.meta.glob("../data/trends/**/index.json", {
   eager: true,
   import: "default",
 }) as Record<string, TrendIndex>;
 
-// Elegimos por fecha (propia del JSON) y, si falta, por ruta
-const all: Array<{ path: string; data: TrendIndex }> = Object.entries(modules).map(
-  ([path, data]) => ({ path, data })
-);
+const all = Object.entries(indexes).map(([path, data]) => ({ path, data }));
 
-function parseDate(d: string | undefined) {
-  // "YYYY-MM-DD"
+function parseDate(d?: string) {
   if (!d) return 0;
   const t = Date.parse(d);
   return Number.isNaN(t) ? 0 : t;
 }
-
 all.sort((a, b) => {
   const da = parseDate(a.data?.date) || Date.parse(a.path.replaceAll("/", "-"));
   const db = parseDate(b.data?.date) || Date.parse(b.path.replaceAll("/", "-"));
@@ -41,11 +32,31 @@ all.sort((a, b) => {
 
 const latest = all[0]?.data;
 const items = latest?.items ?? [];
-const pageTitle = latest?.date
-  ? `Tendencias de hoy · ${latest.date}`
-  : "Tendencias de hoy";
+const pageTitle = latest?.date ? `Tendencias de hoy · ${latest.date}` : "Tendencias de hoy";
 
-// Utilidades de UI
+/** 2) Cargamos TODOS los MD para poder leer frontmatter (rating/ratingCount/hero/title, etc) */
+const mdModules = import.meta.glob("../content/trends/**/*.md", {
+  eager: true,
+}) as Record<
+  string,
+  {
+    frontmatter: Record<string, any>;
+    url?: string;
+    compiledContent?: string;
+    rawContent?: string;
+  }
+>;
+
+/** 3) Helper para encontrar el MD por slug */
+function findMdBySlug(slug: string) {
+  const needle = `/${slug}.md`;
+  const entry = Object.entries(mdModules).find(([p]) => p.endsWith(needle));
+  if (!entry) return null;
+  const [path, mod] = entry;
+  return { path, mod };
+}
+
+/** 4) UI helpers */
 const star = (filled = true) =>
   filled
     ? `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.402 8.168L12 18.896 4.664 23.165l1.402-8.168L.132 9.21l8.2-1.192L12 .587z"/></svg>`
@@ -59,55 +70,59 @@ function starsHTML(rating?: number) {
   const empty = 5 - full - half;
   let html = "";
   for (let i = 0; i < full; i++) html += star(true);
-  if (half) html += star(true); // representación simple (estrella llena)
+  if (half) html += star(true); // simple (estrella llena)
   for (let i = 0; i < empty; i++) html += star(false);
   return html;
 }
 
-// Para link directo al comparador
 function cmpHref(title: string) {
   const q = encodeURIComponent(title);
   return `/comparador?q=${q}`;
 }
 ---
 
-<Base title={`Teknovashop · ${pageTitle}`} description="Productos en tendencia de hoy con mini-review, valoración y enlaces rápidos para comparar precios.">
+<Base title={`Teknovashop · ${pageTitle}`} description="Productos en tendencia de hoy con mini-review, valoración real y enlaces para comparar precios.">
   <h1 class="page-title">{pageTitle}</h1>
-  {items.length === 0 && (
-    <p class="muted">Aún no hay tendencias generadas. Vuelve más tarde.</p>
-  )}
+  {items.length === 0 && <p class="muted">Aún no hay tendencias generadas. Vuelve más tarde.</p>}
 
   <section class="grid">
     {
       items.map((it) => {
-        // Mostramos rating y ratingCount si existen en el MD. Podemos cargarlo
-        // perezosamente con un import de contenido por slug si quieres precisión total.
-        // Para mantener la página ligera, usamos los datos básicos de index.json,
-        // y dejamos el rating para el detalle. Si quieres traer rating aquí,
-        // descomenta el bloque de "hydration fetch" con content collections.
-        const hero = it.hero || "/placeholder.jpg";
+        const md = findMdBySlug(it.slug);
+        const fm = md?.mod?.frontmatter ?? {};
+        const title = fm.title || it.title;
+        const hero = fm.hero || it.hero || "/placeholder.jpg";
+        const rating = typeof fm.rating === "number" ? fm.rating : undefined;
+        const ratingCount =
+          typeof fm.ratingCount === "number" ? fm.ratingCount :
+          typeof fm.reviews === "number" ? fm.reviews :
+          undefined;
         const niche = it.niche || "general";
         const score = typeof it.score === "number" ? it.score : undefined;
 
         return (
           <article class="card">
             <a class="hero" href={`/producto/${it.slug}/`}>
-              <img src={hero} alt={it.title} loading="lazy" />
+              <img src={hero} alt={title} loading="lazy" />
               <span class={`chip chip-${niche.toLowerCase()}`}>{niche}</span>
             </a>
 
             <div class="body">
-              <h2 class="title">
-                <a href={`/producto/${it.slug}/`}>{it.title}</a>
-              </h2>
+              <h2 class="title"><a href={`/producto/${it.slug}/`}>{title}</a></h2>
 
               <div class="meta">
+                {rating && (
+                  <span class="rating" set:html={`
+                    ${starsHTML(rating)}
+                    <small>${rating.toFixed(1)}${ratingCount ? ` · ${ratingCount.toLocaleString('es-ES')}` : ""}</small>
+                  `} />
+                )}
                 {typeof score === "number" && <span class="score">score {score}</span>}
               </div>
 
               <div class="actions">
                 <a class="btn btn-primary" href={`/producto/${it.slug}/`}>Ver detalles</a>
-                <a class="btn btn-ghost" href={cmpHref(it.title)}>Comparar precios</a>
+                <a class="btn btn-ghost" href={cmpHref(title)}>Comparar precios</a>
               </div>
             </div>
           </article>
@@ -117,7 +132,6 @@ function cmpHref(title: string) {
   </section>
 
   <style>
-    /* --- Layout más luminoso en tarjetas, sin romper tu theme global --- */
     :root {
       --card-bg: #0f151b;
       --card-elev: rgba(255,255,255,.06);
@@ -129,91 +143,46 @@ function cmpHref(title: string) {
       --ink-soft: #a9bcc1;
     }
 
-    .page-title{
-      margin: .2rem 0 1rem;
-      font-size: clamp(1.35rem, 2.4vw, 1.8rem);
-      font-weight: 800;
-      letter-spacing: .2px;
-      color: var(--ink);
-    }
-
+    .page-title{ margin:.2rem 0 1rem; font-size:clamp(1.35rem,2.4vw,1.8rem); font-weight:800; letter-spacing:.2px; color:var(--ink); }
     .muted{ color: var(--ink-soft); }
 
     .grid{
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+      gap:1rem; margin-bottom:2rem;
     }
-
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
-      overflow: clip;
-      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; overflow:clip;
+      box-shadow:0 6px 18px rgba(0,0,0,.25);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .card:hover{ transform: translateY(-2px); border-color: var(--card-elev); box-shadow: 0 10px 26px rgba(0,0,0,.28); }
+    .card:hover{ transform: translateY(-2px); border-color: var(--card-elev); box-shadow:0 10px 26px rgba(0,0,0,.28); }
 
-    .hero{
-      position: relative;
-      display: block;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-    }
-    .hero img{
-      width: 100%; height: 100%; object-fit: cover;
-      display: block;
-      filter: saturate(1.05) contrast(1.02);
-    }
+    .hero{ position:relative; display:block; aspect-ratio:16/9; overflow:hidden; }
+    .hero img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02); }
     .chip{
-      position: absolute; left: .7rem; bottom: .7rem;
-      background: var(--chip-bg); color: var(--chip-txt);
-      border-radius: 999px; padding: .25rem .6rem; font-size: .75rem; font-weight: 800;
-      letter-spacing: .2px; text-transform: lowercase;
-      box-shadow: 0 6px 14px rgba(0,0,0,.18);
+      position:absolute; left:.7rem; bottom:.7rem; background:var(--chip-bg); color:var(--chip-txt);
+      border-radius:999px; padding:.25rem .6rem; font-size:.75rem; font-weight:800; letter-spacing:.2px; text-transform:lowercase;
+      box-shadow:0 6px 14px rgba(0,0,0,.18);
     }
 
-    .body{ padding: .85rem .9rem 1rem; }
-    .title{
-      margin: .1rem 0 .35rem;
-      font-size: 1.02rem; line-height: 1.35; font-weight: 800; letter-spacing:.2px;
-    }
-    .title a{ color: var(--ink); text-decoration: none; }
-    .title a:hover{ color: var(--accent); }
+    .body{ padding:.85rem .9rem 1rem; }
+    .title{ margin:.1rem 0 .35rem; font-size:1.02rem; line-height:1.35; font-weight:800; letter-spacing:.2px; }
+    .title a{ color:var(--ink); text-decoration:none; }
+    .title a:hover{ color:var(--accent); }
 
-    .meta{
-      display:flex; align-items:center; gap:.5rem;
-      margin-bottom: .7rem; color: var(--ink-soft); font-size: .85rem;
-    }
-    .score{
-      display:inline-flex; align-items:center; gap:.35rem;
-      background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09);
-      padding:.15rem .5rem; border-radius: 999px; font-weight:700;
-    }
+    .meta{ display:flex; align-items:center; gap:.55rem; margin-bottom:.7rem; color:var(--ink-soft); font-size:.86rem; flex-wrap:wrap; }
+    .rating{ display:inline-flex; align-items:center; gap:.35rem; user-select:none; }
+    .rating svg{ fill:#f6c94a; }
+    .rating small{ color:var(--ink-soft); font-weight:700; }
+    .score{ display:inline-flex; align-items:center; gap:.35rem; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09); padding:.15rem .5rem; border-radius:999px; font-weight:700; }
 
-    .rating{
-      display:inline-flex; align-items:center; gap:.35rem; user-select:none;
-    }
-    .rating svg{ fill: #f6c94a; }
-    .rating small{ color: var(--ink-soft); font-weight:700; }
-
-    .actions{
-      display:flex; gap:.5rem; flex-wrap: wrap;
-    }
-    .btn{
-      display:inline-flex; justify-content:center; align-items:center; gap:.4rem;
-      text-decoration:none; border-radius:10px; padding:.55rem .85rem; font-weight:800;
-      border:1px solid rgba(255,255,255,.12);
-    }
-    .btn-primary{
-      background: var(--accent); color:#003134; border-color: transparent;
-    }
-    .btn-primary:hover{ filter: brightness(.95); }
-    .btn-ghost{
-      background: rgba(255,255,255,.06); color: var(--ink);
-    }
-    .btn-ghost:hover{ background: rgba(255,255,255,.08); }
+    .actions{ display:flex; gap:.5rem; flex-wrap:wrap; }
+    .btn{ display:inline-flex; justify-content:center; align-items:center; gap:.4rem; text-decoration:none; border-radius:10px; padding:.55rem .85rem; font-weight:800; border:1px solid rgba(255,255,255,.12); }
+    .btn-primary{ background:var(--accent); color:#003134; border-color:transparent; }
+    .btn-primary:hover{ filter:brightness(.95); }
+    .btn-ghost{ background:rgba(255,255,255,.06); color:var(--ink); }
+    .btn-ghost:hover{ background:rgba(255,255,255,.08); }
   </style>
 </Base>
