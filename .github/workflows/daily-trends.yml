@@ -30,6 +30,9 @@ jobs:
           CF_API_TOKEN:   ${{ secrets.CF_API_TOKEN }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           AMAZON_TAG_ES:  ${{ secrets.AMAZON_TAG_ES }}
+          SUPABASE_URL:   ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE }}
         run: npm run trends:daily
 
       - name: Commit & push
