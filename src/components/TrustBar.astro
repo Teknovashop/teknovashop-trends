@@ -1,0 +1,14 @@
+---
+/** Barra de confianza: reseñas verificadas, SSL, envíos, etc. */
+const items = [
+  { icon: '✓', text: 'Reseñas verificadas' },
+  { icon: '🔒', text: 'Pago seguro' },
+  { icon: '⚡', text: 'Carga rápida' },
+  { icon: '🎯', text: 'Selección curada' },
+];
+---
+<div class="trustbar">
+  {items.map(i => (
+    <span class="badge"><span aria-hidden="true">{i.icon}</span>{i.text}</span>
+  ))}
+</div>
