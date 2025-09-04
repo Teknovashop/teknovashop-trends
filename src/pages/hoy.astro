@@ -1,188 +1,72 @@
 ---
 import Base from "@/layouts/Base.astro";
 
-/** Tipos */
-type TrendItem = {
-  slug: string;
-  title: string;
-  niche: string;
-  score?: number;
-  hero?: string;
-};
+type TrendItem = { slug: string; title: string; niche: string; hero?: string; score?: number };
 type TrendIndex = { date: string; items: TrendItem[] };
 
-/** 1) Cargamos todos los index.json y elegimos el más reciente */
-const indexes = import.meta.glob("../data/trends/**/index.json", {
+const indexes = import.meta.glob("@/data/trends/**/index.json", {
   eager: true,
   import: "default",
 }) as Record<string, TrendIndex>;
 
-const all = Object.entries(indexes).map(([path, data]) => ({ path, data }));
+function toTime(v?: string){ const t = v ? Date.parse(v) : 0; return Number.isNaN(t)?0:t; }
+const allIdx = Object.entries(indexes).map(([path, data]) => ({ path, data }));
+allIdx.sort((a,b)=> (toTime(b.data?.date)||Date.parse(b.path)) - (toTime(a.data?.date)||Date.parse(a.path)));
+const latest = allIdx[0]?.data;
+let items: TrendItem[] = latest?.items ?? [];
 
-function parseDate(d?: string) {
-  if (!d) return 0;
-  const t = Date.parse(d);
-  return Number.isNaN(t) ? 0 : t;
-}
-all.sort((a, b) => {
-  const da = parseDate(a.data?.date) || Date.parse(a.path.replaceAll("/", "-"));
-  const db = parseDate(b.data?.date) || Date.parse(b.path.replaceAll("/", "-"));
-  return db - da;
-});
-
-const latest = all[0]?.data;
-const items = latest?.items ?? [];
-const pageTitle = latest?.date ? `Tendencias de hoy · ${latest.date}` : "Tendencias de hoy";
-
-/** 2) Cargamos TODOS los MD para poder leer frontmatter (rating/ratingCount/hero/title, etc) */
-const mdModules = import.meta.glob("../content/trends/**/*.md", {
-  eager: true,
-}) as Record<
-  string,
-  {
-    frontmatter: Record<string, any>;
-    url?: string;
-    compiledContent?: string;
-    rawContent?: string;
-  }
->;
-
-/** 3) Helper para encontrar el MD por slug */
-function findMdBySlug(slug: string) {
-  const needle = `/${slug}.md`;
-  const entry = Object.entries(mdModules).find(([p]) => p.endsWith(needle));
-  if (!entry) return null;
-  const [path, mod] = entry;
-  return { path, mod };
-}
-
-/** 4) UI helpers */
-const star = (filled = true) =>
-  filled
-    ? `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.402 8.168L12 18.896 4.664 23.165l1.402-8.168L.132 9.21l8.2-1.192L12 .587z"/></svg>`
-    : `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.765 9.21l-7.09-1.03L12 .587 8.325 8.18l-7.09 1.03 5.13 5.002-1.21 7.053L12 18.896l6.845 3.37-1.21-7.053 5.13-5.002zm-6.665 9.27L12 16.93l-4.1 1.55.725-4.22-3.36-3.28 4.35-.63L12 6.5l1.945 3.85 4.35.63-3.36 3.28.165.96.56 3.27z"/></svg>`;
-
-function starsHTML(rating?: number) {
-  if (!rating || rating <= 0) return "";
-  const r = Math.max(0, Math.min(5, rating));
-  const full = Math.floor(r);
-  const half = r - full >= 0.5 ? 1 : 0;
-  const empty = 5 - full - half;
-  let html = "";
-  for (let i = 0; i < full; i++) html += star(true);
-  if (half) html += star(true); // simple (estrella llena)
-  for (let i = 0; i < empty; i++) html += star(false);
-  return html;
-}
-
-function cmpHref(title: string) {
-  const q = encodeURIComponent(title);
-  return `/comparador?q=${q}`;
+/** Fallback: si algo falla, volcamos los MD más recientes */
+if (!items.length) {
+  const md = import.meta.glob("@/content/trends/**/*.md", { eager:true }) as Record<
+    string,
+    { frontmatter: Record<string,any> }
+  >;
+  const entries = Object.entries(md).map(([path, mod]) => {
+    const fm = mod.frontmatter || {};
+    return {
+      slug: fm.slug || path.split("/").pop()?.replace(".md",""),
+      title: fm.title || "Tendencia",
+      niche: fm.niche || "general",
+      hero: fm.hero || "/placeholder.jpg",
+      score: fm.score || 1,
+      date: fm.date ? Date.parse(fm.date) : 0,
+    };
+  });
+  entries.sort((a,b)=> b.date - a.date);
+  items = entries.slice(0, 24).map(({slug,title,niche,hero,score}) => ({slug,title,niche,hero,score}));
 }
 ---
 
-<Base title={`Teknovashop · ${pageTitle}`} description="Productos en tendencia de hoy con mini-review, valoración real y enlaces para comparar precios.">
-  <h1 class="page-title">{pageTitle}</h1>
-  {items.length === 0 && <p class="muted">Aún no hay tendencias generadas. Vuelve más tarde.</p>}
+<Base title="Tendencias de hoy · Teknovashop" description="Lo más interesante en productos inteligentes, curado en español.">
+  <h1>Tendencias de hoy</h1>
+  <p class="muted">Selección curada en español. Clic en cada tarjeta para ver mini-review y enlaces de comparación.</p>
 
-  <section class="grid">
+  <div class="grid">
     {
-      items.map((it) => {
-        const md = findMdBySlug(it.slug);
-        const fm = md?.mod?.frontmatter ?? {};
-        const title = fm.title || it.title;
-        const hero = fm.hero || it.hero || "/placeholder.jpg";
-        const rating = typeof fm.rating === "number" ? fm.rating : undefined;
-        const ratingCount =
-          typeof fm.ratingCount === "number" ? fm.ratingCount :
-          typeof fm.reviews === "number" ? fm.reviews :
-          undefined;
-        const niche = it.niche || "general";
-        const score = typeof it.score === "number" ? it.score : undefined;
-
-        return (
-          <article class="card">
-            <a class="hero" href={`/producto/${it.slug}/`}>
-              <img src={hero} alt={title} loading="lazy" />
-              <span class={`chip chip-${niche.toLowerCase()}`}>{niche}</span>
-            </a>
-
-            <div class="body">
-              <h2 class="title"><a href={`/producto/${it.slug}/`}>{title}</a></h2>
-
-              <div class="meta">
-                {rating && (
-                  <span class="rating" set:html={`
-                    ${starsHTML(rating)}
-                    <small>${rating.toFixed(1)}${ratingCount ? ` · ${ratingCount.toLocaleString('es-ES')}` : ""}</small>
-                  `} />
-                )}
-                {typeof score === "number" && <span class="score">score {score}</span>}
-              </div>
-
-              <div class="actions">
-                <a class="btn btn-primary" href={`/producto/${it.slug}/`}>Ver detalles</a>
-                <a class="btn btn-ghost" href={cmpHref(title)}>Comparar precios</a>
-              </div>
-            </div>
-          </article>
-        );
-      })
+      items.map((it) => (
+        <a class="card" href={`/producto/${it.slug}/`}>
+          <div class="pic">
+            <img src={it.hero || '/placeholder.jpg'} alt={it.title} loading="lazy" />
+            <span class="chip">{it.niche}</span>
+          </div>
+          <h3>{it.title}</h3>
+          <div class="meta">
+            <small>score {it.score ?? 1}</small>
+          </div>
+        </a>
+      ))
     }
-  </section>
+  </div>
 
   <style>
-    :root {
-      --card-bg: #0f151b;
-      --card-elev: rgba(255,255,255,.06);
-      --chip-bg: #eef3ff;
-      --chip-txt: #1d2b50;
-      --accent: #00c4c7;
-      --accent-2: #009ea1;
-      --ink: #eaf3f7;
-      --ink-soft: #a9bcc1;
-    }
-
-    .page-title{ margin:.2rem 0 1rem; font-size:clamp(1.35rem,2.4vw,1.8rem); font-weight:800; letter-spacing:.2px; color:var(--ink); }
-    .muted{ color: var(--ink-soft); }
-
-    .grid{
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
-      gap:1rem; margin-bottom:2rem;
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:14px; overflow:clip;
-      box-shadow:0 6px 18px rgba(0,0,0,.25);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-    .card:hover{ transform: translateY(-2px); border-color: var(--card-elev); box-shadow:0 10px 26px rgba(0,0,0,.28); }
-
-    .hero{ position:relative; display:block; aspect-ratio:16/9; overflow:hidden; }
-    .hero img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02); }
-    .chip{
-      position:absolute; left:.7rem; bottom:.7rem; background:var(--chip-bg); color:var(--chip-txt);
-      border-radius:999px; padding:.25rem .6rem; font-size:.75rem; font-weight:800; letter-spacing:.2px; text-transform:lowercase;
-      box-shadow:0 6px 14px rgba(0,0,0,.18);
-    }
-
-    .body{ padding:.85rem .9rem 1rem; }
-    .title{ margin:.1rem 0 .35rem; font-size:1.02rem; line-height:1.35; font-weight:800; letter-spacing:.2px; }
-    .title a{ color:var(--ink); text-decoration:none; }
-    .title a:hover{ color:var(--accent); }
-
-    .meta{ display:flex; align-items:center; gap:.55rem; margin-bottom:.7rem; color:var(--ink-soft); font-size:.86rem; flex-wrap:wrap; }
-    .rating{ display:inline-flex; align-items:center; gap:.35rem; user-select:none; }
-    .rating svg{ fill:#f6c94a; }
-    .rating small{ color:var(--ink-soft); font-weight:700; }
-    .score{ display:inline-flex; align-items:center; gap:.35rem; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.09); padding:.15rem .5rem; border-radius:999px; font-weight:700; }
-
-    .actions{ display:flex; gap:.5rem; flex-wrap:wrap; }
-    .btn{ display:inline-flex; justify-content:center; align-items:center; gap:.4rem; text-decoration:none; border-radius:10px; padding:.55rem .85rem; font-weight:800; border:1px solid rgba(255,255,255,.12); }
-    .btn-primary{ background:var(--accent); color:#003134; border-color:transparent; }
-    .btn-primary:hover{ filter:brightness(.95); }
-    .btn-ghost{ background:rgba(255,255,255,.06); color:var(--ink); }
-    .btn-ghost:hover{ background:rgba(255,255,255,.08); }
+    .muted{ color:#5a7078; margin:0 0 .7rem; }
+    .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:.9rem; }
+    .card{ display:block; background:#fff; border:1px solid #d9e7ed; border-radius:14px; overflow:hidden; text-decoration:none; transition: transform .16s ease, box-shadow .16s ease; box-shadow:0 8px 24px rgba(26,86,94,.06); }
+    .card:hover{ transform: translateY(-2px); box-shadow:0 10px 28px rgba(26,86,94,.1); }
+    .pic{ position:relative; aspect-ratio: 16/9; overflow:hidden; }
+    .pic img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .chip{ position:absolute; left:.6rem; bottom:.6rem; background:#0e2d30; color:#d9ffff; border-radius:999px; padding:.2rem .55rem; font-size:.72rem; font-weight:900; box-shadow:0 6px 14px rgba(0,0,0,.18); }
+    h3{ padding:.6rem .8rem 0; color:#0e1c22; font-size:1rem; }
+    .meta{ padding:.4rem .8rem .8rem; color:#5a7078; }
   </style>
 </Base>
