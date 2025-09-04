@@ -1,4 +1,42 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from "@/layouts/Base.astro";
 ---
-<Base title="Acerca — Teknovashop Tendencias"><h1>¿Qué es Teknovashop Tendencias?</h1><p>Radar diario de productos en auge. Señales públicas (RSS) + mini‑reseñas con IA.</p></Base>
+
+<Base title="Acerca · Teknovashop" description="Quiénes somos, cómo trabajamos y por qué confiar en Teknovashop.">
+  <h1>Acerca de Teknovashop</h1>
+  <p class="lead">
+    Somos una plataforma de nicho especializada en <b>productos inteligentes</b>. Nuestro objetivo es ayudarte a comprar con criterio: 
+    tendencias diarias en español, comparador informativo (sin afiliados) y contenido útil.
+  </p>
+
+  <div class="grid">
+    <section class="card">
+      <h3>Nuestro enfoque</h3>
+      <ul>
+        <li>Selección curada: no vendemos “de todo”.</li>
+        <li>Transparencia: indicamos cuándo hay enlaces de afiliado.</li>
+        <li>Utilidad: guías, comparativas y mini-reviews claras.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h3>Cómo generamos tendencias</h3>
+      <p>Analizamos señales de la comunidad tech y filtramos lo que tiene pinta de “producto real”. Después lo presentamos en español y añadimos una mini-review.</p>
+    </section>
+    <section class="card">
+      <h3>Reseñas y valoración</h3>
+      <p>Los contenidos pueden incluir una valoración (de 0 a 5) y el número de reseñas si el autor lo aporta en el frontmatter, o si procede de nuestra metodología interna.</p>
+    </section>
+  </div>
+
+  <p class="fine">¿Dudas o propuestas? Escríbenos: <a href="mailto:hola@teknovashop.com">hola@teknovashop.com</a></p>
+
+  <style>
+    h1{ margin:0 0 .6rem; }
+    .lead{ color:#a9bcc1; margin:0 0 1rem; max-width:70ch; }
+    .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:.8rem; margin:1rem 0 1.2rem; }
+    .card{ background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:1rem; }
+    .card h3{ margin:.1rem 0 .4rem; }
+    .card p, .card li{ color:#a9bcc1; }
+    .fine{ color:#a9bcc1; }
+  </style>
+</Base>
