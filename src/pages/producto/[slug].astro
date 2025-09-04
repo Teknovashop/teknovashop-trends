@@ -1,158 +1,135 @@
 ---
-import Base from '../../layouts/Base.astro';
+import Base from "@/layouts/Base.astro";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { marked } from "marked";
+import ReviewsBlock from "@/components/ReviewsBlock.astro";
+import RatingStars from "@/components/RatingStars.astro";
 
-/* =========================
-   1) Generar rutas estáticas
-   ========================= */
 export async function getStaticPaths() {
-  // Carga ansiosa de todos los JSON bajo src/data/**/index.json
-  const mods = import.meta.glob('../../data/**/index.json', { eager: true });
+  const ROOT = process.cwd();
+  const baseDir = path.join(ROOT, "src", "data", "trends");
 
-  // Aplana a items y guarda por slug (último gana)
-  const bySlug = new Map();
-  for (const k of Object.keys(mods)) {
-    const mod = (mods as any)[k];
-    const data = mod && typeof mod === 'object' && 'default' in mod ? mod.default : mod;
-    if (!data || !Array.isArray(data.items)) continue;
-    const dateStr = data.date || '';
-    for (const it of data.items) {
-      if (it && typeof it.slug === 'string') {
-        const merged = { ...it, date: it.date || dateStr };
-        bySlug.set(merged.slug, merged);
+  const out = [];
+
+  function walk(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const e of entries) {
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) walk(full);
+      else if (e.isFile() && e.name === "index.json") {
+        const rel = path.relative(baseDir, full); // yyyy/mm/dd/index.json
+        const datePath = path.dirname(rel);      // yyyy/mm/dd
+        try {
+          const json = JSON.parse(fs.readFileSync(full, "utf-8"));
+          for (const it of (json.items || [])) {
+            const mdPath = path.join(ROOT, "src", "content", "trends", datePath, `${it.slug}.md`);
+            if (fs.existsSync(mdPath)) {
+              out.push({
+                params: { slug: it.slug },
+                props: { mdPath }
+              });
+            }
+          }
+        } catch {}
       }
     }
   }
 
-  return Array.from(bySlug.keys()).map((slug) => ({ params: { slug } }));
+  if (fs.existsSync(baseDir)) walk(baseDir);
+  return out;
 }
 
-/* =========================
-   2) Cargar el producto actual
-   ========================= */
-const { slug } = Astro.params as { slug: string };
+const { mdPath } = Astro.props;
 
-// Repetimos el aplanado (barato y robusto)
-const _mods = import.meta.glob('../../data/**/index.json', { eager: true });
-const _bySlug = new Map();
-for (const k of Object.keys(_mods)) {
-  const mod = (_mods as any)[k];
-  const data = mod && typeof mod === 'object' && 'default' in mod ? mod.default : mod;
-  if (!data || !Array.isArray(data.items)) continue;
-  const dateStr = data.date || '';
-  for (const it of data.items) {
-    if (it && typeof it.slug === 'string') {
-      const merged = { ...it, date: it.date || dateStr };
-      _bySlug.set(merged.slug, merged);
-    }
-  }
+// Lee y procesa el Markdown
+const raw = fs.readFileSync(mdPath, "utf-8");
+const parsed = matter(raw);
+const fm = parsed.data || {};
+const html = marked.parse(parsed.content || "");
+
+// Derivados
+const title = fm.title || "Producto";
+const desc = `Análisis, pros y contras, y dónde comparar precios del producto ${title}.`;
+const hero = fm.hero || "/placeholder.jpg";
+
+// Reseñas / rating opcional desde front-matter
+// Puedes añadir en cada MD:
+// rating: 4.5
+// ratingCount: 132
+// reviews:
+//  - author: "María"
+//    rating: 5
+//    title: "Muy buen sonido"
+//    text: "Para su precio, excelente."
+//    date: "2025-09-01"
+//    verified: true
+const rating = typeof fm.rating === "number" ? fm.rating : null;
+const ratingCount = typeof fm.ratingCount === "number" ? fm.ratingCount : null;
+const reviews = Array.isArray(fm.reviews) ? fm.reviews : [];
+
+// JSON-LD (Product + AggregateRating si está)
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: title,
+  image: hero,
+  description: desc,
+};
+if (typeof rating === "number" && typeof ratingCount === "number" && ratingCount > 0) {
+  ld.aggregateRating = {
+    "@type": "AggregateRating",
+    ratingValue: String(rating),
+    ratingCount: String(ratingCount),
+    bestRating: "5",
+    worstRating: "1",
+  };
 }
-
-const item = _bySlug.get(slug);
-if (!item) {
-  throw new Error(`Producto no encontrado: ${slug}`);
-}
-
-// Valores seguros para render
-const title   = item.title || 'Producto';
-const niche   = item.niche || '';
-const score   = typeof item.score === 'number' ? item.score : null;
-const dateStr = item.date || '';
-const summary = item.summary || 'Tendencia destacada del día.';
-const hero    = (typeof item.hero === 'string' && item.hero) ? item.hero : '/placeholder.jpg';
-
-function toList(v: any) {
-  if (Array.isArray(v)) return v;
-  if (typeof v === 'string') return v.split('•').map(s => s.trim()).filter(Boolean);
-  return [];
-}
-const pros = toList(item.pros);
-const cons = toList(item.cons);
-
-function safe(u?: string) {
-  if (!u || typeof u !== 'string') return null;
-  try { return new URL(u).toString(); } catch { return null; }
-}
-const amazonURL = safe(item?.links?.amazon);
-const aliURL    = safe(item?.links?.aliexpress);
-const sheinURL  = safe(item?.links?.shein);
 ---
 
-<Base title={title} description={summary}>
-  <article class="page">
-    <header class="head">
-      <h1 class="ttl">{title}</h1>
-      <div class="meta">
-        {niche && <span class="badge">{niche}</span>}
-        {score !== null && <span class="muted">· score {score}</span>}
-        {dateStr && <span class="muted">· {dateStr}</span>}
+<Base title={`Teknovashop · ${title}`} description={desc}>
+  <script type="application/ld+json">
+    {JSON.stringify(ld)}
+  </script>
+
+  <article class="prod">
+    <header class="prod-hero">
+      <img src={hero} alt="" width="1280" height="720" loading="eager" />
+      <div class="prod-meta card">
+        <h1>{title}</h1>
+        {typeof rating === 'number' ? (
+          <div class="row" style="gap:.5rem;">
+            <RatingStars rating={rating} count={ratingCount} />
+            <span class="muted">Valoración media</span>
+          </div>
+        ) : null}
       </div>
     </header>
 
-    <figure class="hero-wrap">
-      <img class="hero" src={hero} alt={title} loading="lazy" decoding="async" />
-    </figure>
-
-    <section class="box">
-      <p><b>Resumen:</b> {summary}</p>
-
-      {(pros.length > 0 || cons.length > 0) && (
-        <div class="cols">
-          {pros.length > 0 && (
-            <div>
-              <h3>Pros</h3>
-              <ul>
-                {pros.map((p) => <li>{p}</li>)}
-              </ul>
-            </div>
-          )}
-          {cons.length > 0 && (
-            <div>
-              <h3>Contras</h3>
-              <ul>
-                {cons.map((c) => <li>{c}</li>)}
-              </ul>
-            </div>
-          )}
-        </div>
-      )}
-
-      {(amazonURL || aliURL || sheinURL) && (
-        <div class="links">
-          <h3>Dónde comparar precios</h3>
-          <ul>
-            {amazonURL && <li><a href={amazonURL} rel="nofollow noopener" target="_blank">Amazon (ES)</a></li>}
-            {aliURL && <li><a href={aliURL} rel="nofollow noopener" target="_blank">AliExpress</a></li>}
-            {sheinURL && <li><a href={sheinURL} rel="nofollow noopener" target="_blank">SHEIN</a></li>}
-          </ul>
-        </div>
-      )}
+    <section class="prod-body card">
+      <div class="content" set:html={html} />
     </section>
+
+    <ReviewsBlock
+      product={{ name: title, image: hero, description: desc }}
+      rating={rating}
+      ratingCount={ratingCount}
+      reviews={reviews}
+    />
   </article>
 
   <style>
-    .page { display:block; }
-    .head { margin-bottom: .75rem; }
-    .ttl { margin: 0 0 .25rem 0; font-size: clamp(1.35rem, 2.2vw + 1rem, 2rem); }
-    .meta { display:flex; align-items:center; gap:.5rem; flex-wrap: wrap; }
-    .badge { display:inline-block; padding:.18rem .55rem; border-radius:999px; background:rgba(0,196,199,.15); color:#93f7f9; font-size:.8rem; }
-    .muted { color:#9fb3b8; font-size:.9rem; }
-
-    .hero-wrap { margin: .75rem 0 1rem; }
-    .hero {
-      width:100%;
-      max-height: 460px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: #0d1319;
-      display:block;
+    .prod-hero img{
+      width:100%; height:auto; border-radius:14px; border:1px solid var(--surface-2);
+      background:var(--surface-1);
     }
-
-    .box { background: var(--card, #0f151b); border: 1px solid var(--muted, rgba(255,255,255,.08)); border-radius: 16px; padding: 1rem; }
-    .cols { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1rem; margin-top:.25rem; }
-    h3 { margin:.25rem 0 .5rem; }
-    .links ul { margin:.25rem 0 0; padding-left:1.1rem; }
-    .links a { color: var(--brand, #00c4c7); text-decoration: none; }
-    .links a:hover { text-decoration: underline; }
+    .prod-meta{ margin-top:.8rem; }
+    .prod-body{ margin-top:1rem; }
+    .content :where(h2,h3){ margin-top:.8rem; }
+    .content :where(ul,ol){ padding-left:1.2rem; }
+    .content blockquote{
+      border-left:3px solid var(--surface-3); padding:.4rem .8rem; color:var(--ink-2); background:var(--surface-2); border-radius:10px;
+    }
   </style>
 </Base>
