@@ -1,0 +1,61 @@
+---
+import RatingStars from "@/components/RatingStars.astro";
+
+/**
+ * Props:
+ *  - product: { name, image, description }
+ *  - rating: number | null
+ *  - ratingCount: number | null
+ *  - reviews: Array<{author, rating, title, text, date, verified}>
+ */
+const {
+  product = {},
+  rating = null,
+  ratingCount = null,
+  reviews = [],
+} = Astro.props;
+
+const hasAgg = typeof rating === 'number' && typeof ratingCount === 'number' && ratingCount > 0;
+---
+
+<section class="reviews card">
+  <div class="reviews-head">
+    <h3>Opiniones de usuarios</h3>
+    {hasAgg ? (
+      <div class="agg">
+        <RatingStars rating={rating} count={ratingCount} />
+        <div class="muted">Media basada en {ratingCount} reseñas</div>
+      </div>
+    ) : (
+      <div class="muted">Aún no hay suficientes reseñas</div>
+    )}
+  </div>
+
+  <div class="reviews-list">
+    {(reviews || []).slice(0,6).map((r) => (
+      <article class="review-card">
+        <header class="row-between" style="gap:.5rem;">
+          <div class="row" style="gap:.5rem;">
+            <strong>{r.author || 'Usuario'}</strong>
+            {r.verified ? <span class="verified">Verificado</span> : null}
+          </div>
+          <RatingStars rating={r.rating || 0} size="16px" />
+        </header>
+        {r.title ? <h4 class="review-title">{r.title}</h4> : null}
+        <p class="review-text">{r.text || ''}</p>
+        {r.date ? <div class="muted small">{new Date(r.date).toLocaleDateString('es-ES')}</div> : null}
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .reviews-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:.5rem; }
+  .reviews-list{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:.5rem; }
+  .review-card{ border:1px solid var(--surface-2); border-radius:12px; padding:.85rem; background:var(--surface-1); }
+  .review-title{ margin:.25rem 0 .25rem; }
+  .review-text{ margin:.25rem 0 .25rem; color:var(--ink-2); }
+  .verified{ background:var(--surface-2); border:1px solid var(--surface-3); color:#0a7a4a; padding:.15rem .45rem; border-radius:999px; font-weight:700; font-size:.8rem; }
+  .small{ font-size:.9rem; }
+  @media (max-width:860px){ .reviews-list{ grid-template-columns:1fr; } }
+</style>
