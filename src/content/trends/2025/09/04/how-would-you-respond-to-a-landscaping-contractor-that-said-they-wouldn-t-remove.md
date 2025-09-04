@@ -1,12 +1,12 @@
 ---
 title: "How would you respond to a landscaping contractor that said they \"wouldn't remove any more poison ivy\"?"
 slug: "how-would-you-respond-to-a-landscaping-contractor-that-said-they-wouldn-t-remove"
-date: "2025-09-04T11:32:41.905Z"
+date: "2025-09-04T12:00:43.740Z"
 niche: "hogar"
 score: 1
 hero: "https://images.pexels.com/photos/11953905/pexels-photo-11953905.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-rating: 4.2
-ratingCount: 63
+rating: 4.1
+ratingCount: 119
 reviews:
   - author: "María"
     rating: 4.5

@@ -1,12 +1,12 @@
 ---
 title: "First home gym"
 slug: "first-home-gym"
-date: "2025-09-04T11:32:44.956Z"
+date: "2025-09-04T12:00:46.137Z"
 niche: "fitness"
 score: 1
 hero: "https://images.pexels.com/photos/6972784/pexels-photo-6972784.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-rating: 4.1
-ratingCount: 116
+rating: 4.2
+ratingCount: 71
 reviews:
   - author: "María"
     rating: 4.5

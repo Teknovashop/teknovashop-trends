@@ -1,12 +1,12 @@
 ---
 title: "Why would a skunk be spraying every night near my house?"
 slug: "why-would-a-skunk-be-spraying-every-night-near-my-house"
-date: "2025-09-04T11:32:42.323Z"
+date: "2025-09-04T12:00:44.176Z"
 niche: "hogar"
 score: 1
 hero: "https://images.pexels.com/photos/7149344/pexels-photo-7149344.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
 rating: 4.2
-ratingCount: 75
+ratingCount: 87
 reviews:
   - author: "María"
     rating: 4.5

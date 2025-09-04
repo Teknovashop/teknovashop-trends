@@ -1,12 +1,12 @@
 ---
 title: "My weekend cabinet repaint is a peeling nightmare, what did i screw up?"
 slug: "my-weekend-cabinet-repaint-is-a-peeling-nightmare-what-did-i-screw-up"
-date: "2025-09-04T11:32:43.453Z"
+date: "2025-09-04T12:00:45.048Z"
 niche: "hogar"
 score: 1
 hero: "https://images.pexels.com/photos/7794447/pexels-photo-7794447.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-rating: 4.2
-ratingCount: 77
+rating: 4.3
+ratingCount: 95
 reviews:
   - author: "María"
     rating: 4.5
