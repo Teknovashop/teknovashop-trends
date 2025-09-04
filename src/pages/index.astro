@@ -1,10 +1,11 @@
 ---
 import Base from "@/layouts/Base.astro";
 
-/** Cargamos el último index.json para pintar destacados */
+/** Tipos */
 type TrendItem = { slug: string; title: string; niche: string; hero?: string; score?: number };
 type TrendIndex = { date: string; items: TrendItem[] };
 
+/** Cargamos el último index.json para pintar destacados */
 const indexes = import.meta.glob("./data/trends/**/index.json", {
   eager: true,
   import: "default",
@@ -15,9 +16,44 @@ function parseDate(d?: string){ if(!d) return 0; const t = Date.parse(d); return
 all.sort((a,b)=> (parseDate(b.data?.date)||Date.parse(b.path)) - (parseDate(a.data?.date)||Date.parse(a.path)));
 const latest = all[0]?.data;
 const featured = (latest?.items ?? []).slice(0, 6);
+
+/** Leemos TODOS los MD para extraer rating/ratingCount/hero reales */
+const mdModules = import.meta.glob("./content/trends/**/*.md", {
+  eager: true,
+}) as Record<
+  string,
+  {
+    frontmatter: Record<string, any>;
+  }
+>;
+
+/** Busca el MD por slug y devuelve frontmatter */
+function fmBySlug(slug: string){
+  const entry = Object.entries(mdModules).find(([p]) => p.endsWith(`/${slug}.md`));
+  return entry?.[1]?.frontmatter ?? {};
+}
+
+/** Helper estrellas */
+const star = (filled = true) =>
+  filled
+    ? `<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.402 8.168L12 18.896 4.664 23.165l1.402-8.168L.132 9.21l8.2-1.192L12 .587z"/></svg>`
+    : `<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.765 9.21l-7.09-1.03L12 .587 8.325 8.18l-7.09 1.03 5.13 5.002-1.21 7.053L12 18.896l6.845 3.37-1.21-7.053 5.13-5.002zm-6.665 9.27L12 16.93l-4.1 1.55.725-4.22-3.36-3.28 4.35-.63L12 6.5l1.945 3.85 4.35.63-3.36 3.28.165.96.56 3.27z"/></svg>`;
+
+function starsHTML(rating?: number) {
+  if (!rating || rating <= 0) return "";
+  const r = Math.max(0, Math.min(5, rating));
+  const full = Math.floor(r);
+  const half = r - full >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  let html = "";
+  for (let i = 0; i < full; i++) html += star(true);
+  if (half) html += star(true); // simplificado
+  for (let i = 0; i < empty; i++) html += star(false);
+  return html;
+}
 ---
 
-<Base title="Teknovashop · Productos inteligentes con criterio" description="Plataforma de nicho para productos inteligentes. Tendencias diarias, comparador informativo y contenido de valor para comprar con criterio.">
+<Base title="Teknovashop · Productos inteligentes con criterio" description="Plataforma de nicho para productos inteligentes. Tendencias diarias, comparador informativo y guías claras para acertar.">
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
@@ -45,11 +81,11 @@ const featured = (latest?.items ?? []).slice(0, 6);
     <div class="cols">
       <article class="s-card">
         <h3>1) Nicho bien definido</h3>
-        <p>Plataforma especializada en <b>productos inteligentes</b>. Construimos selección de alta calidad y marca confiable.</p>
+        <p>Plataforma especializada en <b>productos inteligentes</b>. Selección de alta calidad y marca confiable.</p>
       </article>
       <article class="s-card">
         <h3>2) UX excepcional</h3>
-        <p>Web rápida y clara. Desde ver una tendencia hasta llegar al análisis o comparar, todo fluye sin fricción.</p>
+        <p>Web rápida y clara. Desde ver una tendencia hasta analizar o comparar, todo fluye sin fricción.</p>
       </article>
       <article class="s-card">
         <h3>3) Contenido de valor</h3>
@@ -57,7 +93,7 @@ const featured = (latest?.items ?? []).slice(0, 6);
       </article>
       <article class="s-card">
         <h3>4) Confianza y reseñas</h3>
-        <p>Valoraciones visibles y metodología. Tecnología = confianza; te la ganamos con rigor.</p>
+        <p>Valoraciones visibles y metodología. Tecnología = confianza; nos la ganamos con rigor.</p>
       </article>
       <article class="s-card">
         <h3>5) Marketing de nicho</h3>
@@ -72,17 +108,36 @@ const featured = (latest?.items ?? []).slice(0, 6);
       <h2>Destacados de hoy</h2>
       <a class="mini" href="/hoy">Ver todo &rarr;</a>
     </div>
+
     <div class="grid">
       {
-        featured.map((it) => (
-          <a class="f-card" href={`/producto/${it.slug}/`}>
-            <div class="pic">
-              <img src={it.hero || "/placeholder.jpg"} alt={it.title} loading="lazy" />
-              <span class="chip">{it.niche}</span>
-            </div>
-            <h3>{it.title}</h3>
-          </a>
-        ))
+        featured.map((it) => {
+          const fm = fmBySlug(it.slug);
+          const title = fm.title || it.title;
+          const hero = fm.hero || it.hero || "/placeholder.jpg";
+          const rating = typeof fm.rating === "number" ? fm.rating : undefined;
+          const ratingCount =
+            typeof fm.ratingCount === "number" ? fm.ratingCount :
+            typeof fm.reviews === "number" ? fm.reviews : undefined;
+
+          return (
+            <a class="f-card" href={`/producto/${it.slug}/`}>
+              <div class="pic">
+                <img src={hero} alt={title} loading="lazy" />
+                <span class="chip">{it.niche}</span>
+              </div>
+              <h3>{title}</h3>
+              {
+                rating && (
+                  <div class="feat-rating" set:html={`
+                    ${starsHTML(rating)}
+                    <small>${rating.toFixed(1)}${ratingCount ? ` · ${ratingCount.toLocaleString('es-ES')}` : ""}</small>
+                  `} />
+                )
+              }
+            </a>
+          );
+        })
       }
       {featured.length === 0 && <p class="muted">Aún no hay destacados. Vuelve más tarde.</p>}
     </div>
@@ -113,7 +168,6 @@ const featured = (latest?.items ?? []).slice(0, 6);
       --ink-soft:#a9bcc1;
       --accent:#00c4c7;
       --accent-2:#009ea1;
-      --ring: rgba(0,196,199,.25);
     }
 
     /* HERO */
@@ -124,37 +178,22 @@ const featured = (latest?.items ?? []).slice(0, 6);
       padding: clamp(1rem, 2.5vw, 1.6rem);
       margin: .4rem 0 1.2rem;
     }
-    .hero-inner{
-      display:grid; grid-template-columns: 1.4fr .9fr; gap:1rem; align-items:stretch;
-    }
+    .hero-inner{ display:grid; grid-template-columns: 1.4fr .9fr; gap:1rem; align-items:stretch; }
     @media (max-width:860px){ .hero-inner{ grid-template-columns: 1fr; } }
 
-    .hero-copy h1{
-      font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin:.2rem 0 .5rem; font-weight:900; letter-spacing:.2px;
-    }
+    .hero-copy h1{ font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin:.2rem 0 .5rem; font-weight:900; letter-spacing:.2px; }
     .hero-copy h1 span{ color: var(--accent); }
     .hero-copy p{ color: var(--ink-soft); margin:0 0 .8rem; max-width: 54ch; }
     .cta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:.3rem; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:.45rem;
-      padding:.65rem .95rem; border-radius:12px; font-weight:900; text-decoration:none; border:1px solid rgba(255,255,255,.12);
-    }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.45rem; padding:.65rem .95rem; border-radius:12px; font-weight:900; text-decoration:none; border:1px solid rgba(255,255,255,.12); }
     .btn-primary{ background: var(--accent); color:#003134; border-color: transparent; }
     .btn-primary:hover{ filter:brightness(.95); }
     .btn-ghost{ background: rgba(255,255,255,.06); color:var(--ink); }
     .btn-ghost:hover{ background: rgba(255,255,255,.08); }
     .note{ color: var(--ink-soft); display:block; margin-top:.3rem; }
 
-    .hero-card{
-      background: var(--panel);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:16px; padding:1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .hero-card .badge{
-      display:inline-block; padding:.18rem .5rem; border-radius:999px; background:#e6fbfb; color:#0a2f30; font-size:.75rem; font-weight:900;
-      margin-bottom:.4rem;
-    }
+    .hero-card{ background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+    .hero-card .badge{ display:inline-block; padding:.18rem .5rem; border-radius:999px; background:#e6fbfb; color:#0a2f30; font-size:.75rem; font-weight:900; margin-bottom:.4rem; }
     .hero-card h3{ margin:.1rem 0 .3rem; }
     .hero-card p{ color: var(--ink-soft); margin:0 0 .4rem; }
     .mini{ color: var(--accent); text-decoration:none; font-weight:800; }
@@ -164,35 +203,24 @@ const featured = (latest?.items ?? []).slice(0, 6);
     .strengths{ margin: 1.2rem 0; }
     .strengths h2{ margin:0 0 .8rem; }
     .cols{ display:grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap:.8rem; }
-    .s-card{
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:.9rem;
-    }
+    .s-card{ background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:.9rem; }
     .s-card p{ color: var(--ink-soft); }
 
     /* FEATURED */
     .featured{ margin:1.2rem 0; }
     .featured .head{ display:flex; align-items:center; justify-content:space-between; gap:.6rem; margin-bottom:.6rem; }
     .featured .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:.9rem; }
-    .f-card{
-      display:block; background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden; text-decoration:none;
-      transition: transform .16s ease, border-color .16s ease;
-    }
+    .f-card{ display:block; background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:14px; overflow:hidden; text-decoration:none; transition: transform .16s ease, border-color .16s ease; }
     .f-card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,.14); }
     .pic{ position:relative; aspect-ratio: 16/9; overflow:hidden; }
     .pic img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .chip{
-      position:absolute; left:.6rem; bottom:.6rem; background:#eef3ff; color:#1d2b50; border-radius:999px; padding:.2rem .55rem; font-size:.72rem; font-weight:900;
-      box-shadow:0 6px 14px rgba(0,0,0,.18);
-    }
-    .f-card h3{ padding:.7rem .8rem .85rem; color: var(--ink); font-size:1rem; }
+    .chip{ position:absolute; left:.6rem; bottom:.6rem; background:#eef3ff; color:#1d2b50; border-radius:999px; padding:.2rem .55rem; font-size:.72rem; font-weight:900; box-shadow:0 6px 14px rgba(0,0,0,.18); }
+    .f-card h3{ padding:.6rem .8rem 0; color: var(--ink); font-size:1rem; }
+    .feat-rating{ display:flex; align-items:center; gap:.35rem; padding:.45rem .8rem .8rem; color: var(--ink-soft); }
+    .feat-rating svg{ fill:#f6c94a; }
 
     /* CONTENT BLOc */
-    .content-bloc{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:16px; margin:1.2rem 0 1.6rem; padding:1rem;
-    }
+    .content-bloc{ background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)); border:1px solid rgba(255,255,255,.08); border-radius:16px; margin:1.2rem 0 1.6rem; padding:1rem; }
     .c-inner{ display:grid; grid-template-columns: 1fr 20px 1fr; gap:.8rem; align-items:center; }
     .sep{ width:1px; height:100%; background: rgba(255,255,255,.12); justify-self:center; }
     @media (max-width:800px){ .c-inner{ grid-template-columns: 1fr; } .sep{ display:none; } }
