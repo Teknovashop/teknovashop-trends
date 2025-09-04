@@ -631,6 +631,146 @@ declare module 'astro:content' {
   collection: "trends";
   data: any
 } & { render(): Render[".md"] };
+"2025/09/04/bought-a-house-a-year-ago-what-maintenance-do-i-need-to-be-aware-of.md": {
+	id: "2025/09/04/bought-a-house-a-year-ago-what-maintenance-do-i-need-to-be-aware-of.md";
+  slug: "bought-a-house-a-year-ago-what-maintenance-do-i-need-to-be-aware-of";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/favorite-heavyweight-t-shirts.md": {
+	id: "2025/09/04/favorite-heavyweight-t-shirts.md";
+  slug: "favorite-heavyweight-t-shirts";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/first-home-gym.md": {
+	id: "2025/09/04/first-home-gym.md";
+  slug: "first-home-gym";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/freak-athlete-abx-final-pre-production-testing-in-progress.md": {
+	id: "2025/09/04/freak-athlete-abx-final-pre-production-testing-in-progress.md";
+  slug: "freak-athlete-abx-final-pre-production-testing-in-progress";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/garmin-s-fenix-8-pro-series-finally-lets-you-leave-your-phone-at-home-sort-of.md": {
+	id: "2025/09/04/garmin-s-fenix-8-pro-series-finally-lets-you-leave-your-phone-at-home-sort-of.md";
+  slug: "garmin-s-fenix-8-pro-series-finally-lets-you-leave-your-phone-at-home-sort-of";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/gyroscopic-backpack-spins-up-a-solution-to-balance-problems.md": {
+	id: "2025/09/04/gyroscopic-backpack-spins-up-a-solution-to-balance-problems.md";
+  slug: "gyroscopic-backpack-spins-up-a-solution-to-balance-problems";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/home-gym-upgrade-complete.md": {
+	id: "2025/09/04/home-gym-upgrade-complete.md";
+  slug: "home-gym-upgrade-complete";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/how-would-you-respond-to-a-landscaping-contractor-that-said-they-wouldn-t-remove.md": {
+	id: "2025/09/04/how-would-you-respond-to-a-landscaping-contractor-that-said-they-wouldn-t-remove.md";
+  slug: "how-would-you-respond-to-a-landscaping-contractor-that-said-they-wouldn-t-remove";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/if-you-could-only-wear-one-pair-of-sunglasses-for-the-rest-of-your-life-which-on.md": {
+	id: "2025/09/04/if-you-could-only-wear-one-pair-of-sunglasses-for-the-rest-of-your-life-which-on.md";
+  slug: "if-you-could-only-wear-one-pair-of-sunglasses-for-the-rest-of-your-life-which-on";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/jbl-just-announced-its-largest-ever-battery-powered-party-speaker.md": {
+	id: "2025/09/04/jbl-just-announced-its-largest-ever-battery-powered-party-speaker.md";
+  slug: "jbl-just-announced-its-largest-ever-battery-powered-party-speaker";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/just-finished-of-my-recent-diy-master-bathroom-remodel-very-happy-my-vision-came.md": {
+	id: "2025/09/04/just-finished-of-my-recent-diy-master-bathroom-remodel-very-happy-my-vision-came.md";
+  slug: "just-finished-of-my-recent-diy-master-bathroom-remodel-very-happy-my-vision-came";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/mountain-top-gym.md": {
+	id: "2025/09/04/mountain-top-gym.md";
+  slug: "mountain-top-gym";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/my-weekend-cabinet-repaint-is-a-peeling-nightmare-what-did-i-screw-up.md": {
+	id: "2025/09/04/my-weekend-cabinet-repaint-is-a-peeling-nightmare-what-did-i-screw-up.md";
+  slug: "my-weekend-cabinet-repaint-is-a-peeling-nightmare-what-did-i-screw-up";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/sony-to-downgrade-ps5-with-less-storage-for-the-same-price-claims-leak.md": {
+	id: "2025/09/04/sony-to-downgrade-ps5-with-less-storage-for-the-same-price-claims-leak.md";
+  slug: "sony-to-downgrade-ps5-with-less-storage-for-the-same-price-claims-leak";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/suit-traditions-english-vs-italian-vs-american-cuts-what-s-the-real-difference-i.md": {
+	id: "2025/09/04/suit-traditions-english-vs-italian-vs-american-cuts-what-s-the-real-difference-i.md";
+  slug: "suit-traditions-english-vs-italian-vs-american-cuts-what-s-the-real-difference-i";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/tesco-tries-out-in-store-avocado-scanners-to-assess-ripeness.md": {
+	id: "2025/09/04/tesco-tries-out-in-store-avocado-scanners-to-assess-ripeness.md";
+  slug: "tesco-tries-out-in-store-avocado-scanners-to-assess-ripeness";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/well-that-was-a-nightmare-building.md": {
+	id: "2025/09/04/well-that-was-a-nightmare-building.md";
+  slug: "well-that-was-a-nightmare-building";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/what-casual-piece-of-clothing-defines-your-country-s-look.md": {
+	id: "2025/09/04/what-casual-piece-of-clothing-defines-your-country-s-look.md";
+  slug: "what-casual-piece-of-clothing-defines-your-country-s-look";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/which-streetwear-luxury-brands-are-the-highest-quality.md": {
+	id: "2025/09/04/which-streetwear-luxury-brands-are-the-highest-quality.md";
+  slug: "which-streetwear-luxury-brands-are-the-highest-quality";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
+"2025/09/04/why-would-a-skunk-be-spraying-every-night-near-my-house.md": {
+	id: "2025/09/04/why-would-a-skunk-be-spraying-every-night-near-my-house.md";
+  slug: "why-would-a-skunk-be-spraying-every-night-near-my-house";
+  body: string;
+  collection: "trends";
+  data: any
+} & { render(): Render[".md"] };
 };
 
 	};
