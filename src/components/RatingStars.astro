@@ -1,0 +1,38 @@
+---
+/**
+ * Muestra estrellas 0–5 con medias en incrementos de 0.5.
+ * Props: rating (number), count (number|undefined), size (css, opcional)
+ */
+const { rating = 0, count, size = '20px' } = Astro.props;
+const clamped = Math.max(0, Math.min(5, Number(rating) || 0));
+const full = Math.floor(clamped);
+const half = clamped - full >= 0.25 && clamped - full < 0.75 ? 1 : 0;
+const empty = 5 - full - half;
+---
+<div class="rating" style={`--size:${size}`}>
+  {Array.from({length: full}).map(() => <span class="star full" aria-hidden="true">★</span>)}
+  {half ? <span class="star half" aria-hidden="true">★</span> : null}
+  {Array.from({length: empty}).map(() => <span class="star empty" aria-hidden="true">★</span>)}
+  <span class="sr">Valoración {clamped} sobre 5{count ? ` (${count} reseñas)` : ''}</span>
+  {typeof count === 'number' ? <span class="count">({count})</span> : null}
+</div>
+
+<style>
+  .sr{ position:absolute; left:-9999px; }
+  .rating{ display:inline-flex; align-items:center; gap:.35rem; }
+  .rating .count{ color:var(--muted); font-weight:600; }
+  .star{
+    font-size: var(--size, 20px);
+    line-height: 1; display:inline-block;
+  }
+  .star.full{ color:#ffb400; }
+  .star.half{
+    color:#ffb400; 
+    position:relative; 
+  }
+  .star.half::after{
+    content:'★'; color: color-mix(in oklab, #ffb400 30%, var(--surface-3));
+    position:absolute; left:50%; top:0; width:50%; overflow:hidden;
+  }
+  .star.empty{ color: color-mix(in oklab, #ffb400 25%, var(--surface-3)); }
+</style>
