@@ -1,72 +1,64 @@
 ---
 import Base from "@/layouts/Base.astro";
+import fs from "fs";
+import path from "path";
 
-type TrendItem = { slug: string; title: string; niche: string; hero?: string; score?: number };
-type TrendIndex = { date: string; items: TrendItem[] };
+const ROOT = Astro.config.root?.pathname ?? process.cwd();
 
-const indexes = import.meta.glob("@/data/trends/**/index.json", {
-  eager: true,
-  import: "default",
-}) as Record<string, TrendIndex>;
-
-function toTime(v?: string){ const t = v ? Date.parse(v) : 0; return Number.isNaN(t)?0:t; }
-const allIdx = Object.entries(indexes).map(([path, data]) => ({ path, data }));
-allIdx.sort((a,b)=> (toTime(b.data?.date)||Date.parse(b.path)) - (toTime(a.data?.date)||Date.parse(a.path)));
-const latest = allIdx[0]?.data;
-let items: TrendItem[] = latest?.items ?? [];
-
-/** Fallback: si algo falla, volcamos los MD más recientes */
-if (!items.length) {
-  const md = import.meta.glob("@/content/trends/**/*.md", { eager:true }) as Record<
-    string,
-    { frontmatter: Record<string,any> }
-  >;
-  const entries = Object.entries(md).map(([path, mod]) => {
-    const fm = mod.frontmatter || {};
-    return {
-      slug: fm.slug || path.split("/").pop()?.replace(".md",""),
-      title: fm.title || "Tendencia",
-      niche: fm.niche || "general",
-      hero: fm.hero || "/placeholder.jpg",
-      score: fm.score || 1,
-      date: fm.date ? Date.parse(fm.date) : 0,
-    };
-  });
-  entries.sort((a,b)=> b.date - a.date);
-  items = entries.slice(0, 24).map(({slug,title,niche,hero,score}) => ({slug,title,niche,hero,score}));
+// Busca el último índice de productos
+function findLatestProducts() {
+  const base = path.join(ROOT, "src", "data", "trends");
+  if (!fs.existsSync(base)) return null;
+  const years = fs.readdirSync(base).sort().reverse();
+  for (const y of years) {
+    const ydir = path.join(base, y);
+    const months = fs.readdirSync(ydir).sort().reverse();
+    for (const m of months) {
+      const mdir = path.join(ydir, m);
+      const days = fs.readdirSync(mdir).sort().reverse();
+      for (const d of days) {
+        const idx = path.join(mdir, d, "index.json");
+        if (fs.existsSync(idx)) {
+          try { return JSON.parse(fs.readFileSync(idx, "utf-8")); }
+          catch { /* ignore */ }
+        }
+      }
+    }
+  }
+  return null;
 }
+
+const data = findLatestProducts();
+const items = data?.items || [];
 ---
 
-<Base title="Tendencias de hoy · Teknovashop" description="Lo más interesante en productos inteligentes, curado en español.">
+<Base title="Tendencias de hoy · Teknovashop" description="Selección curada de productos inteligentes en español. Mini-reviews y enlaces para comparar precios.">
   <h1>Tendencias de hoy</h1>
-  <p class="muted">Selección curada en español. Clic en cada tarjeta para ver mini-review y enlaces de comparación.</p>
+  <p class="lead">Selección curada en español. Clic en cada tarjeta para ver mini-review y enlaces de comparación.</p>
 
-  <div class="grid">
-    {
-      items.map((it) => (
+  {items.length === 0 ? (
+    <p>No hay destacados todavía. Vuelve más tarde.</p>
+  ) : (
+    <div class="grid">
+      {items.map(it => (
         <a class="card" href={`/producto/${it.slug}/`}>
-          <div class="pic">
-            <img src={it.hero || '/placeholder.jpg'} alt={it.title} loading="lazy" />
-            <span class="chip">{it.niche}</span>
+          <img src={it.hero} alt={it.title} loading="lazy" />
+          <div class="meta">
+            <span class="badge">{it.niche || 'tecnología'}</span>
           </div>
           <h3>{it.title}</h3>
-          <div class="meta">
-            <small>score {it.score ?? 1}</small>
-          </div>
+          <small>score {it.score || 1}</small>
         </a>
-      ))
-    }
-  </div>
+      ))}
+    </div>
+  )}
 
   <style>
-    .muted{ color:#5a7078; margin:0 0 .7rem; }
-    .grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:.9rem; }
-    .card{ display:block; background:#fff; border:1px solid #d9e7ed; border-radius:14px; overflow:hidden; text-decoration:none; transition: transform .16s ease, box-shadow .16s ease; box-shadow:0 8px 24px rgba(26,86,94,.06); }
-    .card:hover{ transform: translateY(-2px); box-shadow:0 10px 28px rgba(26,86,94,.1); }
-    .pic{ position:relative; aspect-ratio: 16/9; overflow:hidden; }
-    .pic img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .chip{ position:absolute; left:.6rem; bottom:.6rem; background:#0e2d30; color:#d9ffff; border-radius:999px; padding:.2rem .55rem; font-size:.72rem; font-weight:900; box-shadow:0 6px 14px rgba(0,0,0,.18); }
-    h3{ padding:.6rem .8rem 0; color:#0e1c22; font-size:1rem; }
-    .meta{ padding:.4rem .8rem .8rem; color:#5a7078; }
+    .lead{ color:#475569; margin:.3rem 0 1rem }
+    .grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+    .card{ display:block; background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:12px; text-decoration:none; color:#0f172a; }
+    .card:hover{ border-color:#94a3b8; box-shadow:0 6px 24px rgba(2,6,23,.06); }
+    .card img{ width:100%; height:160px; object-fit:cover; border-radius:12px; }
+    .badge{ font-size:.75rem; background:#e2f3f2; color:#0b7a77; padding:.2rem .5rem; border-radius:999px; }
   </style>
 </Base>
