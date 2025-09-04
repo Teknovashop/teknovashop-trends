@@ -3,104 +3,171 @@ import Base from "../layouts/Base.astro";
 
 const pageTitle = "Teknovashop Inteligentes";
 const pageDesc =
-  "Especialistas en tecnología útil para el día a día. Tendencias revisadas, comparador informativo y guías claras para acertar.";
+  "Tecnología útil para el día a día. Tendencias curadas en español, comparador informativo y guías claras para comprar con criterio.";
 ---
 
 <Base title={pageTitle} description={pageDesc}>
-  <!-- HERO a dos columnas usando utilidades del layout y styles.css -->
-  <section class="hero" aria-label="Presentación">
-    <!-- Columna izquierda: claim + CTAs + bullets de confianza -->
+
+  <!-- HERO -->
+  <section style="display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start;margin:.6rem 0 1.4rem;">
+    <!-- Columna izquierda -->
     <div>
-      <h1>Productos inteligentes, <span style="color:var(--brand)">con criterio</span></h1>
-      <p class="lead">
-        Especialistas en tecnología útil para el día a día.
-        Tendencias revisadas, comparador informativo y guías claras para acertar.
+      <h1 style="font-size:clamp(2.0rem,2.7vw,2.6rem);margin:0 0 .55rem;letter-spacing:-.2px;">
+        Productos inteligentes, <span style="color:var(--brand)">con criterio</span>
+      </h1>
+      <p style="margin:.25rem 0 1.1rem;color:var(--ink-soft);max-width:60ch;">
+        Seleccionamos tecnología que aporta. Menos ruido, más claridad: tendencias diarias en español,
+        comparador sin afiliados y guías honestas para acertar en 5 minutos.
       </p>
 
-      <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin:.9rem 0 0">
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
         <a class="btn btn-primary" href="/hoy">Ver tendencias de hoy</a>
-        <a class="btn btn-outline" href="/comparador">Comparar precios</a>
+        <a class="btn btn-ghost" href="/comparador">Comparar precios</a>
       </div>
 
-      <small class="muted" style="display:block;margin-top:.6rem">
-        El comparador es informativo (sin afiliados). Las tendencias pueden contener enlaces de afiliado.
-      </small>
-
-      <ul class="list-check" style="margin-top:1rem">
-        <li>Selección curada</li>
-        <li>Guías y comparativas</li>
-        <li>Reseñas verificadas</li>
-        <li>Pagos y tiendas seguras</li>
-      </ul>
+      <!-- Tira de confianza -->
+      <div class="trust" style="margin-top:.9rem">
+        <div class="item"><span class="dot" aria-hidden="true"></span>Selección curada</div>
+        <div class="item"><span class="dot" aria-hidden="true"></span>Guías y comparativas</div>
+        <div class="item"><span class="dot" aria-hidden="true"></span>Reseñas verificadas</div>
+        <div class="item"><span class="dot" aria-hidden="true"></span>Tiendas fiables por país</div>
+      </div>
     </div>
 
-    <!-- Columna derecha: Novedades separadas (productos / noticias) -->
-    <div class="hero-card" aria-label="Novedades">
-      <span class="kicker">NOVEDAD</span>
+    <!-- Columna derecha: NOVEDAD limpia -->
+    <aside class="hero-card" aria-label="Novedad" style="padding:1.1rem 1.2rem">
+      <div style="display:grid;grid-template-columns:1fr auto;gap:.75rem .9rem;align-items:start;">
+        <span class="badge">NOVEDAD</span>
+        <span></span>
 
-      <h2 style="margin:.5rem 0 .25rem">Tendencias diarias</h2>
-      <p class="muted" style="margin:.15rem 0 1rem">
-        Analizamos lo que se mueve en la comunidad tech y te lo servimos en español.
-      </p>
-      <div style="display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.8rem">
-        <a class="btn btn-primary" href="/hoy" aria-label="Ver productos en tendencia">Ver productos</a>
-        <a class="btn btn-ghost" href="/noticias" aria-label="Ver noticias relevantes">Ver noticias</a>
+        <div>
+          <h3 style="margin:0 0 .25rem">Tendencias diarias</h3>
+          <p class="muted" style="margin:0 0 .6rem">Analizamos lo que se mueve en la comunidad tech y te lo servimos en español.</p>
+        </div>
+        <div style="align-self:start">
+          <a class="btn btn-primary" href="/hoy" aria-label="Ver productos tendencia">Ver productos</a>
+        </div>
+
+        <div style="grid-column:1 / -1;height:1px;background:var(--muted);opacity:.9;margin:.35rem 0;"></div>
+
+        <div>
+          <h3 style="margin:0 0 .25rem">Noticias relevantes</h3>
+          <p class="muted" style="margin:0 0 .6rem">Las conversaciones que importan hoy en tecnología útil.</p>
+        </div>
+        <div style="align-self:start">
+          <a class="btn btn-ghost" href="/noticias" aria-label="Ver noticias relevantes">Ver noticias</a>
+        </div>
       </div>
+    </aside>
+  </section>
 
-      <hr style="border:none;border-top:1px solid var(--muted); margin:.75rem 0" />
+  <!-- Destacados hoy (linka a /hoy) -->
+  <section class="wrap" aria-label="Destacados de hoy" style="margin-top:.4rem">
+    <h2 class="section-title">Destacados de hoy</h2>
+    <p class="section-lead">Revisión diaria de lo que más interesa ahora mismo. Mini-review + pros/contras + dónde comparar.</p>
 
-      <h2 style="margin:.35rem 0 .25rem">Noticias relevantes</h2>
-      <p class="muted" style="margin:.15rem 0 0">
-        Las conversaciones que importan hoy en tecnología.
-      </p>
+    <!-- Cards “falsas” a modo de teaser, todo lleva a /hoy -->
+    <div class="grid cols-3">
+      <article class="card">
+        <a href="/hoy" style="display:block;text-decoration:none;color:inherit">
+          <img src="https://images.pexels.com/photos/5081391/pexels-photo-5081391.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 1" />
+          <div class="body">
+            <span class="tag">tecnología</span>
+            <h3 style="margin:.25rem 0 .2rem">Selección curada en español</h3>
+            <p class="muted">Clic para ver mini-reviews del día.</p>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="/hoy" style="display:block;text-decoration:none;color:inherit">
+          <img src="https://images.pexels.com/photos/4195343/pexels-photo-4195343.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 2" />
+          <div class="body">
+            <span class="tag">tecnología</span>
+            <h3 style="margin:.25rem 0 .2rem">Pros y contras reales</h3>
+            <p class="muted">Resumen útil en 30 segundos.</p>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="/hoy" style="display:block;text-decoration:none;color:inherit">
+          <img src="https://images.pexels.com/photos/3945659/pexels-photo-3945659.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 3" />
+          <div class="body">
+            <span class="tag">tecnología</span>
+            <h3 style="margin:.25rem 0 .2rem">Dónde comparar y comprar</h3>
+            <p class="muted">Por país y tienda fiable.</p>
+          </div>
+        </a>
+      </article>
     </div>
   </section>
 
-  <!-- Puntos fuertes en tarjetas limpias -->
-  <section aria-label="Por qué Teknovashop" style="margin-top:1.6rem">
-    <h2 class="section-title">Por qué elegir Teknovashop</h2>
-    <p class="section-lead">Marca de nicho, experiencia excelente y contenido que ayuda a decidir.</p>
+  <!-- Guías y comparativas -->
+  <section class="wrap" aria-label="Guías y comparativas" style="margin-top:1.4rem">
+    <h2 class="section-title">Guías y comparativas</h2>
+    <p class="section-lead">Atajos para acertar: lo que mirar, qué evitar y la mejor compra en tu caso.</p>
 
     <div class="grid cols-3">
       <article class="card">
         <div class="body">
-          <span class="tag" aria-hidden="true">Nicho</span>
-          <h3>1) Nicho definido</h3>
-          <p class="muted">Solo tecnología útil. Selección de calidad y marca confiable.</p>
+          <span class="tag">Guía</span>
+          <h3>Auriculares para teletrabajo (2025)</h3>
+          <p class="muted">Qué mirar y 3 picks por presupuesto.</p>
+          <a class="btn btn-ghost" href="/archivo">Ver guía</a>
         </div>
       </article>
-
       <article class="card">
         <div class="body">
-          <span class="tag" aria-hidden="true">UX</span>
-          <h3>2) UX excepcional</h3>
-          <p class="muted">Rápida, clara y sin fricciones: de la tendencia a comparar, todo fluye.</p>
+          <span class="tag">Comparativa</span>
+          <h3>Cámaras Wi-Fi sin cuotas</h3>
+          <p class="muted">Seguridad sin pagar suscripción.</p>
+          <a class="btn btn-ghost" href="/archivo">Ver comparativa</a>
         </div>
       </article>
-
       <article class="card">
         <div class="body">
-          <span class="tag" aria-hidden="true">Contenido</span>
-          <h3>3) Contenido de valor</h3>
-          <p class="muted">Guías y comparativas útiles. Menos ruido, mejores decisiones (y SEO).</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="body">
-          <span class="tag" aria-hidden="true">Confianza</span>
-          <h3>4) Valoraciones</h3>
-          <p class="muted">Metodología y transparencia. Reseñas verificadas y criterios públicos.</p>
-        </div>
-      </article>
-
-      <article class="card" style="grid-column: span 2;">
-        <div class="body">
-          <span class="tag" aria-hidden="true">Marketing</span>
-          <h3>5) Marketing de nicho</h3>
-          <p class="muted">Productos en acción (IG/TikTok). Colaboraciones con <em>tech reviewers</em> del nicho.</p>
+          <span class="tag">Guía</span>
+          <h3>Monitores 27" para casa</h3>
+          <p class="muted">IPS vs VA, 100/144Hz y cuándo compensa.</p>
+          <a class="btn btn-ghost" href="/archivo">Ver guía</a>
         </div>
       </article>
     </div>
   </section>
+
+  <!-- Newsletter -->
+  <section class="wrap" aria-label="Newsletter" style="margin-top:1.4rem">
+    <div class="hero-card">
+      <h2 style="margin:0 0 .35rem">Únete: 2 emails/mes con chicha</h2>
+      <p class="muted" style="margin:0 0 .7rem">Bajadas de precio, guías nuevas y un truco útil de tecnología cotidiana. Cero spam.</p>
+      <form onsubmit="event.preventDefault()">
+        <input placeholder="tu@email.com" style="padding:.6rem .8rem;border:1px solid var(--muted);border-radius:10px;margin-right:.4rem" />
+        <button class="btn btn-primary">Quiero apuntarme</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Cómo trabajamos -->
+  <section class="wrap" aria-label="Cómo trabajamos" style="margin-top:1.6rem">
+    <h2 class="section-title">Cómo seleccionamos</h2>
+    <p class="section-lead">Metodología pública y simple.</p>
+
+    <div class="grid cols-4">
+      <div class="card"><div class="body"><h4>1) Detectamos</h4><p class="muted">Comunidad, feeds y ventas.</p></div></div>
+      <div class="card"><div class="body"><h4>2) Filtramos</h4><p class="muted">Utilidad, calidad y disponibilidad.</p></div></div>
+      <div class="card"><div class="body"><h4>3) Explicamos</h4><p class="muted">Resumen claro en español.</p></div></div>
+      <div class="card"><div class="body"><h4>4) Comparas</h4><p class="muted">Enlaces a tiendas fiables por país.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Ventajas (USP) -->
+  <section class="usp" aria-label="Por qué Teknovashop">
+    <div class="card"><div class="body"><h4>1) Nicho definido</h4><p class="muted">Tecnología útil. Selección de calidad y marca confiable.</p></div></div>
+    <div class="card"><div class="body"><h4>2) UX excepcional</h4><p class="muted">Rápida y clara: de la tendencia a comparar, todo fluye.</p></div></div>
+    <div class="card"><div class="body"><h4>3) Contenido de valor</h4><p class="muted">Guías y comparativas útiles. Menos ruido, mejores decisiones.</p></div></div>
+    <div class="card"><div class="body"><h4>4) Confianza</h4><p class="muted">Transparencia y reseñas verificadas.</p></div></div>
+    <div class="card" style="grid-column: span 2;"><div class="body">
+      <h4>5) Marketing de nicho</h4><p class="muted">Productos en acción (IG/TikTok) y colaboración con reviewers.</p>
+    </div></div>
+  </section>
+
 </Base>
