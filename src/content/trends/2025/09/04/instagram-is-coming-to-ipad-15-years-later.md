@@ -1,7 +1,7 @@
 ---
 title: "instagram is coming to ipad, 15 years later"
 slug: "instagram-is-coming-to-ipad-15-years-later"
-date: "2025-09-04T14:12:52.957Z"
+date: "2025-09-04T14:49:26.796Z"
 niche: "tecnologia"
 score: 1
 hero: "https://images.pexels.com/photos/6224641/pexels-photo-6224641.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"

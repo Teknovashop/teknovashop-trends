@@ -1,7 +1,7 @@
 ---
 title: "[tv] insignia - 50” f50 series 4k fire tv | $150 (bestbuy)"
 slug: "tv-insignia-50-f50-series-4k-fire-tv-150-bestbuy"
-date: "2025-09-04T14:12:53.894Z"
+date: "2025-09-04T14:49:27.656Z"
 niche: "tecnologia"
 score: 1
 hero: "https://images.pexels.com/photos/4009402/pexels-photo-4009402.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"

@@ -1,7 +1,7 @@
 ---
 title: "meet samsung galaxy tab s11 series: packing everything you expect from a premium tablet"
 slug: "meet-samsung-galaxy-tab-s11-series-packing-everything-you-expect-from-a-premium-"
-date: "2025-09-04T14:12:52.634Z"
+date: "2025-09-04T14:49:26.489Z"
 niche: "tecnologia"
 score: 1
 hero: "https://images.pexels.com/photos/7309430/pexels-photo-7309430.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"

@@ -1,7 +1,7 @@
 ---
 title: "new report lists ram amounts in iphone 17 and iphone 17 pro models"
 slug: "new-report-lists-ram-amounts-in-iphone-17-and-iphone-17-pro-models"
-date: "2025-09-04T14:12:53.558Z"
+date: "2025-09-04T14:49:27.378Z"
 niche: "tecnologia"
 score: 1
 hero: "https://images.pexels.com/photos/16005007/pexels-photo-16005007.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
