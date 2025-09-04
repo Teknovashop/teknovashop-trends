@@ -1,8 +1,84 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from "@/layouts/Base.astro";
+import TrustBar from "@/components/TrustBar.astro";
+import SectionHero from "@/components/SectionHero.astro";
+
+const meta = {
+  title: "Teknovashop · Productos inteligentes seleccionados",
+  description: "Guías de compra, comparativas y reseñas claras de productos inteligentes. Nicho definido, UX excelente, confianza y contenido útil."
+};
 ---
-<Base title="Teknovashop Tendencias — Radar diario">
-  <h1>Radar de Tendencias</h1>
-  <p class="small">Cada día publicamos los productos del día por nicho con mini‑review e ideas de compra.</p>
-  <p><a class="button" href="/hoy">Ver tendencias de hoy</a></p>
+<Base title={meta.title} description={meta.description}>
+
+  <SectionHero
+    title="Productos inteligentes, bien explicados"
+    subtitle="Nos centramos en un nicho: tecnología útil para el día a día. Te damos comparativas, guías y reseñas sin humo para decidir rápido."
+  />
+
+  <TrustBar />
+
+  <!-- Sección 1: UX y velocidad -->
+  <section class="section" style="margin-top:2rem;">
+    <h2>Experiencia de usuario impecable</h2>
+    <p class="section-lead">Sitio rápido, navegación clara y proceso de decisión sin fricciones.</p>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Comparador informativo</h3>
+        <p>Busca por nombre o referencia y te llevamos a las tiendas y comparadores relevantes por país. Sin afiliados, solo información.</p>
+        <a class="btn" href="/comparador">Abrir comparador</a>
+      </div>
+
+      <div class="card">
+        <h3>Guías y reseñas</h3>
+        <p>Contenido que aporta: guías de compra, “qué mirar”, pros y contras reales y enlaces para ampliar.</p>
+        <a class="btn" href="/archivo">Ver contenido</a>
+      </div>
+
+      <div class="card">
+        <h3>Tendencias diarias</h3>
+        <p>Cada día, una selección curada de lo que más se busca. Ideal para detectar oportunidades y productos calientes.</p>
+        <a class="btn" href="/hoy">Tendencias de hoy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 2: Confianza -->
+  <section class="section" style="margin-top:2rem;">
+    <h2>Confianza que se ve</h2>
+    <p class="section-lead">Reseñas verificadas, señalización de seguridad y transparencia en los enlaces.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Reseñas y verificación</h3>
+        <p>Mostramos la valoración media y destacamos reseñas verificadas. Nada de opiniones “fantasma”.</p>
+      </div>
+      <div class="card">
+        <h3>Seguridad</h3>
+        <p>Cifrado, buenas prácticas y aviso claro cuando un enlace puede ser de afiliado. Sin sorpresas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3: Marketing de nicho -->
+  <section class="section" style="margin-top:2rem;">
+    <h2>Marketing de nicho efectivo</h2>
+    <p class="section-lead">Productos inteligentes en acción: redes sociales, micro-influencers y comunidad.</p>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Instagram & TikTok</h3>
+        <p>Clips cortos mostrando utilidad real y comparativas rápidas. CTA directo al comparador o guía.</p>
+      </div>
+      <div class="card">
+        <h3>Tech reviewers</h3>
+        <p>Colaboraciones con creadores especializados del nicho. Alcance cualificado en lugar de volumen.</p>
+      </div>
+      <div class="card">
+        <h3>Newsletter</h3>
+        <p>Un resumen semanal: 3 hallazgos, 1 guía y 1 chollo. Valor antes que venta.</p>
+      </div>
+    </div>
+  </section>
+
 </Base>
