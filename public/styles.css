@@ -1,1 +1,134 @@
-:root{--fg:#0f172a;--bg:#fff;--muted:#64748b;--accent:#0ea5e9}body{margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg)}.wrap{max-width:1100px;margin:0 auto;padding:1rem 1.25rem}header.wrap{display:flex;justify-content:space-between;align-items:center}nav a{color:var(--muted);text-decoration:none;margin-left:.9rem}nav a:hover{color:var(--accent)}.logo{font-weight:800;color:var(--fg);text-decoration:none}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}.card{border:1px solid #e2e8f0;border-radius:16px;padding:1rem}img.hero{width:100%;border-radius:14px;border:1px solid #e2e8f0}.badge{background:#e6f6ff;color:#0369a1;border-radius:8px;padding:.15rem .5rem;font-size:.8rem}.small{color:var(--muted);font-size:.9rem}h1,h2,h3{line-height:1.2}.button{display:inline-block;background:var(--accent);color:white;border-radius:10px;padding:.6rem 1rem;text-decoration:none}footer{border-top:1px solid #e2e8f0;margin-top:2rem}
+/* Teknovashop · sistema de diseño claro + oscuro opcional */
+/* Tipografía: sistema para rendimiento.  */
+:root{
+  --bg: #f7fafc;             /* fondo claro */
+  --ink-1: #0b1727;          /* texto primario */
+  --ink-2: #304257;          /* texto secundario */
+  --muted: #5f738a;          /* texto tenue */
+  --brand: #00b0b3;          /* acento principal (teal) */
+  --brand-2: #008b8d;        /* acento hover */
+  --surface-1: #ffffff;      /* tarjetas / paneles */
+  --surface-2: #eef3f7;      /* bordes suaves / rellenos */
+  --surface-3: #dce7f0;      /* resaltados sutiles */
+  --ring: rgba(0,176,179,.35);
+  --wrap: 1120px;
+  --radius: 14px;
+}
+
+/* Modo oscuro opcional por preferencia del usuario */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0c1217;
+    --ink-1:#eaf3f7;
+    --ink-2:#c8d6de;
+    --muted:#9fb3b8;
+    --surface-1:#101820;
+    --surface-2:#0f151b;
+    --surface-3:#16212b;
+    --ring: rgba(0,176,179,.45);
+  }
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  background:var(--bg);
+  color:var(--ink-1);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji','Segoe UI Emoji';
+  line-height:1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,h2,h3,h4{ line-height:1.2; margin:0 0 .5rem; }
+p{ margin:.25rem 0 .75rem; }
+a{ color:var(--brand); text-decoration:none; }
+a:hover{ color:var(--brand-2); }
+
+.wrap{ max-width:var(--wrap); margin:0 auto; padding:0 1rem; }
+.row, .row-center, .row-between{ display:flex; align-items:center; }
+.row-center{ justify-content:center; }
+.row-between{ justify-content:space-between; }
+.gap-4{ gap:.25rem; } .gap-8{ gap:.5rem; } .gap-12{ gap:.75rem; } .gap-16{ gap:1rem; }
+.mt-8{ margin-top:.5rem; }
+
+.muted{ color:var(--muted); }
+
+/* Header */
+.site-top{
+  position: sticky; top:0; z-index:40;
+  backdrop-filter: saturate(120%) blur(8px);
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  border-bottom:1px solid var(--surface-2);
+}
+.site-top .brand-title{ font-weight:700; letter-spacing:.2px; }
+.site-top .brand-title b{ color:var(--brand); }
+.site-top .logo{ border-radius:10px; }
+.nav a{
+  font-weight:600; color:var(--ink-1);
+  padding:.5rem .7rem; border-radius:10px;
+}
+.nav a:hover{ background:var(--surface-2); }
+
+/* Footer */
+.site-foot{ border-top:1px solid var(--surface-2); background:var(--surface-1); margin-top:3rem; }
+.foot-grid{
+  display:grid; grid-template-columns: 1.2fr .7fr 1fr; gap:2rem; padding:2rem 0 1rem;
+}
+.foot-meta{ border-top:1px solid var(--surface-2); padding:1rem 0 2rem; color:var(--muted); }
+.list{ list-style:none; padding:0; margin:.25rem 0 0; }
+.list li{ margin:.25rem 0; }
+
+/* Main */
+.main{ padding:1.2rem 0 2rem; }
+
+/* Comunes */
+.card{
+  background:var(--surface-1); border:1px solid var(--surface-2);
+  border-radius:var(--radius); padding:1rem;
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--ink-1) 10%, transparent);
+}
+.card.soft{ background: color-mix(in oklab, var(--surface-1) 80%, var(--surface-2)); }
+
+.btn{
+  appearance:none; border:0; border-radius:12px;
+  background:var(--brand); color:#00292b; font-weight:800;
+  padding:.7rem 1rem; cursor:pointer;
+}
+.btn:hover{ background:var(--brand-2); color:#eaffff; }
+
+.input{
+  width:100%; border:1px solid var(--surface-3); background:var(--surface-1);
+  color:var(--ink-1); border-radius:12px; padding:.65rem .8rem; outline:none;
+}
+.input:focus{ border-color:var(--brand); box-shadow:0 0 0 .25rem var(--ring); }
+
+/* Grids */
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+@media (max-width: 860px){
+  .grid-3{ grid-template-columns:1fr; }
+  .grid-2{ grid-template-columns:1fr; }
+  .foot-grid{ grid-template-columns:1fr; }
+}
+
+/* Hero */
+.hero{
+  display:grid; grid-template-columns: 1.2fr .8fr; gap:1.2rem; align-items:center;
+  margin: .6rem 0 1.4rem;
+}
+.hero .tag{ display:inline-block; background:var(--surface-2); border:1px solid var(--surface-3); padding:.2rem .5rem; border-radius:999px; font-weight:700; color:var(--ink-2); }
+.hero h1{ font-size: clamp(1.8rem, 1.2rem + 2vw, 2.4rem); }
+.hero p.lead{ color:var(--ink-2); font-size: 1.05rem; }
+
+/* Trust bar */
+.trustbar{ display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
+.badge{
+  display:flex; align-items:center; gap:.5rem;
+  background:var(--surface-2); border:1px solid var(--surface-3); padding:.45rem .65rem; border-radius:999px;
+  color:var(--ink-2); font-weight:700;
+}
+
+/* Sections */
+.section h2{ margin-bottom:.25rem; }
+.section p.section-lead{ color:var(--ink-2); margin-top:0; }
