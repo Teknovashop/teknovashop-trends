@@ -9,18 +9,18 @@
       "hero": "https://images.pexels.com/photos/20196723/pexels-photo-20196723.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
     },
     {
-      "slug": "tabletop-sci-fi-object-docking-station-you-know-where-to-lift-off-for-you-daily-",
-      "title": "Tabletop sci-fi object docking station – you know where to lift off for you daily mission",
-      "niche": "tecnologia",
-      "score": 1,
-      "hero": "https://images.pexels.com/photos/5612818/pexels-photo-5612818.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
-    },
-    {
       "slug": "jbl-s-grip-bluetooth-speaker-doubles-as-a-snazzy-reading-light",
       "title": "Jbl's grip bluetooth speaker doubles as a snazzy reading light",
       "niche": "tecnologia",
       "score": 1,
       "hero": "https://images.pexels.com/photos/880864/pexels-photo-880864.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
+    },
+    {
+      "slug": "tabletop-sci-fi-object-docking-station-you-know-where-to-lift-off-for-you-daily-",
+      "title": "Tabletop sci-fi object docking station – you know where to lift off for you daily mission",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5612818/pexels-photo-5612818.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1024&h=576&fit=crop"
     }
   ]
 }
