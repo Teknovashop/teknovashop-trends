@@ -1,177 +1,152 @@
 ---
-import Base from "@/layouts/Base.astro";
-import { buildLinks } from "@/lib/price-links";
-
-const TITLE = "Comparador de precios (informativo)";
-
-const countries = [
-  { code: "ES", label: "España (ES)" },
-  { code: "US", label: "Estados Unidos (US)" },
-  { code: "MX", label: "México (MX)" },
-  { code: "AR", label: "Argentina (AR)" },
-  { code: "CO", label: "Colombia (CO)" },
-  { code: "CL", label: "Chile (CL)" },
-  { code: "PE", label: "Perú (PE)" },
-];
+import Base from "../layouts/Base.astro";
+const pageTitle = "Comparador informativo";
+const pageDesc = "Busca un producto, recibes lista de tiendas con precios (informativo; sin scraping agresivo).";
 ---
 
-<Base title={`Teknovashop · ${TITLE}`} description="Sube una foto o pega una URL, la IA identifica el producto y te generamos búsquedas informativas de precio.">
-  <h1>{TITLE}</h1>
-  <p class="small">Introduce un producto, <b>o</b> pega una URL del producto, <b>o</b> sube una imagen. 
-  Nosotros identificamos y te creamos búsquedas en tiendas y países. <b>No vendemos ni afiliamos</b>: es informativo.</p>
+<Base title={pageTitle} description={pageDesc}>
+  <section style="display:grid;gap:1rem;max-width:980px;margin:0 auto">
+    <h1 style="margin:.4rem 0 0">Comparador informativo</h1>
+    <p style="color:var(--ink-soft);margin:.2rem 0 1rem">
+      Pega el nombre o modelo de un producto. Mostramos precios y tiendas a partir de fuentes públicas (APIs).  
+      <br/>Este comparador no usa scraping agresivo y puede no listar todas las tiendas.
+    </p>
 
-  <div class="card" style="padding:1rem; margin:1rem 0;">
-    <form id="cmp-form" on:submit="return false;">
-      <div class="row">
-        <label>Producto (texto) <span class="hint">marca + modelo</span></label>
-        <input id="q" type="text" placeholder="Ej: Samsung Odyssey G5 27 144Hz" />
+    <!-- Formulario -->
+    <form id="cmp-form" class="card" on:submit="return false;" style="display:grid;gap:.6rem;padding:1rem;border:1px solid var(--muted);border-radius:12px;background:#fff">
+      <label>Producto (texto) <small style="color:var(--ink-soft)">marca + modelo</small></label>
+      <input id="q" placeholder="Ej. Philips 24E1N1100A, JBL Charge 5, Samsung 990 Pro..." required
+        style="padding:.7rem .8rem;border:1px solid #e5e7eb;border-radius:10px"/>
+
+      <label>País</label>
+      <select id="country" style="padding:.6rem .8rem;border:1px solid #e5e7eb;border-radius:10px;max-width:240px">
+        <option value="ES">España (ES)</option>
+        <option value="MX">México (MX)</option>
+        <option value="US">Estados Unidos (US)</option>
+        <option value="GB">Reino Unido (GB)</option>
+        <option value="DE">Alemania (DE)</option>
+        <option value="FR">Francia (FR)</option>
+        <option value="IT">Italia (IT)</option>
+      </select>
+
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem">
+        <button id="btnSearch" class="btn btn-primary" style="cursor:pointer">🔎 Generar comparativa</button>
+        <a class="btn btn-ghost" href="https://www.google.com/shopping" target="_blank" rel="noopener">Google Shopping</a>
+        <a class="btn btn-ghost" href="https://www.idealo.es/" target="_blank" rel="noopener">Idealo</a>
+        <a class="btn btn-ghost" href="https://www.pccomponentes.com/" target="_blank" rel="noopener">PcComponentes</a>
       </div>
 
-      <div class="row">
-        <label>URL de producto (opcional)</label>
-        <input id="pageUrl" type="url" placeholder="Pega aquí la URL de la ficha de producto" />
-      </div>
-
-      <div class="row">
-        <label>Imagen (opcional)</label>
-        <input id="image" type="file" accept="image/*" />
-      </div>
-
-      <div class="row">
-        <label>País</label>
-        <select id="country">
-          {countries.map(c => <option value={c.code}>{c.label}</option>)}
-        </select>
-      </div>
-
-      <div class="row gap">
-        <button id="btn-identify" class="btn" type="button">🔎 Identificar con IA</button>
-        <button id="btn-build" class="btn" type="button">Generar comparativas</button>
-      </div>
-
-      <div id="ia-result" class="small" style="margin-top:.6rem; display:none;"></div>
+      <small style="color:var(--ink-soft)">Nota: algunas tiendas o marketplaces pueden no aparecer si no exponen API pública o hay límites regionales.</small>
     </form>
-  </div>
 
-  <div id="links-wrap" class="grid" style="display:none;">
-    <div class="card pad">
-      <h3>Metabuscadores</h3>
-      <div id="meta" class="links"></div>
+    <!-- Resultados -->
+    <section id="results" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin:.4rem 0">
+        <h2 style="margin:0">Resultados</h2>
+        <div id="meta" style="color:var(--ink-soft);font-size:.95rem"></div>
+      </div>
+
+      <div id="warn" style="display:none;background:#fffaf0;border:1px solid #f1e3b4;color:#856404;padding:.7rem .9rem;border-radius:10px;margin:.4rem 0">
+        Sugerencia: añade más modelo/detalle (capacidad, tamaño, año) para precisarlo.
+      </div>
+
+      <div class="table-wrap" style="overflow:auto;border:1px solid var(--muted);border-radius:12px;background:#fff">
+        <table id="tbl" style="width:100%;border-collapse:collapse;font-size:.95rem">
+          <thead style="background:#f7fbfe">
+            <tr>
+              <th style="text-align:left;padding:.65rem .75rem;border-bottom:1px solid #e5e7eb">Tienda / Vendedor</th>
+              <th style="text-align:left;padding:.65rem .75rem;border-bottom:1px solid #e5e7eb">Producto</th>
+              <th style="text-align:right;padding:.65rem .75rem;border-bottom:1px solid #e5e7eb;white-space:nowrap">Precio</th>
+              <th style="text-align:left;padding:.65rem .75rem;border-bottom:1px solid #e5e7eb">Fuente</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Loader -->
+    <div id="loading" style="display:none;align-items:center;gap:.6rem;color:var(--ink-soft)">
+      <span class="spinner" style="width:16px;height:16px;border:2px solid #cfe3ea;border-top-color:transparent;border-radius:50%;display:inline-block;animation:spin 1s linear infinite"></span>
+      Consultando fuentes…
     </div>
-    <div class="card pad">
-      <h3>Marketplaces</h3>
-      <div id="mkt" class="links"></div>
-    </div>
-    <div class="card pad">
-      <h3>Comparadores</h3>
-      <div id="comp" class="links"></div>
-    </div>
-  </div>
+  </section>
 
   <style>
-    .row{ display:flex; flex-direction:column; gap:.35rem; margin:.6rem 0; }
-    .row input, .row select{
-      background:#0f151b; color:#eaf3f7; border:1px solid rgba(255,255,255,.08); 
-      border-radius:10px; padding:.65rem .75rem; outline:none;
-    }
-    .row input:focus, .row select:focus{ border-color:#00c4c7; }
-    .hint{ font-weight:400; opacity:.8; margin-left:.3rem; }
-    .gap{ display:flex; gap:.5rem; flex-wrap:wrap; }
-    .btn{ background:#00c4c7; color:#00292b; border:0; padding:.6rem .9rem; border-radius:10px; font-weight:800; cursor:pointer; }
-    .btn:hover{ filter:brightness(.95); }
-    .grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); margin:1rem 0 2rem; }
-    .card.pad{ padding:1rem; }
-    .links a{ display:inline-block; margin:.3rem .5rem .3rem 0; }
-    .small{ color:#9fb3b8; }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .price-badge{display:inline-flex;align-items:center;gap:.35rem;background:#eef6f9;border:1px solid #cfe3ea;border-radius:10px;padding:.22rem .5rem;font-weight:800}
+    .src-tag{display:inline-flex;align-items:center;gap:.35rem;background:#f2f2f2;border:1px solid #e5e7eb;border-radius:8px;padding:.2rem .45rem;font-weight:700;font-size:.85rem}
+    .seller{font-weight:800}
+    .title{color:#0e1c22;text-decoration:none}
+    .title:hover{text-decoration:underline}
   </style>
 
   <script is:raw>
-    const $ = (q)=>document.querySelector(q);
-    const byId = (id)=>document.getElementById(id);
+    const fmtMoney = (n, c) => new Intl.NumberFormat(undefined, { style:'currency', currency: c || 'EUR', maximumFractionDigits: 2 }).format(n);
 
-    async function toDataURL(file){
-      const b64 = await new Promise((res,rej)=>{
-        const r = new FileReader();
-        r.onload = ()=> res(r.result);
-        r.onerror = rej;
-        r.readAsDataURL(file);
-      });
-      return b64;
+    const form = document.getElementById('cmp-form');
+    const btn = document.getElementById('btnSearch');
+    const qEl = document.getElementById('q');
+    const cEl = document.getElementById('country');
+    const results = document.getElementById('results');
+    const loading = document.getElementById('loading');
+    const tbody = document.getElementById('tbody');
+    const meta = document.getElementById('meta');
+    const warn = document.getElementById('warn');
+
+    async function search(){
+      const q = (qEl.value || '').trim();
+      const country = cEl.value || 'ES';
+      if (!q) return;
+
+      warn.style.display = 'none';
+      results.style.display = 'none';
+      loading.style.display = 'flex';
+      tbody.innerHTML = '';
+      meta.textContent = '';
+
+      try{
+        const url = new URL('/api/compare', location.origin);
+        url.searchParams.set('q', q);
+        url.searchParams.set('country', country);
+        const res = await fetch(url.toString());
+        const data = await res.json();
+
+        loading.style.display = 'none';
+        results.style.display = 'block';
+
+        meta.textContent = data.count ? `${data.count} ofertas encontradas` : 'Sin resultados';
+        if (!data.count) warn.style.display = 'block';
+
+        const rows = [];
+        for (const it of (data.offers || [])){
+          rows.push(`
+            <tr>
+              <td style="padding:.6rem .75rem;border-bottom:1px solid #f0f2f4">
+                <div class="seller">${(it.seller || '—')}</div>
+              </td>
+              <td style="padding:.6rem .75rem;border-bottom:1px solid #f0f2f4">
+                <a class="title" href="${it.url}" target="_blank" rel="noopener">${(it.title || '').replace(/</g,'&lt;')}</a>
+              </td>
+              <td style="padding:.6rem .75rem;border-bottom:1px solid #f0f2f4;text-align:right">
+                <span class="price-badge">${fmtMoney(it.price, it.currency)}</span>
+              </td>
+              <td style="padding:.6rem .75rem;border-bottom:1px solid #f0f2f4">
+                <span class="src-tag">${it.source}</span>
+              </td>
+            </tr>
+          `);
+        }
+        tbody.innerHTML = rows.join('');
+      }catch(e){
+        loading.style.display = 'none';
+        results.style.display = 'block';
+        meta.textContent = 'Error al consultar fuentes';
+        warn.style.display = 'block';
+      }
     }
 
-    byId('btn-identify').addEventListener('click', async ()=>{
-      const q = byId('q').value.trim();
-      const pageUrl = byId('pageUrl').value.trim();
-      const file = byId('image').files?.[0];
-      let imageDataUrl = null;
-      if (file) imageDataUrl = await toDataURL(file);
-
-      byId('ia-result').style.display = 'block';
-      byId('ia-result').innerText = 'Analizando con IA...';
-
-      const res = await fetch('/api/identify-product', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ imageDataUrl, pageUrl, hint: q })
-      });
-      const data = await res.json();
-      if (data.error) {
-        byId('ia-result').innerText = 'Error: ' + (data.detail || data.error);
-        return;
-      }
-      const query = data.query || q;
-      byId('q').value = query;
-      const attrs = (data.attrs || []).join(' · ');
-      const conf = typeof data.confidence==='number' ? ` (confianza ${(data.confidence*100).toFixed(0)}%)` : '';
-      byId('ia-result').innerHTML = `<b>Query sugerida:</b> ${query}${conf}${attrs ? '<br/><span class="small">Atributos: '+attrs+'</span>':''}`;
-    });
-
-    byId('btn-build').addEventListener('click', ()=>{
-      const q = byId('q').value.trim();
-      const c = byId('country').value || 'ES';
-      if (!q) return alert('Escribe o identifica primero el producto');
-
-      // Construimos enlaces en el cliente (sin afiliados).
-      fetch('/__build-links', { // endpoint virtual; lo hacemos en el client con lógica duplicada
-        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ q, c })
-      }).catch(()=>{ /* noop */ });
-
-      // replicamos la función buildLinks en el cliente:
-      function buildLinks(q, country) {
-        const s = encodeURIComponent(q.trim());
-        const googleWeb = `https://www.google.com/search?q=${s}`;
-        const googleShopping = `https://www.google.com/search?tbm=shop&q=${s}`;
-        const amazon = ({ES:`https://www.amazon.es/s?k=${s}`,MX:`https://www.amazon.com.mx/s?k=${s}`,US:`https://www.amazon.com/s?k=${s}`}[country]) || `https://www.amazon.com/s?k=${s}`;
-        const ebay = ({ES:`https://www.ebay.es/sch/i.html?_nkw=${s}`,US:`https://www.ebay.com/sch/i.html?_nkw=${s}`,MX:`https://www.ebay.com/sch/i.html?_nkw=${s}`}[country]) || `https://www.ebay.com/sch/i.html?_nkw=${s}`;
-        const mercadolibre = ({AR:`https://listado.mercadolibre.com.ar/${s}`,MX:`https://listado.mercadolibre.com.mx/${s}`,CO:`https://listado.mercadolibre.com.co/${s}`,CL:`https://listado.mercadolibre.cl/${s}`,PE:`https://listado.mercadolibre.com.pe/${s}`}[country]);
-        const comparadores = ({
-          ES:[{name:"Idealo",url:`https://www.idealo.es/precios.aspx?q=${s}`},{name:"PcComponentes (buscador)",url:`https://www.pccomponentes.com/buscar/?query=${s}`}],
-          MX:[{name:"Google Shopping (MX)",url:googleShopping}],
-          US:[{name:"Google Shopping (US)",url:googleShopping}],
-          AR:[{name:"Google Shopping",url:googleShopping}],
-          CO:[{name:"Google Shopping",url:googleShopping}],
-          CL:[{name:"Google Shopping",url:googleShopping}],
-          PE:[{name:"Google Shopping",url:googleShopping}],
-        }[country]) || [{name:"Google Shopping",url:googleShopping}];
-
-        const marketplaces = [{name:"Amazon",url:amazon},{name:"eBay",url:ebay}];
-        if (mercadolibre) marketplaces.push({name:"MercadoLibre",url:mercadolibre});
-        const meta = [{name:"Google Shopping",url:googleShopping},{name:"Google (web)",url:googleWeb}];
-        return { meta, marketplaces, comparadores };
-      }
-
-      const { meta, marketplaces, comparadores } = buildLinks(q, c);
-
-      function paint(where, arr){
-        const el = byId(where);
-        el.innerHTML = (arr||[]).map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.name}</a>`).join(' ');
-      }
-      paint('meta', meta);
-      paint('mkt', marketplaces);
-      paint('comp', comparadores);
-
-      byId('links-wrap').style.display = 'grid';
-      window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
-    });
+    btn.addEventListener('click', search);
+    form.addEventListener('submit', search);
   </script>
 </Base>
