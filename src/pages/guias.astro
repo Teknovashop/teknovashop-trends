@@ -1,0 +1,95 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Carga guides desde content. Si no hay, muestra placeholders.
+const modules = import.meta.glob("../content/guides/**/*.md", { eager: true });
+
+type Guide = {
+  slug: string;
+  title: string;
+  excerpt?: string;
+  hero?: string;
+  date?: string;
+  tags?: string[];
+};
+
+const guides: Guide[] = Object.values(modules).map((m: any) => ({
+  slug: m?.frontmatter?.slug || "",
+  title: m?.frontmatter?.title || "Guía",
+  excerpt: m?.frontmatter?.excerpt || "",
+  hero: m?.frontmatter?.hero || "/placeholder.jpg",
+  date: m?.frontmatter?.date,
+  tags: Array.isArray(m?.frontmatter?.tags) ? m.frontmatter.tags : []
+})).filter(g => g.slug);
+
+const pageTitle = "Guías y comparativas";
+const pageDesc = "Elige bien: guías visuales, comparativas claras y consejos prácticos.";
+---
+
+<Base title={pageTitle} description={pageDesc}>
+  <section style="margin:.3rem 0 1rem;">
+    <h1 style="font-size:clamp(1.4rem,2.4vw,1.9rem); margin:0 0 .3rem;">{pageTitle}</h1>
+    <p class="muted" style="max-width:60ch;">Aprende a elegir el producto inteligente perfecto para ti. Comparativas, criterios de compra y recomendaciones.</p>
+  </section>
+
+  <section class="grid">
+    {guides.length ? guides.map(g => (
+      <article class="card">
+        <a href={`/guia/${g.slug}`} class="thumb" aria-label={`Abrir guía: ${g.title}`}>
+          <img src={g.hero} alt={g.title} loading="lazy" width="640" height="360" />
+        </a>
+        <div class="content">
+          <h3><a href={`/guia/${g.slug}`}>{g.title}</a></h3>
+          {g.excerpt ? <p class="muted">{g.excerpt}</p> : null}
+          <div class="meta">
+            {g.tags?.slice(0,3).map(t => <span class="tag">{t}</span>)}
+            {g.date ? <small class="muted" style="margin-left:auto">{new Date(g.date).toLocaleDateString('es-ES')}</small> : null}
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" href={`/guia/${g.slug}`}>Ver guía</a>
+            <a class="btn" href="/comparador">Comparar precios</a>
+          </div>
+        </div>
+      </article>
+    )) : (
+      <>
+        <article class="card">
+          <div class="thumb"><img src="/placeholder.jpg" alt="" loading="lazy" width="640" height="360" /></div>
+          <div class="content">
+            <h3>Cómo elegir tu robot aspirador</h3>
+            <p class="muted">Mapeo láser vs. giroscopio, succión real, autonomía y cepillos: qué mirar y por qué importa.</p>
+            <div class="meta"><span class="tag">Hogar</span><span class="tag">Conectado</span></div>
+            <div class="actions"><a class="btn btn-primary" href="#">Ver guía</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="thumb"><img src="/placeholder.jpg" alt="" loading="lazy" width="640" height="360" /></div>
+          <div class="content">
+            <h3>Monitores: IPS vs. VA vs. OLED</h3>
+            <p class="muted">Tiempo de respuesta, contraste, PWM y cuándo merece la pena 144 Hz o 4K.</p>
+            <div class="meta"><span class="tag">PC</span><span class="tag">Pantallas</span></div>
+            <div class="actions"><a class="btn btn-primary" href="#">Ver guía</a></div>
+          </div>
+        </article>
+      </>
+    )}
+  </section>
+
+  <style>
+    .muted{ color: var(--ink-soft); }
+    .grid{
+      display:grid; gap:1rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      margin-bottom: 1.4rem;
+    }
+    .card{ background:#fff; border:1px solid var(--muted); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+    .thumb{ display:block; aspect-ratio:16/9; background:#eef6f9; }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .content{ padding:.85rem; display:flex; flex-direction:column; gap:.45rem; }
+    h3{ margin:.1rem 0; font-size:1.05rem; }
+    h3 a{ color: inherit; text-decoration:none; }
+    h3 a:hover{ color: var(--brand); }
+    .meta{ display:flex; gap:.4rem; align-items:center; flex-wrap:wrap; }
+    .tag{ background:#eef6f9; border:1px solid #dbe9ee; color:#0c2a2d; padding:.16rem .45rem; border-radius:999px; font-size:.78rem; }
+    .actions{ display:flex; gap:.5rem; margin-top:.3rem; }
+  </style>
+</Base>
