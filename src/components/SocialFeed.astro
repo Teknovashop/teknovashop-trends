@@ -1,0 +1,69 @@
+---
+/**
+ * Feed social ligero. Sustituye los handles:
+ *   instagramHandle: p.ej. "teknovashop"
+ *   tiktokHandle:    p.ej. "teknovashop"
+ * Muestra 2 embeds (IG + TikTok). Puedes duplicar bloques si quieres más.
+ */
+const instagramHandle = "tu_usuario";
+const tiktokHandle = "tu_usuario";
+const show = {
+  instagram: true,
+  tiktok: true
+};
+---
+
+<section class="social-feed">
+  <h2 class="section-title">Teknovashop en redes</h2>
+  <p class="muted" style="margin-top:-.2rem">Productos en acción, trucos y novedades.</p>
+
+  <div class="grid">
+    {show.instagram && (
+      <div class="card">
+        <h3 style="margin:.6rem 0 .4rem;">Instagram</h3>
+        <!-- Reemplaza por un post real de tu cuenta -->
+        <blockquote class="instagram-media" data-instgrm-permalink={`https://www.instagram.com/p/Cx0aBCDEFgh/`} data-instgrm-version="14" style="background:#fff; border-radius:12px; border:1px solid #dbe9ee; padding:0; margin:0; width:100%; min-height: 520px;"></blockquote>
+      </div>
+    )}
+
+    {show.tiktok && (
+      <div class="card">
+        <h3 style="margin:.6rem 0 .4rem;">TikTok</h3>
+        <!-- Reemplaza por un vídeo real de tu cuenta -->
+        <blockquote class="tiktok-embed" cite={`https://www.tiktok.com/@${tiktokHandle}/video/7321234567890`} data-video-id="7321234567890" style="max-width: 605px; min-width: 325px; margin: 0;">
+          <section> </section>
+        </blockquote>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .social-feed{ margin: 1.2rem 0 1.4rem; }
+  .section-title{ font-size: clamp(1.2rem, 2.2vw, 1.6rem); margin:0 0 .4rem; }
+  .muted{ color: var(--ink-soft); }
+  .grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .card{
+    background:#fff; border:1px solid var(--muted); border-radius:14px; padding:.8rem;
+  }
+</style>
+
+<!-- SDKs (async, non-blocking) -->
+<script is:raw>
+  // Instagram
+  (function(d,s,id){
+    if (d.getElementById(id)) return;
+    const js = d.createElement(s); js.id = id; js.async = true;
+    js.src = "https://www.instagram.com/embed.js";
+    const fjs = d.getElementsByTagName(s)[0];
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, "script", "ig-sdk");
+  // TikTok
+  (function(d,s,id){
+    if (d.getElementById(id)) return;
+    const js = d.createElement(s); js.id = id; js.async = true;
+    js.src = "https://www.tiktok.com/embed.js";
+    const fjs = d.getElementsByTagName(s)[0];
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, "script", "tt-sdk");
+</script>
