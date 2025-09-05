@@ -3,112 +3,224 @@ import Base from "../layouts/Base.astro";
 
 const pageTitle = "Teknovashop Inteligentes";
 const pageDesc =
-  "Especialistas en tecnología útil para el día a día. Tendencias revisadas, comparador informativo y guías claras para acertar.";
+  "Experiencia premium en productos inteligentes: tendencias curadas, comparador sin afiliados y guías claras para comprar con criterio.";
 ---
 
 <Base title={pageTitle} description={pageDesc}>
-  <!-- HERO a dos columnas -->
-  <section style="display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:start;margin:.6rem 0 1.2rem;">
-    <!-- Columna izquierda: mensaje principal + CTAs -->
-    <div>
-      <h1 style="font-size:clamp(1.9rem,2.6vw,2.5rem);margin:0 0 .45rem;">
-        Productos inteligentes, <span style="color:var(--brand)">con criterio</span>
-      </h1>
-      <p style="margin:.15rem 0 1rem;color:var(--ink-soft);max-width:56ch;">
-        Especialistas en tecnología útil para el día a día.
-        Tendencias revisadas, comparador informativo y guías claras para acertar.
-      </p>
 
-      <p style="margin:.5rem 0 .9rem;display:flex;gap:.9rem;flex-wrap:wrap;">
+  <!-- ================= HERO: VIDEO CAROUSEL ================= -->
+  <section class="hero" style="display:grid;grid-template-columns:1.25fr .85fr;gap:28px;align-items:stretch;margin:.4rem 0 1.2rem;">
+    <!-- Media -->
+    <div class="card" style="overflow:hidden; position:relative; border-radius:var(--radius-lg)">
+      <div class="slides" id="hero-slides" style="position:relative; height:100%; aspect-ratio:16/9;">
+        <!-- Slide 1 -->
+        <div class="slide is-active" style="position:absolute; inset:0;">
+          <video muted playsinline autoplay loop
+            poster="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            style="width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius-lg)">
+            <source src="https://videos.pexels.com/video-files/4704393/4704393-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+          </video>
+          <div class="overlay" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.35));"></div>
+          <div style="position:absolute;left:18px;bottom:16px;color:#fff">
+            <span class="badge" style="background:rgba(255,255,255,.2);color:#fff;border-color:rgba(255,255,255,.35)">Hogar inteligente</span>
+            <h2 style="margin:.35rem 0 0;font-size:clamp(1.2rem,2vw,1.6rem)">Tecnología que se integra con tu vida</h2>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" style="position:absolute; inset:0; opacity:0; transition:.5s">
+          <video muted playsinline autoplay loop
+            poster="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            style="width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius-lg)">
+            <source src="https://videos.pexels.com/video-files/3183186/3183186-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          </video>
+          <div class="overlay" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.35));"></div>
+          <div style="position:absolute;left:18px;bottom:16px;color:#fff">
+            <span class="badge" style="background:rgba(255,255,255,.2);color:#fff;border-color:rgba(255,255,255,.35)">Trabajo & estudio</span>
+            <h2 style="margin:.35rem 0 0;font-size:clamp(1.2rem,2vw,1.6rem)">Setup limpio, rendimiento real</h2>
+          </div>
+        </div>
+      </div>
+      <!-- Paginación simple -->
+      <div style="position:absolute; right:12px; bottom:12px; display:flex; gap:8px;">
+        <button class="dot" data-i="0" aria-label="Slide 1" style="width:10px;height:10px;border-radius:50%;border:0;background:#fff"></button>
+        <button class="dot" data-i="1" aria-label="Slide 2" style="width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,.6)"></button>
+      </div>
+    </div>
+
+    <!-- Mensaje + CTAs -->
+    <div>
+      <h1 style="font-size:clamp(2.0rem,2.7vw,2.6rem);margin:0 0 .55rem;letter-spacing:-.2px;">
+        Productos inteligentes, <span style="color:var(--accent)">con criterio</span>
+      </h1>
+      <p class="muted" style="margin:.2rem 0 1.0rem;max-width:62ch">
+        Seleccionamos tecnología que aporta. Tendencias diarias en español, comparador informativo y guías claras
+        para tomar decisiones rápidas y seguras.
+      </p>
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
         <a class="btn btn-primary" href="/hoy">Ver tendencias de hoy</a>
         <a class="btn btn-ghost" href="/comparador">Comparar precios</a>
-        <a class="btn" href="/archivo">Guías y comparativas</a>
-      </p>
-
-      <small style="display:block;margin-top:.2rem;color:var(--ink-soft);">
-        El comparador es informativo (sin afiliados). Las tendencias pueden contener enlaces de afiliado.
-      </small>
-
-      <!-- Tira de confianza -->
-      <div class="trust">
-        <div class="item"><span class="dot" aria-hidden="true"></span>Selección curada</div>
-        <div class="item"><span class="dot" aria-hidden="true"></span>Guías y comparativas</div>
-        <div class="item"><span class="dot" aria-hidden="true"></span>Reseñas verificadas</div>
-        <div class="item"><span class="dot" aria-hidden="true"></span>Pagos y tiendas seguras</div>
-      </div>
-    </div>
-
-    <!-- Columna derecha: NOVEDAD con aire -->
-    <section class="novelty" aria-label="Novedad">
-      <div class="col">
-        <h3>Tendencias diarias</h3>
-        <p>Analizamos lo que se mueve en la comunidad tech y te lo servimos en español.</p>
-        <a class="btn btn-primary" href="/hoy" aria-label="Ver productos tendencia de hoy">Ver productos</a>
       </div>
 
-      <div class="divider" aria-hidden="true"></div>
-
-      <div class="col">
-        <h3>Noticias relevantes</h3>
-        <p>Las conversaciones que importan hoy en tecnología.</p>
-        <a class="btn btn-ghost" href="/noticias" aria-label="Ver noticias relevantes">Ver noticias</a>
+      <!-- Quick reassurance -->
+      <div class="trust" style="margin-top:1rem">
+        <div class="item"><span class="dot"></span>Selección curada</div>
+        <div class="item"><span class="dot"></span>Reseñas verificadas</div>
+        <div class="item"><span class="dot"></span>Tiendas fiables por país</div>
       </div>
-    </section>
-  </section>
-
-  <!-- USP: nuestros 5 puntos fuertes -->
-  <section class="usp" aria-label="Por qué Teknovashop">
-    <div class="card">
-      <h4>1) Nicho definido</h4>
-      <p>Solo tecnología útil. Selección de calidad y marca confiable.</p>
-    </div>
-    <div class="card">
-      <h4>2) UX excepcional</h4>
-      <p>Rápida, clara y sin fricciones: de la tendencia a comparar, todo fluye.</p>
-    </div>
-    <div class="card">
-      <h4>3) Contenido de valor</h4>
-      <p>Guías y comparativas útiles. Menos ruido, mejores decisiones (y SEO).</p>
-    </div>
-    <div class="card">
-      <h4>4) Confianza y valoraciones</h4>
-      <p>Metodología y transparencia. Reseñas verificadas y criterios públicos.</p>
-    </div>
-    <div class="card" style="grid-column: span 2;">
-      <h4>5) Marketing de nicho</h4>
-      <p>Productos en acción (IG/TikTok). Colaboración con tech reviewers del nicho.</p>
     </div>
   </section>
 
-  <style>
-    .trust{
-      display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:.45rem .9rem; margin:1rem 0 0; max-width:540px;
-    }
-    .trust .item{ display:flex; align-items:center; gap:.5rem; color:#0f2f34; font-weight:700; }
-    .trust .dot{ width:9px; height:9px; border-radius:50%; background:var(--brand); display:inline-block; }
+  <!-- ================= DESTACADOS (teaser a /hoy) ================= -->
+  <section class="wrap" aria-label="Destacados de hoy" style="margin-top:.4rem">
+    <h2 class="section-title">Destacados de hoy</h2>
+    <p class="section-lead">Mini-reviews en español con pros/contras y enlaces para comparar por tienda.</p>
 
-    .novelty{
-      display:grid; grid-template-columns:1fr auto 1fr; gap:18px;
-      padding:1rem; border:1px solid var(--muted); border-radius:14px; background:var(--panel);
-    }
-    .novelty .col h3{ margin:0 0 .4rem; }
-    .novelty .col p{ margin:.2rem 0 .6rem; color:var(--ink-soft); }
-    .novelty .divider{ width:1px; background:var(--muted); margin:0 .2rem; }
+    <div class="grid cols-3">
+      <article class="card">
+        <a href="/hoy" style="text-decoration:none;color:inherit;display:block">
+          <img src="https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 1" />
+          <div class="body">
+            <span class="tag">tecnología</span>
+            <h3 style="margin:.3rem 0 .15rem">Lo mejor del día</h3>
+            <p class="muted">Selección curada, lista para comparar.</p>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="/hoy" style="text-decoration:none;color:inherit;display:block">
+          <img src="https://images.pexels.com/photos/4790260/pexels-photo-4790260.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 2" />
+          <div class="body">
+            <span class="tag">tecnología</span>
+            <h3 style="margin:.3rem 0 .15rem">Pros y contras reales</h3>
+            <p class="muted">Resumen útil en 30 segundos.</p>
+          </div>
+        </a>
+      </article>
+      <article class="card">
+        <a href="/hoy" style="text-decoration:none;color:inherit;display:block">
+          <img src="https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 3" />
+          <div class="body">
+            <span class="tag">tecnología</span>
+            <h3 style="margin:.3rem 0 .15rem">Dónde comprar</h3>
+            <p class="muted">Comparador limpio por tienda y país.</p>
+          </div>
+        </a>
+      </article>
+    </div>
+  </section>
 
-    .usp{
-      margin-top:1.2rem;
-      display:grid; gap:.8rem;
-      grid-template-columns:repeat(2,minmax(0,1fr));
+  <!-- ================= GUIAS / TEKNOVAPEDIA ================= -->
+  <section class="wrap" aria-label="Guías y comparativas" style="margin-top:1.4rem">
+    <h2 class="section-title">Teknovapedia: guías & comparativas</h2>
+    <p class="section-lead">Atajos para acertar: lo que mirar, qué evitar y la compra recomendada por uso y presupuesto.</p>
+
+    <div class="grid cols-3">
+      <article class="card">
+        <div class="body">
+          <span class="tag">Guía</span>
+          <h3>Auriculares para teletrabajo (2025)</h3>
+          <p class="muted">Qué mirar y 3 picks por presupuesto.</p>
+          <a class="btn btn-ghost" href="/archivo">Ver guía</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="body">
+          <span class="tag">Comparativa</span>
+          <h3>Cámaras Wi-Fi sin cuotas</h3>
+          <p class="muted">Seguridad sin pagar suscripciones.</p>
+          <a class="btn btn-ghost" href="/archivo">Ver comparativa</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="body">
+          <span class="tag">Guía</span>
+          <h3>Monitores 27" para casa</h3>
+          <p class="muted">IPS vs VA, 100/144Hz y cuándo compensa.</p>
+          <a class="btn btn-ghost" href="/archivo">Ver guía</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= MURO DE CONFIANZA ================= -->
+  <section class="wrap" aria-label="Muro de confianza" style="margin-top:1.4rem">
+    <h2 class="section-title">Confianza y reseñas</h2>
+    <p class="section-lead">Lo que dicen los usuarios y garantías visibles.</p>
+
+    <div class="grid cols-3">
+      <article class="card">
+        <div class="body">
+          <h3 style="margin:.1rem 0 .35rem;">“Selección de 10”</h3>
+          <p class="muted">“Llevo 3 compras guiado por sus reviews y ni un fallo. Explican claro y sin humo.”</p>
+          <p style="margin:.6rem 0 0; font-weight:800;">— Marta G.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="body">
+          <h3 style="margin:.1rem 0 .35rem;">“Comparador honesto”</h3>
+          <p class="muted">“Me gustó que no empujen tienda concreta. Enlaces por país y listo.”</p>
+          <p style="margin:.6rem 0 0; font-weight:800;">— Iván P.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="body">
+          <h3 style="margin:.1rem 0 .35rem;">Pagos y seguridad</h3>
+          <p class="muted">Tiendas con SSL, métodos de pago seguros y políticas claras.</p>
+          <div class="trust" style="margin-top:.6rem">
+            <div class="item"><span class="dot"></span>SSL</div>
+            <div class="item"><span class="dot"></span>Visa / MasterCard</div>
+            <div class="item"><span class="dot"></span>Apple Pay · Google Pay</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= NEWSLETTER ================= -->
+  <section class="wrap" aria-label="Newsletter" style="margin-top:1.4rem">
+    <div class="hero-card" style="padding:1.1rem 1.2rem">
+      <h2 style="margin:0 0 .35rem">Únete: 2 emails/mes con ideas útiles</h2>
+      <p class="muted" style="margin:0 0 .7rem">Bajadas de precio, guías nuevas y un truco de tecnología cotidiana. Cero spam.</p>
+      <form onsubmit="event.preventDefault()">
+        <input placeholder="tu@email.com"
+          style="padding:.65rem .85rem;border:1px solid var(--muted);border-radius:var(--radius-md);margin-right:.4rem;min-width:240px" />
+        <button class="btn btn-primary">Quiero apuntarme</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= EDITORIAL LINKS ================= -->
+  <section class="wrap" aria-label="Editorial rápido" style="margin-top:1.5rem">
+    <div class="grid cols-2">
+      <div class="hero-card" style="padding:1.1rem 1.2rem">
+        <span class="badge">Novedad</span>
+        <h3 style="margin:.4rem 0 .25rem">Tendencias diarias</h3>
+        <p class="muted" style="margin:0 0 .6rem">Lo que se mueve hoy en la comunidad tech, servido en español.</p>
+        <a class="btn btn-primary" href="/hoy">Ver productos</a>
+      </div>
+      <div class="hero-card" style="padding:1.1rem 1.2rem">
+        <h3 style="margin:0 0 .25rem">Noticias relevantes</h3>
+        <p class="muted" style="margin:0 0 .6rem">Las conversaciones que importan hoy en tecnología.</p>
+        <a class="btn btn-ghost" href="/noticias">Ver noticias</a>
+      </div>
+    </div>
+  </section>
+
+  <script is:raw>
+    // Hero slider mínimo sin dependencias
+    const slides = Array.from(document.querySelectorAll('#hero-slides .slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    let i = 0;
+    function show(n){
+      slides.forEach((s,idx)=>{
+        s.style.opacity = (idx===n? 1 : 0);
+        s.style.zIndex  = (idx===n? 2 : 1);
+      });
+      dots.forEach((d,idx)=> d.style.background = idx===n ? '#fff' : 'rgba(255,255,255,.6)');
+      i = n;
     }
-    .usp .card{
-      background:var(--panel); border:1px solid var(--muted); border-radius:12px; padding:1rem;
-    }
-    .usp h4{ margin:0 0 .35rem; }
-    @media (max-width: 780px){
-      .usp{ grid-template-columns:1fr; }
-      .novelty{ grid-template-columns:1fr; }
-      .novelty .divider{ display:none; }
-    }
-  </style>
+    const timer = setInterval(()=> show((i+1)%slides.length), 6000);
+    dots.forEach(d=> d.addEventListener('click', ()=> show(+d.dataset.i||0)));
+    show(0);
+  </script>
 </Base>
