@@ -1,42 +1,43 @@
 {
   "tecnologia": {
     "subreddits": [
-      "gadgets",
-      "technology",
-      "Android",
-      "Apple",
-      "buildapcsales",
-      "MechanicalKeyboards"
+      "BuyItForLife",
+      "headphones",
+      "MechanicalKeyboards",
+      "android",
+      "apple",
+      "XboxSeriesX",
+      "PS5",
+      "Monitors",
+      "ultrawidemasterrace",
+      "homelab",
+      "HomeNetworking",
+      "SmartHome",
+      "robotvacuums",
+      "pcmasterrace",
+      "buildapcsales"
     ],
-    "amazon_cat": "tecnologia"
+    "rss": [
+      "https://www.xataka.com/tag/analisis/rss",
+      "https://www.xataka.com/tag/comparativa/rss",
+      "https://www.genbeta.com/rss",
+      "https://www.elespanol.com/elandroidelibre/rss",
+      "https://www.soydemac.com/feed/",
+      "https://www.iphoneros.com/feed"
+    ]
   },
   "hogar": {
     "subreddits": [
       "HomeImprovement",
       "BuyItForLife",
-      "IKEA",
-      "HomeKit",
-      "HomeDecorating"
+      "HomeAutomation",
+      "robotvacuums",
+      "coffee",
+      "espresso"
     ],
-    "amazon_cat": "hogar"
-  },
-  "fitness": {
-    "subreddits": [
-      "homegym",
-      "xxfitness",
-      "Fitness",
-      "Running",
-      "nutrition"
-    ],
-    "amazon_cat": "fitness"
-  },
-  "moda": {
-    "subreddits": [
-      "malefashionadvice",
-      "femalefashionadvice",
-      "frugalmalefashion",
-      "streetwear"
-    ],
-    "amazon_cat": "moda"
+    "rss": [
+      "https://www.xataka.com/categoria/hogar/rss",
+      "https://www.xatakahome.com/rss"
+    ]
   }
 }
