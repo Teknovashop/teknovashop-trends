@@ -1,18 +1,16 @@
 // src/pages/api/compare.ts
-// Devuelve una lista normalizada de {source, seller, title, price, currency, url, country, logo?}
-// Fuentes soportadas (según ENV disponibles):
-// - SERPAPI (Google Shopping)
-// - Rainforest API (Amazon)
-// - AliExpress (RapidAPI: aliexpress-datahub)
+// Comparator backend con dos fuentes opcionales:
+//  - Google Shopping vía SerpAPI  (SERPAPI_KEY)
+//  - Amazon vía Rainforest API    (RAINFOREST_API_KEY)
+// Soporta GET (?q=&country=&debug=1) y POST JSON { q, country, debug }.
 
-import type { APIRoute } from 'astro';
+import type { APIRoute } from "astro";
 
-const SERPAPI_KEY = process.env.SERPAPI_KEY || '';
-const RAINFOREST_API_KEY = process.env.RAINFOREST_API_KEY || '';
-const ALIEXPRESS_RAPIDAPI_KEY = process.env.ALIEXPRESS_RAPIDAPI_KEY || '';
+const SERPAPI_KEY = process.env.SERPAPI_KEY || "";
+const RAINFOREST_API_KEY = process.env.RAINFOREST_API_KEY || "";
 
 type Offer = {
-  source: 'google_shopping' | 'amazon' | 'aliexpress';
+  source: "google_shopping" | "amazon_rainforest";
   seller?: string;
   title: string;
   price: number;
@@ -23,186 +21,245 @@ type Offer = {
 };
 
 function parsePrice(p?: string | number): number | null {
-  if (typeof p === 'number') return p;
+  if (typeof p === "number") return isFinite(p) ? p : null;
   if (!p) return null;
-  const n = Number(String(p).replace(/[^\d.,]/g, '').replace(',', '.'));
+  const n = Number(String(p).replace(/[^\d.,]/g, "").replace(",", "."));
   return isFinite(n) ? n : null;
 }
 
-function domainForCountry(country: string) {
-  const c = country.toUpperCase();
-  // Ajusta según tus mercados principales
-  const map: Record<string, string> = {
-    ES: 'amazon.es',
-    MX: 'amazon.com.mx',
-    US: 'amazon.com',
-    GB: 'amazon.co.uk',
-    DE: 'amazon.de',
-    FR: 'amazon.fr',
-    IT: 'amazon.it',
-    BR: 'amazon.com.br',
-  };
-  return map[c] || 'amazon.es';
+function getDomain(u: string): string {
+  try {
+    return new URL(u).hostname.replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+function faviconFor(url: string) {
+  const host = getDomain(url);
+  return host ? `https://www.google.com/s2/favicons?domain=${host}&sz=64` : undefined;
 }
 
 function serpParamsByCountry(country: string) {
-  // hl (idioma UI), gl (geolocalización), location (afina aún más)
-  const c = country.toUpperCase();
-  if (c === 'ES') return { hl: 'es', gl: 'es', location: 'Spain' };
-  if (c === 'MX') return { hl: 'es', gl: 'mx', location: 'Mexico' };
-  if (c === 'US') return { hl: 'en', gl: 'us', location: 'United States' };
-  if (c === 'GB') return { hl: 'en', gl: 'uk', location: 'United Kingdom' };
-  if (c === 'DE') return { hl: 'de', gl: 'de', location: 'Germany' };
-  if (c === 'FR') return { hl: 'fr', gl: 'fr', location: 'France' };
-  if (c === 'IT') return { hl: 'it', gl: 'it', location: 'Italy' };
-  return { hl: 'es', gl: 'es', location: 'Spain' };
-}
-
-// ------------------- Providers -------------------
-
-async function fromSerpApi(q: string, country: string): Promise<Offer[]> {
-  if (!SERPAPI_KEY) return [];
-  const { hl, gl, location } = serpParamsByCountry(country);
-  const url = new URL('https://serpapi.com/search.json');
-  url.searchParams.set('engine', 'google_shopping');
-  url.searchParams.set('q', q);
-  url.searchParams.set('hl', hl);
-  url.searchParams.set('gl', gl);
-  url.searchParams.set('location', location);
-  url.searchParams.set('api_key', SERPAPI_KEY);
-
-  const res = await fetch(url.toString());
-  if (!res.ok) return [];
-  const data = await res.json();
-
-  const items: any[] = data?.shopping_results || [];
-  const out: Offer[] = [];
-
-  for (const it of items) {
-    const priceNum = parsePrice(it?.extracted_price ?? it?.price);
-    const currency = (it?.currency || it?.price_currency || '').toUpperCase() || 'EUR';
-    if (!priceNum || !it?.link) continue;
-    out.push({
-      source: 'google_shopping',
-      seller: it?.source || it?.merchant || undefined,
-      title: it?.title || q,
-      price: priceNum,
-      currency,
-      url: it.link,
-      country: country.toUpperCase(),
-      logo: it?.thumbnail
-    });
+  const c = (country || "ES").toUpperCase();
+  switch (c) {
+    case "ES": return { hl: "es", gl: "es", location: "Spain", currency: "EUR" };
+    case "MX": return { hl: "es", gl: "mx", location: "Mexico", currency: "MXN" };
+    case "US": return { hl: "en", gl: "us", location: "United States", currency: "USD" };
+    case "GB": return { hl: "en", gl: "uk", location: "United Kingdom", currency: "GBP" };
+    case "DE": return { hl: "de", gl: "de", location: "Germany", currency: "EUR" };
+    case "FR": return { hl: "fr", gl: "fr", location: "France", currency: "EUR" };
+    case "IT": return { hl: "it", gl: "it", location: "Italy", currency: "EUR" };
+    default:   return { hl: "es", gl: "es", location: "Spain", currency: "EUR" };
   }
-
-  return out;
 }
-
-async function fromRainforest(q: string, country: string): Promise<Offer[]> {
-  if (!RAINFOREST_API_KEY) return [];
-  const domain = domainForCountry(country);
-  const url = new URL('https://api.rainforestapi.com/request');
-  url.searchParams.set('api_key', RAINFOREST_API_KEY);
-  url.searchParams.set('type', 'search');
-  url.searchParams.set('amazon_domain', domain);
-  url.searchParams.set('search_term', q);
-  url.searchParams.set('output', 'json');
-
-  const res = await fetch(url.toString());
-  if (!res.ok) return [];
-  const data = await res.json();
-
-  const products: any[] = data?.search_results || [];
-  const out: Offer[] = [];
-  for (const p of products.slice(0, 10)) {
-    const priceNum = parsePrice(p?.price?.value);
-    const currency = (p?.price?.currency || '').toUpperCase() || 'EUR';
-    if (!priceNum || !p?.link) continue;
-    out.push({
-      source: 'amazon',
-      seller: 'Amazon',
-      title: p?.title || q,
-      price: priceNum,
-      currency,
-      url: p.link,
-      country: country.toUpperCase(),
-      logo: p?.image
-    });
+function amazonDomainByCountry(country: string) {
+  const c = (country || "ES").toUpperCase();
+  switch (c) {
+    case "ES": return "amazon.es";
+    case "MX": return "amazon.com.mx";
+    case "US": return "amazon.com";
+    case "GB": return "amazon.co.uk";
+    case "DE": return "amazon.de";
+    case "FR": return "amazon.fr";
+    case "IT": return "amazon.it";
+    default:   return "amazon.es";
   }
-  return out;
+}
+function guessCurrencyByDomain(amazon_domain: string): string {
+  if (amazon_domain.endsWith(".es")) return "EUR";
+  if (amazon_domain.endsWith(".fr")) return "EUR";
+  if (amazon_domain.endsWith(".de")) return "EUR";
+  if (amazon_domain.endsWith(".it")) return "EUR";
+  if (amazon_domain.endsWith(".co.uk")) return "GBP";
+  if (amazon_domain.endsWith(".com.mx")) return "MXN";
+  return "USD";
 }
 
-async function fromAliExpress(q: string, country: string): Promise<Offer[]> {
-  if (!ALIEXPRESS_RAPIDAPI_KEY) return [];
-  // RapidAPI: aliexpress-datahub (o similar con respuesta: items[{title, price, currency, product_url, store_name}])
-  // Documentación puede variar; este mapeo funciona con los proveedores más usados.
-  const url = new URL('https://aliexpress-datahub.p.rapidapi.com/item_search_v2');
-  url.searchParams.set('q', q);
-  url.searchParams.set('page', '1');
+/* -------------------- Fuente: SerpAPI (Google Shopping) -------------------- */
+async function fromSerpApi(q: string, country: string) {
+  const debug: any = { enabled: !!SERPAPI_KEY };
+  if (!SERPAPI_KEY) return { offers: [] as Offer[], debug: { ...debug, skipped: "no_key" } };
 
-  const res = await fetch(url.toString(), {
-    headers: {
-      'X-RapidAPI-Key': ALIEXPRESS_RAPIDAPI_KEY,
-      'X-RapidAPI-Host': 'aliexpress-datahub.p.rapidapi.com'
-    }
-  });
-  if (!res.ok) return [];
-  const data = await res.json();
+  const { hl, gl, location, currency } = serpParamsByCountry(country);
+  const url = new URL("https://serpapi.com/search.json");
+  url.searchParams.set("engine", "google_shopping");
+  url.searchParams.set("q", q);
+  url.searchParams.set("hl", hl);
+  url.searchParams.set("gl", gl);
+  url.searchParams.set("location", location);
+  url.searchParams.set("api_key", SERPAPI_KEY);
 
-  const items: any[] = data?.result?.resultList || data?.result || data?.items || [];
-  const out: Offer[] = [];
-  for (const it of items.slice(0, 10)) {
-    const priceNum = parsePrice(it?.price || it?.targetSalePrice || it?.sale_price);
-    const currency = (it?.currency || it?.targetSalePriceCurrency || 'USD').toUpperCase();
-    const url = it?.product_url || it?.targetUrl || it?.link;
-    if (!priceNum || !url) continue;
-    out.push({
-      source: 'aliexpress',
-      seller: it?.store_name || 'AliExpress',
-      title: it?.title || q,
-      price: priceNum,
-      currency,
-      url,
-      country: country.toUpperCase(),
-      logo: it?.image || it?.imageUrl
-    });
-  }
-  return out;
-}
-
-// ------------------- Handler -------------------
-
-export const GET: APIRoute = async ({ url }) => {
   try {
-    const q = (url.searchParams.get('q') || '').trim();
-    const country = (url.searchParams.get('country') || 'ES').toUpperCase();
+    const res = await fetch(url.toString());
+    debug.status = res.status;
+    if (!res.ok) return { offers: [], debug: { ...debug, error: `HTTP ${res.status}` } };
 
-    if (!q) {
-      return new Response(JSON.stringify({ error: 'Missing q' }), { status: 400 });
+    const data = await res.json();
+    const items: any[] = data?.shopping_results || [];
+    const out: Offer[] = [];
+
+    for (const it of items) {
+      const priceNum = parsePrice(it?.extracted_price ?? it?.price);
+      const ccy = (it?.currency || it?.price_currency || currency || "EUR").toUpperCase();
+      const link = it?.link;
+      if (!priceNum || !link) continue;
+
+      out.push({
+        source: "google_shopping",
+        seller: it?.source || it?.merchant || getDomain(link),
+        title: it?.title || q,
+        price: priceNum,
+        currency: ccy,
+        url: link,
+        country: country.toUpperCase(),
+        logo: faviconFor(link),
+      });
     }
 
-    // Ejecutar proveedores en paralelo (sólo los que tengan clave)
-    const [googleOffers, amazonOffers, aliOffers] = await Promise.all([
-      fromSerpApi(q, country).catch(() => []),
-      fromRainforest(q, country).catch(() => []),
-      fromAliExpress(q, country).catch(() => [])
-    ]);
-
-    // Unificar y ordenar por precio ascendente
-    const all = [...googleOffers, ...amazonOffers, ...aliOffers]
-      .filter(o => o && Number.isFinite(o.price))
-      .sort((a, b) => a.price - b.price);
-
-    return new Response(JSON.stringify({
-      query: q,
-      country,
-      count: all.length,
-      offers: all
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
+    const seen = new Set<string>();
+    const dedup = out.filter((o) => {
+      const key = `${getDomain(o.url)}|${o.title.trim().toLowerCase()}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
     });
 
+    dedup.sort((a, b) => a.price - b.price);
+    debug.count = dedup.length;
+    return { offers: dedup, debug };
   } catch (e: any) {
-    return new Response(JSON.stringify({ error: e?.message || 'Internal error' }), { status: 500 });
+    return { offers: [], debug: { ...debug, error: e?.message || "fetch_error" } };
   }
+}
+
+/* ---------------------- Fuente: Rainforest (Amazon) ------------------------ */
+async function fromRainforest(q: string, country: string) {
+  const debug: any = { enabled: !!RAINFOREST_API_KEY };
+  if (!RAINFOREST_API_KEY) return { offers: [] as Offer[], debug: { ...debug, skipped: "no_key" } };
+
+  const amazon_domain = amazonDomainByCountry(country);
+  const url = new URL("https://api.rainforestapi.com/request");
+  url.searchParams.set("api_key", RAINFOREST_API_KEY);
+  url.searchParams.set("type", "search");
+  url.searchParams.set("amazon_domain", amazon_domain);
+  url.searchParams.set("search_term", q);
+
+  try {
+    const res = await fetch(url.toString());
+    debug.status = res.status;
+    if (!res.ok) return { offers: [], debug: { ...debug, error: `HTTP ${res.status}` } };
+
+    const data = await res.json();
+    const items: any[] = data?.search_results || [];
+    const out: Offer[] = [];
+
+    for (const it of items) {
+      const priceVal = parsePrice(it?.price?.value ?? it?.price?.raw);
+      const currency = (it?.price?.currency || "").toUpperCase() || undefined;
+      const link = it?.link || it?.product_link;
+      if (!priceVal || !link) continue;
+
+      out.push({
+        source: "amazon_rainforest",
+        seller: "Amazon",
+        title: it?.title || q,
+        price: priceVal,
+        currency: currency || guessCurrencyByDomain(amazon_domain),
+        url: link,
+        country: country.toUpperCase(),
+        logo: faviconFor(link),
+      });
+    }
+
+    const seen = new Set<string>();
+    const dedup = out.filter((o) => {
+      const key = (o.title || "").trim().toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    dedup.sort((a, b) => a.price - b.price);
+    debug.count = dedup.length;
+    return { offers: dedup, debug };
+  } catch (e: any) {
+    return { offers: [], debug: { ...debug, error: e?.message || "fetch_error" } };
+  }
+}
+
+/* --------------------------------- Handler -------------------------------- */
+// GET + POST (más robusto en Vercel)
+export const ALL: APIRoute = async (ctx) => {
+  // 1) Intentar leer desde request.url (fiable en Vercel)
+  const url = new URL(ctx.request.url);
+  let q = (url.searchParams.get("q") || "").trim();
+  let country = (url.searchParams.get("country") || "ES").toUpperCase();
+  const wantDebug = url.searchParams.get("debug") === "1";
+
+  // 2) Si viene POST con JSON, sobrescribe (útil si tu UI manda body)
+  if (!q && ctx.request.method === "POST") {
+    try {
+      const body = await ctx.request.json();
+      if (body?.q) q = String(body.q).trim();
+      if (body?.country) country = String(body.country).toUpperCase();
+    } catch {}
+  }
+
+  if (!q) {
+    return new Response(JSON.stringify({ error: "Missing q" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  const [serp, rain] = await Promise.allSettled([
+    fromSerpApi(q, country),
+    fromRainforest(q, country),
+  ]);
+
+  const offers: Offer[] = [];
+  const dbg: any = { serpapi: undefined as any, rainforest: undefined as any };
+
+  if (serp.status === "fulfilled") {
+    offers.push(...serp.value.offers);
+    dbg.serpapi = serp.value.debug;
+  } else {
+    dbg.serpapi = { error: serp.reason?.message || "rejected" };
+  }
+
+  if (rain.status === "fulfilled") {
+    offers.push(...rain.value.offers);
+    dbg.rainforest = rain.value.debug;
+  } else {
+    dbg.rainforest = { error: rain.reason?.message || "rejected" };
+  }
+
+  const seen = new Set<string>();
+  const final = offers.filter((o) => {
+    const key = `${getDomain(o.url)}|${(o.title || "").trim().toLowerCase()}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  final.sort((a, b) => a.price - b.price);
+
+  const payload: any = {
+    query: q,
+    country,
+    count: final.length,
+    offers: final,
+  };
+  if (wantDebug) payload.debug = dbg;
+
+  return new Response(JSON.stringify(payload), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
 };
+
+// Export explícitos para GET y POST (Astro enruta ALL automáticamente)
+export const GET = ALL;
+export const POST = ALL;
