@@ -1,39 +1,92 @@
 ---
-import Base from "@/layouts/Base.astro";
+import Base from "../layouts/Base.astro";
 
-// Carga todos los índices de noticias y escoje el más reciente por ruta
-const all = import.meta.glob("../data/news/**/index.json", { eager: true }) as Record<string, any>;
-const keys = Object.keys(all).sort().reverse();
-const latest = keys[0] ? (all[keys[0]] as any).default || all[keys[0]] : { items: [] };
-const news = latest.items || [];
+/**
+ * Buscamos el último index.json dentro de src/data/news/YYYY/MM/DD/index.json
+ * El workflow que tengas puede ir dejando uno por día. Si no existe, mostramos vacío elegante.
+ */
+type NewsItem = {
+  title: string;
+  url: string;
+  source?: string;
+  image?: string;
+  date?: string;
+  excerpt?: string;
+};
+
+function pathToDate(path: string) {
+  // .../src/data/news/2025/09/03/index.json
+  const m = path.match(/news\/(\d{4})\/(\d{2})\/(\d{2})\/index\.json$/);
+  if (!m) return null;
+  const [_, y, mo, d] = m;
+  return new Date(`${y}-${mo}-${d}T00:00:00Z`).getTime();
+}
+
+// Importa todos los JSON de noticias disponibles (compilación)
+const candidates = import.meta.glob("../data/news/**/index.json", {
+  eager: true,
+  import: "default",
+});
+
+let latestPath: string | null = null;
+let latestTs = -1;
+
+for (const p of Object.keys(candidates)) {
+  const ts = pathToDate(p);
+  if (ts !== null && ts > latestTs) {
+    latestTs = ts;
+    latestPath = p;
+  }
+}
+
+const list: NewsItem[] = latestPath
+  ? (candidates[latestPath] as any)?.items || []
+  : [];
+
+const pageTitle = "Noticias relevantes";
+const pageDesc =
+  "Las conversaciones que importan hoy en tecnología: selección curada, rápida de leer y sin ruido.";
 ---
 
-<Base title="Noticias relevantes · Tech" description="Noticias y conversaciones relevantes en la comunidad tech, en español.">
-  <h1>Noticias relevantes</h1>
-  <p class="sub">Lo que se está comentando hoy en la comunidad tech. Enlaces a Google News para ampliar.</p>
+<Base title={`Teknovashop · ${pageTitle}`} description={pageDesc}>
+  <section>
+    <h1 style="margin:0 0 .3rem; font-size:clamp(1.6rem,2.2vw,2rem)">{pageTitle}</h1>
+    <p class="muted" style="margin:0 0 1rem">
+      Selección diaria de titulares tecnológicos con foco en utilidad, privacidad y vida conectada.
+    </p>
+  </section>
 
-  {news.length === 0 ? (
-    <p>No hay noticias generadas hoy todavía.</p>
+  {list.length === 0 ? (
+    <section class="hero-card" style="padding:1rem 1.1rem">
+      <h3 style="margin:0 0 .35rem">Aún no hay noticias publicadas hoy</h3>
+      <p class="muted" style="margin:0">Vuelve más tarde; actualizamos a diario.</p>
+    </section>
   ) : (
-    <div class="grid">
-      {news.map((n:any) => (
-        <a class="card" href={n.url} target="_blank" rel="noopener">
-          <img src={n.hero || '/placeholder-news.jpg'} alt={n.title} loading="lazy" />
-          <div class="cat">{n.niche || 'tecnologia'}</div>
-          <h3>{n.title}</h3>
-          <small class="muted">score {n.score || 1}</small>
-        </a>
+    <section class="grid cols-3" style="margin-top:.6rem">
+      {list.map((n) => (
+        <article class="card">
+          <a href={n.url} target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block">
+            {n.image ? (
+              <img
+                src={n.image}
+                alt={n.title}
+                loading="lazy"
+                width="640"
+                height="360"
+                style="aspect-ratio:16/9;object-fit:cover"
+              />
+            ) : null}
+            <div class="body">
+              <span class="tag">{n.source || "Fuente"}</span>
+              <h3 style="margin:.35rem 0 .15rem; font-size:1.05rem; line-height:1.35">{n.title}</h3>
+              {n.excerpt ? <p class="muted" style="margin:.2rem 0 0">{n.excerpt}</p> : null}
+              {n.date ? (
+                <small class="muted" style="display:block;margin-top:.45rem">{new Date(n.date).toLocaleDateString("es-ES")}</small>
+              ) : null}
+            </div>
+          </a>
+        </article>
       ))}
-    </div>
+    </section>
   )}
-
-  <style>
-    .sub{ color:#475569; margin:.25rem 0 1rem }
-    .grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); }
-    .card{ display:block; background:#fff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; text-decoration:none; color:#0f172a; }
-    .card img{ width:100%; height:160px; object-fit:cover; display:block }
-    .cat{ margin:.6rem .75rem 0; display:inline-block; background:#eef2ff; color:#3730a3; padding:.25rem .5rem; border-radius:12px; font-size:.8rem; font-weight:700 }
-    .card h3{ margin:.4rem .75rem .3rem; font-size:1rem; line-height:1.2 }
-    .muted{ margin:0 .75rem 1rem; color:#64748b }
-  </style>
 </Base>
