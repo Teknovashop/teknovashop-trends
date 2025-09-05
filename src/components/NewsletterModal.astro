@@ -1,0 +1,126 @@
+---
+const {
+  title = "Únete a Teknovashop",
+  subtitle = "Novedades, guías y lanzamientos de productos inteligentes.",
+  formAction = "https://formspree.io/f/xxxxxxxx" // ← Reemplaza por tu endpoint (Mailchimp / Beehiiv / Formspree)
+} = Astro.props;
+---
+
+<div id="nl-overlay" class="nl-overlay" hidden></div>
+
+<section id="nl-modal" class="nl-modal" role="dialog" aria-modal="true" aria-labelledby="nl-title" hidden>
+  <button class="nl-close" aria-label="Cerrar">×</button>
+  <div class="nl-media" aria-hidden="true"></div>
+  <div class="nl-body">
+    <h3 id="nl-title">#{title}</h3>
+    <p class="muted" style="margin:.15rem 0 .75rem">#{subtitle}</p>
+    <form id="nl-form" action={formAction} method="POST">
+      <input type="email" name="email" required placeholder="tu@email.com" aria-label="Email" />
+      <button class="btn btn-primary" type="submit">Suscribirme</button>
+      <small class="muted" id="nl-msg" style="display:block; margin-top:.35rem;"></small>
+    </form>
+    <small class="muted" style="display:block; margin-top:.6rem;">Sin spam. Puedes darte de baja cuando quieras.</small>
+  </div>
+</section>
+
+<style>
+  .nl-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.35); backdrop-filter: blur(2px);
+    z-index: 80;
+  }
+  .nl-modal{
+    position: fixed; z-index: 90; inset: 0; display:grid; place-items:center; padding: 1rem;
+  }
+  .nl-modal > div, .nl-modal > .nl-body, .nl-modal > .nl-media{ box-sizing:border-box; }
+  .nl-modal .nl-close{
+    position:absolute; top:18px; right:18px; width:36px; height:36px; border-radius:10px;
+    border:1px solid #dbe9ee; background:#fff; cursor:pointer; font-size:20px; line-height:1;
+  }
+  .nl-modal .nl-media{
+    display:none;
+  }
+  .nl-modal .nl-body{
+    width:min(680px, 100%);
+    background:#fff; color:var(--ink);
+    border:1px solid var(--muted); border-radius:16px; padding: clamp(18px, 3.2vw, 26px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.12);
+  }
+  .nl-modal h3{ margin:0 0 .35rem; font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
+  .nl-modal .muted{ color: var(--ink-soft); }
+  #nl-form{ display:flex; gap:.5rem; flex-wrap:wrap; }
+  #nl-form input[type="email"]{
+    flex:1 1 260px; padding:.65rem .75rem; border-radius:10px; border:1px solid #dbe9ee;
+  }
+  @media (min-width: 900px){
+    .nl-modal{ grid-template-columns: min(1040px, 100%); }
+    .nl-modal .nl-media{
+      display:block; position:absolute; left:50%; top:50%; translate:-120% -50%;
+      width:360px; height:420px; border-radius:18px; border:1px solid #dbe9ee;
+      background: linear-gradient(120deg, #e8f5f7, #f7fbfe);
+      box-shadow: 0 15px 40px rgba(0,0,0,.12);
+      background-image:
+        radial-gradient( at 30% 30%, rgba(0,185,189,.10), transparent 60% ),
+        radial-gradient( at 70% 60%, rgba(0,142,145,.08), transparent 55% );
+    }
+    .nl-modal .nl-body{ margin-left: 140px; }
+  }
+</style>
+
+<script is:raw>
+  (function(){
+    const overlay = document.getElementById('nl-overlay');
+    const modal = document.getElementById('nl-modal');
+    const closeBtn = modal?.querySelector('.nl-close');
+    const msg = document.getElementById('nl-msg');
+
+    const KEY = 'nl_last_seen';
+    const DAYS = 14;
+
+    function seenRecently(){
+      try{
+        const v = localStorage.getItem(KEY);
+        if(!v) return false;
+        const last = parseInt(v,10);
+        return (Date.now() - last) < DAYS*24*60*60*1000;
+      }catch{ return false; }
+    }
+    function markSeen(){
+      try{ localStorage.setItem(KEY, String(Date.now())); }catch{}
+    }
+    function open(){
+      overlay.hidden = false; modal.hidden = false;
+      setTimeout(()=>{ overlay.style.opacity = '1'; }, 0);
+    }
+    function close(){
+      overlay.hidden = true; modal.hidden = true; markSeen();
+    }
+
+    // Abrir por scroll al 50% o al 12s si no hubo scroll
+    if(!seenRecently()){
+      let opened = false;
+      const onScroll = ()=>{
+        if(opened) return;
+        const sc = document.documentElement.scrollTop || document.body.scrollTop;
+        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if(h>0 && sc/h > .5){ opened = true; open(); window.removeEventListener('scroll', onScroll); }
+      };
+      window.addEventListener('scroll', onScroll, { passive:true });
+      setTimeout(()=>{ if(!opened){ opened = true; open(); }}, 12000);
+    }
+
+    overlay?.addEventListener('click', close);
+    closeBtn?.addEventListener('click', close);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+
+    // Feedback ligero (si usas Formspree/Beehiiv con redirect, esto no se usa)
+    document.getElementById('nl-form')?.addEventListener('submit', function(e){
+      const form = this;
+      if (form.action.includes('formspree.io')) {
+        msg.textContent = 'Enviando...';
+        return; // deja que el backend gestione; si prefieres fetch, implementa aquí
+      }
+      e.preventDefault();
+      msg.textContent = 'Configura tu proveedor (Mailchimp/Beehiiv/Formspree) en NewsletterModal.astro';
+    });
+  })();
+</script>
