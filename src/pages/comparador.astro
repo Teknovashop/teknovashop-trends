@@ -1,32 +1,24 @@
 ---
 import Base from "../layouts/Base.astro";
-
-const pageTitle = "Comparador informativo";
-const pageDesc =
-  "Pega marca y modelo. Mostramos precios y tiendas a partir de APIs públicas. No hacemos scraping agresivo ni garantizamos cubrir todas las tiendas.";
+const title = "Comparador informativo";
+const desc =
+  "Pega el nombre o modelo de un producto. Mostramos precios y tiendas a partir de fuentes públicas (APIs). Este comparador no usa scraping agresivo y puede no listar todas las tiendas.";
 ---
 
-<Base title={pageTitle} description={pageDesc}>
-  <section class="wrap">
-    <h1>Comparador informativo</h1>
-    <p class="sub">
-      Pega el nombre o modelo de un producto. Mostramos precios y tiendas a
-      partir de fuentes públicas (APIs). Este comparador no usa scraping agresivo
-      y puede no listar todas las tiendas.
+<Base title={title} description={desc}>
+  <section style="max-width:980px;margin:0 auto">
+    <h1 style="margin:0 0 .4rem">Comparador informativo</h1>
+    <p style="color:var(--ink-soft);margin:0 0 1rem">
+      Pega el nombre o modelo de un producto. Mostramos precios y tiendas a partir de fuentes públicas (APIs).
+      Este comparador no usa scraping agresivo y puede no listar todas las tiendas.
     </p>
 
-    <form id="cmp-form" class="card" on:submit="return false;">
-      <label for="q">Producto (texto) <small>marca + modelo</small></label>
-      <input
-        id="q"
-        name="q"
-        placeholder="p. ej. Philips 24E1N1100A"
-        value=""
-        autocomplete="off"
-      />
+    <div class="card">
+      <label for="q"><b>Producto (texto)</b> <small style="color:var(--ink-soft)">marca + modelo</small></label>
+      <input id="q" placeholder="Ej.: Philips 24E1N1100A, Samsung Galaxy Tab S9" />
 
-      <label for="country">País</label>
-      <select id="country" name="country">
+      <label for="country"><b>País</b></label>
+      <select id="country">
         <option value="ES" selected>España (ES)</option>
         <option value="US">Estados Unidos (US)</option>
         <option value="FR">Francia (FR)</option>
@@ -36,199 +28,157 @@ const pageDesc =
         <option value="MX">México (MX)</option>
       </select>
 
-      <div class="row">
+      <div class="actions">
         <button id="go" class="btn btn-primary">🔎 Generar comparativa</button>
-        <button id="view-json" class="btn btn-ghost" type="button">Ver JSON</button>
+        <a id="view-json" class="btn btn-ghost" href="/api/compare?q=&country=ES" target="_blank" rel="noopener">Ver JSON</a>
       </div>
 
-      <small class="note">
-        Nota: algunas tiendas o marketplaces pueden no aparecer si no exponen API
-        pública o hay límites regionales.
+      <small style="color:var(--ink-soft)">
+        Nota: algunas tiendas o marketplaces pueden no aparecer si no exponen API pública o hay límites regionales.
       </small>
-    </form>
+    </div>
 
-    <div id="status" class="status" hidden></div>
+    <div id="msg" class="msg" aria-live="polite"></div>
     <div id="results" class="grid"></div>
 
-    <details id="json-box" class="json" hidden>
-      <summary>Respuesta (debug)</summary>
-      <pre id="json-pre"></pre>
-    </details>
-
-    <div class="quicklinks">
-      <h3>Atajos de búsqueda</h3>
-      <div class="links">
-        <a target="_blank" rel="noopener" id="lk-gs">Google Shopping</a>
-        <a target="_blank" rel="noopener" id="lk-idealo">Idealo</a>
-        <a target="_blank" rel="noopener" id="lk-pccomp">PcComponentes</a>
-      </div>
+    <h3 style="margin-top:1.5rem">Atajos de búsqueda</h3>
+    <div class="links">
+      <a id="gshop" target="_blank" rel="noopener">Google Shopping</a>
+      <a id="idealo" target="_blank" rel="noopener">Idealo</a>
+      <a id="pccomp" target="_blank" rel="noopener">PcComponentes</a>
     </div>
   </section>
 
   <style>
-    .wrap{ max-width: 900px; margin: 1rem auto 2.5rem; padding: 0 1rem; }
-    h1{ margin: 0 0 .4rem; }
-    .sub{ color: var(--ink-soft); margin:.25rem 0 1rem; }
-    .card{ display:grid; gap:.6rem; padding:1rem; background:#fff; border:1px solid #e5e7eb; border-radius:14px; }
-    label small{ color: var(--ink-soft); font-weight:400; }
-    input, select{ padding:.6rem .75rem; border-radius:10px; border:1px solid #dbe1e6; }
-    .row{ display:flex; gap:.6rem; flex-wrap:wrap; }
-    .btn{ display:inline-flex; align-items:center; gap:.45rem; padding:.65rem .9rem; border-radius:12px; font-weight:800; text-decoration:none; border:1px solid #cfe3ea; cursor:pointer; }
-    .btn-primary{ background: var(--brand); color:#003133; border-color:transparent; }
-    .btn-ghost{ background:#eef6f9; color:#0b2a2d; }
-    .note{ color: var(--ink-soft); }
-    .status{ margin: .9rem 0; padding:.7rem .9rem; border-radius:10px; border:1px solid #e5e7eb; background:#fafcff; }
-    .grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:.9rem; margin-top:.9rem; }
-    @media (max-width:720px){ .grid{ grid-template-columns:1fr; } }
-    .item{ border:1px solid #e5e7eb; background:#fff; border-radius:14px; padding:.85rem; display:grid; gap:.5rem; }
-    .top{ display:flex; align-items:center; gap:.55rem; }
-    .fav{ width:18px; height:18px; border-radius:4px; }
-    .seller{ font-weight:800; }
-    .title{ line-height:1.35; }
-    .meta{ display:flex; gap:.6rem; align-items:center; justify-content:space-between; }
-    .price{ font-weight:900; font-size:1.05rem; }
-    .go{ text-decoration:none; font-weight:800; }
-    .json{ margin-top:1rem; }
-    .quicklinks{ margin:1.5rem 0; }
-    .links{ display:flex; gap:.8rem; flex-wrap:wrap; }
-    .links a{ text-decoration:none; border:1px solid #dbe1e6; background:#fff; padding:.45rem .7rem; border-radius:10px; font-weight:800; color:#0b2a2d; }
+    .card{display:grid;gap:.6rem;padding:1rem;background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:1rem}
+    input,select{padding:.6rem .75rem;border:1px solid #dfe3e8;border-radius:10px;background:#f8fafc}
+    .actions{display:flex;gap:.6rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.6rem .9rem;border-radius:10px;font-weight:800;text-decoration:none;border:1px solid #cfe3ea}
+    .btn-primary{background:var(--brand);color:#003133;border-color:transparent}
+    .btn-ghost{background:#eef6f9;color:#0b2a2d}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem;margin:.8rem 0 2rem}
+    .offer{border:1px solid #e5e7eb;background:#fff;border-radius:12px;padding:.9rem;display:grid;gap:.45rem}
+    .offer .head{display:flex;gap:.5rem;align-items:center}
+    .offer .head img{width:18px;height:18px;border-radius:4px}
+    .offer .title{font-weight:700}
+    .price{font-weight:900}
+    .msg{margin-top:.6rem}
+    .links{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.3rem}
+    .links a{background:#eef6f9;border:1px solid #dbe9ee;border-radius:10px;padding:.4rem .6rem;color:#0c2a2d;text-decoration:none;font-weight:800}
   </style>
 
   <script is:raw>
-    // Utilidades
-    function $(id){ return document.getElementById(id); }
-    function domainFromUrl(u){
-      try{ return new URL(u).hostname.replace(/^www\./,''); }catch{ return ''; }
-    }
-    function faviconFor(u){
-      const d = domainFromUrl(u);
-      if(!d) return '';
-      return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(d)}&sz=64`;
-    }
-    function euro(n){
-      const x = Number(n);
-      if(!isFinite(x)) return n;
-      return x.toLocaleString('es-ES', { style:'currency', currency:'EUR' });
+    // Sanitiza comillas tipográficas y espacios raros
+    function cleanQuery(raw) {
+      if (!raw) return "";
+      return raw
+        .replace(/[“”«»]/g, '"')
+        .replace(/[‘’]/g, "'")
+        .replace(/\s+/g, " ")
+        .replace(/^\s+|\s+$/g, "");
     }
 
-    // Normalización del JSON a un formato común
-    function normalizeOffers(payload){
-      const out = [];
-      const offers = payload?.offers || [];
-      for(const o of offers){
-        // Campos esperados: source, seller, title, price, currency, url, country, logo (opc)
-        if(!o?.url || !o?.title || o?.price == null) continue;
-        const d = domainFromUrl(o.url);
-        out.push({
-          source: o.source || d,
-          seller: o.seller || d,
-          title:  o.title,
-          price:  Number(o.price),
-          currency: o.currency || 'EUR',
-          url:    o.url,
-          logo:   o.logo || faviconFor(o.url),
-          domain: d
-        });
-      }
-      // Deduplicamos por dominio y título similar (muy básico) escogiendo el precio más bajo
-      const map = new Map();
-      for(const it of out){
-        const key = it.domain + '|' + it.title.slice(0,80).toLowerCase();
-        if(!map.has(key) || it.price < map.get(key).price) map.set(key, it);
-      }
-      const uniq = [...map.values()];
-      // Orden por precio, ascend.
-      uniq.sort((a,b)=> (a.price??1e12) - (b.price??1e12));
-      return uniq;
+    const $q = document.getElementById("q");
+    const $country = document.getElementById("country");
+    const $go = document.getElementById("go");
+    const $json = document.getElementById("view-json");
+    const $msg = document.getElementById("msg");
+    const $grid = document.getElementById("results");
+    const $gshop = document.getElementById("gshop");
+    const $idealo = document.getElementById("idealo");
+    const $pccomp = document.getElementById("pccomp");
+
+    function updateExternalLinks() {
+      const q = cleanQuery($q.value);
+      const enc = encodeURIComponent(q || "");
+      $gshop.href = `https://www.google.com/search?tbm=shop&q=${enc}`;
+      $idealo.href = `https://www.idealo.es/precios?q=${enc}`;
+      $pccomp.href = `https://www.pccomponentes.com/buscar/?query=${enc}`;
     }
 
-    // Construye tarjetas
-    function renderOffers(list){
-      const box = $('results');
-      if(!list.length){
-        box.innerHTML = '<div class="status">Sin resultados para ese término. Prueba con marca + modelo exactos.</div>';
-        return;
-      }
-      box.innerHTML = list.map(it => `
-        <article class="item">
-          <div class="top">
-            <img class="fav" src="${it.logo || ''}" alt="" />
-            <div>
-              <div class="seller">${it.seller || it.source}</div>
-              <div class="title">${it.title}</div>
-            </div>
-          </div>
-          <div class="meta">
-            <div class="price">${it.currency === 'EUR' ? euro(it.price) : (it.price + ' ' + it.currency)}</div>
-            <a class="go" href="${it.url}" target="_blank" rel="noopener">Ir a la tienda →</a>
-          </div>
-        </article>
-      `).join('');
+    function updateJsonLink() {
+      const q = cleanQuery($q.value);
+      const country = $country.value || "ES";
+      const url = `/api/compare?q=${encodeURIComponent(q)}&country=${encodeURIComponent(country)}&debug=1`;
+      $json.href = url;
     }
 
-    // Rellena los atajos (se abren en pestaña nueva)
-    function fillQuickLinks(q){
-      const enc = encodeURIComponent(q || '');
-      $('lk-gs').href     = "https://www.google.com/search?tbm=shop&q=" + enc;
-      $('lk-idealo').href = "https://www.idealo.es/precios/BuscarOferta.html?q=" + enc;
-      $('lk-pccomp').href = "https://www.pccomponentes.com/buscar/?query=" + enc;
-    }
+    async function fetchCompare() {
+      const raw = $q.value;
+      const q = cleanQuery(raw);
+      const country = $country.value || "ES";
 
-    async function run(){
-      const q = $('q').value.trim();
-      const country = $('country').value || 'ES';
-      fillQuickLinks(q);
+      updateJsonLink();
+      updateExternalLinks();
 
-      $('status').hidden = false;
-      $('status').textContent = 'Buscando ofertas...';
-      $('results').innerHTML = '';
-      $('json-box').hidden = true;
-      $('json-pre').textContent = '';
-
-      if(!q){
-        $('status').textContent = 'Escribe un producto (marca + modelo).';
+      if (!q) {
+        $msg.textContent = "Introduce marca + modelo (p.ej. “Philips 24E1N1100A”).";
+        $grid.innerHTML = "";
         return;
       }
 
-      try{
+      $msg.textContent = "Buscando ofertas…";
+      $grid.innerHTML = "";
+
+      try {
         const url = `/api/compare?q=${encodeURIComponent(q)}&country=${encodeURIComponent(country)}`;
-        const res = await fetch(url, { headers:{ 'Accept':'application/json' } });
-        const text = await res.text();
-        let data;
-        try{ data = JSON.parse(text); }catch{ data = { error:'Respuesta no JSON', raw:text }; }
+        const res = await fetch(url, { headers: { "Accept": "application/json" } });
+        const data = await res.json();
 
-        // Mostrar JSON para inspección si el usuario lo pide
-        $('json-pre').textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
-
-        if(!res.ok){
-          $('status').textContent = data?.error || ('Error HTTP ' + res.status);
-          return;
-        }
-        if(data?.error){
-          $('status').textContent = data.error;
+        if (!res.ok) {
+          $msg.textContent = data?.error || "Error en el servicio.";
           return;
         }
 
-        const offers = normalizeOffers(data);
-        $('status').hidden = true;
-        renderOffers(offers);
-      }catch(err){
-        $('status').textContent = 'Fallo al consultar la API: ' + (err?.message || err);
+        if (!data?.offers?.length) {
+          $msg.textContent = "Sin datos para esta consulta. Prueba a ser más específico (marca + modelo exacto).";
+          return;
+        }
+
+        $msg.textContent = `${data.count} ofertas encontradas · Fuentes: Google Shopping (${data?.sources?.google_shopping || 0}), Amazon (${data?.sources?.amazon || 0})`;
+
+        // Render
+        $grid.innerHTML = data.offers.map(o => {
+          const dom = (()=>{
+            try { return new URL(o.url).hostname.replace(/^www\./,""); } catch { return o.seller || o.source; }
+          })();
+          const price = Number(o.price);
+          const priceText = Number.isFinite(price) ? new Intl.NumberFormat(undefined, { style: "currency", currency: o.currency || "EUR" }).format(price) : "";
+
+          return `
+            <article class="offer">
+              <div class="head">
+                ${o.logo ? `<img src="${o.logo}" alt="" />` : ""}
+                <div><small>${o.seller || o.source} — ${dom}</small></div>
+              </div>
+              <div class="title">${(o.title || "").replace(/</g,"&lt;")}</div>
+              <div class="price">${priceText}</div>
+              <a class="btn btn-ghost" href="${o.url}" target="_blank" rel="noopener">Ir a la tienda →</a>
+            </article>
+          `;
+        }).join("");
+
+      } catch (e) {
+        console.error(e);
+        $msg.textContent = "Error de red o límite de API.";
       }
     }
 
-    $('go').addEventListener('click', run);
-    $('view-json').addEventListener('click', ()=>{
-      $('json-box').hidden = !$('json-box').hidden;
-    });
+    // Eventos
+    $go.addEventListener("click", fetchCompare);
+    $q.addEventListener("input", () => { updateJsonLink(); updateExternalLinks(); });
+    $country.addEventListener("change", () => { updateJsonLink(); });
 
-    // Si llega q/country por querystring, auto-ejecutamos
-    (function auto(){
-      const p = new URLSearchParams(location.search);
-      const q  = p.get('q');  const c = p.get('country');
-      if(q){ $('q').value = q; }
-      if(c){ $('country').value = c; }
-      if(q){ run(); }
-    })();
+    // Estado inicial
+    updateJsonLink();
+    updateExternalLinks();
+
+    // Soporta disparo con Enter
+    $q.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        fetchCompare();
+      }
+    });
   </script>
 </Base>
