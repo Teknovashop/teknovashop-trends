@@ -1,193 +1,208 @@
-import type { APIRoute } from "astro";
+// src/pages/api/compare.ts
+// Devuelve una lista normalizada de {source, seller, title, price, currency, url, country, logo?}
+// Fuentes soportadas (según ENV disponibles):
+// - SERPAPI (Google Shopping)
+// - Rainforest API (Amazon)
+// - AliExpress (RapidAPI: aliexpress-datahub)
 
-/**
- * Metabuscador informativo (SIN afiliación, SIN scraping)
- * Devuelve enlaces de búsqueda por país en plataformas relevantes.
- * Cuando tengas APIs oficiales, aquí podremos traer precios reales y calcular el “mejor precio”.
- */
+import type { APIRoute } from 'astro';
 
-const COUNTRY_CFG: Record<string, {
-  amazon?: string;           // TLD Amazon
-  ebay?: string;             // dominio eBay país
-  googleShopping?: string;   // cc para Google Shopping
-  extra?: Array<{ name: string; build: (q: string) => string }>;
-}> = {
-  ES: {
-    amazon: "es",
-    ebay: "https://www.ebay.es/sch/i.html",
-    googleShopping: "es",
-    extra: [
-      { name: "PcComponentes", build: q => `https://www.pccomponentes.com/buscar/?query=${encodeURIComponent(q)}` },
-      { name: "MediaMarkt", build: q => `https://www.mediamarkt.es/es/search.html?query=${encodeURIComponent(q)}` },
-      { name: "Idealo", build: q => `https://www.idealo.es/precios/Ofertas?qs=${encodeURIComponent(q)}` },
-    ],
-  },
-  FR: {
-    amazon: "fr",
-    ebay: "https://www.ebay.fr/sch/i.html",
-    googleShopping: "fr",
-    extra: [
-      { name: "Cdiscount", build: q => `https://www.cdiscount.com/search/10/${encodeURIComponent(q)}.html` },
-      { name: "Rue du Commerce", build: q => `https://www.rueducommerce.fr/recherche/${encodeURIComponent(q)}` },
-      { name: "Idealo", build: q => `https://www.idealo.fr/prix/mainz.jsp?q=${encodeURIComponent(q)}` },
-    ],
-  },
-  DE: {
-    amazon: "de",
-    ebay: "https://www.ebay.de/sch/i.html",
-    googleShopping: "de",
-    extra: [
-      { name: "Idealo", build: q => `https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=${encodeURIComponent(q)}` },
-      { name: "MediaMarkt", build: q => `https://www.mediamarkt.de/de/search.html?query=${encodeURIComponent(q)}` },
-      { name: "Saturn", build: q => `https://www.saturn.de/de/search.html?query=${encodeURIComponent(q)}` },
-    ],
-  },
-  IT: {
-    amazon: "it",
-    ebay: "https://www.ebay.it/sch/i.html",
-    googleShopping: "it",
-    extra: [
-      { name: "Idealo", build: q => `https://www.idealo.it/cerca/prezzi?q=${encodeURIComponent(q)}` },
-      { name: "MediaWorld", build: q => `https://www.mediaworld.it/search?q=${encodeURIComponent(q)}` },
-    ],
-  },
-  PT: {
-    amazon: "es", // Amazon ES suele servir PT
-    ebay: "https://www.ebay.es/sch/i.html",
-    googleShopping: "pt",
-    extra: [
-      { name: "Worten", build: q => `https://www.worten.pt/search?query=${encodeURIComponent(q)}` },
-      { name: "KuantoKusta", build: q => `https://www.kuantokusta.pt/search?q=${encodeURIComponent(q)}` },
-    ],
-  },
-  UK: {
-    amazon: "co.uk",
-    ebay: "https://www.ebay.co.uk/sch/i.html",
-    googleShopping: "uk",
-    extra: [
-      { name: "Argos", build: q => `https://www.argos.co.uk/search/${encodeURIComponent(q)}/` },
-      { name: "John Lewis", build: q => `https://www.johnlewis.com/search?search-term=${encodeURIComponent(q)}` },
-    ],
-  },
-  US: {
-    amazon: "com",
-    ebay: "https://www.ebay.com/sch/i.html",
-    googleShopping: "us",
-    extra: [
-      { name: "Walmart", build: q => `https://www.walmart.com/search?q=${encodeURIComponent(q)}` },
-      { name: "Best Buy", build: q => `https://www.bestbuy.com/site/searchpage.jsp?st=${encodeURIComponent(q)}` },
-      { name: "Newegg", build: q => `https://www.newegg.com/p/pl?d=${encodeURIComponent(q)}` },
-    ],
-  },
-  CA: {
-    amazon: "ca",
-    ebay: "https://www.ebay.ca/sch/i.html",
-    googleShopping: "ca",
-    extra: [
-      { name: "Best Buy", build: q => `https://www.bestbuy.ca/en-ca/search?search=${encodeURIComponent(q)}` },
-      { name: "Walmart", build: q => `https://www.walmart.ca/search?q=${encodeURIComponent(q)}` },
-    ],
-  },
-  MX: {
-    amazon: "com.mx",
-    ebay: "https://www.ebay.com/sch/i.html", // eBay global
-    googleShopping: "mx",
-    extra: [
-      { name: "Mercado Libre", build: q => `https://listado.mercadolibre.com.mx/${encodeURIComponent(q)}` },
-      { name: "Liverpool", build: q => `https://www.liverpool.com.mx/tienda?s=${encodeURIComponent(q)}` },
-      { name: "SEARS", build: q => `https://www.sears.com.mx/resultados?q=${encodeURIComponent(q)}` },
-    ],
-  },
-  BR: {
-    amazon: "com.br",
-    ebay: "https://www.ebay.com/sch/i.html",
-    googleShopping: "br",
-    extra: [
-      { name: "Mercado Livre", build: q => `https://lista.mercadolivre.com.br/${encodeURIComponent(q)}` },
-      { name: "Americanas", build: q => `https://www.americanas.com.br/busca/${encodeURIComponent(q)}` },
-    ],
-  },
-  AR: {
-    amazon: "com", // fallback
-    ebay: "https://www.ebay.com/sch/i.html",
-    googleShopping: "ar",
-    extra: [
-      { name: "Mercado Libre", build: q => `https://listado.mercadolibre.com.ar/${encodeURIComponent(q)}` },
-      { name: "Frávega", build: q => `https://www.fravega.com/l/?keyword=${encodeURIComponent(q)}` },
-    ],
-  },
-  CL: {
-    amazon: "com", // fallback
-    ebay: "https://www.ebay.com/sch/i.html",
-    googleShopping: "cl",
-    extra: [
-      { name: "Mercado Libre", build: q => `https://listado.mercadolibre.cl/${encodeURIComponent(q)}` },
-      { name: "Falabella", build: q => `https://www.falabella.com/falabella-cl/search?Ntt=${encodeURIComponent(q)}` },
-    ],
-  },
-  CO: {
-    amazon: "com", // fallback
-    ebay: "https://www.ebay.com/sch/i.html",
-    googleShopping: "co",
-    extra: [
-      { name: "Mercado Libre", build: q => `https://listado.mercadolibre.com.co/${encodeURIComponent(q)}` },
-      { name: "Éxito", build: q => `https://www.exito.com/s?q=${encodeURIComponent(q)}` },
-    ],
-  },
-  GLOBAL: {
-    amazon: "com",
-    ebay: "https://www.ebay.com/sch/i.html",
-    googleShopping: "global",
-    extra: [
-      { name: "AliExpress", build: q => `https://www.aliexpress.com/wholesale?SearchText=${encodeURIComponent(q)}` },
-      { name: "Google Shopping", build: q => `https://www.google.com/search?tbm=shop&q=${encodeURIComponent(q)}` },
-    ],
-  },
+const SERPAPI_KEY = process.env.SERPAPI_KEY || '';
+const RAINFOREST_API_KEY = process.env.RAINFOREST_API_KEY || '';
+const ALIEXPRESS_RAPIDAPI_KEY = process.env.ALIEXPRESS_RAPIDAPI_KEY || '';
+
+type Offer = {
+  source: 'google_shopping' | 'amazon' | 'aliexpress';
+  seller?: string;
+  title: string;
+  price: number;
+  currency: string;
+  url: string;
+  country?: string;
+  logo?: string;
 };
 
-function amazonSearchUrl(q: string, tld: string) {
-  const u = new URL(`https://www.amazon.${tld}/s`);
-  u.searchParams.set("k", q);
-  return u.toString();
-}
-function ebaySearchUrl(q: string, base: string) {
-  const u = new URL(base);
-  u.searchParams.set("_nkw", q);
-  return u.toString();
-}
-function googleShoppingUrl(q: string, cc?: string) {
-  // Shopping genérico; el cc es orientativo (el UI de Google decide la localización final)
-  return `https://www.google.com/search?tbm=shop&gl=${encodeURIComponent(cc || "us")}&hl=en&q=${encodeURIComponent(q)}`;
+function parsePrice(p?: string | number): number | null {
+  if (typeof p === 'number') return p;
+  if (!p) return null;
+  const n = Number(String(p).replace(/[^\d.,]/g, '').replace(',', '.'));
+  return isFinite(n) ? n : null;
 }
 
-export const GET: APIRoute = async ({ url }) => {
-  const q = (url.searchParams.get("q") || "").trim();
-  const country = (url.searchParams.get("country") || "ES").toUpperCase();
+function domainForCountry(country: string) {
+  const c = country.toUpperCase();
+  // Ajusta según tus mercados principales
+  const map: Record<string, string> = {
+    ES: 'amazon.es',
+    MX: 'amazon.com.mx',
+    US: 'amazon.com',
+    GB: 'amazon.co.uk',
+    DE: 'amazon.de',
+    FR: 'amazon.fr',
+    IT: 'amazon.it',
+    BR: 'amazon.com.br',
+  };
+  return map[c] || 'amazon.es';
+}
 
-  if (!q) {
-    return new Response(JSON.stringify({ items: [], country }), {
-      headers: { "Content-Type": "application/json" },
+function serpParamsByCountry(country: string) {
+  // hl (idioma UI), gl (geolocalización), location (afina aún más)
+  const c = country.toUpperCase();
+  if (c === 'ES') return { hl: 'es', gl: 'es', location: 'Spain' };
+  if (c === 'MX') return { hl: 'es', gl: 'mx', location: 'Mexico' };
+  if (c === 'US') return { hl: 'en', gl: 'us', location: 'United States' };
+  if (c === 'GB') return { hl: 'en', gl: 'uk', location: 'United Kingdom' };
+  if (c === 'DE') return { hl: 'de', gl: 'de', location: 'Germany' };
+  if (c === 'FR') return { hl: 'fr', gl: 'fr', location: 'France' };
+  if (c === 'IT') return { hl: 'it', gl: 'it', location: 'Italy' };
+  return { hl: 'es', gl: 'es', location: 'Spain' };
+}
+
+// ------------------- Providers -------------------
+
+async function fromSerpApi(q: string, country: string): Promise<Offer[]> {
+  if (!SERPAPI_KEY) return [];
+  const { hl, gl, location } = serpParamsByCountry(country);
+  const url = new URL('https://serpapi.com/search.json');
+  url.searchParams.set('engine', 'google_shopping');
+  url.searchParams.set('q', q);
+  url.searchParams.set('hl', hl);
+  url.searchParams.set('gl', gl);
+  url.searchParams.set('location', location);
+  url.searchParams.set('api_key', SERPAPI_KEY);
+
+  const res = await fetch(url.toString());
+  if (!res.ok) return [];
+  const data = await res.json();
+
+  const items: any[] = data?.shopping_results || [];
+  const out: Offer[] = [];
+
+  for (const it of items) {
+    const priceNum = parsePrice(it?.extracted_price ?? it?.price);
+    const currency = (it?.currency || it?.price_currency || '').toUpperCase() || 'EUR';
+    if (!priceNum || !it?.link) continue;
+    out.push({
+      source: 'google_shopping',
+      seller: it?.source || it?.merchant || undefined,
+      title: it?.title || q,
+      price: priceNum,
+      currency,
+      url: it.link,
+      country: country.toUpperCase(),
+      logo: it?.thumbnail
     });
   }
 
-  const cfg = COUNTRY_CFG[country] ?? COUNTRY_CFG.ES;
+  return out;
+}
 
-  const items: Array<{ store: string; title: string; url: string }> = [];
+async function fromRainforest(q: string, country: string): Promise<Offer[]> {
+  if (!RAINFOREST_API_KEY) return [];
+  const domain = domainForCountry(country);
+  const url = new URL('https://api.rainforestapi.com/request');
+  url.searchParams.set('api_key', RAINFOREST_API_KEY);
+  url.searchParams.set('type', 'search');
+  url.searchParams.set('amazon_domain', domain);
+  url.searchParams.set('search_term', q);
+  url.searchParams.set('output', 'json');
 
-  // Amazon
-  if (cfg.amazon) items.push({ store: "Amazon", title: q, url: amazonSearchUrl(q, cfg.amazon) });
+  const res = await fetch(url.toString());
+  if (!res.ok) return [];
+  const data = await res.json();
 
-  // eBay
-  if (cfg.ebay) items.push({ store: "eBay", title: q, url: ebaySearchUrl(q, cfg.ebay) });
+  const products: any[] = data?.search_results || [];
+  const out: Offer[] = [];
+  for (const p of products.slice(0, 10)) {
+    const priceNum = parsePrice(p?.price?.value);
+    const currency = (p?.price?.currency || '').toUpperCase() || 'EUR';
+    if (!priceNum || !p?.link) continue;
+    out.push({
+      source: 'amazon',
+      seller: 'Amazon',
+      title: p?.title || q,
+      price: priceNum,
+      currency,
+      url: p.link,
+      country: country.toUpperCase(),
+      logo: p?.image
+    });
+  }
+  return out;
+}
 
-  // Google Shopping
-  if (cfg.googleShopping)
-    items.push({ store: "Google Shopping", title: q, url: googleShoppingUrl(q, cfg.googleShopping) });
+async function fromAliExpress(q: string, country: string): Promise<Offer[]> {
+  if (!ALIEXPRESS_RAPIDAPI_KEY) return [];
+  // RapidAPI: aliexpress-datahub (o similar con respuesta: items[{title, price, currency, product_url, store_name}])
+  // Documentación puede variar; este mapeo funciona con los proveedores más usados.
+  const url = new URL('https://aliexpress-datahub.p.rapidapi.com/item_search_v2');
+  url.searchParams.set('q', q);
+  url.searchParams.set('page', '1');
 
-  // Extras por país
-  (cfg.extra || []).forEach(e => items.push({ store: e.name, title: q, url: e.build(q) }));
-
-  return new Response(JSON.stringify({ items, country }), {
-    headers: { "Content-Type": "application/json" },
+  const res = await fetch(url.toString(), {
+    headers: {
+      'X-RapidAPI-Key': ALIEXPRESS_RAPIDAPI_KEY,
+      'X-RapidAPI-Host': 'aliexpress-datahub.p.rapidapi.com'
+    }
   });
+  if (!res.ok) return [];
+  const data = await res.json();
+
+  const items: any[] = data?.result?.resultList || data?.result || data?.items || [];
+  const out: Offer[] = [];
+  for (const it of items.slice(0, 10)) {
+    const priceNum = parsePrice(it?.price || it?.targetSalePrice || it?.sale_price);
+    const currency = (it?.currency || it?.targetSalePriceCurrency || 'USD').toUpperCase();
+    const url = it?.product_url || it?.targetUrl || it?.link;
+    if (!priceNum || !url) continue;
+    out.push({
+      source: 'aliexpress',
+      seller: it?.store_name || 'AliExpress',
+      title: it?.title || q,
+      price: priceNum,
+      currency,
+      url,
+      country: country.toUpperCase(),
+      logo: it?.image || it?.imageUrl
+    });
+  }
+  return out;
+}
+
+// ------------------- Handler -------------------
+
+export const GET: APIRoute = async ({ url }) => {
+  try {
+    const q = (url.searchParams.get('q') || '').trim();
+    const country = (url.searchParams.get('country') || 'ES').toUpperCase();
+
+    if (!q) {
+      return new Response(JSON.stringify({ error: 'Missing q' }), { status: 400 });
+    }
+
+    // Ejecutar proveedores en paralelo (sólo los que tengan clave)
+    const [googleOffers, amazonOffers, aliOffers] = await Promise.all([
+      fromSerpApi(q, country).catch(() => []),
+      fromRainforest(q, country).catch(() => []),
+      fromAliExpress(q, country).catch(() => [])
+    ]);
+
+    // Unificar y ordenar por precio ascendente
+    const all = [...googleOffers, ...amazonOffers, ...aliOffers]
+      .filter(o => o && Number.isFinite(o.price))
+      .sort((a, b) => a.price - b.price);
+
+    return new Response(JSON.stringify({
+      query: q,
+      country,
+      count: all.length,
+      offers: all
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+  } catch (e: any) {
+    return new Response(JSON.stringify({ error: e?.message || 'Internal error' }), { status: 500 });
+  }
 };
