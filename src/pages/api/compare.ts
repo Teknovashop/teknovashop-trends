@@ -1,274 +1,204 @@
-// src/pages/api/compare.ts
-// Comparador informativo: Google Shopping (SerpAPI) + Amazon (Rainforest, opcional).
-// Acepta GET y POST. Params: q (obligatorio), country (ES por defecto), debug (opcional).
-// Requiere: SERPAPI_KEY (obligatorio). RAINFOREST_API_KEY (opcional).
-// No usa afiliados. Solo devuelve URLs públicas y precios si están disponibles.
+import type { APIRoute } from "astro";
 
-export const prerender = false;
+// ====== Config y utilidades
+const SERPAPI_KEY = process.env.SERPAPI_KEY || "";
+const RAINFOREST_API_KEY = process.env.RAINFOREST_API_KEY || "";
+const USER_AGENT = "TeknovashopCompareBot/1.0 (+https://teknovashop.com)";
 
 type Offer = {
-  source: 'google_shopping' | 'amazon';
-  seller?: string;
+  source: string;     // "google_shopping" | "amazon" | ...
+  seller: string;     // nombre tienda
   title: string;
-  price?: number;
-  currency?: string;
+  price: number;
+  currency: string;
   url: string;
   country: string;
   logo?: string;
 };
 
-// Utilidades pequeñas
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
-const json = (data: any, status = 200) =>
-  new Response(JSON.stringify(data), {
+function fail(status: number, msg: string) {
+  return new Response(JSON.stringify({ error: msg }), {
     status,
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      ...CORS_HEADERS,
-    },
+    headers: { "content-type": "application/json; charset=utf-8" },
   });
+}
 
-const truthy = (v: any) =>
-  ['1', 'true', 'yes', 'on'].includes(String(v ?? '').trim().toLowerCase());
-
-const countryToGlHl: Record<string, { gl: string; hl: string; currency: string; amazon_domain?: string; serp_location?: string }> = {
-  ES: { gl: 'es', hl: 'es', currency: 'EUR', amazon_domain: 'amazon.es', serp_location: 'Spain' },
-  US: { gl: 'us', hl: 'en', currency: 'USD', amazon_domain: 'amazon.com', serp_location: 'United States' },
-  GB: { gl: 'uk', hl: 'en', currency: 'GBP', amazon_domain: 'amazon.co.uk', serp_location: 'United Kingdom' },
-  DE: { gl: 'de', hl: 'de', currency: 'EUR', amazon_domain: 'amazon.de', serp_location: 'Germany' },
-  FR: { gl: 'fr', hl: 'fr', currency: 'EUR', amazon_domain: 'amazon.fr', serp_location: 'France' },
-  IT: { gl: 'it', hl: 'it', currency: 'EUR', amazon_domain: 'amazon.it', serp_location: 'Italy' },
-  MX: { gl: 'mx', hl: 'es', currency: 'MXN', amazon_domain: 'amazon.com.mx', serp_location: 'Mexico' },
-  AR: { gl: 'ar', hl: 'es', currency: 'ARS', serp_location: 'Argentina' },
-  CO: { gl: 'co', hl: 'es', currency: 'COP', serp_location: 'Colombia' },
-  CL: { gl: 'cl', hl: 'es', currency: 'CLP', serp_location: 'Chile' },
-  PE: { gl: 'pe', hl: 'es', currency: 'PEN', serp_location: 'Peru' },
+const COUNTRY_MAP: Record<
+  string,
+  { hl: string; gl: string; google_domain: string; amazon_domain: string }
+> = {
+  ES: { hl: "es", gl: "es", google_domain: "google.es", amazon_domain: "amazon.es" },
+  US: { hl: "en", gl: "us", google_domain: "google.com", amazon_domain: "amazon.com" },
+  FR: { hl: "fr", gl: "fr", google_domain: "google.fr", amazon_domain: "amazon.fr" },
+  DE: { hl: "de", gl: "de", google_domain: "google.de", amazon_domain: "amazon.de" },
+  IT: { hl: "it", gl: "it", google_domain: "google.it", amazon_domain: "amazon.it" },
+  GB: { hl: "en", gl: "uk", google_domain: "google.co.uk", amazon_domain: "amazon.co.uk" },
+  MX: { hl: "es", gl: "mx", google_domain: "google.com.mx", amazon_domain: "amazon.com.mx" },
 };
 
-function domainFavicon(url: string) {
+function domain(url: string) {
   try {
-    const u = new URL(url);
-    return `https://www.google.com/s2/favicons?domain=${u.hostname}&sz=64`;
+    return new URL(url).hostname.replace(/^www\./, "");
   } catch {
-    return undefined;
+    return "";
   }
 }
 
-async function fetchSerpApi(q: string, country: string, key?: string) {
-  const debug: any = { enabled: !!key };
-  if (!key) return { offers: [] as Offer[], debug: { ...debug, skipped: 'no_key' } };
+function parseCurrencySymbol(sym?: string): string {
+  if (!sym) return "EUR";
+  const s = sym.trim();
+  // SerpAPI suele dar "currency": "EUR" o símbolo en "price" parseado.
+  if (/^[A-Z]{3}$/.test(s)) return s;
+  if (s === "€") return "EUR";
+  if (s === "$") return "USD";
+  if (s === "£") return "GBP";
+  return s;
+}
 
-  const cfg = countryToGlHl[country] || countryToGlHl.ES;
+function dedupeAndSort(offers: Offer[]) {
+  // Deduplicamos por dominio + título similar (truncado) usando precio mínimo
+  const map = new Map<string, Offer>();
+  for (const o of offers) {
+    const key = `${domain(o.url)}|${o.title.slice(0, 100).toLowerCase()}`;
+    const prev = map.get(key);
+    if (!prev || o.price < prev.price) map.set(key, o);
+  }
+  const out = [...map.values()];
+  out.sort((a, b) => (a.price ?? 1e12) - (b.price ?? 1e12));
+  return out;
+}
+
+// ====== Fuentes
+
+async function fetchSerpApi(q: string, country: string): Promise<Offer[]> {
+  if (!SERPAPI_KEY) return [];
+  const cfg = COUNTRY_MAP[country] || COUNTRY_MAP.ES;
+
   const params = new URLSearchParams({
-    engine: 'google_shopping',
+    engine: "google_shopping",
     q,
-    api_key: key,
-    gl: cfg.gl,
+    api_key: SERPAPI_KEY,
     hl: cfg.hl,
+    gl: cfg.gl,
+    google_domain: cfg.google_domain,
+    num: "50",                    // tratar de sacar bastantes
   });
-  if (cfg.serp_location) params.set('location', cfg.serp_location);
 
   const url = `https://serpapi.com/search.json?${params.toString()}`;
+  const res = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+  if (!res.ok) return [];
+  const data = await res.json();
 
-  try {
-    const res = await fetch(url);
-    debug.status = res.status;
-    if (!res.ok) {
-      debug.error = await res.text().catch(() => 'http_error');
-      return { offers: [] as Offer[], debug };
-    }
-    const data = await res.json();
-    const items = (data?.shopping_results || []) as any[];
+  const items: any[] = data?.shopping_results || [];
+  const out: Offer[] = [];
 
-    const offers: Offer[] = items
-      .map((it) => {
-        const price: number | undefined =
-          typeof it.extracted_price === 'number'
-            ? it.extracted_price
-            : typeof it.price === 'string'
-            ? Number(String(it.price).replace(/[^\d.,]/g, '').replace('.', '').replace(',', '.'))
-            : undefined;
+  for (const it of items) {
+    // SerpAPI suele tener:
+    // - title
+    // - source (tienda)
+    // - link
+    // - extracted_price (number) y currency (EUR/USD...)
+    // Si no hay extracted_price, intentamos precio textual
+    const title = it?.title;
+    const seller = it?.source || domain(it?.link || "");
+    const url = it?.link || it?.product_link || "";
+    const price = Number(it?.extracted_price ?? NaN);
+    const currency = parseCurrencySymbol(it?.currency);
 
-        const url: string = it.link || it.product_link || it.source ? it.link : '';
-        const seller: string | undefined = it.source || it.store || it.seller || undefined;
+    if (!title || !url || !Number.isFinite(price)) continue;
 
-        if (!url) return null;
-
-        return {
-          source: 'google_shopping',
-          seller,
-          title: it.title || '',
-          price,
-          currency: cfg.currency,
-          url,
-          country,
-          logo: domainFavicon(url),
-        } as Offer;
-      })
-      .filter(Boolean) as Offer[];
-
-    debug.count = offers.length;
-    return { offers, debug };
-  } catch (e: any) {
-    debug.exception = e?.message || String(e);
-    return { offers: [] as Offer[], debug };
+    out.push({
+      source: "google_shopping",
+      seller: seller || "Tienda",
+      title,
+      price,
+      currency,
+      url,
+      country,
+      logo: `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain(url))}&sz=64`,
+    });
   }
+
+  return out;
 }
 
-async function fetchRainforest(q: string, country: string, key?: string) {
-  const debug: any = { enabled: !!key };
-  if (!key) return { offers: [] as Offer[], debug: { ...debug, skipped: 'no_key' } };
+async function fetchRainforest(q: string, country: string): Promise<Offer[]> {
+  if (!RAINFOREST_API_KEY) return [];
+  const cfg = COUNTRY_MAP[country] || COUNTRY_MAP.ES;
 
-  const cfg = countryToGlHl[country] || countryToGlHl.ES;
-  const domain = cfg.amazon_domain || 'amazon.es';
   const params = new URLSearchParams({
-    api_key: key,
-    type: 'search',
-    amazon_domain: domain,
+    api_key: RAINFOREST_API_KEY,
+    type: "search",
+    amazon_domain: cfg.amazon_domain,
     search_term: q,
   });
+
   const url = `https://api.rainforestapi.com/request?${params.toString()}`;
+  const res = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
+  if (!res.ok) return [];
 
+  const data = await res.json();
+  const items: any[] = data?.search_results || [];
+  const out: Offer[] = [];
+
+  for (const it of items) {
+    const title = it?.title;
+    const priceVal = it?.price?.value ?? it?.prices?.[0]?.value;
+    const currency = it?.price?.currency ?? it?.prices?.[0]?.currency ?? "EUR";
+    const url = it?.link;
+
+    if (!title || !url || !Number.isFinite(Number(priceVal))) continue;
+
+    out.push({
+      source: "amazon",
+      seller: "Amazon",
+      title,
+      price: Number(priceVal),
+      currency,
+      url,
+      country,
+      logo: "https://www.google.com/s2/favicons?domain=amazon." + cfg.amazon_domain.split(".").pop() + "&sz=64",
+    });
+  }
+
+  return out;
+}
+
+// ====== Handler
+
+export const GET: APIRoute = async ({ request }) => {
   try {
-    const res = await fetch(url);
-    debug.status = res.status;
-    if (!res.ok) {
-      debug.error = await res.text().catch(() => 'http_error');
-      return { offers: [] as Offer[], debug };
-    }
-    const data = await res.json();
-    const items = (data?.search_results || []) as any[];
+    const url = new URL(request.url);
+    const q = url.searchParams.get("q")?.trim();
+    const country = (url.searchParams.get("country") || "ES").toUpperCase();
+    const debug = url.searchParams.get("debug") === "1";
 
-    const offers: Offer[] = items
-      .map((it) => {
-        const url = it.link || it.product_link;
-        const price: number | undefined = it.price?.value ?? undefined;
-        const currency = it.price?.currency || cfg.currency;
-        if (!url) return null;
+    if (!q) return fail(400, "Missing q");
 
-        return {
-          source: 'amazon',
-          seller: it.seller || 'Amazon',
-          title: it.title || '',
-          price,
-          currency,
-          url,
-          country,
-          logo: domainFavicon(url),
-        } as Offer;
-      })
-      .filter(Boolean) as Offer[];
+    // Lanzamos en paralelo
+    const [serpOffers, rainOffers] = await Promise.all([
+      fetchSerpApi(q, country).catch(() => []),
+      fetchRainforest(q, country).catch(() => []),
+    ]);
 
-    debug.count = offers.length;
-    return { offers, debug };
-  } catch (e: any) {
-    debug.exception = e?.message || String(e);
-    return { offers: [] as Offer[], debug };
-  }
-}
+    // Si SerpAPI se queda corto, añadimos Amazon como apoyo
+    const merged = dedupeAndSort([...serpOffers, ...rainOffers]);
 
-export async function OPTIONS() {
-  return new Response(null, { status: 204, headers: CORS_HEADERS });
-}
-
-export async function GET({ request }: { request: Request }) {
-  return handle(request);
-}
-export async function POST({ request }: { request: Request }) {
-  return handle(request);
-}
-
-async function handle(request: Request) {
-  // 1) Leer parámetros desde querystring y/o body JSON
-  let q: string | null = null;
-  let country = 'ES';
-  let debugFlag = false;
-
-  try {
-    const u = new URL(request.url);
-    q = u.searchParams.get('q');
-    const c = u.searchParams.get('country');
-    if (c) country = c.toUpperCase();
-    debugFlag = truthy(u.searchParams.get('debug'));
-  } catch {
-    // noop
-  }
-
-  if (!q && request.method === 'POST') {
-    try {
-      const body = await request.json();
-      q = body?.q ?? q;
-      if (body?.country) country = String(body.country).toUpperCase();
-      if (body?.debug !== undefined) debugFlag = truthy(body.debug);
-    } catch {
-      // body vacío o no-JSON
-    }
-  }
-
-  if (!q || !q.trim()) {
-    return json(
-      {
-        error: 'Missing q',
-        hint:
-          'Usa ?q=marca%20modelo o body JSON { "q": "marca modelo" }',
-        example: '/api/compare?q=Philips%2024E1N1100A&country=ES&debug=1',
+    const payload = {
+      query: q,
+      country,
+      count: merged.length,
+      offers: merged,
+      sources: {
+        google_shopping: serpOffers.length,
+        amazon: rainOffers.length,
       },
-      400
-    );
-  }
-  q = q.trim();
-  country = (countryToGlHl[country]?.gl && country) || 'ES';
-
-  // 2) Providers
-  const SERPAPI_KEY = process.env.SERPAPI_KEY;
-  const RAINFOREST_API_KEY = process.env.RAINFOREST_API_KEY;
-
-  const [serp, rain] = await Promise.all([
-    fetchSerpApi(q, country, SERPAPI_KEY),
-    fetchRainforest(q, country, RAINFOREST_API_KEY),
-  ]);
-
-  // 3) Fusionar, limpiar, quitar duplicados por URL
-  const byUrl = new Map<string, Offer>();
-  [...serp.offers, ...rain.offers].forEach((o) => {
-    if (!o?.url) return;
-    if (!byUrl.has(o.url)) byUrl.set(o.url, o);
-    else {
-      // si ya existe, conserva el de precio más bajo
-      const prev = byUrl.get(o.url)!;
-      const best =
-        prev.price && o.price ? (o.price < prev.price ? o : prev) : prev.price ? prev : o;
-      byUrl.set(o.url, best);
-    }
-  });
-
-  let offers = Array.from(byUrl.values());
-
-  // 4) Ordenar por precio (si hay), luego por fuente
-  offers = offers.sort((a, b) => {
-    if (a.price && b.price) return a.price - b.price;
-    if (a.price && !b.price) return -1;
-    if (!a.price && b.price) return 1;
-    return (a.source || '').localeCompare(b.source || '');
-  });
-
-  const payload: any = {
-    query: q,
-    country,
-    count: offers.length,
-    offers,
-  };
-
-  if (debugFlag) {
-    payload.debug = {
-      serpapi: serp.debug,
-      rainforest: rain.debug,
     };
-  }
 
-  return json(payload, 200);
-}
+    return new Response(JSON.stringify(payload, null, debug ? 2 : 0), {
+      headers: { "content-type": "application/json; charset=utf-8" },
+    });
+  } catch (e: any) {
+    return fail(500, e?.message || "Internal error");
+  }
+};
