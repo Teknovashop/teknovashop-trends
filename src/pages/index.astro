@@ -3,108 +3,116 @@ import Base from "../layouts/Base.astro";
 
 const pageTitle = "Teknovashop Inteligentes";
 const pageDesc =
-  "Tecnología útil para el día a día. Tendencias curadas en español, comparador informativo y guías claras para comprar con criterio.";
+  "Experiencia premium en productos inteligentes: tendencias curadas, comparador sin afiliados y guías claras para comprar con criterio.";
 ---
 
 <Base title={pageTitle} description={pageDesc}>
 
-  <!-- HERO -->
-  <section style="display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start;margin:.6rem 0 1.4rem;">
-    <!-- Columna izquierda -->
+  <!-- ================= HERO: VIDEO CAROUSEL ================= -->
+  <section class="hero" style="display:grid;grid-template-columns:1.25fr .85fr;gap:28px;align-items:stretch;margin:.4rem 0 1.2rem;">
+    <!-- Media -->
+    <div class="card" style="overflow:hidden; position:relative; border-radius:var(--radius-lg)">
+      <div class="slides" id="hero-slides" style="position:relative; height:100%; aspect-ratio:16/9;">
+        <!-- Slide 1 -->
+        <div class="slide is-active" style="position:absolute; inset:0;">
+          <video muted playsinline autoplay loop
+            poster="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            style="width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius-lg)">
+            <source src="https://videos.pexels.com/video-files/4704393/4704393-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+          </video>
+          <div class="overlay" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.35));"></div>
+          <div style="position:absolute;left:18px;bottom:16px;color:#fff">
+            <span class="badge" style="background:rgba(255,255,255,.2);color:#fff;border-color:rgba(255,255,255,.35)">Hogar inteligente</span>
+            <h2 style="margin:.35rem 0 0;font-size:clamp(1.2rem,2vw,1.6rem)">Tecnología que se integra con tu vida</h2>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" style="position:absolute; inset:0; opacity:0; transition:.5s">
+          <video muted playsinline autoplay loop
+            poster="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            style="width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--radius-lg)">
+            <source src="https://videos.pexels.com/video-files/3183186/3183186-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          </video>
+          <div class="overlay" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.35));"></div>
+          <div style="position:absolute;left:18px;bottom:16px;color:#fff">
+            <span class="badge" style="background:rgba(255,255,255,.2);color:#fff;border-color:rgba(255,255,255,.35)">Trabajo & estudio</span>
+            <h2 style="margin:.35rem 0 0;font-size:clamp(1.2rem,2vw,1.6rem)">Setup limpio, rendimiento real</h2>
+          </div>
+        </div>
+      </div>
+      <!-- Paginación simple -->
+      <div style="position:absolute; right:12px; bottom:12px; display:flex; gap:8px;">
+        <button class="dot" data-i="0" aria-label="Slide 1" style="width:10px;height:10px;border-radius:50%;border:0;background:#fff"></button>
+        <button class="dot" data-i="1" aria-label="Slide 2" style="width:10px;height:10px;border-radius:50%;border:0;background:rgba(255,255,255,.6)"></button>
+      </div>
+    </div>
+
+    <!-- Mensaje + CTAs -->
     <div>
       <h1 style="font-size:clamp(2.0rem,2.7vw,2.6rem);margin:0 0 .55rem;letter-spacing:-.2px;">
-        Productos inteligentes, <span style="color:var(--brand)">con criterio</span>
+        Productos inteligentes, <span style="color:var(--accent)">con criterio</span>
       </h1>
-      <p style="margin:.25rem 0 1.1rem;color:var(--ink-soft);max-width:60ch;">
-        Seleccionamos tecnología que aporta. Menos ruido, más claridad: tendencias diarias en español,
-        comparador sin afiliados y guías honestas para acertar en 5 minutos.
+      <p class="muted" style="margin:.2rem 0 1.0rem;max-width:62ch">
+        Seleccionamos tecnología que aporta. Tendencias diarias en español, comparador informativo y guías claras
+        para tomar decisiones rápidas y seguras.
       </p>
-
       <div style="display:flex;gap:.7rem;flex-wrap:wrap;">
         <a class="btn btn-primary" href="/hoy">Ver tendencias de hoy</a>
         <a class="btn btn-ghost" href="/comparador">Comparar precios</a>
       </div>
 
-      <!-- Tira de confianza -->
-      <div class="trust" style="margin-top:.9rem">
-        <div class="item"><span class="dot" aria-hidden="true"></span>Selección curada</div>
-        <div class="item"><span class="dot" aria-hidden="true"></span>Guías y comparativas</div>
-        <div class="item"><span class="dot" aria-hidden="true"></span>Reseñas verificadas</div>
-        <div class="item"><span class="dot" aria-hidden="true"></span>Tiendas fiables por país</div>
+      <!-- Quick reassurance -->
+      <div class="trust" style="margin-top:1rem">
+        <div class="item"><span class="dot"></span>Selección curada</div>
+        <div class="item"><span class="dot"></span>Reseñas verificadas</div>
+        <div class="item"><span class="dot"></span>Tiendas fiables por país</div>
       </div>
     </div>
-
-    <!-- Columna derecha: NOVEDAD limpia -->
-    <aside class="hero-card" aria-label="Novedad" style="padding:1.1rem 1.2rem">
-      <div style="display:grid;grid-template-columns:1fr auto;gap:.75rem .9rem;align-items:start;">
-        <span class="badge">NOVEDAD</span>
-        <span></span>
-
-        <div>
-          <h3 style="margin:0 0 .25rem">Tendencias diarias</h3>
-          <p class="muted" style="margin:0 0 .6rem">Analizamos lo que se mueve en la comunidad tech y te lo servimos en español.</p>
-        </div>
-        <div style="align-self:start">
-          <a class="btn btn-primary" href="/hoy" aria-label="Ver productos tendencia">Ver productos</a>
-        </div>
-
-        <div style="grid-column:1 / -1;height:1px;background:var(--muted);opacity:.9;margin:.35rem 0;"></div>
-
-        <div>
-          <h3 style="margin:0 0 .25rem">Noticias relevantes</h3>
-          <p class="muted" style="margin:0 0 .6rem">Las conversaciones que importan hoy en tecnología útil.</p>
-        </div>
-        <div style="align-self:start">
-          <a class="btn btn-ghost" href="/noticias" aria-label="Ver noticias relevantes">Ver noticias</a>
-        </div>
-      </div>
-    </aside>
   </section>
 
-  <!-- Destacados hoy (linka a /hoy) -->
+  <!-- ================= DESTACADOS (teaser a /hoy) ================= -->
   <section class="wrap" aria-label="Destacados de hoy" style="margin-top:.4rem">
     <h2 class="section-title">Destacados de hoy</h2>
-    <p class="section-lead">Revisión diaria de lo que más interesa ahora mismo. Mini-review + pros/contras + dónde comparar.</p>
+    <p class="section-lead">Mini-reviews en español con pros/contras y enlaces para comparar por tienda.</p>
 
-    <!-- Cards “falsas” a modo de teaser, todo lleva a /hoy -->
     <div class="grid cols-3">
       <article class="card">
-        <a href="/hoy" style="display:block;text-decoration:none;color:inherit">
-          <img src="https://images.pexels.com/photos/5081391/pexels-photo-5081391.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 1" />
+        <a href="/hoy" style="text-decoration:none;color:inherit;display:block">
+          <img src="https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 1" />
           <div class="body">
             <span class="tag">tecnología</span>
-            <h3 style="margin:.25rem 0 .2rem">Selección curada en español</h3>
-            <p class="muted">Clic para ver mini-reviews del día.</p>
+            <h3 style="margin:.3rem 0 .15rem">Lo mejor del día</h3>
+            <p class="muted">Selección curada, lista para comparar.</p>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="/hoy" style="display:block;text-decoration:none;color:inherit">
-          <img src="https://images.pexels.com/photos/4195343/pexels-photo-4195343.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 2" />
+        <a href="/hoy" style="text-decoration:none;color:inherit;display:block">
+          <img src="https://images.pexels.com/photos/4790260/pexels-photo-4790260.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 2" />
           <div class="body">
             <span class="tag">tecnología</span>
-            <h3 style="margin:.25rem 0 .2rem">Pros y contras reales</h3>
+            <h3 style="margin:.3rem 0 .15rem">Pros y contras reales</h3>
             <p class="muted">Resumen útil en 30 segundos.</p>
           </div>
         </a>
       </article>
       <article class="card">
-        <a href="/hoy" style="display:block;text-decoration:none;color:inherit">
-          <img src="https://images.pexels.com/photos/3945659/pexels-photo-3945659.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 3" />
+        <a href="/hoy" style="text-decoration:none;color:inherit;display:block">
+          <img src="https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg?auto=compress&cs=tinysrgb&w=640&h=360&fit=crop" alt="Destacado 3" />
           <div class="body">
             <span class="tag">tecnología</span>
-            <h3 style="margin:.25rem 0 .2rem">Dónde comparar y comprar</h3>
-            <p class="muted">Por país y tienda fiable.</p>
+            <h3 style="margin:.3rem 0 .15rem">Dónde comprar</h3>
+            <p class="muted">Comparador limpio por tienda y país.</p>
           </div>
         </a>
       </article>
     </div>
   </section>
 
-  <!-- Guías y comparativas -->
+  <!-- ================= GUIAS / TEKNOVAPEDIA ================= -->
   <section class="wrap" aria-label="Guías y comparativas" style="margin-top:1.4rem">
-    <h2 class="section-title">Guías y comparativas</h2>
-    <p class="section-lead">Atajos para acertar: lo que mirar, qué evitar y la mejor compra en tu caso.</p>
+    <h2 class="section-title">Teknovapedia: guías & comparativas</h2>
+    <p class="section-lead">Atajos para acertar: lo que mirar, qué evitar y la compra recomendada por uso y presupuesto.</p>
 
     <div class="grid cols-3">
       <article class="card">
@@ -119,7 +127,7 @@ const pageDesc =
         <div class="body">
           <span class="tag">Comparativa</span>
           <h3>Cámaras Wi-Fi sin cuotas</h3>
-          <p class="muted">Seguridad sin pagar suscripción.</p>
+          <p class="muted">Seguridad sin pagar suscripciones.</p>
           <a class="btn btn-ghost" href="/archivo">Ver comparativa</a>
         </div>
       </article>
@@ -134,40 +142,85 @@ const pageDesc =
     </div>
   </section>
 
-  <!-- Newsletter -->
+  <!-- ================= MURO DE CONFIANZA ================= -->
+  <section class="wrap" aria-label="Muro de confianza" style="margin-top:1.4rem">
+    <h2 class="section-title">Confianza y reseñas</h2>
+    <p class="section-lead">Lo que dicen los usuarios y garantías visibles.</p>
+
+    <div class="grid cols-3">
+      <article class="card">
+        <div class="body">
+          <h3 style="margin:.1rem 0 .35rem;">“Selección de 10”</h3>
+          <p class="muted">“Llevo 3 compras guiado por sus reviews y ni un fallo. Explican claro y sin humo.”</p>
+          <p style="margin:.6rem 0 0; font-weight:800;">— Marta G.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="body">
+          <h3 style="margin:.1rem 0 .35rem;">“Comparador honesto”</h3>
+          <p class="muted">“Me gustó que no empujen tienda concreta. Enlaces por país y listo.”</p>
+          <p style="margin:.6rem 0 0; font-weight:800;">— Iván P.</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="body">
+          <h3 style="margin:.1rem 0 .35rem;">Pagos y seguridad</h3>
+          <p class="muted">Tiendas con SSL, métodos de pago seguros y políticas claras.</p>
+          <div class="trust" style="margin-top:.6rem">
+            <div class="item"><span class="dot"></span>SSL</div>
+            <div class="item"><span class="dot"></span>Visa / MasterCard</div>
+            <div class="item"><span class="dot"></span>Apple Pay · Google Pay</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= NEWSLETTER ================= -->
   <section class="wrap" aria-label="Newsletter" style="margin-top:1.4rem">
-    <div class="hero-card">
-      <h2 style="margin:0 0 .35rem">Únete: 2 emails/mes con chicha</h2>
-      <p class="muted" style="margin:0 0 .7rem">Bajadas de precio, guías nuevas y un truco útil de tecnología cotidiana. Cero spam.</p>
+    <div class="hero-card" style="padding:1.1rem 1.2rem">
+      <h2 style="margin:0 0 .35rem">Únete: 2 emails/mes con ideas útiles</h2>
+      <p class="muted" style="margin:0 0 .7rem">Bajadas de precio, guías nuevas y un truco de tecnología cotidiana. Cero spam.</p>
       <form onsubmit="event.preventDefault()">
-        <input placeholder="tu@email.com" style="padding:.6rem .8rem;border:1px solid var(--muted);border-radius:10px;margin-right:.4rem" />
+        <input placeholder="tu@email.com"
+          style="padding:.65rem .85rem;border:1px solid var(--muted);border-radius:var(--radius-md);margin-right:.4rem;min-width:240px" />
         <button class="btn btn-primary">Quiero apuntarme</button>
       </form>
     </div>
   </section>
 
-  <!-- Cómo trabajamos -->
-  <section class="wrap" aria-label="Cómo trabajamos" style="margin-top:1.6rem">
-    <h2 class="section-title">Cómo seleccionamos</h2>
-    <p class="section-lead">Metodología pública y simple.</p>
-
-    <div class="grid cols-4">
-      <div class="card"><div class="body"><h4>1) Detectamos</h4><p class="muted">Comunidad, feeds y ventas.</p></div></div>
-      <div class="card"><div class="body"><h4>2) Filtramos</h4><p class="muted">Utilidad, calidad y disponibilidad.</p></div></div>
-      <div class="card"><div class="body"><h4>3) Explicamos</h4><p class="muted">Resumen claro en español.</p></div></div>
-      <div class="card"><div class="body"><h4>4) Comparas</h4><p class="muted">Enlaces a tiendas fiables por país.</p></div></div>
+  <!-- ================= EDITORIAL LINKS ================= -->
+  <section class="wrap" aria-label="Editorial rápido" style="margin-top:1.5rem">
+    <div class="grid cols-2">
+      <div class="hero-card" style="padding:1.1rem 1.2rem">
+        <span class="badge">Novedad</span>
+        <h3 style="margin:.4rem 0 .25rem">Tendencias diarias</h3>
+        <p class="muted" style="margin:0 0 .6rem">Lo que se mueve hoy en la comunidad tech, servido en español.</p>
+        <a class="btn btn-primary" href="/hoy">Ver productos</a>
+      </div>
+      <div class="hero-card" style="padding:1.1rem 1.2rem">
+        <h3 style="margin:0 0 .25rem">Noticias relevantes</h3>
+        <p class="muted" style="margin:0 0 .6rem">Las conversaciones que importan hoy en tecnología.</p>
+        <a class="btn btn-ghost" href="/noticias">Ver noticias</a>
+      </div>
     </div>
   </section>
 
-  <!-- Ventajas (USP) -->
-  <section class="usp" aria-label="Por qué Teknovashop">
-    <div class="card"><div class="body"><h4>1) Nicho definido</h4><p class="muted">Tecnología útil. Selección de calidad y marca confiable.</p></div></div>
-    <div class="card"><div class="body"><h4>2) UX excepcional</h4><p class="muted">Rápida y clara: de la tendencia a comparar, todo fluye.</p></div></div>
-    <div class="card"><div class="body"><h4>3) Contenido de valor</h4><p class="muted">Guías y comparativas útiles. Menos ruido, mejores decisiones.</p></div></div>
-    <div class="card"><div class="body"><h4>4) Confianza</h4><p class="muted">Transparencia y reseñas verificadas.</p></div></div>
-    <div class="card" style="grid-column: span 2;"><div class="body">
-      <h4>5) Marketing de nicho</h4><p class="muted">Productos en acción (IG/TikTok) y colaboración con reviewers.</p>
-    </div></div>
-  </section>
-
+  <script is:raw>
+    // Hero slider mínimo sin dependencias
+    const slides = Array.from(document.querySelectorAll('#hero-slides .slide'));
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    let i = 0;
+    function show(n){
+      slides.forEach((s,idx)=>{
+        s.style.opacity = (idx===n? 1 : 0);
+        s.style.zIndex  = (idx===n? 2 : 1);
+      });
+      dots.forEach((d,idx)=> d.style.background = idx===n ? '#fff' : 'rgba(255,255,255,.6)');
+      i = n;
+    }
+    const timer = setInterval(()=> show((i+1)%slides.length), 6000);
+    dots.forEach(d=> d.addEventListener('click', ()=> show(+d.dataset.i||0)));
+    show(0);
+  </script>
 </Base>
