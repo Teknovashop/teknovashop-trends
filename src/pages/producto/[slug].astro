@@ -4,24 +4,21 @@
  * Recorre src/content/trends/**.md para generar rutas y renderizar el contenido.
  */
 
+import Base from "../../layouts/Base.astro";
+
 export async function getStaticPaths() {
-  // Cargamos TODOS los .md de tendencias (compilación)
   const modules = import.meta.glob("../../content/trends/**/*.md", { eager: true });
   const paths: any[] = [];
 
-  for (const [p, mod] of Object.entries(modules)) {
-    const m = mod as any;
-    const fm = m?.frontmatter || {};
-    if (!fm?.slug) continue;
-    paths.push({
-      params: { slug: fm.slug },
-    });
+  for (const mod of Object.values(modules)) {
+    const fm = (mod as any)?.frontmatter;
+    if (fm?.slug) {
+      paths.push({ params: { slug: fm.slug } });
+    }
   }
-
   return paths;
 }
 
-// Encontramos el módulo del slug actual y sacamos fm + Content
 const all = import.meta.glob("../../content/trends/**/*.md", { eager: true });
 const entry = Object.values(all).find((m: any) => m?.frontmatter?.slug === Astro.params.slug) as any;
 
@@ -32,175 +29,154 @@ if (!entry) {
 const { frontmatter } = entry;
 const Content = entry.default;
 
-// Campos habituales del generador
 const title: string = frontmatter.title || "Producto";
 const hero: string | undefined = frontmatter.hero;
 const date: string | undefined = frontmatter.date;
 const niche: string | undefined = frontmatter.niche;
 const score: number | undefined = frontmatter.score;
-// Opcionales para enriquecer
-const video: string | undefined = frontmatter.video; // YouTube URL (opcional)
+const video: string | undefined = frontmatter.video;
 const gallery: string[] = Array.isArray(frontmatter.gallery) ? frontmatter.gallery : [];
 
-// Para un breadcrumb mínimo y CTA
 const pageTitle = `${title} · Tendencia`;
-const pageDesc = `Tendencia del día en ${niche || "tecnología"}. Mini-review y enlaces informativos para comparar por tienda y país.`;
+const pageDesc = `Tendencia del día en ${niche || "tecnología"}. Mini-review y enlaces informativos.`;
 ---
 
-<!--------------------------------- LAYOUT BASE --------------------------------->
-<!-- Usamos el layout global para mantener cabecera/pie/estilos -->
-<!-- Importamos aquí para no romper tu estructura -->
-{ /* @ts-ignore */ }
-{await import("../../layouts/Base.astro").then(mod => {
-  const Base = (mod as any).default;
-  return Base({ title: pageTitle, description: pageDesc, slots: {
-    default: (
-      <>
-        <!-- Encabezado simple -->
-        <section style="margin: .2rem 0 1rem;">
-          <a href="/hoy" class="btn btn-ghost">← Volver a tendencias</a>
-        </section>
+<Base title={pageTitle} description={pageDesc}>
+  <section style="margin: .2rem 0 1rem;">
+    <a href="/hoy" class="btn btn-ghost">← Volver a tendencias</a>
+  </section>
 
-        <!-- Media Hero: vídeo si hay, si no, imagen -->
-        <section class="card" style="overflow:hidden">
-          {video ? (
-            <div style="position:relative; aspect-ratio:16/9; background:#000">
-              <iframe
-                src={video.replace("watch?v=", "embed/")}
-                title="Video del producto"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block;"
-              ></iframe>
+  <!-- Media Hero -->
+  <section class="card" style="overflow:hidden">
+    {video ? (
+      <div style="position:relative; aspect-ratio:16/9; background:#000">
+        <iframe
+          src={video.replace("watch?v=", "embed/")}
+          title="Video del producto"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          style="position:absolute; inset:0; width:100%; height:100%; border:0"
+        ></iframe>
+      </div>
+    ) : hero ? (
+      <img
+        src={hero}
+        alt={title}
+        width="1280"
+        height="720"
+        loading="eager"
+        style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block"
+      />
+    ) : null}
+    <div class="body" style="display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap">
+      <div>
+        <h1 style="margin:.1rem 0 .2rem; font-size:clamp(1.4rem,2.2vw,1.9rem)">{title}</h1>
+        <div class="muted" style="display:flex; gap:.7rem; flex-wrap:wrap">
+          {niche ? <span class="tag">{niche}</span> : null}
+          {typeof score === "number" ? <span class="badge">Score {score}</span> : null}
+          {date ? <small class="muted">{new Date(date).toLocaleDateString("es-ES")}</small> : null}
+        </div>
+      </div>
+      <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+        <a class="btn btn-primary" href="/comparador">Comparar precios</a>
+        <a class="btn" href="/hoy">Ver otras tendencias</a>
+      </div>
+    </div>
+  </section>
+
+  {gallery.length ? (
+    <section style="margin: .9rem 0 1.1rem;">
+      <div class="grid cols-3">
+        {gallery.map((g) => (
+          <img
+            src={g}
+            alt={`Vista de ${title}`}
+            loading="lazy"
+            width="640"
+            height="360"
+            style="width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px; border:1px solid var(--muted)" />
+        ))}
+      </div>
+    </section>
+  ) : null}
+
+  <section class="card" style="padding: .8rem 1rem; margin-top:.6rem">
+    <Content />
+  </section>
+
+  <!-- Reseñas -->
+  <section class="reviews" style="margin-top:1.2rem">
+    <h2 class="section-title">Reseñas de clientes</h2>
+    <div id="rev-head" class="head" style="display:flex; gap:.7rem; align-items:center; margin:.35rem 0 .6rem">
+      <div class="stars" id="rev-stars" aria-label="Valoración media" style="font-size:1.1rem"></div>
+      <small id="rev-count" class="muted"></small>
+    </div>
+
+    <form id="rev-form" class="card" on:submit="return false;" style="display:grid; gap:.6rem; padding:1rem">
+      <input type="text" name="hp" id="hp" style="display:none" />
+      <label>Nombre</label>
+      <input name="name" id="name" required maxlength="40" placeholder="Tu nombre" />
+      <label>Valoración</label>
+      <select name="rating" id="rating">
+        <option value="5">5 - Excelente</option>
+        <option value="4">4 - Muy buena</option>
+        <option value="3">3 - Normal</option>
+        <option value="2">2 - Mejorable</option>
+        <option value="1">1 - Mala</option>
+      </select>
+      <label>Comentario</label>
+      <textarea name="comment" id="comment" required minlength="10" maxlength="1200" placeholder="Cuenta tu experiencia..."></textarea>
+      <button class="btn btn-primary" id="send" type="button">Enviar reseña</button>
+      <div id="msg" class="muted"></div>
+    </form>
+
+    <div id="rev-list" class="list" style="margin-top:.8rem; display:grid; gap:.7rem"></div>
+  </section>
+
+  <script is:raw>
+    const slug = ${JSON.stringify(Astro.params.slug)};
+    function starify(n){
+      const full = '★'.repeat(Math.round(n));
+      const empty = '☆'.repeat(5-Math.round(n));
+      return `<span title="${n}/5">${full}${empty}</span>`;
+    }
+    async function load(){
+      try{
+        const res = await fetch(`/api/reviews/${encodeURIComponent(slug)}?limit=30`);
+        const data = await res.json();
+        document.getElementById('rev-stars').innerHTML = starify(data.avg || 0);
+        document.getElementById('rev-count').innerText = data.count ? `${data.count} reseñas` : 'Sé el primero en opinar';
+        const list = document.getElementById('rev-list');
+        list.innerHTML = (data.items || []).map(it => `
+          <div class="card" style="padding:.75rem">
+            <div style="display:flex; gap:.5rem; align-items:center; margin-bottom:.35rem; color:#4b5563; font-size:.92rem">
+              <b>${(it.name || 'Usuario')}</b> · ${new Date(it.created_at).toLocaleDateString('es-ES')} · ${starify(it.rating)}
             </div>
-          ) : hero ? (
-            <img
-              src={hero}
-              alt={title}
-              width="1280"
-              height="720"
-              loading="eager"
-              style="width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; display:block;"
-            />
-          ) : null}
-          <div class="body" style="display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap">
-            <div>
-              <h1 style="margin:.1rem 0 .2rem; font-size:clamp(1.4rem,2.2vw,1.9rem)">{title}</h1>
-              <div class="muted" style="display:flex; gap:.7rem; flex-wrap:wrap">
-                {niche ? <span class="tag">{niche}</span> : null}
-                {typeof score === "number" ? <span class="badge">Score {score}</span> : null}
-                {date ? <small class="muted">{new Date(date).toLocaleDateString("es-ES")}</small> : null}
-              </div>
-            </div>
-            <div style="display:flex; gap:.6rem; flex-wrap:wrap">
-              <a class="btn btn-primary" href="/comparador">Comparar precios</a>
-              <a class="btn" href="/hoy">Ver otras tendencias</a>
-            </div>
+            <div>${(it.comment || '').replace(/</g,'&lt;')}</div>
           </div>
-        </section>
+        `).join('');
+      }catch(e){}
+    }
+    load();
 
-        <!-- Galería opcional -->
-        {gallery.length ? (
-          <section style="margin: .9rem 0 1.1rem;">
-            <div class="grid cols-3">
-              {gallery.map((g) => (
-                <img
-                  src={g}
-                  alt={`Vista de ${title}`}
-                  loading="lazy"
-                  width="640"
-                  height="360"
-                  style="width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; border-radius:12px; border:1px solid var(--muted)"
-                />
-              ))}
-            </div>
-          </section>
-        ) : null}
-
-        <!-- Cuerpo del artículo (MD generado por tu script) -->
-        <section class="card" style="padding: .8rem 1rem; margin-top:.6rem">
-          <Content />
-        </section>
-
-        <!-- Reseñas de clientes (variante B) -->
-        <section class="reviews" style="margin-top:1.2rem">
-          <h2 class="section-title">Reseñas de clientes</h2>
-          <div id="rev-head" class="head" style="display:flex; gap:.7rem; align-items:center; margin:.35rem 0 .6rem">
-            <div class="stars" id="rev-stars" aria-label="Valoración media" style="font-size:1.1rem"></div>
-            <small id="rev-count" class="muted"></small>
-          </div>
-
-          <form id="rev-form" class="card" on:submit="return false;" style="display:grid; gap:.6rem; padding:1rem">
-            <input type="text" name="hp" id="hp" style="display:none" />
-            <label>Nombre</label>
-            <input name="name" id="name" required maxlength="40" placeholder="Tu nombre" style="padding:.55rem .7rem; border-radius:8px; border:1px solid var(--muted)" />
-            <label>Valoración</label>
-            <select name="rating" id="rating" style="padding:.55rem .7rem; border-radius:8px; border:1px solid var(--muted)">
-              <option value="5">5 - Excelente</option>
-              <option value="4">4 - Muy buena</option>
-              <option value="3">3 - Normal</option>
-              <option value="2">2 - Mejorable</option>
-              <option value="1">1 - Mala</option>
-            </select>
-            <label>Comentario</label>
-            <textarea name="comment" id="comment" required minlength="10" maxlength="1200" placeholder="Cuenta tu experiencia..."
-              style="padding:.55rem .7rem; border-radius:8px; border:1px solid var(--muted); min-height:110px"></textarea>
-            <button class="btn btn-primary" id="send" type="button">Enviar reseña</button>
-            <div id="msg" class="muted"></div>
-          </form>
-
-          <div id="rev-list" class="list" style="margin-top:.8rem; display:grid; gap:.7rem"></div>
-        </section>
-
-        <script is:raw>
-          // ====== Reseñas (cliente) - Variante B con promedio visible ======
-          const slug = ${JSON.stringify(Astro.params.slug)};
-          function starify(n){
-            const full = '★'.repeat(Math.round(n));
-            const empty = '☆'.repeat(5-Math.round(n));
-            return `<span title="${n}/5">${full}${empty}</span>`;
-          }
-          async function load(){
-            try{
-              const res = await fetch(`/api/reviews/${encodeURIComponent(slug)}?limit=30`);
-              const data = await res.json();
-              document.getElementById('rev-stars').innerHTML = starify(data.avg || 0);
-              document.getElementById('rev-count').innerText = data.count ? `${data.count} reseñas` : 'Sé el primero en opinar';
-              const list = document.getElementById('rev-list');
-              list.innerHTML = (data.items || []).map(it => `
-                <div class="card" style="padding:.75rem">
-                  <div style="display:flex; gap:.5rem; align-items:center; margin-bottom:.35rem; color:#4b5563; font-size:.92rem">
-                    <b>${(it.name || 'Usuario')}</b> · ${new Date(it.created_at).toLocaleDateString('es-ES')} · ${starify(it.rating)}
-                  </div>
-                  <div>${(it.comment || '').replace(/</g,'&lt;')}</div>
-                </div>
-              `).join('');
-            }catch(e){
-              // Silencioso
-            }
-          }
-          load();
-
-          document.getElementById('send')?.addEventListener('click', async ()=>{
-            const name = (document.getElementById('name').value || '').trim();
-            const rating = document.getElementById('rating').value;
-            const comment = (document.getElementById('comment').value || '').trim();
-            const msg = document.getElementById('msg');
-            if (!name || !comment){ msg.textContent = 'Completa nombre y comentario.'; return; }
-            msg.textContent = 'Enviando...';
-            try{
-              const res = await fetch('/api/reviews', {
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body: JSON.stringify({ slug, name, rating, comment, hp:'' })
-              });
-              const data = await res.json();
-              if (data.ok){ msg.textContent = '¡Gracias! Tu reseña aparecerá en unos segundos.'; document.getElementById('rev-form').reset?.(); load(); }
-              else { msg.textContent = data.error || 'Error al enviar'; }
-            }catch(e){ msg.textContent = 'Error de red'; }
-          });
-        </script>
-      </>
-    ) }});
-}}
+    document.getElementById('send')?.addEventListener('click', async ()=>{
+      const name = (document.getElementById('name').value || '').trim();
+      const rating = document.getElementById('rating').value;
+      const comment = (document.getElementById('comment').value || '').trim();
+      const msg = document.getElementById('msg');
+      if (!name || !comment){ msg.textContent = 'Completa nombre y comentario.'; return; }
+      msg.textContent = 'Enviando...';
+      try{
+        const res = await fetch('/api/reviews', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ slug, name, rating, comment, hp:'' })
+        });
+        const data = await res.json();
+        if (data.ok){ msg.textContent = '¡Gracias!'; document.getElementById('rev-form').reset?.(); load(); }
+        else { msg.textContent = data.error || 'Error al enviar'; }
+      }catch(e){ msg.textContent = 'Error de red'; }
+    });
+  </script>
+</Base>
