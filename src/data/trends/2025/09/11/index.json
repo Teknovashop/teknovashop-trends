@@ -1,0 +1,61 @@
+{
+  "date": "2025-09-11",
+  "items": [
+    {
+      "slug": "buscando-mi-primer-monitor-oled-de-21-9",
+      "title": "Buscando mi primer monitor OLED de 21:9.",
+      "niche": "tecnologia",
+      "score": 2,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "spotify-acaba-de-lanzar-audio-sin-perdida-hay-algun-punto-en-activarlo-si-uso-ai",
+      "title": "Spotify acaba de lanzar audio sin pérdida. ¿Hay algún punto en activarlo si uso AirPods Pro o Bose NC700?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "alguien-se-esta-haciendo-pasar-por-mi-en-discord",
+      "title": "Alguien se está haciendo pasar por mí en Discord.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3394266/pexels-photo-3394266.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "exclusiva-renders-oficiales-del-samsung-galaxy-s26-pro",
+      "title": "\"Exclusiva: Renders oficiales del Samsung Galaxy S26 Pro\"",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33822971/pexels-photo-33822971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-nuevo-sensor-3x-de-la-samsung-galaxy-s26-ultra-esta-realmente-degradado-con-s",
+      "title": "El nuevo sensor 3x de la Samsung Galaxy S26 Ultra está realmente degradado, con solo 10MP f/2.4 1/3.94\" 1.0μm. Es más pequeño que el sensor actual del S25 Ultra IMX754.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33822971/pexels-photo-33822971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "nada-te-tienta-a-su-redefinida-version-de-android-16-se-viene-pronto",
+      "title": "Nada te tienta a su \"redefinida\" versión de Android 16 se viene pronto.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-entre-el-pixel-10-pro-xiaomi-15-ultra-s25-ultra-y-iphone-16-pro-prue",
+      "title": "Comparativa entre el Pixel 10 Pro, Xiaomi 15 Ultra, S25 Ultra y iPhone 16 Pro: Prueba de video en formato RAW vs ProRes.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33800942/pexels-photo-33800942.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "tableta-de-diseno-asequible-con-lapiz-y-posicionamiento-satelital-revision-motor",
+      "title": "Tableta de diseño asequible con lápiz y posiciónamiento satelital - Revisión Motorola Moto Pad 60 Pro",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
