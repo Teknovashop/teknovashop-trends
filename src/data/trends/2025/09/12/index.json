@@ -1,0 +1,75 @@
+{
+  "date": "2025-09-12",
+  "items": [
+    {
+      "slug": "apple-implementa-el-nuevo-sistema-de-seguridad-memory-integrity-enforcement-en-t",
+      "title": "Apple implementa el nuevo sistema de seguridad Memory Integrity Enforcement en todos los iPhone 17.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "todo-el-iphone-air-cabe-en-el-espacio-de-su-camara-pero-a-costa-de-omitir-algo-m",
+      "title": "Todo el iPhone Air cabe en el espacio de su cámara, pero a costa de omitir algo muy importante.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-renueva-su-reloj-mas-asequible-este-es-el-nuevo-apple-watch-series-3",
+      "title": "Apple renueva su reloj más asequible: este es el nuevo Apple Watch Series 3.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33847679/pexels-photo-33847679.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-presenta-el-nuevo-apple-watch-series-11",
+      "title": "Apple presenta el nuevo Apple Watch Series 11.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-modelos-de-iphone-17-sin-tarjeta-sim-tienen-baterias-mas-grandes",
+      "title": "Los modelos de iPhone 17 sin tarjeta SIM tienen baterías más grandes.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "la-zona-debajo-de-las-camaras-traseras-del-iphone-17-pro-podria-estar-optimizada",
+      "title": "La zona debajo de las cámaras traseras del iPhone 17 Pro podría estar optimizada para la carga inalámbrica.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3820326/pexels-photo-3820326.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "recomendacion-para-mochila-de-portatil-de-15-5-pulgadas",
+      "title": "Recomendación para mochila de portátil de 15,5 pulgadas.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "necesito-opiniones-honestas-sobre-la-durabilidad-y-el-rendimiento-del-hp-envy-x3",
+      "title": "\"Necesito opiniones honestas sobre la durabilidad y el rendimiento del HP Envy x360 antes de comprarlo\".",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/570026/pexels-photo-570026.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "que-es-un-buen-reemplazo-para-un-samsung-de-50-pulgadas-crystal-uhd",
+      "title": "¿Qué es un buen reemplazo para un Samsung de 50 pulgadas Crystal UHD?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33822971/pexels-photo-33822971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "mochilas-de-cuero-de-mensajero-bolsa-de-viaje-que-caben-una-laptop-y-equipo-de-c",
+      "title": "Mochilas de cuero de mensajero/bolsa de viaje que caben una laptop y equipo de cámara como la Cravar Rana o la Ona Brixton.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
