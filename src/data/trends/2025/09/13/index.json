@@ -1,0 +1,82 @@
+{
+  "date": "2025-09-13",
+  "items": [
+    {
+      "slug": "parte-rota-del-philips-shp-9600",
+      "title": "¿Parte rota del Philips SHP-9600?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/570026/pexels-photo-570026.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "me-construi-un-teclado-de-alta-gama-dentro-de-mi-portatil",
+      "title": "Me construí un teclado de alta gama dentro de mi portátil.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "resena-completa-de-sony-xperia-10-vii-en-gsmarena",
+      "title": "Reseña completa de Sony Xperia 10 VII en GSMarena.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31100419/pexels-photo-31100419.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-tienda-de-apple-esta-cerrada-por-delante-de-los-pedidos-anticipados-de-iphone",
+      "title": "La tienda de Apple está cerrada por delante de los pedidos anticipados de iPhone 17, iPhone 17 Pro y iPhone Air.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-reloj-apple-watch-series-11-ha-mejorado-su-vida-util-de-la-bateria-de-24-hora",
+      "title": "El reloj Apple Watch Series 11 ha mejorado su vida útil de la batería de 24 horas, pero tiene un inconveniente.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33847679/pexels-photo-33847679.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "powerbeats-pro-2-agrega-soporte-de-fitness-de-apple-un-seguimiento-de-la-frecuen",
+      "title": "Powerbeats Pro 2 agrega soporte de fitness de Apple, un seguimiento de la frecuencia cardíaca mejorado y más características con iOS 16.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-aplicacion-de-musica-de-apple-en-ios-16-gana-mi-caracteristica-favorita-de-la",
+      "title": "La aplicación de música de Apple en iOS 16 gana mi característica favorita de la Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-tienda-de-apple-completamente-renovada-en-el-centro-de-detroit-abre-el-dia-de",
+      "title": "La tienda de Apple completamente renovada en el centro de Detroit abre el día de lanzamiento del iPhone 17 y iPhone Air.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dreame-ocupa-los-tres-primeros-puestos-en-la-lista-de-los-20-mejores-de-las-guer",
+      "title": "Dreame ocupa los tres primeros puestos en la lista de los 20 mejores de las guerras de aspiradoras.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33808149/pexels-photo-33808149.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dreame-lanza-el-l30s-pro-ultra-en-el-mercado-taiwanes-incorporando-la-caracteris",
+      "title": "Dreame lanza el L30S Pro Ultra en el mercado taiwanés, incorporando la característica de tablero seco AceClean en su línea de presupuesto intermedio, a un precio de NT$17.980.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "eufy-x10-pro-omni-o-dreame-l10s-ultra-gen-2",
+      "title": "Eufy X10 Pro Omni o Dreame L10s Ultra Gen 2.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
