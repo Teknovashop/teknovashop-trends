@@ -1,0 +1,96 @@
+{
+  "date": "2025-09-15",
+  "items": [
+    {
+      "slug": "monitor-tcl-de-8k-a-1000hz",
+      "title": "Monitor TCL de 8K a 1000Hz.",
+      "niche": "tecnologia",
+      "score": 2,
+      "hero": "https://images.pexels.com/photos/33899265/pexels-photo-33899265.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "alguien-que-solo-conduce-un-smartphone-todos-los-dias",
+      "title": "¿Alguien que solo conduce un smartphone todos los días?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-de-red-de-telefonia-movil-inteligente-la-senal-mejor-probada-geekerwan",
+      "title": "Reseña de red de telefonía móvil inteligente: la señal mejor probada! - Geekerwan",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6235464/pexels-photo-6235464.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "mi-primer-monitor-oled-finalmente",
+      "title": "Mi primer monitor OLED finalmente.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "luchando-por-encontrar-un-monitor-para-mi-xbox-series-x-vale-la-pena-1440p",
+      "title": "Luchando por encontrar un monitor para mi Xbox Series X, ¿vale la pena 1440p?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "jugar-a-1440p-en-una-pantalla-de-27-pulgadas-de-4k-es-lo-mismo-que-jugar-a-1440p",
+      "title": "Jugar a 1440p en una pantalla de 27 pulgadas de 4K es lo mismo que jugar a 1440p en una pantalla de 27 pulgadas nativa de 1440p.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "me-arrepentire-de-ir-de-un-monitor-de-4k-de-32-pulgadas-a-uno-de-4k-de-27-pulgad",
+      "title": "\"¿Me arrepentiré de ir de un monitor de 4K de 32 pulgadas a uno de 4K de 27 pulgadas?\"",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "mantener-un-monitor-de-1440p-a-24-pulgadas-mientras-se-juega-hay-alguna-diferenc",
+      "title": "Mantener un monitor de 1440p a 24 pulgadas mientras se juega, ¿hay alguna diferencia real?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "alguien-ha-conectado-con-exito-una-bombilla-philips-hue-br30-a-ha-home-assistant",
+      "title": "¿Alguien ha conectado con éxito una bombilla Philips Hue BR30 a HA (Home Assistant) mediante una antena Zigbee sin un puente Philips?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "cambio-de-rueda-delantera-de-xiaomi-x10-de-forma-diy",
+      "title": "Cambio de rueda delantera de Xiaomi X10+ de forma DIY.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-mejor-robot-aspirador-y-moqueta-para-gatos-con-pelo-largo-pero-si-lo-traducim",
+      "title": "\"El mejor robot aspirador y moqueta para gatos con pelo largo?\" \n\nPero si lo traducimos de manera más natural y clara, como si fuera una pregunta de un usuario en un foro de opinión, sería:\n\n\"¿Alguien conoce un buen robot aspirador y moqueta para gatos con pelo largo?\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-entre-dos-modelos-de-aspiradoras-roboticas-roborock-qrevo-s5v-vs-dre",
+      "title": "Comparativa entre dos modelos de aspiradoras robóticas: \n\nRoborock Qrevo S5V vs Dreame L40 Ultra.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dreame-e30-ultra",
+      "title": "Dreame E30 Ultra",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
