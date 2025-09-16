@@ -1,0 +1,103 @@
+{
+  "date": "2025-09-16",
+  "items": [
+    {
+      "slug": "olor-a-plastico-persistente-del-anker-q30",
+      "title": "Olor a plástico persistente del Anker Q30.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-de-samsung-galaxy-s25-fe-en-gsmarena",
+      "title": "Reseña de Samsung Galaxy S25 FE en GSMarena.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33882674/pexels-photo-33882674.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "sony-xperia-10-vii-la-version-mas-asequible-del-xperia-1-whatgear",
+      "title": "Sony Xperia 10 VII - La versión más asequible del Xperia 1 | Whatgear",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33900961/pexels-photo-33900961.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-ios-ipados-16",
+      "title": "Apple lanza iOS/iPadOS 16.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-macos-tahoe-26",
+      "title": "Apple lanza macOS Tahoe 26.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-visionos-audioos-homepod-y-tvos-26",
+      "title": "Apple lanza VisionOS, audioOS/HomePod y tvOS 26.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-watchos-26",
+      "title": "Apple lanza WatchOS 26.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-deja-de-ofrecer-soporte-a-icloud-para-ios-10-y-macos-sierra",
+      "title": "Apple deja de ofrecer soporte a iCloud para iOS 10 y macOS Sierra.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "alguien-tiene-ambos-el-dreame-aqua-10-ultra-roller-y-el-mova-z60",
+      "title": "¿Alguien tiene ambos el Dreame Aqua 10 Ultra Roller y el Mova Z60?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ha-llegado-el-nuevo-aqua-10-roller-es-el-nuevo-lider-de-la-gama-dreame",
+      "title": "\"Ha llegado el nuevo Aqua 10 Roller. ¡Es el nuevo líder de la gama Dreame!\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "aspirador-rowenta-explorer-serie-40",
+      "title": "Aspirador Rowenta Explorer Serie 40.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "dreame-l10s-ultra-gen-2-problema-de-limpieza-de-borde",
+      "title": "\"Dreame L10s Ultra Gen 2 - problema de limpieza de borde\".",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-problema-xiaomi-s20-no-mapea-puede-deberse-a-varias-causas-pero-te-menciono-a",
+      "title": "El problema \"Xiaomi S20+ no mapea\" puede deberse a varias causas, pero te menciono algunas posibles soluciones:\n\n1. **Actualiza el software**: Asegúrate de que tu Xiaomi S20+ esté actualizado con la última versión de Android y el firmware de Xiaomi. Puedes verificar la actualización en la configuración del teléfono.\n\n2. **Reinicia el teléfono**: A veces, reiniciar el teléfono puede resolver el problema. Presiona el botón de encendido y el botón de bajar el volumen al mismo tiempo durante unos segundos.\n\n3. **Reinicia el sistema de gestión de memoria**: Puedes intentar reiniciar el sistema de gestión de memoria del teléfono. Para hacerlo, ve a Configuración > Aplicaciones > Gestión de memoria > Reiniciar sistema de gestión de memoria.\n\n4. **Desactive y reactive los servicios de ubicación**: Puedes intentar desactivar y reactivar los servicios de ubicación del teléfono. Para hacerlo, ve a Configuración > Localización > Desactivar servicios de ubicación. Espera unos minutos y luego reactive los servicios de",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "xiaomi-x20-max",
+      "title": "Xiaomi X20 Max",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
