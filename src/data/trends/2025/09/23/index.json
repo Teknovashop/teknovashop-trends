@@ -1,0 +1,82 @@
+{
+  "date": "2025-09-23",
+  "items": [
+    {
+      "slug": "100-mousepads-gratuitos-lanzamiento-de-teclado-simple-de-75",
+      "title": "100 mousepads gratuitos | lanzamiento de teclado simple de 75",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "gemini-llega-a-google-tv",
+      "title": "Gemini llega a Google TV.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1444416/pexels-photo-1444416.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-serie-oppo-find-x9-se-lanzara-a-nivel-global-impulsada-por-el-chip-mediatek-d",
+      "title": "La serie Oppo Find X9 se lanzará a nivel global, impulsada por el chip Mediatek Dimensity 9500.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "clube-oneplus-en-x-oneplus-15-en-color-titanio",
+      "title": "Clube OnePlus en X: \"OnePlus 15 en color titanio\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-deja-de-firmar-ios-18-6-2-ahora-es-imposible-descender-a-ios-26",
+      "title": "Apple deja de firmar iOS 18.6.2, ahora es imposible descender a iOS 26.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "semillas-de-manzana-primeras-betas-de-ios-26-1-ipados-26-1-y-macos-tahoe-26-1",
+      "title": "Semillas de manzana, primeras betas de iOS 26.1, iPadOS 26.1 y macOS Tahoe 26.1.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "revision-de-cargador-dinamico-de-40w-de-apple-en-un-solo-lugar",
+      "title": "Revisión de cargador dinámico de 40W de Apple en un solo lugar.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33993627/pexels-photo-33993627.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ios-26-1-beta-agrega-nuevas-lenguas-para-la-traduccion-en-vivo-de-airpods-y-la-i",
+      "title": "iOS 26.1 beta agrega nuevas lenguas para la traducción en vivo de AirPods y la inteligencia de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "finalmente-probe-un-robot-aspirador-de-rodillo-dreame-aqua-10-ultra",
+      "title": "Finalmente probé un robot aspirador de rodillo - Dreame Aqua 10 Ultra.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/32998852/pexels-photo-32998852.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-roomba-705-combo-me-deja-sin-aliento-mi-suelo-de-gres-siempre-estaba-grasoso-",
+      "title": "La Roomba 705 combo me deja sin aliento. Mi suelo de gres siempre estaba grasoso y brumoso, ahora este robot ha logrado que mi suelo sea reflectante y chirriante, siento que es raro.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dreame-aqua-10-ultra-roller-vs-narwal-flow-ama",
+      "title": "Dreame Aqua 10 Ultra Roller vs Narwal Flow - AMA",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
