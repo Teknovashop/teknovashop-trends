@@ -1,0 +1,82 @@
+{
+  "date": "2025-09-28",
+  "items": [
+    {
+      "slug": "la-phillips-shp9500-tiene-dos-versiones-diferentes",
+      "title": "La Phillips SHP9500 tiene dos versiones diferentes.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/570026/pexels-photo-570026.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "android-pronto-te-permitira-continuar-tareas-desde-tu-telefono-en-tu-tableta-o-p",
+      "title": "Android pronto te permitirá continuar tareas desde tu teléfono en tu tableta o PC, de manera similar a como lo hace Handoff de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34052787/pexels-photo-34052787.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "probe-el-iphone-17-de-apple-durante-una-semana-cnn-destaco",
+      "title": "Probé el iPhone 17 de Apple durante una semana. CNN destacó.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "sugerencias-para-un-monitor-de-1440p-y-27-pulgadas",
+      "title": "Sugerencias para un monitor de 1440p y 27 pulgadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-puede-reparar-este-monitor",
+      "title": "¿Se puede reparar este monitor?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "siguen-siendo-los-monitores-de-masa-un-timo",
+      "title": "¿Siguen siendo los monitores de masa un timo?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "que-demonios-es-ese-punto-oscuro-en-una-pantalla-nueva",
+      "title": "¿Qué demonios es ese punto oscuro en una pantalla nueva?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "recomendacion-para-un-monitor-de-27-pulgadas",
+      "title": "¿Recomendación para un monitor de 27 pulgadas?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "recomendaciones-para-un-router-de-frontera",
+      "title": "Recomendaciones para un router de frontera?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/159304/network-cable-ethernet-computer-159304.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-mensaje-xiaomi-x10t-mapa-creado-pero-no-se-muestra",
+      "title": "El mensaje \"Xiaomi X10T - Mapa creado pero no se muestra\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ecovacs-deebot-t50-pro-vs-dreame-x40-ultra",
+      "title": "Ecovacs Deebot T50 Pro vs Dreame X40 Ultra.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
