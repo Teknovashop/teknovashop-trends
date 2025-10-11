@@ -1,0 +1,117 @@
+{
+  "date": "2025-10-11",
+  "items": [
+    {
+      "slug": "busco-recomendaciones-de-routers-wi-fi",
+      "title": "Busco recomendaciones de routers Wi-Fi.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/159304/network-cable-ethernet-computer-159304.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "finalmente-me-he-comprado-un-sony-wh-1000xm4",
+      "title": "Finalmente me he comprado un Sony WH-1000XM4",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34235027/pexels-photo-34235027.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-reloj-pixel-4-es-el-reloj-inteligente-mas-reparable-del-mercado",
+      "title": "El reloj Pixel 4 es el reloj inteligente más reparable del mercado.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "se-han-filtrado-los-detalles-de-la-camara-del-xiaomi-17-ultra",
+      "title": "Se han filtrado los detalles de la cámara del Xiaomi 17 Ultra.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3820326/pexels-photo-3820326.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "pulse-el-gatillo-en-mi-primer-monitor-lo-hice-bien",
+      "title": "Pulsé el gatillo en mi primer monitor. ¿Lo hice bien?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "que-son-los-mejores-monitores-de-juego-de-27-pulgadas-en-el-rango-de-400-500-eur",
+      "title": "¿Qué son los mejores monitores de juego de 27 pulgadas en el rango de 400-500 euros?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estoy-pensando-en-volver-a-mi-monitor-original-dell-g2724d-desde-el-aoc-q27g3xmn",
+      "title": "Estoy pensando en volver a mi monitor original Dell G2724D desde el AOC Q27G3XMN.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/11700195/pexels-photo-11700195.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-eleccion-de-un-monitor-de-1440p",
+      "title": "La elección de un monitor de 1440p.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "busco-recomendaciones-de-routers-wi-fi",
+      "title": "Busco recomendaciones de routers Wi-Fi.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/159304/network-cable-ethernet-computer-159304.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "seguimiento-en-tiempo-real-de-variables-de-entorno-con-stm32l4-y-labview",
+      "title": "Seguimiento en tiempo real de variables de entorno con STM32L4 y LabVIEW.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "xiaomi-x20-max-vs-dreame-ultra-l10s-gen-2",
+      "title": "Xiaomi X20 Max vs Dreame Ultra L10S Gen 2.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "muerte-del-xiaomi-s20",
+      "title": "Muerte del Xiaomi S20?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "error-de-area-abierta-ultra-x50-en-el-sueno",
+      "title": "Error de área abierta ultra x50 en el sueño.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "no-parece-ser-una-frase-traducible-en-el-sentido-clasico-ya-que-parece-ser-una-c",
+      "title": "No parece ser una frase traducible en el sentido clásico, ya que parece ser una combinación de nombres de modelos de cámaras o teléfonos inteligentes.\n\nSin embargo, puedo intentar descomponerla y traducir cada parte:\n\n- \"dreame\" podría ser \"Dream\" (una marca china de cámaras y accesorios electrónicos)\n- \"l40s\" podría ser \"L40S\" (un modelo de cámara de la marca Dream)\n- \"ultra\" es \"ultra\" (un adjetivo que se refiere a algo que es extremadamente bueno o avanzado)\n- \"ae\" podría ser una abreviatura de \"Artículo Electrónico\" o \"Accesorio Electrónico\" (pero no tengo más información sobre esto)\n- \"or\" podría ser una abreviatura de \"Original\" o \"Originalidad\" (pero no tengo más información sobre esto)\n- \"mova\" podría ser \"Mova\" (una marca china de cámaras y accesorios electrónicos)\n- \"p50\" podría ser \"P50\" (un modelo de cámara de la marca Mova)\n- \"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dreame-l50-ultra-mi-primera-aspiradora-robot-experiencia-despues-de-un-mes",
+      "title": "\"Dreame L50 Ultra - Mi primera aspiradora robot, experiencia después de un mes\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34183961/pexels-photo-34183961.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-entre-roborock-q7-l5-y-dreame-d10-plus-gen-2",
+      "title": "Comparativa entre Roborock Q7 L5 y Dreame D10 Plus Gen 2.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
