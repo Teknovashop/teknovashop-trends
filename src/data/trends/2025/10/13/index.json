@@ -1,0 +1,19 @@
+{
+  "date": "2025-10-13",
+  "items": [
+    {
+      "slug": "tag-heuer-presenta-sus-nuevos-relojes-inteligentes-con-certificacion-mfi-abandon",
+      "title": "Tag Heuer presenta sus nuevos relojes inteligentes con certificación MFI, abandonan Wear OS de Google.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "el-iphone-11-pro-max-entra-en-la-lista-de-dispositivos-antiguos-o-vintage-de-app",
+      "title": "El iPhone 11 Pro Max entra en la lista de dispositivos antiguos o vintage de Apple a pesar de poder instalar iOS 16.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
