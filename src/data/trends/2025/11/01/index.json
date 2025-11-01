@@ -1,0 +1,68 @@
+{
+  "date": "2025-11-01",
+  "items": [
+    {
+      "slug": "samsung-antepone-el-galaxy-s26-con-inteligencia-artificial-de-proxima-generacion",
+      "title": "Samsung antepone el Galaxy S26 con inteligencia artificial de próxima generación y nuevos sensores de cámara.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-xiaomi-17-pro-decepciona-en-un-aspecto-clave-a-pesar-de-ser-el-smartphone-com",
+      "title": "La Xiaomi 17 Pro decepciona en un aspecto clave a pesar de ser el smartphone compacto de alta gama.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/18525574/pexels-photo-18525574.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-acumula-piezas-para-el-iphone-plegable-a-la-espera-del-lanzamiento-en-2026",
+      "title": "Apple acumula piezas para el iPhone plegable a la espera del lanzamiento en 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "consigue-la-ps5-pro-con-un-descuento-del-20",
+      "title": "Consigue la PS5 Pro con un descuento del 20%.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "mi-monitor-se-queda-atrapado-en-60hz-aunque-puede-llegar-a-180hz-y-estoy-utiliza",
+      "title": "Mi monitor se queda atrapado en 60Hz aunque puede llegar a 180Hz y estoy utilizando un cable HDMI 2.1.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "monitor-de-video-miniatura-o-de-seguimiento",
+      "title": "Monitor de video miniatura o de seguimiento.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-monitor-1440p-de-buena-calidad-por-debajo-de-los-300-euros-con-g-sync-opciona",
+      "title": "Un monitor 1440p de buena calidad por debajo de los 300 euros, con G-Sync opcional.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "configuracion-de-dos-monitores-solo-utiliza-el-monitor-cuando-la-entrada-esta-ac",
+      "title": "Configuración de dos monitores: solo utiliza el monitor cuando la entrada está activa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "que-historia-laboral-tiene-el-roborock-saros-10r",
+      "title": "¿Qué historia laboral tiene el Roborock Saros 10R?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
