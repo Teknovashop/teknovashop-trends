@@ -1,0 +1,96 @@
+{
+  "date": "2025-11-05",
+  "items": [
+    {
+      "slug": "tengo-este-raton-inalambrico-desde-hace-mas-de-20-anos",
+      "title": "Tengo este ratón inalámbrico desde hace más de 20 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5274947/pexels-photo-5274947.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "soporte-para-portatil-similar-al-levo-g2-para-ver-peliculas-en-la-cama",
+      "title": "Soporte para portátil similar al Levo G2 para ver películas en la cama.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "el-smartphone-mas-fresco-que-he-tenido-en-la-mano",
+      "title": "El smartphone más fresco que he tenido en la mano -",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5325597/pexels-photo-5325597.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "revision-del-ugoos-am9-con-procesador-amlogic-s905x5-y-android-14-en-una-caja-de",
+      "title": "Revisión del Ugoos AM9, con procesador Amlogic S905X5 y Android 14 en una caja de TV.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1444416/pexels-photo-1444416.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "samsung-espera-vender-35-millones-de-unidades-de-la-serie-galaxy-s26",
+      "title": "Samsung espera vender 35 millones de unidades de la serie Galaxy S26.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-prepara-su-entrada-en-el-mercado-de-laptops-de-bajo-coste-por-primera-vez",
+      "title": "Apple prepara su entrada en el mercado de laptops de bajo coste por primera vez.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/939331/pexels-photo-939331.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-amplia-la-funcion-de-spotlight-en-la-pestana-de-configuracion-de-la-clipbo",
+      "title": "Apple amplía la función de Spotlight en la pestaña de Configuración de la Clipboard en macOS Tahoe 26.1.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-mejor-monitoreo-led-mini-sin-importar-el-precio",
+      "title": "El mejor monitoreo LED mini, sin importar el precio.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "tengo-este-raton-inalambrico-desde-hace-mas-de-20-anos",
+      "title": "Tengo este ratón inalámbrico desde hace más de 20 años.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5274947/pexels-photo-5274947.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "soporte-para-portatil-similar-al-levo-g2-para-ver-peliculas-en-la-cama",
+      "title": "Soporte para portátil similar al Levo G2 para ver películas en la cama.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "monitoreo-de-cierre-de-contacto-seco",
+      "title": "¿Monitoreo de cierre de contacto seco?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "alguien-tiene-el-robot-lilin-x6-estoy-dudando-entre-el-lilin-x6-el-xiaomi-s40-y-",
+      "title": "\"¿Alguien tiene el robot Lilin X6? Estoy dudando entre el Lilin X6, el Xiaomi S40 y el Xiaomi S20. ¿Alguien puede ayudarme a tomar una decisión?\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-modelo-de-aspiradora-de-roborock-que-mencionas-parece-ser-el-roborock-q35a-y-",
+      "title": "El modelo de aspiradora de Roborock que mencionas parece ser el \"Roborock Q35A\" y alguien ha comentado que tiene un problema con olores.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
