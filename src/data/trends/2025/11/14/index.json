@@ -1,0 +1,117 @@
+{
+  "date": "2025-11-14",
+  "items": [
+    {
+      "slug": "manzana-verde-ak650",
+      "title": "Manzana verde ak650",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-snapdragon-8-elite-gen-5-resulta-demasiado-caluroso-para-el-oneplus-15",
+      "title": "El Snapdragon 8 Elite Gen 5 resulta demasiado caluroso para el OnePlus 15.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-oneplus-15-en-gsmarena",
+      "title": "Reseña OnePlus 15 en GSMarena.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-oneplus-15-saldra-a-la-venta-en-los-ee-uu-en-algun-momento",
+      "title": "El OnePlus 15 saldrá a la venta en los EE. UU... en algún momento.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-de-oneplus-15-el-juego-de-numeros-ben-s-gadget-reviews",
+      "title": "Reseña de OnePlus 15: El juego de números - Ben's Gadget Reviews.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-mls-y-apple-tv-traeran-juegos-fuera-de-la-paywall-extra-en-2026-fuentes",
+      "title": "La MLS y Apple TV traerán juegos fuera de la paywall extra en 2026: fuentes.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-macos-tahoe-26-2-beta-publica-2",
+      "title": "Apple lanza macOS Tahoe 26.2 beta pública 2.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dealabs-black-friday-2025-aqui-estan-los-descuentos-esperados-en-consolas-ps5-y-",
+      "title": "Dealabs: Black Friday 2025: aquí están los descuentos esperados en consolas PS5 y PS5 Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "donde-encuentras-ya-buenos-descuentos-de-roomba-en-black-friday-2025",
+      "title": "¿Dónde encuentras ya buenos descuentos de Roomba en Black Friday 2025?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-modelo-de-aspiradora-que-mencionas-es-un-producto-de-la-marca-roborock-la-tra",
+      "title": "El modelo de aspiradora que mencionas es un producto de la marca Roborock. \n\nLa traducción sería: Roborock Curv o Saros 10R.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-dirige-a-todos-los-propietarios-del-dreame-aqua-10-roller-complete",
+      "title": "\"Se dirige a todos los propietarios del 'dreame aqua 10 roller complete'...\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dream-e-l40-ultra-por-400-euros-en-amazon-oferta-de-luz-de-relampago-nota-lightn",
+      "title": "\"Dream E l40 ultra por 400 euros en Amazon, oferta de luz de relámpago\". \n\nNota: \"Lightning deal\" se traduce como \"oferta de luz de relámpago\" o simplemente \"oferta de relámpago\", pero es más común en inglés que en español. También se puede traducir como \"oferta de última hora\" o \"oferta de ultima oportunidad\", pero no es exactamente lo mismo. \n\nSi quieres una traducción más natural y coloquial, podrías decir: \"Dream E l40 ultra por 400 euros en Amazon, oferta de última hora\".",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "son-nombres-de-camaras-de-mano-de-la-marca-sony-la-traduccion-seria-dream-z-ultr",
+      "title": "Son nombres de cámaras de mano de la marca Sony. \n\nLa traducción sería:\n\n\"Dream Z Ultra o Móvila P50 Pro Ultra\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34709168/pexels-photo-34709168.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "alguien-sabe-si-habra-descuentos-mas-grandes-en-black-friday-para-eufy-o-dreame-",
+      "title": "¿Alguien sabe si habrá descuentos más grandes en Black Friday para Eufy o Dreame/Mova en Europa?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-precio-de-la-black-friday-de-roborock-es-saros-10r-1-050-euros-curvx-850-euro",
+      "title": "El precio de la Black Friday de Roborock es:\n\n- Saros 10R: 1.050 euros\n- Curvx: 850 euros",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "eufy-e28-omni-o-dreame-l40s-ultra",
+      "title": "¿Eufy E28 Omni o Dreame L40S Ultra?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
