@@ -1,0 +1,82 @@
+{
+  "date": "2025-12-08",
+  "items": [
+    {
+      "slug": "he-reducido-mis-opciones-a-tres-monitores-de-pantalla-pequena",
+      "title": "He reducido mis opciones a tres monitores de pantalla pequeña.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "me-he-actualizado-a-un-monitor-acer-de-32-pulgadas-4k-con-tecnologia-mini-led-ip",
+      "title": "Me he actualizado a un monitor Acer de 32 pulgadas 4K con tecnología Mini LED IPS para el trabajo, el juego y la edición de fotos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "mi-nuevo-monitor-lo-compre-por-434-euros",
+      "title": "Mi nuevo monitor, lo compré por 434 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "es-posible-jugar-dos-juegos-al-mismo-tiempo-uno-en-mi-monitor-izquierdo-y-otro-e",
+      "title": "¿Es posible jugar dos juegos al mismo tiempo, uno en mi monitor izquierdo y otro en el otro?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "quieres-ir-al-ces-2026-lg-esta-proporcionando-entradas-para-el-ces-y-mas-a-la-co",
+      "title": "¿Quieres ir al CES 2026? LG está proporcionando entradas para el CES y más a la comunidad.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35007594/pexels-photo-35007594.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-monitor-se-mantiene-despertado-y-se-ajusta-las-ventanas",
+      "title": "El monitor se mantiene despertado y se ajusta las ventanas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "lineas-verticales-extranas-en-el-monitor-de-aoc",
+      "title": "Líneas verticales extrañas en el monitor de AOC.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comprar-un-monitor-de-32-pulgadas-de-4k-a-140-ppi-para-trabajar-o-esperar-al-ace",
+      "title": "\"Comprar un monitor de 32 pulgadas de 4K a 140 ppi para trabajar o esperar al Acer Predator XB323QX, me preocupa la calidad de los textos.\"\n\nOtra opción más natural y como si lo dijera una persona:\n\"Me estoy pensando en comprar un monitor de 32 pulgadas de 4K con 140 ppi para trabajar, pero me pregunto si vale la pena esperar al Acer Predator XB323QX, la verdad es que me preocupa la calidad de los textos que se ven en él.\"",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "que-pasa-con-los-smartphones-android-antiguos-que-funcionan-con-wi-fi-local-como",
+      "title": "¿Qué pasa con los smartphones Android antiguos que funcionan con Wi-Fi local como solución de cámara de seguridad?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5325597/pexels-photo-5325597.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-reloj-dreame-l50-ultra-ignora-los-bordes",
+      "title": "El reloj Dreame L50 Ultra ignora los bordes.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35065935/pexels-photo-35065935.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-xiaomi-s20-no-resiste-el-agua",
+      "title": "El Xiaomi S20 no resiste el agua.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
