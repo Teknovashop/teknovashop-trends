@@ -1,0 +1,96 @@
+{
+  "date": "2025-12-18",
+  "items": [
+    {
+      "slug": "tres-monitores-frente-a-dos-ultragrandes",
+      "title": "Tres monitores frente a dos ultragrandes.",
+      "niche": "tecnologia",
+      "score": 2,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "busco-una-laptop-confiable-alrededor-de-400-600-euros",
+      "title": "Busco una laptop confiable alrededor de 400-600 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "altavoces-inalambricos-bose-quiet-comfort-beats-studio-pro-o-beyerdynamic-dt-770",
+      "title": "Altavoces inalámbricos: Bose Quiet Comfort, Beats Studio Pro o Beyerdynamic DT 770 Pro-80.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "bowen-wilkins-px8-redescubriendo-la-escucha-de-la-musica",
+      "title": "Bowen & Wilkins PX8 - Redescubriendo la escucha de la música.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-entre-tres-altavoces-inalambricos-de-alta-calidad-a-continuacion-te-",
+      "title": "Comparativa entre tres altavoces inalámbricos de alta calidad. \n\nA continuación, te presento la comparativa entre los modelos Aventho 300, PX7 2SE y Bose QC Ultra:\n\nEl Aventho 300 es un modelo de alta gama de la marca Sennheiser, conocido por su sonido preciso y detallado. \n\nEl PX7 2SE es un modelo de la marca Sony, que ofrece una gran calidad de sonido y una autonomía de batería muy larga.\n\nEl Bose QC Ultra es un modelo de la marca Bose, que se destaca por su sonido inmersivo y su capacidad para bloquear el ruido ambiental.\n\nEn resumen, cada uno de estos modelos tiene sus propias características y ventajas, por lo que la elección dependerá de tus necesidades y preferencias personales.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35210358/pexels-photo-35210358.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-probo-un-macbook-con-el-chip-a15",
+      "title": "Apple probó un MacBook con el chip A15.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "probe-un-monitor-oled-por-primera-vez",
+      "title": "Probé un monitor OLED por primera vez.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "monitor-2012-dell-ultrasharp-1920x1200-vs-monitor-tcl-mini-led-ips-1080p",
+      "title": "Monitor 2012 Dell Ultrasharp 1920x1200 vs monitor TCL Mini LED IPS 1080p.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1092652/pexels-photo-1092652.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "busco-una-laptop-confiable-alrededor-de-400-600-euros",
+      "title": "Busco una laptop confiable alrededor de 400-600 euros.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "altavoces-inalambricos-bose-quiet-comfort-beats-studio-pro-o-beyerdynamic-dt-770",
+      "title": "Altavoces inalámbricos: Bose Quiet Comfort, Beats Studio Pro o Beyerdynamic DT 770 Pro-80.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-entre-roborock-s8-y-dreame-l10s-pro",
+      "title": "Comparativa entre Roborock S8 y Dreame L10s Pro.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "elegir-entre-mova-p50-pro-ultra-dreame-l40s-pro-ultra-y-mova-v50-ultra",
+      "title": "Elegir entre Mova P50 Pro Ultra, Dreame L40s Pro Ultra y Mova V50 Ultra.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35147242/pexels-photo-35147242.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "tiene-un-fallo-de-diseno-inherente-el-dreame-aqua-roller-10-ultra-o-simplemente-",
+      "title": "¿Tiene un fallo de diseño inherente el Dreame Aqua Roller 10 Ultra o simplemente tengo mala suerte? En mi tercer unidad en dos meses.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35147242/pexels-photo-35147242.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
