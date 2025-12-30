@@ -1,0 +1,75 @@
+{
+  "date": "2025-12-30",
+  "items": [
+    {
+      "slug": "olvida-el-galaxy-s26-samsung-podria-hacer-lo-que-hizo-apple-con-el-galaxy-s28-es",
+      "title": "Olvida el Galaxy S26: Samsung podría hacer lo que hizo Apple con el Galaxy S28, es decir, incluir un procesador gráfico (GPU) de última generación.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-evita-los-nuevos-aranceles-chinos-a-las-chips-hasta-2027",
+      "title": "Apple evita los nuevos aranceles chinos a las chips hasta 2027.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resumen-de-monitores-de-juego-de-4k-con-tecnologia-mini-led-cual-modelo-es-el-me",
+      "title": "Resumen de monitores de juego de 4K con tecnología Mini-LED: ¿cuál modelo es el mejor?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-nuevo-monitor-de-juego-de-hkc-incluira-un-modo-full-hd-a-800-hz-con-la-opcion",
+      "title": "El nuevo monitor de juego de hkc incluirá un modo Full HD a 800 Hz con la opción de dual modo 4K a 200 Hz.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resulta-imposible-elegir-un-monitor-oled-con-todas-las-opciones-y-los-contrapues",
+      "title": "Resulta imposible elegir un monitor OLED con todas las opciones y los contrapuestos entre diferentes modelos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estas-rayas-aparecen-en-mi-nuevo-monitor-en-pantallas-mas-brillantes-y-lentas",
+      "title": "Estas rayas aparecen en mi nuevo monitor en pantallas más brillantes y lentas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "hay-un-brazo-fijo-en-la-pared-que-me-permita-mover-el-monitor-entre-estas-dos-po",
+      "title": "¿Hay un brazo fijo en la pared que me permita mover el monitor entre estas dos posiciones?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-problema-de-la-pantalla-se-recomienda-reemplazarla-o-simplemente-soportarla",
+      "title": "El problema de la pantalla, ¿se recomienda reemplazarla o simplemente soportarla?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "necesito-una-television-para-mi-playstation-5",
+      "title": "Necesito una televisión para mi PlayStation 5.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "buscamos-voluntarios-para-probar-una-aplicacion-de-seguimiento-de-reloj-intelige",
+      "title": "\"Buscamos voluntarios para probar una aplicación de seguimiento de reloj inteligente para el almacenamiento de baterías en el hogar\".",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    }
+  ]
+}
