@@ -1,0 +1,61 @@
+{
+  "date": "2026-01-03",
+  "items": [
+    {
+      "slug": "usando-mi-primer-teclado-mecanico-despues-de-casi-15-anos-con-el-mismo-logitech-",
+      "title": "Usando mi primer teclado mecánico después de casi 15 años con el mismo Logitech G510.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/28993117/pexels-photo-28993117.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "este-smartphone-prioriza-la-privacidad-traza-una-linea-dura-entre-las-aplicacion",
+      "title": "Este smartphone prioriza la privacidad traza una línea dura entre las aplicaciones de confianza y todo lo demás.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5325597/pexels-photo-5325597.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-gobierno-japones-ha-implementado-una-ley-sobre-smartphones-que-apunta-directa",
+      "title": "El gobierno japonés ha implementado una ley sobre smartphones que apunta directamente a la actividad de la tienda de aplicaciones de Apple y Google.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6446248/pexels-photo-6446248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "al-parecer-comprar-un-monitor-4k-y-reducir-la-resolucion-a-1440p-o-1080p-es-mejo",
+      "title": "\"Al parecer, comprar un monitor 4K y reducir la resolución a 1440p o 1080p es...mejor que comprar uno nativo de 1440p o 1080p?\"",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-monitor-mas-adecuado-de-1440p-de-27-para-un-60-de-productividad-y-un-40-de-ju",
+      "title": "El monitor más adecuado de 1440p de 27\" para un 60% de productividad y un 40% de juego.\n\nOtra opción:\nEl monitor ideal de 1440p de 27\" para un uso del 60% para la productividad y del 40% para el juego.\n\nOtra forma de expresarlo:\nEl monitor de 1440p de 27\" más adecuado para un usuario que dedica el 60% de su tiempo a la productividad y el 40% a jugar.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "acer-da-a-entender-que-incorporara-modos-de-540hz-qhd-y-720hz-fhd-para-su-pantal",
+      "title": "Acer da a entender que incorporará modos de 540Hz QHD y 720Hz FHD para su pantalla OLED Predator en CES 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35428407/pexels-photo-35428407.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "a-150-horas-con-el-lg-27gx700a-b",
+      "title": "A 150 horas con el LG 27GX700A-B.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "es-esta-una-buena-pantalla-4k-se-que-acer-es-una-empresa-de-buena-reputacion",
+      "title": "¿Es esta una buena pantalla 4K? Sé que Acer es una empresa de buena reputación.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35428407/pexels-photo-35428407.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
