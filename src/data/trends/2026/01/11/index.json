@@ -1,0 +1,61 @@
+{
+  "date": "2026-01-11",
+  "items": [
+    {
+      "slug": "por-fin-ha-llegado-el-mejor-formato-ultragrande-manejo-practico-con-los-nuevos-m",
+      "title": "\"¡Por fin ha llegado el mejor formato ultragrande! - manejo práctico con los nuevos monitores LG\".",
+      "niche": "tecnologia",
+      "score": 3,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-de-apple-cumple-19-anos-la-serie-original-costaba-499-dolares-en-2007",
+      "title": "El iPhone de Apple cumple 19 años; la serie original costaba 499 dólares en 2007.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-macbook-pro-de-apple-cumple-20-anos",
+      "title": "El MacBook Pro de Apple cumple 20 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "jesucristo-un-qd-oled-de-34-pulgadas-a-un-precio-increible-3440x1440-y-175hz-por",
+      "title": "¡Jesucristo! Un QD-OLED de 34 pulgadas a un precio increíble. 3440x1440 y 175Hz por solo 499 dólares en una oferta diaria. Esto puede ser el mejor trato que he visto en un monitor OLED.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-monitor-se-desenfoca-cuando-se-mueve-el-texto-o-se-juegan-juegos",
+      "title": "El monitor se desenfoca cuando se mueve el texto o se juegan juegos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "es-este-un-monitor-solido-por-600-euros",
+      "title": "¿Es este un monitor sólido por 600 euros?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-venden-monitores-tcl-en-amazon",
+      "title": "¿Se venden monitores TCL en Amazon?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35525735/pexels-photo-35525735.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "monitor-de-pantalla-brillante-de-32-pulgadas",
+      "title": "Monitor de pantalla brillante de 32 pulgadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31213678/pexels-photo-31213678.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
