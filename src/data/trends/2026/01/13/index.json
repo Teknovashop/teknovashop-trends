@@ -1,0 +1,61 @@
+{
+  "date": "2026-01-13",
+  "items": [
+    {
+      "slug": "compartir-escritorio-remoto-en-teams-sobre-un-monitor-ultragigante",
+      "title": "Compartir escritorio remoto en Teams sobre un monitor ultragigante.",
+      "niche": "tecnologia",
+      "score": 2,
+      "hero": "https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-snapdragon-sigue-superando-al-exynos-en-los-supuestos-resultados-de-rendimien",
+      "title": "El snapdragon sigue superando al exynos en los supuestos resultados de rendimiento del Samsung Galaxy S26.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-xiaomi-17-aereo-desechado-solo-era-de-5-5-mm-de-grosor",
+      "title": "El Xiaomi 17 aéreo desechado solo era de 5,5 mm de grosor.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-envios-mundiales-de-smartphones-crecieron-un-2-en-2025-con-respecto-al-ano-a",
+      "title": "Las envíos mundiales de smartphones crecieron un 2% en 2025 con respecto al año anterior; Apple se consolidó como líder del mercado.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6446248/pexels-photo-6446248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "tableta-gigante-de-14-25-pulgadas-con-pantalla-tcl-mate-revision-ugee-ut3",
+      "title": "Tableta gigante de 14,25 pulgadas con pantalla TCL mate - revisión Ugee UT3.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35614109/pexels-photo-35614109.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lidera-el-mercado-de-smartphones-de-2025-con-un-20-de-participacion-con-un",
+      "title": "Apple lidera el mercado de smartphones de 2025 con un 20% de participación, con un crecimiento del 10%.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6446248/pexels-photo-6446248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-tv-gana-7-nominaciones-a-los-premios-de-la-guionista-producers-guild-para-",
+      "title": "Apple TV gana 7 nominaciones a los premios de la guionista (producers guild) para 'F1', 'Severance' y más.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "consejos-para-elegir-entre-un-monitor-oled-de-lg-o-samsung",
+      "title": "Consejos para elegir entre un monitor OLED de LG o Samsung.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
