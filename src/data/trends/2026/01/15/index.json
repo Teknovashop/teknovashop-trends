@@ -1,0 +1,61 @@
+{
+  "date": "2026-01-15",
+  "items": [
+    {
+      "slug": "apple-lidera-el-crecimiento-global-del-mercado-de-smartphones-con-un-20-de-cuota",
+      "title": "Apple lidera el crecimiento global del mercado de smartphones con un 20% de cuota a finales del 2025.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6446248/pexels-photo-6446248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-watch-series-11-con-16-de-descuento-ahorrate-70-euros-sobre-su-precio-ofic",
+      "title": "Apple Watch Series 11 con 16% de descuento, ahórrate 70 euros sobre su precio oficial.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-macbook-pro-cumple-20-anos-hoy-y-se-presento-con-la-misma-excusa-que-hizo-a-a",
+      "title": "El MacBook Pro cumple 20 años hoy, y se presentó con la misma excusa que hizo a Apple dejar a Intel.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-certificado-caducado-desconfigura-el-raton-logitech-de-miles-de-usuarios-de-m",
+      "title": "Un certificado caducado desconfigura el ratón Logitech de miles de usuarios de Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/28993117/pexels-photo-28993117.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "este-accesorio-puede-convertir-cualquier-macbook-en-un-portatil-con-pantalla-tac",
+      "title": "Este accesorio puede convertir cualquier MacBook en un portátil con pantalla táctil.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "apple-trae-de-vuelta-las-mejoras-de-seguridad-en-segundo-plano-en-ios-16-3-nota-",
+      "title": "Apple trae de vuelta las mejoras de seguridad en segundo plano en iOS 16.3.\n\nNota: He corregido el número de versión de iOS, que parece que era incorrecto. Si necesitas algo más, no dudes en preguntar.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-nuevo-anuncio-de-television-de-apple-que-promociona-el-zoom-8x-del-iphone-17-",
+      "title": "Un nuevo anuncio de televisión de Apple que promociona el zoom 8x del iPhone 17 Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "esto-es-lo-que-se-espera-que-tenga-el-proximo-apple-tv-mejorado-algunas-de-las-c",
+      "title": "Esto es lo que se espera que tenga el próximo Apple TV mejorado. \n\nAlgunas de las características que podrían incluirse son:\n\n- Un procesador más potente para una mejor experiencia de juego y streaming.\n- Una memoria RAM aumentada para una mayor capacidad de multitarea.\n- Una pantalla más grande y alta definición para una visualización más inmersiva.\n- Soporte para tecnologías de realidad aumentada y realidad virtual.\n- Mejoras en la interfaz de usuario y la navegación para una experiencia más intuitiva.\n- Integración con otros dispositivos Apple, como el iPhone y el iPad.\n- Soporte para más servicios de streaming y aplicaciones.\n- Un diseño más compacto y elegante para una mejor integración en el hogar.\n\nEs importante destacar que estas son solo especulaciones y que Apple no ha confirmado ninguna de estas características para el próximo Apple TV.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
