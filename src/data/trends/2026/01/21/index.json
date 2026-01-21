@@ -1,0 +1,54 @@
+{
+  "date": "2026-01-21",
+  "items": [
+    {
+      "slug": "air-france-integra-apple-tv-en-sus-vuelos-de-larga-distancia",
+      "title": "Air France integra Apple TV en sus vuelos de larga distancia.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35495056/pexels-photo-35495056.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "iphone-18-pro-asi-seria-el-salto-definitivo-a-la-pantalla-total-y-a-la-nueva-gam",
+      "title": "\"iPhone 18 Pro: así sería el salto definitivo a la pantalla total y a la nueva gama alta de Apple\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-homepod-vs-harman-kardon-para-mac-y-apple-tv",
+      "title": "Comparativa HomePod vs Harman Kardon para Mac y Apple TV.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35495056/pexels-photo-35495056.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lidera-el-crecimiento-global-del-mercado-de-smartphones-con-un-20-de-cuota",
+      "title": "Apple lidera el crecimiento global del mercado de smartphones con un 20% de cuota a finales del 2025.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5099869/pexels-photo-5099869.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-watch-series-11-con-16-de-descuento-ahorrate-70-euros-sobre-su-precio-ofic",
+      "title": "Apple Watch Series 11 con 16% de descuento, ahórrate 70 euros sobre su precio oficial.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-macbook-pro-cumple-20-anos-hoy-y-se-presento-con-la-misma-excusa-que-hizo-a-a",
+      "title": "El MacBook Pro cumple 20 años hoy, y se presentó con la misma excusa que hizo a Apple dejar a Intel.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-certificado-caducado-desconfigura-el-raton-logitech-de-miles-de-usuarios-de-m",
+      "title": "Un certificado caducado desconfigura el ratón Logitech de miles de usuarios de Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7414219/pexels-photo-7414219.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
