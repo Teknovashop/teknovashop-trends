@@ -1,0 +1,40 @@
+{
+  "date": "2026-01-25",
+  "items": [
+    {
+      "slug": "apple-prepara-un-macbook-de-12-9-pulgadas-mas-asequible-para-el-mercado-de-entra",
+      "title": "Apple prepara un MacBook de 12,9 pulgadas más asequible para el mercado de entrada.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "mejor-compatibilidad-de-monitores-asus-proart-con-mac-asi-se-esta-logrando",
+      "title": "Mejor compatibilidad de monitores ASUS ProArt con Mac: así se está logrando.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/11514417/pexels-photo-11514417.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "iphone-17e-el-proximo-iphone-asequible-de-apple-toma-forma",
+      "title": "iPhone 17e: el próximo iPhone asequible de Apple toma forma.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-airtag-de-apple-similar-a-un-pin-de-ia-todo-lo-que-se-sabe-del-nuevo-wearable",
+      "title": "El AirTag de Apple similar a un Pin de IA: todo lo que se sabe del nuevo wearable con cámaras y Siri avanzada.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lidera-el-crecimiento-global-del-mercado-de-smartphones-con-un-20-de-cuota",
+      "title": "Apple lidera el crecimiento global del mercado de smartphones con un 20% de cuota a finales del 2025.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5099869/pexels-photo-5099869.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
