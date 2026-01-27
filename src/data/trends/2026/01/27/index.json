@@ -1,0 +1,103 @@
+{
+  "date": "2026-01-27",
+  "items": [
+    {
+      "slug": "hice-una-configuracion-de-sonido-de-paz-para-sony-wh-ch720n",
+      "title": "Hice una configuración de sonido de paz para Sony WH-CH720N.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "actualiza-el-shp9500-a-fiio-jt7",
+      "title": "Actualiza el Shp9500 a FiiO JT7.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "apple-lanza-watchos-26-2-1-agregando-soporte-para-encontrar-con-precision-a-airt",
+      "title": "Apple lanza WatchOS 26.2.1, agregando soporte para encontrar con precisión a AirTag 2.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "que-hay-detras-de-esto-360-dolares-por-un-monitor-oled-con-alta-frecuencia-de-re",
+      "title": "¿Qué hay detrás de esto? 360 dólares por un monitor OLED con alta frecuencia de refresco y resolución 1440p parece bien. Debe haber algo que no vemos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30591531/pexels-photo-30591531.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-diferencia-entre-el-benq-xl2720t-y-mi-nuevo-asus-rog-strix-xg27acs-con-pantal",
+      "title": "La diferencia entre el BenQ XL2720T y mi nuevo ASUS ROG Strix XG27ACS con pantalla negra es loca.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "buscando-un-monitor-asequible-pero-bueno-por-debajo-de-los-400-euros",
+      "title": "Buscando un monitor asequible pero bueno por debajo de los 400 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-monitor-todo-en-uno-que-se-utiliza-el-90-del-tiempo-para-codificar-leer-escri",
+      "title": "El monitor todo en uno que se utiliza el 90% del tiempo para codificar/leer/escribir, el 10% para jugar.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "buena-pantalla-para-el-precio",
+      "title": "Buena pantalla para el precio ?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "error-de-tiempo-de-espera-de-xiaomi-s40",
+      "title": "Error de tiempo de espera de Xiaomi S40.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "dreamer-l40s-ultra-roborox-q7-m5-o-algo-mas",
+      "title": "\"Dreamer L40s Ultra, Roborox Q7 M5+, o algo más?\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-entre-dos-modelos-de-aspiradoras-robot-la-roborock-qr598-y-la-xiaomi",
+      "title": "Comparativa entre dos modelos de aspiradoras robot, la Roborock QR598 y la Xiaomi X20+.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/27539529/pexels-photo-27539529.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "conectar-y-desconectar-del-wifi-con-la-configuracion-p10-ultra",
+      "title": "Conectar y desconectar del wifi con la configuración p10 ultra.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "actualizando-el-dream-e-l10-pro-a-dream-e-l10s-pro-gen-2-3",
+      "title": "Actualizando el Dream E l10 Pro a Dream E l10s Pro Gen 2/3.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "dreame-x50-ultra-comprar-o-no-comprar",
+      "title": "\"Dreame X50 Ultra: ¿comprar o no comprar?\"",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4707127/pexels-photo-4707127.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
