@@ -1,0 +1,96 @@
+{
+  "date": "2026-01-28",
+  "items": [
+    {
+      "slug": "resena-oneplus-15r-la-competencia-nuestra-sentencia-ventajas-y-desventajas",
+      "title": "Reseña OnePlus 15R: la competencia, nuestra sentencia, ventajas y desventajas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "apple-mantiene-el-precio-de-inicio-del-iphone-18-estable-a-pesar-del-aumento-de-",
+      "title": "Apple mantiene el precio de inicio del iPhone 18 estable a pesar del aumento de los costos de memoria.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "hoy-el-ipad-de-apple-cumple-16-anos",
+      "title": "Hoy el iPad de Apple cumple 16 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "se-han-lanzado-los-siguientes-betas-de-desarrolladores-watchos-26-3-tvos-26-3-vi",
+      "title": "Se han lanzado los siguientes betas de desarrolladores:\n\n- watchOS 26.3\n- tvOS 26.3\n- visionOS 26.3",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "la-distancia-de-un-monitor-de-32-pulgadas",
+      "title": "La distancia de un monitor de 32 pulgadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30591531/pexels-photo-30591531.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "tienen-sentido-los-mini-led-en-comparacion-con-monitores-regulares-ips-va-otra-o",
+      "title": "¿Tienen sentido los mini led en comparación con monitores regulares IPS/VA?\n\nOtra opción más natural sería:\n\n¿Son los mini led una mejora sobre los monitores IPS/VA regulares?\n\nO si quieres algo un poco más informal:\n\n¿Valen los mini led la pena en comparación con los monitores IPS/VA habituales?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30591531/pexels-photo-30591531.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "este-monitor-ibm-de-9-pulgadas-en-blanco-y-negro",
+      "title": "Este monitor IBM de 9 pulgadas en blanco y negro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30591531/pexels-photo-30591531.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "recomendacion-de-monitores-de-gran-tamano",
+      "title": "¿Recomendación de monitores de gran tamaño?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "abrir-un-router-de-frontera-de-hilo-abierto-en-docker",
+      "title": "Abrir un router de frontera de hilo abierto en Docker.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "que-opciones-hay-para-coordinador-zigbee-y-router-de-frontera-de-thread",
+      "title": "¿Qué opciones hay para coordinador Zigbee y router de frontera de Thread?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "qrevo-curv-vs-dreame-l40-ultra-podria-traducirse-a-algo-como-qrevo-curv-contra-d",
+      "title": "\"Qrevo Curv vs Dreame L40 Ultra\". \n\nPodría traducirse a algo como: \"Qrevo Curv contra Dreame L40 Ultra\". \n\nSi deseas una traducción más natural y clara, podrías expresarlo de la siguiente manera: \"Comparativa entre Qrevo Curv y Dreame L40 Ultra\".",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-traductor-no-ha-encontrado-una-traduccion-directa-de-estos-modelos-de-aspirad",
+      "title": "El traductor no ha encontrado una traducción directa de estos modelos de aspiradoras robot, ya que se trata de marcas y modelos específicos de productos chinos. Sin embargo, puedo intentar traducir el nombre de la marca y el modelo de manera natural y clara:\n\n\"Roborock Q10 VF+ o Xiaomi X20+\"\n\nSi necesitas más información o contexto sobre estos modelos, estaré encantado de ayudarte.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/27539529/pexels-photo-27539529.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-ha-cancelado-el-tricolate",
+      "title": "¿Se ha cancelado el tricolate?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    }
+  ]
+}
