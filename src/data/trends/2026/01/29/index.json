@@ -1,0 +1,82 @@
+{
+  "date": "2026-01-29",
+  "items": [
+    {
+      "slug": "los-rendimientos-oficiales-de-samsung-galaxy-a37-y-galaxy-a57-salen-a-la-luz",
+      "title": "Los rendimientos oficiales de Samsung Galaxy A37 y Galaxy A57 salen a la luz.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218686/pexels-photo-218686.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "exclusiva-primera-vista-del-cargador-inalambrico-de-25w-de-samsung-posiblemente-",
+      "title": "\"Exclusiva: primera vista del cargador inalámbrico de 25W de Samsung, posiblemente para el Galaxy S26\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218686/pexels-photo-218686.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-del-oneplus-15r-en-gsmarena",
+      "title": "Reseña del OnePlus 15R en GSMarena.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "el-mercado-de-smartphones-registrara-un-crecimiento-de-la-renta-de-dos-digitos-c",
+      "title": "El mercado de smartphones registrará un crecimiento de la renta de dos dígitos, con una caída del 7% en las envíos en 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/969462/pexels-photo-969462.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-nuevo-modelo-de-smartphone-motorola-el-xt2605-3-aparece-en-la-fcc-con-wi-fi-6",
+      "title": "Un nuevo modelo de smartphone Motorola, el XT2605-3, aparece en la FCC con Wi-Fi 6E y capacidades de 5G avanzadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/969462/pexels-photo-969462.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-universo-de-fantasia-literaria-de-brandon-sanderson-cosmere-se-ha-llevado-a-a",
+      "title": "El universo de fantasía literaria de Brandon Sanderson 'Cosmere' se ha llevado a Apple TV.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "samsung-quiere-hacer-que-el-iphone-18-sea-caro-pero-apple-puede-no-permitir-que-",
+      "title": "Samsung quiere hacer que el iPhone 18 sea caro, pero Apple puede no permitir que suceda.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "el-iphone-plegable-de-apple-ya-tiene-mas-de-10-anos",
+      "title": "El iPhone plegable de Apple ya tiene más de 10 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "/placeholder.jpg"
+    },
+    {
+      "slug": "tienes-repuestos-para-el-mop-de-la-dreame-l40-ultra",
+      "title": "¿Tienes repuestos para el mop de la Dreame L40 Ultra?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4707127/pexels-photo-4707127.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-robot-aspirador-mas-efectivo-sin-una-estacion-de-limpieza-grande",
+      "title": "El robot aspirador más efectivo sin una estación de limpieza grande.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/35147280/pexels-photo-35147280.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "xiaomi-x20-vs-dreame-d20-ultra",
+      "title": "Xiaomi X20+ vs Dreame D20 Ultra.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33376151/pexels-photo-33376151.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
