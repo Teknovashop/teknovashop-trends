@@ -1,0 +1,61 @@
+{
+  "date": "2026-03-06",
+  "items": [
+    {
+      "slug": "apple-vende-los-nuevos-macbook-sin-cargador-en-europa-y-mantiene-el-adaptador-en",
+      "title": "Apple vende los nuevos MacBook sin cargador en Europa y mantiene el adaptador en otros mercados.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/8623281/pexels-photo-8623281.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "benq-presenta-su-monitor-5k-ma270s-como-alternativa-al-studio-display-para-usuar",
+      "title": "Benq presenta su monitor 5K MA270S como alternativa al Studio Display para usuarios de Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-tv-cancela-palm-royale-tras-dos-temporadas",
+      "title": "Apple TV cancela \"Palm Royale\" tras dos temporadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-macbook-neo-se-filtra-en-la-web-de-apple-asi-sera-el-nuevo-portatil-mas-asequ",
+      "title": "\"El MacBook Neo se filtra en la web de Apple: así será el nuevo portátil más asequible de la marca\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/16333805/pexels-photo-16333805.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-libera-ios-26-4-beta-3-para-iphone-con-novedades-clave",
+      "title": "Apple libera iOS 26.4 beta 3 para iPhone con novedades clave.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-renueva-su-gama-de-monitores-con-los-studio-display-y-studio-display-xdr",
+      "title": "Apple renueva su gama de monitores con los Studio Display y Studio Display XDR.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13328206/pexels-photo-13328206.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-presenta-los-nuevos-monitores-studio-display-y-studio-display-xdr",
+      "title": "Apple presenta los nuevos monitores Studio Display y Studio Display XDR.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13328206/pexels-photo-13328206.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-presenta-el-nuevo-iphone-17e",
+      "title": "Apple presenta el nuevo iPhone 17e.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
