@@ -1,0 +1,103 @@
+{
+  "date": "2026-03-13",
+  "items": [
+    {
+      "slug": "shp9500",
+      "title": "shp9500",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13823992/pexels-photo-13823992.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-samsung-galaxy-s26",
+      "title": "Reseña Samsung Galaxy S26.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218686/pexels-photo-218686.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-oneplus-10r-esconde-120-gb-de-la-memoria-de-almacenamiento-de-256-gb-en-parti",
+      "title": "El OnePlus 10R esconde 120 GB de la memoria de almacenamiento de 256 GB en particiones del sistema inaccesibles - investigación técnica completa con pruebas de ADB.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/32777400/pexels-photo-32777400.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "infinix-note-60-ultra-humillando-a-samsung-y-google-juan-bagnell",
+      "title": "Infinix Note 60 Ultra: humillando a Samsung y Google - Juan Bagnell.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218686/pexels-photo-218686.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-manzana-celebra-50-anos-de-pensar-diferente",
+      "title": "La manzana celebra 50 años de pensar diferente.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1229860/pexels-photo-1229860.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-reduce-la-comision-de-la-app-store-a-un-25-en-lugar-de-un-30-en-china-para",
+      "title": "Apple reduce la comisión de la App Store a un 25% en lugar de un 30% en China para evitar a los reguladores locales.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "50-anos-de-pensar-diferente-en-la-pared-el-estilo-basico-de-apple-el-tipo-de-app",
+      "title": "\"50 años de pensar diferente, en la pared, el estilo básico de Apple, el tipo de Apple\"\n\nPero si lo quieres traducir de manera más natural y clara, podrías decir:\n\n\"50 años de innovación, con el estilo característico de Apple, en la pared\"\n\nO:\n\n\"50 años de pensar diferente, en la pared, con el toque de Apple\"\n\nO incluso:\n\n\"50 años de innovación, el estilo Apple, en la pared\"\n\nEspero que esto te ayude.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-evento-apple-a-los-50-museo-de-la-historia-del-ordenador-con-david-pogue",
+      "title": "El evento \"Apple a los 50: Museo de la Historia del Ordenador\" con David Pogue.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "que-camara-de-puerta-facil-de-usar-es-buena-para-el-monitoreo-de-la-casa-mientra",
+      "title": "¿Qué cámara de puerta fácil de usar es buena para el monitoreo de la casa mientras estás lejos durante meses?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "pruebas-con-el-roborock-saros-20",
+      "title": "Pruebas con el Roborock Saros 20.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dreame-l50-empezo-a-circular-por-la-noche-de-manera-autonoma-y-no-encontro-el-mu",
+      "title": "Dreame L50 empezó a circular por la noche de manera autónoma y no encontró el muelle.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4707127/pexels-photo-4707127.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-robot-aspirador-xiaomi-x20",
+      "title": "El robot aspirador Xiaomi X20+",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "xiaomi-s20-plus-vs-s40-pro",
+      "title": "Xiaomi S20 Plus vs S40 Pro.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33376151/pexels-photo-33376151.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dreame-l40-ultra-o-eufy-x10",
+      "title": "Dreame L40 Ultra o Eufy X10.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4707127/pexels-photo-4707127.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
