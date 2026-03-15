@@ -1,0 +1,33 @@
+{
+  "date": "2026-03-15",
+  "items": [
+    {
+      "slug": "apple-reduce-un-25-las-comisiones-de-la-app-store-en-china-tras-la-presion-regul",
+      "title": "Apple reduce un 25% las comisiones de la App Store en China tras la presión regulatoria.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-publica-actualizaciones-que-parchean-problemas-de-seguridad-para-iphone-e-",
+      "title": "Apple publica actualizaciones que parchean problemas de seguridad para iPhone e iPad antiguos en iOS 15, iOS 16, iPadOS 15 e iPadOS 16.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-mac-studio-con-512-gb-de-ram-desaparece-de-las-tiendas-de-apple-mientras-los-",
+      "title": "El Mac Studio con 512 GB de RAM desaparece de las tiendas de Apple mientras los precios de la RAM siguen subiendo.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estos-mac-no-funcionan-con-los-nuevos-monitores-studio-display",
+      "title": "Estos Mac no funcionan con los nuevos monitores Studio Display.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/777001/pexels-photo-777001.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
