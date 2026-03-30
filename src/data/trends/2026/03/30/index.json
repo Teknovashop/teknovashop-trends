@@ -1,0 +1,61 @@
+{
+  "date": "2026-03-30",
+  "items": [
+    {
+      "slug": "latencia-en-conexiones-moviles-que-es-como-influye-y-como-mejorarla",
+      "title": "Latencia en conexiones móviles: qué es, cómo influye y cómo mejorarla.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13709186/pexels-photo-13709186.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-tv-estrenara-en-agosto-la-segunda-temporada-de-las-azules",
+      "title": "Apple TV estrenará en agosto la segunda temporada de \"Las Azules\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-activa-la-verificacion-de-edad-obligatoria-para-icloud-en-reino-unido-con-",
+      "title": "Apple activa la verificación de edad obligatoria para iCloud en Reino Unido con iOS 26.4.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-prepara-una-siri-que-conectara-con-asistentes-de-ia-rivales-en-ios-17",
+      "title": "Apple prepara una Siri que conectará con asistentes de IA rivales en iOS 17.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-espera-que-paul-mccartney-aparezca-en-el-concierto-final-del-50-aniversario-e",
+      "title": "Se espera que Paul McCartney aparezca en el concierto final del 50 aniversario en el Apple Park.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-abrir-el-nuevo-siri-a-todas-las-demas-ia-en-ios-17",
+      "title": "Apple podría abrir el nuevo Siri a todas las demás IA en iOS 17.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-estar-probando-el-sensor-de-200-megapixeles-de-1-12-pulgadas-del-op",
+      "title": "Apple podría estar probando el sensor de 200 megapíxeles de 1,12 pulgadas del Oppo Find X9 Ultra para un futuro iPhone.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "macos-26-4-avisa-cuando-se-utiliza-un-cargador-lento",
+      "title": "MacOS 26.4 avisa cuando se utiliza un cargador lento.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/16886334/pexels-photo-16886334.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
