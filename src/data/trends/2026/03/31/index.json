@@ -1,0 +1,61 @@
+{
+  "date": "2026-03-31",
+  "items": [
+    {
+      "slug": "estrenos-de-apple-tv-en-abril",
+      "title": "Estrenos de Apple TV en abril.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "latencia-en-conexiones-moviles-que-es-como-influye-y-como-mejorarla",
+      "title": "Latencia en conexiones móviles: qué es, cómo influye y cómo mejorarla.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13709186/pexels-photo-13709186.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-espera-que-paul-mccartney-aparezca-en-el-concierto-final-del-50-aniversario-e",
+      "title": "Se espera que Paul McCartney aparezca en el concierto final del 50 aniversario en el Apple Park.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-abrir-el-nuevo-siri-a-todas-las-demas-ia-en-ios-17",
+      "title": "Apple podría abrir el nuevo Siri a todas las demás IA en iOS 17.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-estar-probando-el-sensor-de-200-megapixeles-de-1-12-pulgadas-del-op",
+      "title": "Apple podría estar probando el sensor de 200 megapíxeles de 1,12 pulgadas del Oppo Find X9 Ultra para un futuro iPhone.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "macos-26-4-avisa-cuando-se-utiliza-un-cargador-lento",
+      "title": "MacOS 26.4 avisa cuando se utiliza un cargador lento.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/16886334/pexels-photo-16886334.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "macos-26-4-muestra-un-mensaje-de-advertencia-cada-vez-que-se-copia-y-pega-algo-e",
+      "title": "MacOS 26.4 muestra un mensaje de advertencia cada vez que se copia y pega algo en la terminal.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/916998/pexels-photo-916998.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-anuncia-las-fechas-de-la-wwdc-2026",
+      "title": "Apple anuncia las fechas de la WWDC 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
