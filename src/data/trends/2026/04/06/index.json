@@ -1,0 +1,89 @@
+{
+  "date": "2026-04-06",
+  "items": [
+    {
+      "slug": "buscando-consejos-sobre-la-television",
+      "title": "Buscando consejos sobre la televisión.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7681983/pexels-photo-7681983.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "lg-cancelo-su-telefono-desplegable-y-lo-ha-dejado-en-ridiculo-en-comparacion-con",
+      "title": "LG canceló su teléfono desplegable y lo ha dejado en ridículo en comparación con los móviles de 2026 en un video de desmontaje.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-oneplus-15t-es-un-gran-telefono-pero-vale-la-pena-el-precio",
+      "title": "Reseña OnePlus 15T: ¿es un gran teléfono, pero vale la pena el precio?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/10343717/pexels-photo-10343717.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-marca-de-iphones-perdio-una-ventaja-de-5-anos-en-inteligencia-artificial-pero",
+      "title": "La marca de iPhones \"perdió una ventaja de 5 años\" en inteligencia artificial, pero antiguos empleados dicen que aún puede ganar.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7681983/pexels-photo-7681983.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "donde-triunfo-y-fracaso-apple-a-los-50-anos",
+      "title": "\"¿Dónde triunfó y fracasó Apple a los 50 años?\"",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/34803971/pexels-photo-34803971.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-firmware-mas-reciente-69-hace-compatible-el-neutron-hifi-dac-v1-con-la-consol",
+      "title": "El firmware más reciente 69 hace compatible el Neutron Hifi DAC V1 con la consola de Sony PlayStation.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/31532537/pexels-photo-31532537.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "cual-es-el-mejor-monitor-4k-por-debajo-de-los-700-dolares-para-diseno-grafico-y-",
+      "title": "\"¿Cuál es el mejor monitor 4K por debajo de los 700 dólares para diseño gráfico y PS5?\"",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3845129/pexels-photo-3845129.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "es-esta-pantalla-buena",
+      "title": "¿Es esta pantalla buena?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7681983/pexels-photo-7681983.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "buscando-consejos-sobre-la-television",
+      "title": "Buscando consejos sobre la televisión.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7681983/pexels-photo-7681983.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "dispositivo-inteligente-con-monitorizacion-de-energia-y-mas",
+      "title": "Dispositivo inteligente con monitorización de energía y más.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3845129/pexels-photo-3845129.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-precio-del-roborock-s20-es-de-500-dolares",
+      "title": "El precio del Roborock S20 es de 500 dólares.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30838768/pexels-photo-30838768.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "roborock-q-revo-c-pro-o-mas-dinero-para-dreame-l50",
+      "title": "Roborock Q Revo C Pro o más dinero para Dreame L50.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30838768/pexels-photo-30838768.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
