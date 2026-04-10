@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-10",
+  "items": [
+    {
+      "slug": "todo-lo-que-se-espera-de-ios-27-en-la-wwdc-2026",
+      "title": "Todo lo que se espera de iOS 27 en la WWDC 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/10182889/pexels-photo-10182889.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "por-que-no-es-necesario-desfragmentar-un-ssd-y-como-optimizarlo-correctamente",
+      "title": "Por qué no es necesario desfragmentar un SSD y cómo optimizarlo correctamente.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/28666524/pexels-photo-28666524.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estas-tres-increibles-fotos-estan-hechas-con-la-camara-frontal-de-un-iphone-17-p",
+      "title": "Estas tres increíbles fotos están hechas con la cámara frontal de un iPhone 17 Pro desde el espacio.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "infografia-de-todos-y-cada-uno-de-los-52-modelos-de-iphone-que-apple-ha-lanzado-",
+      "title": "infografía de todos y cada uno de los 52 modelos de iphone que apple ha lanzado al mercado hasta ahora",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-permite-finalmente-a-los-usuarios-que-no-quieren-actualizar-a-ios-16-parch",
+      "title": "\"Apple permite finalmente a los usuarios que no quieren actualizar a iOS 16 parchear vulnerabilidades importantes con iOS 18.7.7\"",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-empresa-apple-cumple-hoy-50-anos",
+      "title": "La empresa Apple cumple hoy 50 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-regala-una-camiseta-un-poster-y-un-pin-conmemorativos-a-sus-empleados-por-",
+      "title": "Apple regala una camiseta, un póster y un pin conmemorativos a sus empleados por su 50 aniversario.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-espera-que-paul-mccartney-aparezca-en-el-concierto-final-del-50-aniversario-e",
+      "title": "Se espera que Paul McCartney aparezca en el concierto final del 50 aniversario en el Apple Park.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
