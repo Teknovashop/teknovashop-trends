@@ -1,0 +1,82 @@
+{
+  "date": "2026-04-11",
+  "items": [
+    {
+      "slug": "hoy-en-bifl-tv-auriculares",
+      "title": "\"Hoy en Bifl-TV: auriculares\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5912193/pexels-photo-5912193.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-atomic-purple-sobre-atomic-purple-parece-como-nostalgia-pura-de-los-90-aunque",
+      "title": "\"El atomic purple sobre atomic purple parece como nostalgia pura de los 90!\" \n\nAunque esta traducción sigue siendo literal, aquí te dejo una versión más natural y suelta:\n\n\"El atomic purple sobre atomic purple es todo un viaje a la nostalgia de los 90\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "akko-esta-suspendiendo-la-produccion-de-teclas-de-perfil-asa-para-el-futuro-prev",
+      "title": "Akko está suspendiendo la producción de teclas de perfil Asa para el futuro previsible.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/8728244/pexels-photo-8728244.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "exclusiva-primeras-imagenes-y-video-360-del-samsung-galaxy-z-flip-8-en-resolucio",
+      "title": "\"Exclusiva: primeras imágenes y video 360° del Samsung Galaxy Z Flip 8 en resolución 5K\"",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/106341/pexels-photo-106341.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-envios-mundiales-de-smartphones-caen-un-6-en-q1-de-2026-debido-a-la-escasez-",
+      "title": "Las envíos mundiales de smartphones caen un 6% en Q1 de 2026 debido a la escasez de memoria; Apple lidera Q1 por primera vez.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-telefonos-samsung-galaxy-a37-y-galaxy-a57-estan-ahora-en-venta-en-estados-un",
+      "title": "Los teléfonos Samsung Galaxy A37 y Galaxy A57 están ahora en venta en Estados Unidos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13638309/pexels-photo-13638309.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-del-samsung-galaxy-a37",
+      "title": "Reseña del Samsung Galaxy A37.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/106341/pexels-photo-106341.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-smartphone-mas-loco-de-2018-fue-el-oppo-find-x",
+      "title": "El smartphone más loco de 2018 fue el Oppo Find X.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/215581/pexels-photo-215581.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "hoy-en-bifl-tv-auriculares",
+      "title": "\"Hoy en Bifl-TV: auriculares\".",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5912193/pexels-photo-5912193.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "me-han-entregado-hoy-el-dream-l50-ultra-ae",
+      "title": "\"Me han entregado hoy el Dream L50 Ultra AE\".",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/8728244/pexels-photo-8728244.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-xiaomi-h40-tiene-reconocimiento-automatico-de-alfombras",
+      "title": "La Xiaomi H40 tiene reconocimiento automático de alfombras?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33376151/pexels-photo-33376151.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
