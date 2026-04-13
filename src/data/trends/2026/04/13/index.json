@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-13",
+  "items": [
+    {
+      "slug": "borderlands-mobile-ya-disponible-en-ios-asi-es-el-nuevo-juego-para-movil",
+      "title": "Borderlands Mobile ya disponible en iOS: así es el nuevo juego para móvil.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13709186/pexels-photo-13709186.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lidera-el-mercado-global-de-smartphones-en-el-primer-trimestre",
+      "title": "Apple lidera el mercado global de smartphones en el primer trimestre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "en-apple-aun-debaten-sobre-la-dynamic-island-del-iphone-18-pro-y-ligeros-cambios",
+      "title": "En Apple aún debaten sobre la Dynamic Island del iPhone 18 Pro y ligeros cambios en el diseño trasero.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-bug-en-macos-tahoe-hace-que-el-mac-se-quede-colgado-cada-49-dias",
+      "title": "Un bug en macOS Tahoe hace que el Mac se quede colgado cada 49 días.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estas-tres-increibles-fotos-estan-hechas-con-la-camara-frontal-de-un-iphone-17-p",
+      "title": "Estas tres increíbles fotos están hechas con la cámara frontal de un iPhone 17 Pro desde el espacio.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "infografia-de-todos-y-cada-uno-de-los-52-modelos-de-iphone-que-apple-ha-lanzado-",
+      "title": "Infografía de todos y cada uno de los 52 modelos de iPhone que Apple ha lanzado al mercado hasta ahora.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-permite-finalmente-a-los-usuarios-que-no-quieren-actualizar-a-ios-26-parch",
+      "title": "Apple permite finalmente a los usuarios que no quieren actualizar a iOS 26 parchear vulnerabilidades importantes con iOS 18.7.7.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-traduccion-al-espanol-de-espana-es-la-marca-apple-cumple-hoy-50-anos",
+      "title": "La traducción al español de España es:\n\nLa marca Apple cumple hoy 50 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
