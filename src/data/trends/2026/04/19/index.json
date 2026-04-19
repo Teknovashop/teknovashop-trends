@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-19",
+  "items": [
+    {
+      "slug": "apple-llevara-la-apertura-variable-a-iphone-18-pro-asi-cambiara-su-camara",
+      "title": "Apple llevará la apertura variable a iPhone 18 Pro: así cambiará su cámara.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/36113345/pexels-photo-36113345.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-se-prepara-para-una-avalancha-de-lanzamientos-con-mas-de-15-nuevos-product",
+      "title": "Apple se prepara para una avalancha de lanzamientos con más de 15 nuevos productos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "si-tienes-una-tarjeta-visa-configurada-como-tarjeta-expres-en-apple-pay-quizas-d",
+      "title": "Si tienes una tarjeta Visa configurada como tarjeta exprés en Apple Pay, quizás deberías saber esto.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/19808828/pexels-photo-19808828.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "microsoft-aumenta-el-precio-de-sus-portatiles-surface-que-ahora-son-mas-costosos",
+      "title": "Microsoft aumenta el precio de sus portátiles Surface, que ahora son más costosos que los MacBook similares en especificaciones.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "una-aplicacion-aprobada-por-apple-en-la-mac-app-store-estafa-a-mas-de-50-persona",
+      "title": "Una aplicación aprobada por Apple en la Mac App Store estafa a más de 50 personas, robándoles millones de dólares en criptomonedas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "en-apple-aun-debaten-sobre-la-dynamic-island-del-iphone-18-pro-y-ligeros-cambios",
+      "title": "En Apple aún debaten sobre la Dynamic Island del iPhone 18 Pro y ligeros cambios en el diseño trasero.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-bug-en-macos-tahoe-hace-que-el-mac-se-quede-colgado-cada-49-dias",
+      "title": "Un bug en macOS Tahoe hace que el Mac se quede colgado cada 49 días.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estas-tres-increibles-fotos-estan-hechas-con-la-camara-frontal-de-un-iphone-17-p",
+      "title": "Estas tres increíbles fotos están hechas con la cámara frontal de un iPhone 17 Pro desde el espacio.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
