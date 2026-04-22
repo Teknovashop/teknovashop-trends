@@ -1,0 +1,89 @@
+{
+  "date": "2026-04-22",
+  "items": [
+    {
+      "slug": "quiero-un-bolso-de-trabajo-grande-y-monisimo-idealmente-deberia-poder-llevar-un-",
+      "title": "Quiero un bolso de trabajo grande y monísimo. Idealmente debería poder llevar un portátil, una botella de agua y un archivo.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "recomendacion-para-una-tv-de-55-pulgadas",
+      "title": "Recomendación para una TV de 55 pulgadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33805706/pexels-photo-33805706.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "tuvieron-mi-primer-llanto-en-los-auriculares-fue-muy-extrano-marshall-monitor-ii",
+      "title": "Tuvieron mi primer llanto en los auriculares. Fue muy extraño. - Marshall Monitor III A.N.C.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3845129/pexels-photo-3845129.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "descuento-especial-en-la-tienda-ergomech",
+      "title": "Descuento especial en la tienda Ergomech.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/8728244/pexels-photo-8728244.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-mercado-de-smartphones-en-china-en-q1-de-2026-huawei-registra-su-mayor-partic",
+      "title": "El mercado de smartphones en China en Q1 de 2026: Huawei registra su mayor participación en 5 años, mientras que Apple es el que crece más rápidamente.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "bensgadgetreviews-oppo-find-x9-ultra-vs-vivo-x300-ultra-un-disparo-de-camaras",
+      "title": "Bensgadgetreviews - Oppo Find X9 Ultra vs Vivo X300 Ultra: un disparo de cámaras.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12736159/pexels-photo-12736159.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-de-camaras-entre-oppo-find-x9-ultra-vivo-x300-ultra-y-galaxy-s26-ult",
+      "title": "Comparativa de cámaras entre Oppo Find X9 Ultra, Vivo X300 Ultra y Galaxy S26 Ultra.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12736159/pexels-photo-12736159.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "resena-oppo-find-x9-ultra-es-la-mejor-camara-del-telefono-en-2026",
+      "title": "Reseña Oppo Find X9 Ultra | ¿Es la mejor cámara del teléfono en 2026?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/8296040/pexels-photo-8296040.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "quiero-un-bolso-de-trabajo-grande-y-guay-idealmente-deberia-poder-llevar-un-port",
+      "title": "Quiero un bolso de trabajo grande y guay. Idealmente debería poder llevar un portátil, una botella de agua y un archivador.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "recomendacion-para-una-tv-de-55-pulgadas",
+      "title": "Recomendación para una TV de 55 pulgadas.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33805706/pexels-photo-33805706.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "construi-un-monitoreo-android-dedicado-para-alertarme-en-el-exacto-segundo-en-qu",
+      "title": "\"Construí un monitoreo Android dedicado para alertarme en el exacto segundo en que mi red en casa se desconecta\".",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/3845129/pexels-photo-3845129.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-xiaomi-x20-no-recoge-polvo-del-contenedor-de-basura",
+      "title": "El Xiaomi X20+ no recoge polvo del contenedor de basura.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33376151/pexels-photo-33376151.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
