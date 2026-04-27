@@ -1,0 +1,54 @@
+{
+  "date": "2026-04-27",
+  "items": [
+    {
+      "slug": "estrategias-para-proteger-discos-duros-virtuales-y-externos-en-mac",
+      "title": "Estrategias para proteger discos duros virtuales y externos en Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5725978/pexels-photo-5725978.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-18-pro-sera-ligeramente-mas-grueso-en-la-zona-de-las-camaras-traseras",
+      "title": "El iPhone 18 Pro será ligeramente más grueso en la zona de las cámaras traseras.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "nuevos-rumores-sobre-el-iphone-plegable-tendra-boton-de-control-de-camara-no-uti",
+      "title": "Nuevos rumores sobre el iPhone plegable: tendrá botón de control de cámara, no utilizará tarjetas SIM físicas fuera de China.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ios-27-podria-tener-una-opcion-para-deshacer-cambios-de-personalizacion-reciente",
+      "title": "iOS 27 podría tener una opción para deshacer cambios de personalización recientes que no nos gusten.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/20509994/pexels-photo-20509994.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "si-tienes-una-tarjeta-visa-configurada-como-tarjeta-expres-en-apple-pay-quizas-d",
+      "title": "Si tienes una tarjeta Visa configurada como tarjeta exprés en Apple Pay, quizás deberías saber esto.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/19808828/pexels-photo-19808828.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "microsoft-aumenta-el-precio-de-sus-portatiles-surface-que-ahora-son-mas-costosos",
+      "title": "Microsoft aumenta el precio de sus portátiles Surface, que ahora son más costosos que los MacBook similares en especificaciones.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "una-aplicacion-aprobada-por-apple-en-la-mac-app-store-ha-estafado-a-mas-de-50-pe",
+      "title": "Una aplicación aprobada por Apple en la Mac App Store ha estafado a más de 50 personas, robándoles millones de dólares en criptomonedas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
