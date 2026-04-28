@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-28",
+  "items": [
+    {
+      "slug": "openai-prepara-un-movil-propio-para-plantar-cara-al-iphone",
+      "title": "Openai prepara un móvil propio para plantar cara al iPhone.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13709186/pexels-photo-13709186.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "que-pasa-con-whatsapp-si-mi-movil-ya-no-es-compatible",
+      "title": "¿Qué pasa con WhatsApp si mi móvil ya no es compatible?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13709186/pexels-photo-13709186.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "macbook-ultra-asi-sera-el-nuevo-portatil-de-alta-gama-de-apple",
+      "title": "MacBook Ultra: así será el nuevo portátil de alta gama de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-mejores-teclados-bluetooth-para-mac-guia-completa-para-elegir-el-ideal",
+      "title": "Los mejores teclados Bluetooth para Mac: guía completa para elegir el ideal.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-18-pro-sera-ligeramente-mas-grueso-en-la-zona-de-las-camaras-traseras",
+      "title": "El iPhone 18 Pro será ligeramente más grueso en la zona de las cámaras traseras.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "nuevos-rumores-sobre-el-iphone-plegable-tendra-boton-de-control-de-camara-y-no-u",
+      "title": "Nuevos rumores sobre el iPhone plegable: tendrá botón de control de cámara y no utilizará tarjetas SIM físicas fuera de China.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ios-27-podria-tener-una-opcion-para-deshacer-cambios-de-personalizacion-reciente",
+      "title": "iOS 27 podría tener una opción para deshacer cambios de personalización recientes que no nos gusten.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/20509994/pexels-photo-20509994.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "si-tienes-una-tarjeta-visa-configurada-como-tarjeta-expres-en-apple-pay-quizas-d",
+      "title": "Si tienes una tarjeta Visa configurada como tarjeta exprés en Apple Pay, quizás deberías saber esto.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/19808828/pexels-photo-19808828.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
