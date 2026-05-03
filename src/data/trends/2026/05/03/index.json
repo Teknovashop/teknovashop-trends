@@ -1,0 +1,61 @@
+{
+  "date": "2026-05-03",
+  "items": [
+    {
+      "slug": "apple-se-enfrenta-al-encarecimiento-de-la-memoria-asi-impacta-en-iphone-y-mac",
+      "title": "Apple se enfrenta al encarecimiento de la memoria: así impacta en iPhone y Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37148218/pexels-photo-37148218.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-exito-del-iphone-17-dispara-los-resultados-de-apple-y-refuerza-su-liderazgo-e",
+      "title": "El éxito del iPhone 17 dispara los resultados de Apple y refuerza su liderazgo en Europa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "nuevos-chips-a20-y-a20-pro-de-apple-todo-lo-que-sabemos",
+      "title": "Nuevos chips A20 y A20 Pro de Apple: todo lo que sabemos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "airpods-ultra-con-camaras-integradas-asi-serian-los-auriculares-mas-avanzados-de",
+      "title": "AirPods Ultra con cámaras integradas: así serían los auriculares más avanzados de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-mejores-teclados-para-escribir-y-trabajar-con-tu-mac-guia-completa",
+      "title": "Los mejores teclados para escribir y trabajar con tu Mac: guía completa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-vuelve-a-vender-el-mac-mini-con-m4-ahora-mas-caro-ya-que-ha-eliminado-la-v",
+      "title": "Apple vuelve a vender el Mac Mini con M4, ahora más caro, ya que ha eliminado la versión con 256 GB de SSD.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13595094/pexels-photo-13595094.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-resultados-financieros-de-apple-en-enero-febrero-y-marzo-de-2026-muestran-un",
+      "title": "Los resultados financieros de Apple en enero, febrero y marzo de 2026 muestran un beneficio de 29.600 millones de dólares.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-18-pro-sera-ligeramente-mas-grueso-en-la-zona-de-las-camaras-traseras",
+      "title": "El iPhone 18 Pro será ligeramente más grueso en la zona de las cámaras traseras.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
