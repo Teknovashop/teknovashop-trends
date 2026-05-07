@@ -1,0 +1,75 @@
+{
+  "date": "2026-05-07",
+  "items": [
+    {
+      "slug": "la-disposicion-de-monitores-superior",
+      "title": "La disposición de monitores superior.",
+      "niche": "tecnologia",
+      "score": 2,
+      "hero": "https://images.pexels.com/photos/3845129/pexels-photo-3845129.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "mi-cabeza-va-a-estallar-con-esta-eleccion-monitores",
+      "title": "Mi cabeza va a estallar con esta elección - monitores.",
+      "niche": "tecnologia",
+      "score": 2,
+      "hero": "https://images.pexels.com/photos/3845129/pexels-photo-3845129.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "me-he-actualizado-de-la-logitech-g213-a-una-evoworks-75",
+      "title": "Me he actualizado de la Logitech G213 a una Evoworks 75.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/28534969/pexels-photo-28534969.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "alguien-ha-probado-usar-silicona-rtv-para-sellar-cortes-en-pcb-flex",
+      "title": "¿Alguien ha probado usar silicona RTV para sellar cortes en PCB Flex?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33805706/pexels-photo-33805706.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estupefa-el-mercado-de-tabletas-de-gama-media-con-wifi-rapido-y-entrada-de-lapiz",
+      "title": "\"Estupefa el mercado de tabletas de gama media con wifi rápido y entrada de lápiz - reseña Lenovo Idea Tab Pro Gen 2\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/10020092/pexels-photo-10020092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-ventas-de-smartphones-mundiales-aumentaron-un-8-en-el-ano-anterior-en-q1-de-",
+      "title": "Las ventas de smartphones mundiales aumentaron un 8% en el año anterior en Q1 de 2026 a pesar de la ralentización de las envíos; Apple crece a un ritmo más rápido.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "samsung-confirma-el-galaxy-a27",
+      "title": "Samsung confirma el Galaxy A27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218686/pexels-photo-218686.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-nuevo-iphone-18-pro-podria-tener-una-actualizacion-en-su-pantalla-ltpo-gracia",
+      "title": "El nuevo iPhone 18 Pro podría tener una actualización en su pantalla LTPo+ gracias a Samsung y LG.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218686/pexels-photo-218686.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-nuevo-xiaomi-x20-pro-no-puede-limpiarse",
+      "title": "El nuevo Xiaomi X20 Pro no puede limpiarse.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/33376151/pexels-photo-33376151.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-robot-de-limpieza-roborock-saros-10r-esta-experimentando-problemas",
+      "title": "El robot de limpieza Roborock Saros 10R está experimentando problemas.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
