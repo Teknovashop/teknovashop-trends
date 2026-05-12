@@ -1,0 +1,61 @@
+{
+  "date": "2026-05-12",
+  "items": [
+    {
+      "slug": "los-airpods-con-camaras-de-apple-estan-a-punto-de-llegar-al-mercado-y-estan-en-s",
+      "title": "Los AirPods con cámaras de Apple están a punto de llegar al mercado y están en su recta final.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37005122/pexels-photo-37005122.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-sube-el-precio-de-la-mac-mini-tras-retirar-el-modelo-de-256-gb",
+      "title": "Apple sube el precio de la Mac Mini tras retirar el modelo de 256 GB.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-nuevos-macbook-neo-que-apple-podria-estar-fabricando-podrian-tener-un-a18-pr",
+      "title": "Los nuevos MacBook Neo que Apple podría estar fabricando podrían tener un A18 Pro con un núcleo deshabilitado por software.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-acuerda-pagar-250-millones-de-dolares-por-publicidad-enganosa-de-apple-int",
+      "title": "Apple acuerda pagar 250 millones de dólares por publicidad engañosa de Apple Intelligence.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "con-ios-27-permitira-crear-tarjetas-virtuales-a-medida-utilizando-la-camara",
+      "title": "Con iOS 27 permitirá crear tarjetas virtuales a medida, utilizando la cámara.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-domina-el-mercado-de-los-smartphones-con-conexion-satelital-a-nivel-mundia",
+      "title": "Apple domina el mercado de los smartphones con conexión satelital a nivel mundial.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-vuelve-a-vender-el-mac-mini-con-m4-ahora-mas-caro-ya-que-ha-eliminado-la-v",
+      "title": "Apple vuelve a vender el Mac Mini con M4, ahora más caro, ya que ha eliminado la versión con 256 GB de SSD.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13595094/pexels-photo-13595094.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-resultados-financieros-de-apple-en-enero-febrero-y-marzo-de-2026-son-de-29-6",
+      "title": "Los resultados financieros de Apple en enero, febrero y marzo de 2026 son de 29.600 millones de dólares de beneficio.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
