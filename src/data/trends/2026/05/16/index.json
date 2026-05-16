@@ -1,0 +1,61 @@
+{
+  "date": "2026-05-16",
+  "items": [
+    {
+      "slug": "el-iphone-17-pro-es-el-smartphone-que-carga-inalambricamente-mas-rapido-en-este-",
+      "title": "El iPhone 17 Pro es el smartphone que carga inalámbricamente más rápido en este momento.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/215581/pexels-photo-215581.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ios-26-5-trae-las-mejoras-obligatorias-para-relojes-de-otras-marcas-en-europa",
+      "title": "iOS 26.5 trae las mejoras obligatorias para relojes de otras marcas en Europa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37031744/pexels-photo-37031744.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-grandes-ideas-empiezan-en-un-mac-el-nuevo-anuncio-de-tv-de-apple",
+      "title": "Las grandes ideas empiezan en un Mac, el nuevo anuncio de TV de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-nuevos-macbook-neo-que-apple-podria-estar-fabricando-podrian-tener-un-a18-pr",
+      "title": "Los nuevos MacBook Neo que Apple podría estar fabricando podrían tener un A18 Pro con un núcleo deshabilitado por software.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-acuerda-pagar-250-millones-de-dolares-por-publicidad-enganosa-de-apple-int",
+      "title": "Apple acuerda pagar 250 millones de dólares por publicidad engañosa de Apple Intelligence.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ios-27-permitira-crear-tarjetas-virtuales-a-medida-con-la-camara",
+      "title": "iOS 27 permitirá crear tarjetas virtuales a medida, con la cámara.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-domina-el-mercado-de-los-smartphones-con-conexion-satelital-a-nivel-mundia",
+      "title": "Apple domina el mercado de los smartphones con conexión satelital a nivel mundial.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30639092/pexels-photo-30639092.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-vuelve-a-vender-el-mac-mini-con-m4-ahora-mas-caro-ya-que-ha-eliminado-la-v",
+      "title": "Apple vuelve a vender el Mac Mini con M4, ahora más caro, ya que ha eliminado la versión con 256 GB de SSD.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13595094/pexels-photo-13595094.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
