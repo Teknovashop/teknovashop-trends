@@ -1,0 +1,61 @@
+{
+  "date": "2026-05-18",
+  "items": [
+    {
+      "slug": "oye-siri-quita-el-arbol-el-extrano-comando-del-iphone-que-apaga-el-movil-y-nadie",
+      "title": "Oye Siri, quita el árbol: el extraño comando del iPhone que apaga el móvil y nadie sabe explicar.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13709186/pexels-photo-13709186.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "configurar-doble-pantalla-en-un-mac-y-usar-dos-monitores-externos-es-un-proceso-",
+      "title": "Configurar doble pantalla en un Mac y usar dos monitores externos es un proceso relativamente sencillo. Aquí te explico los pasos para lograrlo:\n\nPrimero, asegúrate de que tu Mac tenga un puerto Thunderbolt, USB-C o HDMI disponible para conectar tus monitores externos. Si tu Mac solo tiene un puerto, puedes utilizar un adaptador para conectar un segundo monitor.\n\n1. Conecta el primer monitor externo a tu Mac mediante un cable HDMI, Thunderbolt o USB-C. Si necesitas un adaptador, conecta el monitor al adaptador y luego conecta el adaptador a tu Mac.\n2. Enciende el segundo monitor externo y asegúrate de que esté configurado correctamente en su propia fuente de alimentación.\n3. Abre el menú \"Apple\" en la esquina superior izquierda de la pantalla y selecciona \"Preferencias del sistema\".\n4. Haz clic en \"Monitores\" y selecciona el segundo monitor externo en la lista de dispositivos disponibles.\n5. Asegúrate de que el segundo monitor esté configurado como \"Segundo monitor\" en lugar de \"Extensión de pantalla\".\n6. Pued",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37148218/pexels-photo-37148218.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-17-pro-es-el-smartphone-que-carga-inalambricamente-mas-rapido-en-este-",
+      "title": "El iPhone 17 Pro es el smartphone que carga inalámbricamente más rápido en este momento.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/215581/pexels-photo-215581.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ios-26-5-trae-las-mejoras-obligatorias-para-relojes-de-otras-marcas-en-europa",
+      "title": "iOS 26.5 trae las mejoras obligatorias para relojes de otras marcas en Europa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37031744/pexels-photo-37031744.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-grandes-ideas-empiezan-en-un-mac-el-nuevo-anuncio-de-tv-de-apple",
+      "title": "Las grandes ideas empiezan en un Mac, el nuevo anuncio de TV de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-nuevos-macbook-neo-que-apple-podria-estar-fabricando-podrian-tener-un-a18-pr",
+      "title": "Los nuevos MacBook Neo que Apple podría estar fabricando podrían tener un A18 Pro con un núcleo deshabilitado por software.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-acuerda-pagar-250-millones-de-dolares-por-publicidad-enganosa-de-apple-int",
+      "title": "Apple acuerda pagar 250 millones de dólares por publicidad engañosa de Apple Intelligence.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ios-27-permitira-crear-tarjetas-virtuales-a-medida-con-la-camara",
+      "title": "iOS 27 permitirá crear tarjetas virtuales a medida, con la cámara.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
