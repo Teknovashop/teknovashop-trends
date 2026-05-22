@@ -1,0 +1,82 @@
+{
+  "date": "2026-05-22",
+  "items": [
+    {
+      "slug": "revision-de-mi-sony-1000x-la-coleccion",
+      "title": "Revisión de mi Sony 1000X \"La Colección\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/14830216/pexels-photo-14830216.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-gente-esta-entusiasmada-con-la-coleccion-sony-1000x",
+      "title": "La gente está entusiasmada con la colección Sony 1000X?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/14830216/pexels-photo-14830216.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "usando-silicona-rtv-rejanrams-mod-para-cortar-pcbflex-sellado-lo-probe",
+      "title": "Usando silicona rtv \"rejanrams mod\" para cortar PCBflex sellado. Lo probé.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6578863/pexels-photo-6578863.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-xiaomi-17-max-llega-con-una-camara-principal-de-200-mp-y-una-bateria-de-8-000",
+      "title": "El Xiaomi 17 Max llega con una cámara principal de 200 MP y una batería de 8.000 mAh.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12563780/pexels-photo-12563780.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-nueva-tableta-de-8-1-pulgadas-de-walmart-para-2026-onn-a-primera-vista-valora",
+      "title": "La nueva tableta de 8,1 pulgadas de Walmart para 2026, Onn, a primera vista, valorada en 130 dólares.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30591531/pexels-photo-30591531.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "prueba-de-camara-de-oppo-find-x9-ultra-version-global-el-mejor-smartphone-para-v",
+      "title": "Prueba de cámara de Oppo Find X9 Ultra versión global: el mejor smartphone para viajar - Gizmochina.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37494880/pexels-photo-37494880.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-tv-emitira-el-primer-gran-evento-deportivo-en-vivo-grabado-con-iphone-17-p",
+      "title": "Apple TV emitirá el primer gran evento deportivo en vivo grabado con iPhone 17 Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6977377/pexels-photo-6977377.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-escuela-publica-de-kansas-city-cambia-30-000-ordenadores-por-equipo-de-apple",
+      "title": "La escuela pública de Kansas City cambia 30.000 ordenadores por equipo de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "xiaomi-s20",
+      "title": "Xiaomi S20+",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12563780/pexels-photo-12563780.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "eufy-x10-omni-vs-roborock-qrevo-s5v-vs-qrevo-curv-vale-la-pena-actualizar-para-u",
+      "title": "Eufy X10 Omni vs Roborock Qrevo S5V vs Qrevo Curv - ¿vale la pena actualizar para un vaciado más silencioso?",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "comparativa-entre-narwal-x10-pro-y-xiaomi-vacuum-5-pro",
+      "title": "Comparativa entre Narwal X10 Pro y Xiaomi Vacuum 5 Pro.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12563780/pexels-photo-12563780.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
