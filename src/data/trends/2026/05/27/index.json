@@ -1,0 +1,61 @@
+{
+  "date": "2026-05-27",
+  "items": [
+    {
+      "slug": "como-borrar-de-forma-segura-discos-en-macos-tahoe-paso-a-paso-antes-de-comenzar-",
+      "title": "Cómo borrar de forma segura discos en macOS Tahoe paso a paso\n\nAntes de comenzar, es importante tener en cuenta que borrar un disco en macOS Tahoe eliminará todos los datos almacenados en él, por lo que es fundamental hacer una copia de seguridad de los datos importantes antes de proceder.\n\n**Paso 1: Preparar el disco**\n\n1. Conecta el disco que deseas borrar a tu Mac.\n2. Abre el Asistente de Discos en el menú de Apple y selecciona \"Discos\".\n3. En la lista de discos, selecciona el disco que deseas borrar y haz clic en \"Borrar\".\n\n**Paso 2: Seleccionar el método de borrado**\n\n1. En la ventana de \"Borrar disco\", selecciona el método de borrado que deseas utilizar:\n * \"Borrar inmediatamente\": Eliminará todos los datos del disco de forma instantánea.\n * \"Borrar con seguridad\": Eliminará todos los datos del disco de forma segura, utilizando un algoritmo de borrado que asegura que los datos no puedan ser recuperados.\n * \"Borrar con seguridad y eliminar la partición\":",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/10011899/pexels-photo-10011899.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "asi-ha-grabado-y-retransmitido-apple-un-partido-de-futbol-completo-con-el-iphone",
+      "title": "Así ha grabado y retransmitido Apple un partido de fútbol completo con el iPhone 17 Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-ia-generativas-de-apple-mejoraran-enormemente-su-calidad-de-imagen-en-ios-17",
+      "title": "Las IA generativas de Apple mejorarán enormemente su calidad de imagen en iOS 17.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-registra-el-subdominio-genai-para-utilizar-en-su-web-con-vistas-a-la-wwdc-",
+      "title": "Apple registra el subdominio genai para utilizar en su web con vistas a la WWDC 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-anadir-soporte-para-chromecast-y-otros-dispositivos-de-la-competenc",
+      "title": "Apple podría añadir soporte para Chromecast y otros dispositivos de la competencia en iOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estas-son-las-supuestas-fundas-transparentes-del-iphone-18-pro-apple-vuelve-a-lo",
+      "title": "Estas son las supuestas fundas transparentes del iPhone 18 Pro, Apple vuelve a los anillos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-tv-retransmitira-el-partido-de-futbol-del-galaxy-contra-el-houston-dynamo-",
+      "title": "Apple TV retransmitirá el partido de fútbol del Galaxy contra el Houston Dynamo FC utilizando solo el iPhone 17 Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-sports-ahora-disponible-en-90-paises-mas-con-toda-la-informacion-de-la-cop",
+      "title": "Apple Sports ahora disponible en 90 países más con toda la información de la Copa Mundial de Fútbol.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6427919/pexels-photo-6427919.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
