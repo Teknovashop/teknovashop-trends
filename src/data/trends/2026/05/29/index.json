@@ -1,0 +1,61 @@
+{
+  "date": "2026-05-29",
+  "items": [
+    {
+      "slug": "amd-ryzen-5-7600x-asus-b650e-max-gaming-wifi-g-skill-16-gb-ddr5-6000-280-48",
+      "title": "AMD Ryzen 5 7600X, ASUS B650E Max Gaming WiFi, G.Skill 16 GB DDR5 6000, 280,48€",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/11514417/pexels-photo-11514417.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "msi-geforce-rtx-3050-ventus-2x-6g-oc-149-99-dolares",
+      "title": "MSI GeForce RTX 3050 Ventus 2X 6G OC - 149,99 dólares.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/424436/pexels-photo-424436.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "joystick-de-raton-de-35-x-16-pulgadas-con-el-logotipo-de-la-ncaa-y-purdue-por-9-",
+      "title": "Joystick de ratón de 35 x 16 pulgadas con el logotipo de la NCAA y Purdue, por $9 en Woot.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "lg-gram-15-pulgadas-oled-fhd-anti-reflejos-intel-ultra-7-155h-16-gb-ddr5-1-tb-45",
+      "title": "LG Gram 15 pulgadas OLED FHD anti-reflejos, Intel Ultra 7 (155h), 16 GB DDR5, 1 TB, $459.99",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "asus-b760m-ayw-wifi-d4-ii-pcie-5-0-2-x-ranuras-m-2-ddr4-ethernet-realtek-2-5-gb-",
+      "title": "Asus B760M-AYW WiFi D4 II, PCIE 5.0, 2 x ranuras M.2, DDR4, Ethernet Realtek 2,5 Gb, Wi-Fi 6, HDMI, SATA 6 Gbps - 89,99 dólares.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/11514417/pexels-photo-11514417.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "logitech-g29-volante-de-carreras-con-pedales-de-piso-por-199-99-dolares",
+      "title": "Logitech G29, volante de carreras con pedales de piso, por 199,99 dólares.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/28993117/pexels-photo-28993117.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "cable-de-displayport-certificado-vesa-de-80-gbps-1-98-metros-de-largo-14-99-con-",
+      "title": "Cable de DisplayPort certificado VESA de 80 Gbps, 1,98 metros de largo, $14,99 con descuento.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7652387/pexels-photo-7652387.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "qualcomm-desafia-el-dominio-del-macbook-con-el-nuevo-snapdragon-c-para-portatile",
+      "title": "Qualcomm desafía el dominio del MacBook con el nuevo Snapdragon C para portátiles asequibles.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
