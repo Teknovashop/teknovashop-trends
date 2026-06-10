@@ -1,0 +1,89 @@
+{
+  "date": "2026-06-10",
+  "items": [
+    {
+      "slug": "modos-de-limpieza-xiaomi-s40",
+      "title": "Modos de limpieza Xiaomi S40.",
+      "niche": "tecnologia",
+      "score": 2,
+      "hero": "https://images.pexels.com/photos/12563780/pexels-photo-12563780.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estudio-de-investigacion-de-tesis-de-mba-sobre-lealtad-a-los-sistemas-operativos",
+      "title": "Estudio de investigación de tesis de MBA sobre lealtad a los sistemas operativos de los smartphones y costos de cambio.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/215581/pexels-photo-215581.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "macos-27-requiere-apple-silicon-ya-que-apple-pone-fin-a-la-era-de-los-mac-con-pr",
+      "title": "MacOS 27 requiere Apple Silicon, ya que Apple pone fin a la era de los Mac con procesadores Intel.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "tvos-27-no-ofrece-soporte-para-dos-modelos-de-apple-tv-sin-embargo-si-deseas-una",
+      "title": "\"TVOS 27 no ofrece soporte para dos modelos de Apple TV\". \n\nSin embargo, si deseas una traducción más natural y clara, podrías expresarlo de la siguiente manera:\n\n\"La versión 27 de tvOS deja de ser compatible con dos modelos de Apple TV\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "wwdc-2026-estado-de-la-union-de-las-plataformas",
+      "title": "WWDC 2026: Estado de la Unión de las Plataformas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/28169154/pexels-photo-28169154.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "olvido-apple-esto-en-ios-27",
+      "title": "¿Olvidó Apple esto en iOS 27?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "me-he-cambiado-de-un-asus-pg42uq-oled-a-un-samsung-43-qn90f-va-mini-led",
+      "title": "Me he cambiado de un ASUS PG42UQ OLED a un Samsung 43\" QN90F VA mini-LED.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/106341/pexels-photo-106341.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-monitor-hace-un-ruido-ocasional-de-placazo-sin-motivo-aparente",
+      "title": "El monitor hace un ruido ocasional de \"placazo\" sin motivo aparente.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5831262/pexels-photo-5831262.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "modos-de-limpieza-xiaomi-s40",
+      "title": "Modos de limpieza Xiaomi S40.",
+      "niche": "hogar",
+      "score": 2,
+      "hero": "https://images.pexels.com/photos/12563780/pexels-photo-12563780.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "ruido-chirriante-o-zumbante-del-robot-xiaomi-m40",
+      "title": "Ruido chirriante o zumbante del robot Xiaomi M40.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12563780/pexels-photo-12563780.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "reparar-el-sistema-de-fregona-en-los-dream-e-l10s-ultra-pro-heat-y-similares",
+      "title": "Reparar el sistema de fregona en los Dream E l10s Ultra Pro Heat y similares.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7652387/pexels-photo-7652387.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "elegir-entre-dreamet-x50-ultra-y-roborock-qrevo-edge-2-pro",
+      "title": "Elegir entre Dreamet X50 Ultra y Roborock Qrevo Edge 2 Pro.",
+      "niche": "hogar",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
