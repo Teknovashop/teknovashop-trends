@@ -1,0 +1,61 @@
+{
+  "date": "2026-06-17",
+  "items": [
+    {
+      "slug": "apple-lanza-la-segunda-beta-de-ios-26-6-y-macos-26-6-para-desarrolladores",
+      "title": "Apple lanza la segunda beta de iOS 26.6 y macOS 26.6 para desarrolladores.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "todas-las-aplicaciones-de-apple-se-han-adaptado-para-funcionar-en-orientacion-ho",
+      "title": "Todas las aplicaciones de Apple se han adaptado para funcionar en orientación horizontal en iOS 27, ante la llegada del nuevo iPhone plegable.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "rosetta-dejara-de-funcionar-en-macos-13-y-apple-seguira-recordandotelo-a-menudo-",
+      "title": "Rosetta dejará de funcionar en macOS 13 y Apple seguirá recordándotelo a menudo durante un año más. \n\nNota: Rosetta es una tecnología de Apple que permite ejecutar aplicaciones de 32 bits en sistemas operativos de 64 bits. La versión de macOS a la que te refieres es la 13, no la 28, ya que la versión 28 no existe.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-publica-el-resumen-de-4-minutos-del-state-of-the-union-de-la-wwdc-2026",
+      "title": "Apple publica el resumen de 4 minutos del \"State of the Union\" de la WWDC 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "nuevo-anuncio-de-television-con-vinicius-jr-para-promocionar-los-airpods-pro-3",
+      "title": "\"Nuevo anuncio de televisión con Vinicius Jr. para promocionar los AirPods Pro 3\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7652387/pexels-photo-7652387.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "solo-el-iphone-17-pro-y-el-iphone-air-pueden-utilizar-las-ia-mas-avanzadas-de-ap",
+      "title": "Solo el iPhone 17 Pro y el iPhone Air pueden utilizar las IA más avanzadas de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-apple-watch-series-9-si-podra-tener-watchos-27",
+      "title": "El Apple Watch Series 9 sí podrá tener watchOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-anuncia-macos-12-golden-gate-con-correcciones-de-usabilidad-en-su-interfaz",
+      "title": "Apple anuncia macOS 12 Golden Gate con correcciones de usabilidad en su interfaz. \n\nNota: macOS 12 es el nombre real de la versión, no macOS 27, como se menciona en el texto original.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
