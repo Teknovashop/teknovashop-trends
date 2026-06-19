@@ -1,0 +1,61 @@
+{
+  "date": "2026-06-19",
+  "items": [
+    {
+      "slug": "fue-incluso-mas-barato-en-la-caja",
+      "title": "Fue incluso más barato en la caja.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7652387/pexels-photo-7652387.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-del-20-aniversario-apple-prepara-una-revolucion-total-sin-limites-para",
+      "title": "El iPhone del 20 aniversario: Apple prepara una revolución total sin límites para 2027.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "todas-las-aplicaciones-de-apple-se-han-adaptado-para-funcionar-en-orientacion-ho",
+      "title": "Todas las aplicaciones de Apple se han adaptado para funcionar en orientación horizontal en iOS 27 ante la llegada del nuevo iPhone plegable.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "rosetta-dejara-de-funcionar-en-macos-13-y-apple-seguira-recordandotelo-a-menudo-",
+      "title": "Rosetta dejará de funcionar en macOS 13 y Apple seguirá recordándotelo a menudo un año más.\n\nNota: Rosetta es una tecnología de Apple que permite ejecutar aplicaciones de 32 bits en sistemas operativos macOS de 64 bits. En macOS 13 (Ventura), Apple ha anunciado que Rosetta dejará de funcionar, lo que significa que las aplicaciones que dependen de ella ya no funcionarán.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-publica-el-resumen-de-4-minutos-del-state-of-the-union-de-la-wwdc-2026",
+      "title": "Apple publica el resumen de 4 minutos del State of the Union de la WWDC 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-anuncio-de-tv-con-vinicius-jr-para-promocionar-los-airpods-pro-3",
+      "title": "El anuncio de TV con Vinícius Jr. para promocionar los AirPods Pro 3.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6578863/pexels-photo-6578863.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "solo-el-iphone-17-pro-y-el-iphone-air-pueden-utilizar-las-ia-mas-avanzadas-de-ap",
+      "title": "Sólo el iPhone 17 Pro y el iPhone Air pueden utilizar las IA más avanzadas de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-apple-watch-series-9-si-podra-tener-watchos-7",
+      "title": "El Apple Watch Series 9 sí podrá tener watchOS 7.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
