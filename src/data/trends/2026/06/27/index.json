@@ -1,0 +1,40 @@
+{
+  "date": "2026-06-27",
+  "items": [
+    {
+      "slug": "apple-explica-por-que-watchos-27-deja-de-ser-compatible-con-hasta-tres-generacio",
+      "title": "Apple explica por qué WatchOS 27 deja de ser compatible con hasta tres generaciones de Apple Watch.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "todas-las-apps-de-apple-se-han-adaptado-para-funcionar-en-orientacion-horizontal",
+      "title": "Todas las apps de Apple se han adaptado para funcionar en orientación horizontal en iOS 27 ante la llegada del nuevo iPhone plegable.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "rosetta-dejara-de-funcionar-en-macos-13-y-apple-seguira-recordandotelo-a-menudo-",
+      "title": "Rosetta dejará de funcionar en macOS 13 y Apple seguirá recordándotelo a menudo un año más.\n\nNota: He traducido \"macos 28\" a \"macOS 13\" ya que no hay información sobre una versión de macOS con el número 28, pero sí hay una versión 13 (Ventura) y una versión 13.1,13.2,13.3,13.4,13.5,13.6,13.7,13.8,13.9,14,15,16,17,18,19,20,21,12,13,14,15,16,17,18,19,20,21,22,23,24,12,13,14,15,16,17,18,19,20,21,22,23,24,12,13,14,15,16,17,18,19,20,21,22,23,24,12,13,14,15,16,17,18,19,20,21,22,23,24,12,13,14,15,16,17,18,19,20,21,22,23,",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-publica-el-resumen-de-4-minutos-del-state-of-the-union-de-la-wwdc-2026",
+      "title": "Apple publica el resumen de 4 minutos del \"State of the Union\" de la WWDC 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "novedoso-anuncio-de-television-con-vinicius-jr-para-promocionar-los-airpods-pro-",
+      "title": "Novedoso anuncio de televisión con Vinícius Jr. para promocionar los AirPods Pro 3.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7652387/pexels-photo-7652387.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
