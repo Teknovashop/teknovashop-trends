@@ -1,0 +1,19 @@
+{
+  "date": "2026-07-01",
+  "items": [
+    {
+      "slug": "la-empresa-apple-preocupada-por-la-filtracion-masiva-de-detalles-confidenciales-",
+      "title": "La empresa Apple preocupada por la filtración masiva de detalles confidenciales del iPhone 18 Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-explica-por-que-watchos-27-deja-de-ser-compatible-con-hasta-tres-generacio",
+      "title": "Apple explica por qué WatchOS 27 deja de ser compatible con hasta tres generaciones de Apple Watch.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
