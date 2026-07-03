@@ -1,0 +1,26 @@
+{
+  "date": "2026-07-03",
+  "items": [
+    {
+      "slug": "apple-pide-fabricar-10-millones-de-iphones-plegables-para-la-segunda-mitad-del-2",
+      "title": "Apple pide fabricar 10 millones de iPhones plegables para la segunda mitad del 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-preocupada-por-la-filtracion-masiva-de-detalles-confidenciales-del-iphone-",
+      "title": "Apple preocupada por la filtración masiva de detalles confidenciales del iPhone 18 Pro.\n\nNota: En español, no se utiliza la tilde inclinada (`«») para indicar que una palabra está entre comillas. En su lugar, se utiliza una simple comillas simples o dobles.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-explica-por-que-watchos-7-3-2-deja-de-ser-compatible-con-hasta-tres-genera",
+      "title": "Apple explica por qué WatchOS 7.3.2 deja de ser compatible con hasta tres generaciones de Apple Watch.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
