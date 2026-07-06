@@ -1,0 +1,61 @@
+{
+  "date": "2026-07-06",
+  "items": [
+    {
+      "slug": "un-canadiense-busca-una-mochila-que-pueda-contener-una-laptop-de-17-pulgadas",
+      "title": "Un canadiense busca una mochila que pueda contener una laptop de 17 pulgadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/30591531/pexels-photo-30591531.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-regreso-de-silo-a-apple-tv-todos-los-detalles-de-la-esperada-tercera-temporad",
+      "title": "El regreso de Silo a Apple TV+: todos los detalles de la esperada tercera temporada.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-proximo-iphone-air-2-asi-sera-el-esperado-regreso-del-movil-mas-fino-de-apple",
+      "title": "El próximo iPhone Air 2: así será el esperado regreso del móvil más fino de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/17467837/pexels-photo-17467837.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "nombres-de-usuario-en-whatsapp-como-reservar-tu-identificador-para-proteger-tu-n",
+      "title": "Nombres de usuario en WhatsApp: cómo reservar tu identificador para proteger tu número de teléfono.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6862836/pexels-photo-6862836.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-ya-prueba-ios-27-4-los-primeros-detalles-de-la-futura-gran-actualizacion",
+      "title": "Apple ya prueba iOS 27.4: los primeros detalles de la futura gran actualización.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "planeas-comprar-uno-entonces-preparate-el-iphone-plegable-costara-entre-2000-y-2",
+      "title": "¿Planeas comprar uno? Entonces prepárate: el iPhone plegable costará entre 2000 y 2500 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7652387/pexels-photo-7652387.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-encuentran-menciones-de-un-sistema-de-camaras-colocadas-a-ambos-lados-de-la-c",
+      "title": "Se encuentran menciones de un sistema de cámaras colocadas a ambos lados de la cabeza del usuario en iOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/861440/pexels-photo-861440.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-nuevo-rumor-poco-creible-sugiere-que-el-apple-watch-series-12-podria-incluir-",
+      "title": "Un nuevo rumor poco creíble sugiere que el Apple Watch Series 12 podría incluir un nuevo sensor en las correas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
