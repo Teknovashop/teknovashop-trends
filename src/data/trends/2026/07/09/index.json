@@ -1,0 +1,54 @@
+{
+  "date": "2026-07-09",
+  "items": [
+    {
+      "slug": "apple-tv-apuesta-por-el-thriller-con-guilty-creatures-la-nueva-serie-de-julia-ga",
+      "title": "Apple TV+ apuesta por el thriller con Guilty Creatures, la nueva serie de Julia Garner basada en un crimen real.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-watch-series-12-y-la-posible-llegada-de-sensores-inteligentes-en-la-correa",
+      "title": "Apple Watch Series 12 y la posible llegada de sensores inteligentes en la correa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "planeas-comprar-uno-entonces-prepara-la-tarjeta-el-iphone-plegable-costara-entre",
+      "title": "¿Planeas comprar uno? entonces prepara la tarjeta: el iPhone plegable costará entre 2.000 y 2.500 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5717993/pexels-photo-5717993.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-encuentran-menciones-de-un-sistema-de-camaras-colocadas-a-ambos-lados-de-la-c",
+      "title": "Se encuentran menciones de un sistema de cámaras colocadas a ambos lados de la cabeza del usuario en iOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/861440/pexels-photo-861440.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-nuevo-rumor-poco-creible-sugiere-que-el-apple-watch-series-12-podria-contar-c",
+      "title": "Un nuevo rumor poco creíble sugiere que el Apple Watch Series 12 podría contar con un nuevo sensor en las correas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-pide-fabricar-10-millones-de-iphones-plegables-para-la-segunda-mitad-del-2",
+      "title": "Apple pide fabricar 10 millones de iPhones plegables para la segunda mitad del 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-preocupada-por-la-filtracion-masiva-de-detalles-confidenciales-del-iphone-",
+      "title": "Apple preocupada por la filtración masiva de detalles confidenciales del iPhone 18 Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
