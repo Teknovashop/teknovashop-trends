@@ -1,0 +1,61 @@
+{
+  "date": "2026-07-17",
+  "items": [
+    {
+      "slug": "las-mejores-tabletas-baratas-para-estudiantes",
+      "title": "Las mejores tabletas baratas para estudiantes.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5965545/pexels-photo-5965545.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "openai-lanza-codex-micro-un-teclado-para-controlar-agentes-de-ia",
+      "title": "OpenAI lanza Codex Micro, un teclado para controlar agentes de IA.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-mejores-auriculares-inalambricos-baratos-para-el-teletrabajo-con-mac",
+      "title": "Los mejores auriculares inalámbricos baratos para el teletrabajo con Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12799296/pexels-photo-12799296.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "openai-se-prepara-para-lanzar-su-primer-altavoz-inteligente-con-inteligencia-art",
+      "title": "OpenAI se prepara para lanzar su primer altavoz inteligente con inteligencia artificial.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/29617989/pexels-photo-29617989.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-conversa-con-la-empresa-que-ha-logrado-integrar-un-modelo-de-inteligencia-",
+      "title": "Apple conversa con la empresa que ha logrado integrar un modelo de inteligencia artificial de 27.000 millones de parámetros en el iPhone.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "planeas-comprar-uno-entonces-preparate-la-tarjeta-el-iphone-plegable-costara-ent",
+      "title": "¿Planeas comprar uno? Entonces prepárate la tarjeta: el iPhone plegable costará entre 2.000 y 2.500 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5717993/pexels-photo-5717993.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-encuentran-menciones-de-un-sistema-de-camaras-colocadas-a-ambos-lados-de-la-c",
+      "title": "Se encuentran menciones de un sistema de cámaras colocadas a ambos lados de la cabeza del usuario en iOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/861440/pexels-photo-861440.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-nuevo-rumor-poco-creible-habla-de-un-nuevo-sensor-en-las-correas-del-apple-wa",
+      "title": "Un nuevo rumor poco creíble habla de un nuevo sensor en las correas del Apple Watch Series 12.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
