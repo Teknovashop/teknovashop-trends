@@ -1,0 +1,61 @@
+{
+  "date": "2026-07-18",
+  "items": [
+    {
+      "slug": "el-philips-3200-tiene-un-flujo-de-aire-horizontal-tiene-problemas-con-la-circula",
+      "title": "El Philips 3200 tiene un flujo de aire horizontal: ¿tiene problemas con la circulación de la habitación?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/32792710/pexels-photo-32792710.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-la-quinta-beta-de-ios-26-6-la-antesala-de-ios-27",
+      "title": "Apple lanza la quinta beta de iOS 26.6: la antesala de iOS 27",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "lucky-la-nueva-serie-de-apple-tv-con-anya-taylor-joy-ya-esta-disponible",
+      "title": "Lucky: la nueva serie de Apple TV con Anya Taylor-Joy ya está disponible.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-mejor-teclado-inalambrico-silencioso-para-trabajar-con-mac",
+      "title": "El mejor teclado inalámbrico silencioso para trabajar con Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-mejores-tabletas-baratas-para-estudiantes",
+      "title": "Las mejores tabletas baratas para estudiantes.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5965545/pexels-photo-5965545.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-conversa-con-la-empresa-que-ha-logrado-integrar-un-modelo-de-inteligencia-",
+      "title": "Apple conversa con la empresa que ha logrado integrar un modelo de inteligencia artificial de 27.000 millones de parámetros en el iPhone.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "planeas-comprar-uno-entonces-preparate-la-tarjeta-el-iphone-plegable-costara-ent",
+      "title": "¿Planeas comprar uno? Entonces, prepárate la tarjeta: el iPhone plegable costará entre 2.000 y 2.500 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5717993/pexels-photo-5717993.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-encuentran-menciones-de-un-sistema-de-camaras-ubicadas-a-ambos-lados-de-la-ca",
+      "title": "Se encuentran menciones de un sistema de cámaras ubicadas a ambos lados de la cabeza del usuario en iOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/861440/pexels-photo-861440.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
