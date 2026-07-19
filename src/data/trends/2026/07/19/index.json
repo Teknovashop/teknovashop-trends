@@ -1,0 +1,54 @@
+{
+  "date": "2026-07-19",
+  "items": [
+    {
+      "slug": "el-punto-verde-en-la-parte-superior-del-movil-suele-indicar-que-el-telefono-esta",
+      "title": "El punto verde en la parte superior del móvil suele indicar que el teléfono está en modo de carga, ya que el punto verde es un símbolo común para representar la carga de batería.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6862836/pexels-photo-6862836.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-18-pro-max-mas-bateria-camara-con-apertura-variable-y-un-precio-que-su",
+      "title": "El iPhone 18 Pro Max: más batería, cámara con apertura variable y un precio que sube.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/861440/pexels-photo-861440.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-la-quinta-beta-de-ios-26-6-la-antesala-de-ios-27",
+      "title": "Apple lanza la quinta beta de iOS 26.6: la antesala de iOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-conversa-con-la-empresa-que-ha-conseguido-meter-un-modelo-de-inteligencia-",
+      "title": "Apple conversa con la empresa que ha conseguido meter un modelo de inteligencia artificial de 27.000 millones de parámetros en el iPhone.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "planeas-comprar-uno-entonces-preparate-la-tarjeta-el-iphone-plegable-costara-ent",
+      "title": "¿Planeas comprar uno? entonces prepárate la tarjeta: el iPhone plegable costará entre 2.000 y 2.500 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5717993/pexels-photo-5717993.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "se-encuentran-menciones-de-un-sistema-de-camaras-colocadas-a-ambos-lados-de-la-c",
+      "title": "Se encuentran menciones de un sistema de cámaras colocadas a ambos lados de la cabeza del usuario en iOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/861440/pexels-photo-861440.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "un-nuevo-rumor-poco-creible-habla-de-un-nuevo-sensor-en-las-correas-del-apple-wa",
+      "title": "Un nuevo rumor poco creíble habla de un nuevo sensor en las correas del Apple Watch Series 12.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
