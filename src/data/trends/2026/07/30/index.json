@@ -1,0 +1,61 @@
+{
+  "date": "2026-07-30",
+  "items": [
+    {
+      "slug": "apple-tv-desvela-el-trailer-de-neuromante-y-confirma-su-fecha-de-estreno",
+      "title": "Apple TV desvela el tráiler de \"Neuromante\" y confirma su fecha de estreno.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "macbook-ultra-todo-lo-que-sabemos-del-portatil-mas-ambicioso-de-apple",
+      "title": "MacBook Ultra: todo lo que sabemos del portátil más ambicioso de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-prepara-sus-gafas-inteligentes-con-ia-para-2027-privacidad-y-diseno-sin-pa",
+      "title": "Apple prepara sus gafas inteligentes con IA para 2027: privacidad y diseño sin pantalla.\n\nNota: No se ha confirmado oficialmente la fecha de lanzamiento de las gafas inteligentes de Apple, pero se especula que podrían ser lanzadas en 2027.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "usar-el-modo-profesional-de-la-camara-de-iphone-es-bastante-sencillo-primero-abr",
+      "title": "Usar el modo profesional de la cámara de iPhone es bastante sencillo. Primero, abre la aplicación de Cámara en tu dispositivo. \n\nUna vez abierta la aplicación, busca el botón de ajustes, que suele estar representado por un signo de tres líneas horizontales. Toca ese botón para acceder a la configuración de la cámara.\n\nEn la pantalla de ajustes, busca la opción \"Modo\" o \"Estilo\" y selecciona la opción \"Profesional\" o \"Manual\". Algunas versiones del sistema operativo de iPhone pueden llamar a esta opción de manera diferente, pero en general, deberías poder encontrarla fácilmente.\n\nUna vez que hayas seleccionado el modo profesional, podrás ajustar diferentes parámetros de la cámara, como la exposición, el enfoque y la velocidad de obturación. Estos ajustes te permitirán tener más control sobre la configuración de la cámara y obtener mejores resultados en tus fotos.\n\nRecuerda que el modo profesional puede variar ligeramente dependiendo de la versión del sistema operativo de tu iPhone. Si no encuentras la opción de modo profesional, puedes intentar buscar",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/1093229/pexels-photo-1093229.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-presentar-sus-gafas-inteligentes-en-la-wwdc-2027",
+      "title": "Apple podría presentar sus gafas inteligentes en la WWDC 2027.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "micron-intenta-impedir-que-apple-adquiera-chips-de-memoria-chinos",
+      "title": "Micron intenta impedir que Apple adquiera chips de memoria chinos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/28387802/pexels-photo-28387802.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-watch-series-11-y-se-3-en-oferta-unidades-limitadas",
+      "title": "Apple Watch Series 11 y SE 3 en oferta, unidades limitadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-apple-ya-esta-probando-un-nuevo-macbook-con-procesador-a19-pro-mas-ram-y-nuev",
+      "title": "La Apple ya está probando un nuevo MacBook con procesador A19 Pro, más RAM y nuevos colores.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
