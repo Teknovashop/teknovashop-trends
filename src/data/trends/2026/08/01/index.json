@@ -1,0 +1,61 @@
+{
+  "date": "2026-08-01",
+  "items": [
+    {
+      "slug": "mejor-televisor-de-65-pulgadas-solo-sony-y-lg-por-favor",
+      "title": "Mejor televisor de 65 pulgadas - solo Sony y LG por favor.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/2267633/pexels-photo-2267633.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "razer-huntsman-v3-he-magnetico-analisis-completo-de-los-nuevos-teclados-con-inte",
+      "title": "Razer Huntsman V3 he magnetico: análisis completo de los nuevos teclados con interruptores Hall Effect.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37005815/pexels-photo-37005815.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "guia-completa-del-modo-profesional-en-la-camara-del-iphone",
+      "title": "Guía completa del modo profesional en la cámara del iPhone.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-tv-desvela-el-trailer-de-neuromante-y-confirma-su-fecha-de-estreno",
+      "title": "Apple TV desvela el tráiler de \"Neuromante\" y confirma su fecha de estreno.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-resultados-financieros-de-apple-en-abril-mayo-y-junio-de-2026-son-de-29-800-",
+      "title": "Los resultados financieros de Apple en abril, mayo y junio de 2026 son de 29.800 millones de dólares en beneficios.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-presentar-sus-gafas-inteligentes-en-la-wwdc-2027",
+      "title": "Apple podría presentar sus gafas inteligentes en la WWDC 2027.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "micron-intenta-impedir-que-apple-pueda-comprar-chips-de-memoria-chinos-otra-form",
+      "title": "Micron intenta impedir que Apple pueda comprar chips de memoria chinos.\n\n(Otra forma de traducirlo sería)\n\nMicron busca evitar que Apple adquiera chips de memoria fabricados en China.\n\n(Otra forma de traducirlo sería)\n\nMicron está tratando de impedir que Apple compre chips de memoria de origen chino.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/28387802/pexels-photo-28387802.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-watch-series-11-y-se-3-en-oferta-unidades-limitadas",
+      "title": "Apple Watch Series 11 y SE 3 en oferta, unidades limitadas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
