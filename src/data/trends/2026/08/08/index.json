@@ -1,0 +1,61 @@
+{
+  "date": "2026-08-08",
+  "items": [
+    {
+      "slug": "el-garmin-etrex-20-sigue-adelante-en-aventuras",
+      "title": "El Garmin eTrex 20 sigue adelante en aventuras.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/29300647/pexels-photo-29300647.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "whatsapp-dejara-de-ser-compatible-con-estos-telefonos-a-partir-de-agosto",
+      "title": "WhatsApp dejará de ser compatible con estos teléfonos a partir de agosto.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6862836/pexels-photo-6862836.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-18-pro-subida-de-precio-y-escasez-de-memoria-marcan-la-previa",
+      "title": "El iPhone 18 Pro: subida de precio y escasez de memoria marcan la previa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7615622/pexels-photo-7615622.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "todo-lo-que-se-sabe-del-iphone-air-2-mejoras-en-camara-chip-y-diseno",
+      "title": "Todo lo que se sabe del iPhone Air 2: mejoras en cámara, chip y diseño.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-empieza-a-preparar-el-evento-de-presentacion-del-iphone-18-pro-y-ultra-en-",
+      "title": "Apple empieza a preparar el evento de presentación del iPhone 18 Pro y Ultra en septiembre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-haber-sido-manipulada-cuando-retiro-telegram-de-la-app-store-durant",
+      "title": "Apple podría haber sido manipulada cuando retiró Telegram de la App Store durante 40 minutos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-resultados-financieros-de-apple-en-abril-mayo-y-junio-de-2026-ascienden-a-29",
+      "title": "Los resultados financieros de Apple en abril, mayo y junio de 2026 ascienden a 29.800 millones de dólares en beneficios.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-presentar-sus-gafas-inteligentes-en-la-wwdc-2027",
+      "title": "Apple podría presentar sus gafas inteligentes en la WWDC 2027.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
