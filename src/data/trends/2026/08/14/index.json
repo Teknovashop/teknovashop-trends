@@ -1,0 +1,61 @@
+{
+  "date": "2026-08-14",
+  "items": [
+    {
+      "slug": "la-mejor-mochila-que-tiene-un-espacio-para-un-portatil",
+      "title": "La mejor mochila que tiene un espacio para un portátil.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "guia-completa-de-novedades-y-funciones-de-tvos",
+      "title": "Guía completa de novedades y funciones de TVOS.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/6578863/pexels-photo-6578863.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "jennifer-bailey-deja-apple-pay-la-artifice-de-los-pagos-moviles-se-retira-en-oct",
+      "title": "Jennifer Bailey deja Apple Pay: la artífice de los pagos móviles se retira en octubre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/17467837/pexels-photo-17467837.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-ofertas-de-vuelta-al-cole-de-apple-para-el-2026-ya-estan-disponibles",
+      "title": "Las ofertas de vuelta al cole de Apple para el 2026 ya están disponibles.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-esta-probando-los-chips-de-memoria-ram-de-cxmt-en-sus-productos",
+      "title": "Apple está probando los chips de memoria RAM de CXMT en sus productos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/812262/pexels-photo-812262.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-comienza-a-preparar-el-evento-de-presentacion-del-iphone-18-pro-y-ultra-en",
+      "title": "Apple comienza a preparar el evento de presentación del iPhone 18 Pro y Ultra en septiembre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-haber-sido-manipulada-cuando-retiro-telegram-de-la-app-store-durant",
+      "title": "Apple podría haber sido manipulada cuando retiró Telegram de la App Store durante 40 minutos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "los-resultados-financieros-de-apple-en-abril-mayo-y-junio-de-2026-son-de-29-800-",
+      "title": "Los resultados financieros de Apple en abril, mayo y junio de 2026 son de 29.800 millones de dólares en beneficios.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
