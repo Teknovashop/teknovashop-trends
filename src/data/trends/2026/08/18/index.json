@@ -1,0 +1,47 @@
+{
+  "date": "2026-08-18",
+  "items": [
+    {
+      "slug": "es-philips-8000-aqua-plus-mi-aspiradora-de-toda-la-vida",
+      "title": "¿Es Philips 8000 Aqua Plus mi aspiradora de toda la vida?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4200747/pexels-photo-4200747.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "historia-del-ordenador-chatgpt-asi-rastrea-tu-actividad-en-el-mac-para-crear-mem",
+      "title": "Historia del ordenador ChatGPT: así rastrea tu actividad en el Mac para crear memoria contextual.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7615622/pexels-photo-7615622.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-ofertas-de-vuelta-al-cole-de-apple-para-el-2026-ya-estan-disponibles",
+      "title": "Las ofertas de vuelta al cole de Apple para el 2026 ya están disponibles.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-esta-probando-los-chips-de-memoria-ram-de-cxmt-en-sus-productos-nota-cxmt-",
+      "title": "Apple está probando los chips de memoria RAM de CXMT en sus productos.\n\nNota: CXMT es un fabricante chino de componentes electrónicos, por lo que es posible que la noticia se refiera a la colaboración o prueba de productos de Apple con esta empresa. Sin embargo, no tengo información actualizada sobre esto, por lo que es importante verificar fuentes confiables para obtener la información más reciente.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/812262/pexels-photo-812262.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-empieza-a-preparar-el-evento-de-presentacion-del-iphone-18-pro-y-ultra-en-",
+      "title": "Apple empieza a preparar el evento de presentación del iPhone 18 Pro y Ultra en septiembre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-podria-haber-sido-manipulada-cuando-retiro-telegram-de-la-app-store-durant",
+      "title": "Apple podría haber sido manipulada cuando retiró Telegram de la App Store durante 40 minutos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
