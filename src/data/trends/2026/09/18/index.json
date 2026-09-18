@@ -1,0 +1,54 @@
+{
+  "date": "2026-09-18",
+  "items": [
+    {
+      "slug": "mac-mini-m4-de-ordenador-de-escritorio-a-consola-portatil",
+      "title": "Mac Mini M4: de ordenador de escritorio a consola portátil.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-m1-ultra-de-apple-se-lleva-la-palma-en-geekbench-superando-al-threadripper-pr",
+      "title": "El M1 Ultra de Apple se lleva la palma en Geekbench, superando al Threadripper Pro 9995WX con solo 36 núcleos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-aumenta-los-precios-de-los-reemplazos-de-bateria-del-iphone-18-pro",
+      "title": "Apple aumenta los precios de los reemplazos de batería del iPhone 18 Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-pone-a-la-venta-una-nueva-plataforma-de-carga-inalambrica-mas-rapida-para-",
+      "title": "Apple pone a la venta una nueva plataforma de carga inalámbrica más rápida para el Apple Watch Series 12 o Ultra 4.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estos-son-los-nuevos-apple-watch-series-12-y-ultra-4",
+      "title": "Estos son los nuevos Apple Watch Series 12 y Ultra 4.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "xiaomi-presenta-un-nuevo-smartphone-plegable-que-parece-un-claro-imitador-del-ip",
+      "title": "Xiaomi presenta un nuevo smartphone plegable que parece un claro imitador del iPhone Ultra.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12563780/pexels-photo-12563780.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "aparecen-menciones-a-nuevas-funcionalidades-y-capacidades-del-apple-watch-series",
+      "title": "Aparecen menciones a nuevas funcionalidades y capacidades del Apple Watch Series 12 y Ultra 4 en watchOS 27.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
