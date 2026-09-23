@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-23",
+  "items": [
+    {
+      "slug": "philips-tv-esta-impulsando-15-anos",
+      "title": "Philips TV está impulsando 15 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/26865631/pexels-photo-26865631.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "equipo-de-escritorio-ordenador-portatil",
+      "title": "Equipo de escritorio/ordenador portátil",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "todo-sobre-la-memoria-grafica-guia-completa-de-la-vram-y-su-funcionamiento",
+      "title": "Todo sobre la memoria gráfica: guía completa de la VRAM y su funcionamiento.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7615622/pexels-photo-7615622.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-sabio-la-serie-protagonizada-por-jessica-chastain-por-fin-se-estrena-en-apple",
+      "title": "El sabio, la serie protagonizada por Jessica Chastain, por fin se estrena en Apple TV.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-dice-ahora-que-solo-el-iphone-18-pro-tiene-estilos-fotograficos-de-textura",
+      "title": "Apple dice ahora que solo el iPhone 18 Pro tiene estilos fotográficos de textura y grano.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "cuantas-ram-tienen-el-iphone-18-pro-el-iphone-duo-apple-watch-series-12-y-ultra-",
+      "title": "¿Cuántas ram tienen el iPhone 18 Pro, el iPhone Duo, Apple Watch Series 12 y Ultra 4?",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "estos-son-los-paises-en-los-que-el-iphone-18-pro-no-tiene-bandeja-para-tarjetas-",
+      "title": "Estos son los países en los que el iPhone 18 Pro no tiene bandeja para tarjetas SIM físicas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5717993/pexels-photo-5717993.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-titular-en-espanol-seria-apple-sube-los-precios-de-los-reemplazos-de-bateria-",
+      "title": "El titular en español sería:\n\nApple sube los precios de los reemplazos de batería del iPhone 18 Pro.\n\nNota: Es posible que se refiera al iPhone 14 Pro, ya que no hay un modelo llamado \"18 Pro\" de Apple.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
