@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-11",
+  "items": [
+    {
+      "slug": "pequenos-profetas-llega-a-apple-tv-comedia-con-alquimia-y-misterio",
+      "title": "Pequeños profetas llega a Apple TV: comedia con alquimia y misterio.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/27307265/pexels-photo-27307265.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-watch-series-12-novedades-en-salud-pantalla-y-carga",
+      "title": "Apple Watch Series 12: novedades en salud, pantalla y carga.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "iphone-air-2-mas-fino-bateria-mas-grande-y-doble-camara-de-48-mp",
+      "title": "iPhone Air 2: más fino, batería más grande y doble cámara de 48 MP.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "como-monitorear-y-optimizar-el-rendimiento-de-tu-mac",
+      "title": "Cómo monitorear y optimizar el rendimiento de tu Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37848030/pexels-photo-37848030.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-ya-podria-haber-pedido-una-reduccion-de-unidades-fabricadas-del-iphone-18-",
+      "title": "\"Apple ya podría haber pedido una reducción de unidades fabricadas del iPhone 18 Pro\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-anuncia-un-nuevo-evento-de-presentacion-de-productos-para-el-13-de-octubre",
+      "title": "Apple anuncia un nuevo evento de presentación de productos para el 13 de octubre: Welcome Home.\n\nNota: \"Welcome Home\" es el título del evento, que puede ser traducido al español como \"Bienvenido a casa\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "removemacai-te-ayuda-a-recuperar-12-gb-en-el-ssd-de-tu-mac-si-no-utilizas-siri-a",
+      "title": "Removemacai te ayuda a recuperar 12 GB en el SSD de tu Mac si no utilizas Siri, AI o Apple Intelligence.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/13595109/pexels-photo-13595109.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-anuncia-el-endurecimiento-de-los-permisos-de-acceso-completo-al-disco-de-u",
+      "title": "Apple anuncia el endurecimiento de los permisos de acceso completo al disco de un Mac debido a los agentes de IA.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
