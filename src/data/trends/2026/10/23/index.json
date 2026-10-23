@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-23",
+  "items": [
+    {
+      "slug": "guia-completa-del-modo-clamshell-en-macbook-convierte-tu-portatil-en-un-sobremes",
+      "title": "Guía completa del modo Clamshell en MacBook: convierte tu portátil en un sobremesa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-duo-activara-el-apple-pencil-usb-c-con-ios-27-2",
+      "title": "El iPhone Duo activará el Apple Pencil USB-C con iOS 27.2.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "configurar-y-corregir-la-distribucion-del-teclado-en-mac-es-un-proceso-relativam",
+      "title": "Configurar y corregir la distribución del teclado en Mac es un proceso relativamente sencillo. Aquí te presento los pasos para lograrlo:\n\n Primero, debes abrir el menú de \"Sistema Preferencias\" en tu Mac. Para hacer esto, puedes hacer clic en el icono de la aplicación \"Sistema Preferencias\" en el Dock o buscarla en la carpeta \"Aplicaciones\" y hacer clic en ella.\n\n Una vez que estés en el menú de \"Sistema Preferencias\", haz clic en la pestaña \"Teclado\".\n\n En la pestaña \"Teclado\", haz clic en la pestaña \"Teclado\" en la parte superior de la ventana.\n\n Ahora, haz clic en el botón \"Distribución del teclado\" y selecciona la distribución que desees utilizar. Puedes elegir entre diferentes opciones, como \"Distribución estándar\", \"Distribución de Mac\" o \"Distribución de PC\".\n\n Una vez que hayas seleccionado la distribución que deseas utilizar, haz clic en el botón \"Aplicar\" para aplicar los cambios.\n\n Si deseas corregir la distribución del te",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/20510006/pexels-photo-20510006.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-confirma-oficialmente-el-evento-del-proximo-28-de-octubre-para-presentar-n",
+      "title": "Apple confirma oficialmente el evento del próximo 28 de octubre para presentar nuevos MacBook Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-tiendas-apple-se-estan-preparando-para-la-llegada-de-los-primeros-macs-oled-",
+      "title": "Las tiendas Apple se están preparando para la llegada de los primeros Macs OLED que Apple presentará el 28 de octubre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-invita-a-la-prensa-especializada-a-un-evento-de-presentacion-de-nuevos-pro",
+      "title": "Apple invita a la prensa especializada a un evento de presentación de nuevos productos el 28 de octubre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-ha-pagado-25-millones-de-dolares-para-ayudar-a-financiar-el-nuevo-salon-de",
+      "title": "Apple ha pagado 25 millones de dólares para ayudar a financiar el nuevo salón de baile de Trump en la Casa Blanca.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-anuncia-el-nuevo-homepod-su-primer-altavoz-inteligente-con-pantalla",
+      "title": "Apple anuncia el nuevo HomePod, su primer altavoz inteligente con pantalla.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/21008511/pexels-photo-21008511.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
