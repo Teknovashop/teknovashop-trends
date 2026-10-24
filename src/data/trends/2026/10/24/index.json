@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-24",
+  "items": [
+    {
+      "slug": "guia-completa-del-apple-tv-funciones-contenidos-y-trucos",
+      "title": "Guía completa del Apple TV: funciones, contenidos y trucos",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/27307265/pexels-photo-27307265.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-guia-completa-del-modo-clamshell-en-macbook-convierte-tu-portatil-en-un-sobre",
+      "title": "La guía completa del modo Clamshell en MacBook: convierte tu portátil en un sobremesa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-duo-activara-el-apple-pencil-usb-c-con-ios-27-2",
+      "title": "El iPhone Duo activará el Apple Pencil USB-C con iOS 27.2.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "configurar-y-corregir-la-distribucion-del-teclado-en-un-mac-es-bastante-sencillo",
+      "title": "Configurar y corregir la distribución del teclado en un Mac es bastante sencillo. Primero, necesitarás acceder a las preferencias del sistema.\n\n1. Haz clic en el menú Apple en la esquina superior izquierda de la pantalla y selecciona \"Preferencias del sistema\".\n2. En la ventana que se abre, haz clic en \"Teclado\".\n3. En la pestaña \"Teclado\", selecciona \"Distribución del teclado\" y haz clic en \"Cambiar distribución del teclado\".\n4. En la lista que se muestra, selecciona la distribución del teclado que deseas utilizar y haz clic en \"Aceptar\".\n\nSi la distribución del teclado no se ajusta correctamente, es posible que debas hacer algunos ajustes adicionales. Para hacerlo, sigue estos pasos:\n\n1. Vuelve a la ventana de \"Preferencias del sistema\" y selecciona \"Teclado\".\n2. En la pestaña \"Teclado\", selecciona \"Teclas de función\" y haz clic en \"Cambiar teclas de función\".\n3. En la lista que se muestra, selecciona las teclas que deseas utilizar como teclas de función y haz clic",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/37005819/pexels-photo-37005819.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-confirma-oficialmente-el-evento-del-proximo-28-de-octubre-para-presentar-n",
+      "title": "Apple confirma oficialmente el evento del próximo 28 de octubre para presentar nuevos MacBook Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-tiendas-apple-se-preparan-para-la-llegada-de-los-primeros-mac-con-pantalla-o",
+      "title": "Las tiendas Apple se preparan para la llegada de los primeros Mac con pantalla OLED que Apple presentará el 28 de octubre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-invita-a-la-prensa-especializada-a-un-evento-de-presentacion-de-nuevos-pro",
+      "title": "Apple invita a la prensa especializada a un evento de presentación de nuevos productos el 28 de octubre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-ha-pagado-25-millones-de-dolares-para-ayudar-a-financiar-el-nuevo-salon-de",
+      "title": "Apple ha pagado 25 millones de dólares para ayudar a financiar el nuevo salón de baile de Trump en la Casa Blanca.\n\nNota: Es importante mencionar que la noticia original parece ser falsa, ya que no hay registros de que Apple haya financiado un salón de baile en la Casa Blanca de Trump. Es posible que se trate de una noticia de ficción o una broma.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
