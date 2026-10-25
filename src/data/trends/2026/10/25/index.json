@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-25",
+  "items": [
+    {
+      "slug": "comparativa-philips-sonicare-7100-vs-oral-b-io6",
+      "title": "Comparativa Philips Sonicare 7100 vs Oral B IO6.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/32792710/pexels-photo-32792710.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "roborock-saros-20-versus-curv-2",
+      "title": "Roborock Saros 20 versus Curv 2.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4107248/pexels-photo-4107248.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "guia-completa-del-apple-tv-funciones-contenidos-y-trucos",
+      "title": "Guía completa del Apple TV: funciones, contenidos y trucos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/27307265/pexels-photo-27307265.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "guia-completa-del-modo-clamshell-en-macbook-convierte-tu-portatil-en-una-sobreme",
+      "title": "Guía completa del modo Clamshell en MacBook: convierte tu portátil en una sobremesa.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-iphone-duo-activara-el-apple-pencil-usb-c-con-ios-27-2",
+      "title": "El iPhone Duo activará el Apple Pencil USB-C con iOS 27.2.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-confirma-oficialmente-el-evento-del-proximo-28-de-octubre-para-presentar-n",
+      "title": "Apple confirma oficialmente el evento del próximo 28 de octubre para presentar nuevos MacBook Pro.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "las-tiendas-de-apple-se-estan-preparando-para-la-llegada-de-los-primeros-mac-con",
+      "title": "Las tiendas de Apple se están preparando para la llegada de los primeros Mac con pantalla OLED que Apple presentará el 28 de octubre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-invita-a-la-prensa-especializada-a-un-evento-de-presentacion-de-nuevos-pro",
+      "title": "Apple invita a la prensa especializada a un evento de presentación de nuevos productos el 28 de octubre.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
