@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-31",
+  "items": [
+    {
+      "slug": "apple-tv-4k-nuevo-modelo-con-siri-ai-y-audio-para-cuatro-homepods",
+      "title": "Apple TV 4K: nuevo modelo con Siri AI y audio para cuatro HomePods.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/27307265/pexels-photo-27307265.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "guia-completa-sobre-el-acceso-total-al-disco-en-macos",
+      "title": "Guía completa sobre el acceso total al disco en macOS.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/12483042/pexels-photo-12483042.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "este-es-el-nuevo-macbook-pro-con-pantalla-pro-led-xdr-el-primer-portatil-de-appl",
+      "title": "Este es el nuevo MacBook Pro con pantalla Pro LED XDR, el primer portátil de Apple con pantalla OLED.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-nuevo-macbook-pro-con-pantalla-proled-xdr-tiene-un-logo-de-apple-iluminado-po",
+      "title": "El nuevo MacBook Pro con pantalla ProLED XDR tiene un logo de Apple iluminado por primera vez en 10 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-presenta-el-nuevo-macbook-pro-de-14-pulgadas-con-procesador-m6-conexiones-",
+      "title": "Apple presenta el nuevo MacBook Pro de 14 pulgadas con procesador M6, conexiones de red más rápidas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-pagina-404-no-encontrada-de-apple-music-tiene-un-ipod-original-completamente-",
+      "title": "La página 404 no encontrada de Apple Music tiene un iPod original completamente funcional, ¡pruébalo!",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
