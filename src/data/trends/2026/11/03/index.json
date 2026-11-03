@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-03",
+  "items": [
+    {
+      "slug": "el-iphone-18-pro-se-enfrenta-a-su-propio-espejo-camara-precio-y-ventas",
+      "title": "El iPhone 18 Pro se enfrenta a su propio espejo: cámara, precio y ventas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-factura-114-500-millones-de-dolares-de-los-que-30-700-son-beneficios-en-ju",
+      "title": "Apple factura 114.500 millones de dólares de los que 30.700 son beneficios en julio, agosto y septiembre de 2026.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "este-es-el-nuevo-macbook-pro-con-pantalla-pro-led-xdr-el-primer-portatil-de-appl",
+      "title": "Este es el nuevo MacBook Pro con pantalla Pro LED XDR, el primer portátil de Apple con pantalla OLED.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/9052868/pexels-photo-9052868.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-nuevo-macbook-pro-con-pantalla-proled-xdr-tiene-un-logo-de-apple-iluminado-po",
+      "title": "El nuevo MacBook Pro con pantalla ProLED XDR tiene un logo de Apple iluminado por primera vez en 10 años.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-presenta-el-nuevo-macbook-pro-de-14-pulgadas-con-procesador-m6-y-conexione",
+      "title": "Apple presenta el nuevo MacBook Pro de 14 pulgadas con procesador M6 y conexiones de red más rápidas.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "la-pagina-de-error-404-de-apple-music-tiene-un-ipod-original-completamente-funci",
+      "title": "La página de error 404 de Apple Music tiene un iPod original completamente funcional, ¡pruébalo!",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
