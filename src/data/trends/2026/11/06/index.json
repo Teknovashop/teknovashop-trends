@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-06",
+  "items": [
+    {
+      "slug": "el-ipad-mini-llegara-con-pantalla-oled-de-8-5-pulgadas-procesador-a20-pro-y-255-",
+      "title": "El iPad Mini llegará con pantalla OLED de 8,5 pulgadas, procesador A20 Pro y 255 gramos a partir de 699 dólares.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/971325/pexels-photo-971325.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "live-rewind-y-siri-recap-llegan-en-beta-al-apple-watch-series-12-15-segundos-de-",
+      "title": "\"Live Rewind y Siri Recap llegan en beta al Apple Watch Series 12: 15 segundos de texto y resúmenes de 7 días, pero no en la UE\".",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-abre-siri-a-aplicaciones-de-terceros-en-ios-27-3-en-la-ue-no-llegara-al-ip",
+      "title": "Apple abre Siri a aplicaciones de terceros en iOS 27.3: en la UE no llegará al iPhone.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "recuperar-archivos-de-un-disco-duro-formateado-en-mac-puede-ser-un-proceso-compl",
+      "title": "Recuperar archivos de un disco duro formateado en Mac puede ser un proceso complicado, pero hay algunas herramientas y técnicas que pueden ayudarte a recuperar tus datos.\n\nUna de las primeras cosas que debes hacer es detener inmediatamente cualquier actividad en el disco duro, ya que la escritura de datos nuevos puede sobrescribir los archivos que deseas recuperar. Luego, necesitarás una herramienta de recuperación de datos que pueda leer el disco duro y recuperar los archivos que se encuentran en él.\n\nAlgunas de las herramientas de recuperación de datos más populares para Mac son:\n\n- Disk Drill: Esta herramienta es gratuita y ofrece una versión de prueba gratuita que te permite recuperar archivos de hasta 500 MB.\n- Data Rescue: Esta herramienta es una de las más populares y ofrece una versión de prueba gratuita que te permite recuperar archivos de hasta 1 GB.\n- EaseUS Data Recovery Wizard: Esta herramienta es una de las más completas y ofrece una versión de prueba gratuita que te permite recuperar archivos de hasta 2 GB.\n\nUna vez que hayas elegido la herramienta de recuperación de datos adecuada, sigue estos pasos:\n\n1.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/11528240/pexels-photo-11528240.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-revisara-los-enlaces-publicos-de-icloud-desde-ios-27-3-y-podra-retirar-con",
+      "title": "Apple revisará los enlaces públicos de iCloud desde iOS 27.3 y podrá retirar contenido dañino.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-ios-27-3-beta-1-con-salud-redisenada-siri-en-cuatro-idiomas-y-apple-",
+      "title": "Apple lanza iOS 27.3 beta 1 con salud rediseñada, Siri en cuatro idiomas y Apple Intelligence en China.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "consiguen-llevar-juegos-de-switch-a-un-apple-tv-y-funcionan-perfectamente",
+      "title": "Consiguen llevar juegos de Switch a un Apple TV y funcionan perfectamente.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "no-te-hagas-selfies-con-la-camara-frontal-del-iphone-duo-abierto-es-bastante-mal",
+      "title": "No te hagas selfies con la cámara frontal del iPhone Duo abierto, es bastante mala.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
