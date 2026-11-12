@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-12",
+  "items": [
+    {
+      "slug": "mejor-soporte-para-portatil-con-ventilador",
+      "title": "Mejor soporte para portátil con ventilador.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/4735010/pexels-photo-4735010.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "bts-coloca-swim-entre-las-100-canciones-de-2026-de-apple-music-como-unico-grupo-",
+      "title": "BTS coloca \"Swim\" entre las 100 canciones de 2026 de Apple Music como único grupo de K-pop.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-apple-watch-ultra-4-mide-la-frecuencia-cardiaca-cada-5-segundos-y-alcanza-50-",
+      "title": "El Apple Watch Ultra 4 mide la frecuencia cardiaca cada 5 segundos y alcanza 50 horas de batería por 899 euros.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "gemini-llega-a-apple-carplay-en-espana-desde-el-11-de-noviembre-con-conversacion",
+      "title": "Gemini llega a Apple CarPlay en España desde el 11 de noviembre con conversaciones manos libres.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-arcade-estrena-football-manager-27-touch-este-martes-10-de-noviembre-para-",
+      "title": "Apple Arcade estrena Football Manager 27 Touch este martes 10 de noviembre para iPhone, iPad y Mac.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-lanza-ios-27-2-1-con-9-parches-de-seguridad-dos-fallos-en-imessage-permiti",
+      "title": "Apple lanza iOS 27.2.1 con 9 parches de seguridad: dos fallos en iMessage permitían unirse a grupos.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "el-ipad-air-con-oled-llegara-en-la-primera-mitad-de-2027-mantendra-una-frecuenci",
+      "title": "El iPad Air con OLED llegará en la primera mitad de 2027. Mantendrá una frecuencia de refresco de 60 Hz y Samsung será su principal proveedor.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/218717/pexels-photo-218717.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "anuncio-de-tv-que-combina-apple-pay-con-peliculas-de-kung-fu-y-mucha-comedia",
+      "title": "Anuncio de TV que combina Apple Pay con películas de kung fu y mucha comedia.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/5082566/pexels-photo-5082566.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
