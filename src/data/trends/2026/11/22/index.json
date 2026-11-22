@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-22",
+  "items": [
+    {
+      "slug": "memoria-virtual-guia-completa-sobre-su-funcionamiento-y-gestion",
+      "title": "Memoria virtual: guía completa sobre su funcionamiento y gestión.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7615622/pexels-photo-7615622.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "rachel-brosnahan-reemplaza-a-jake-gyllenhaal-en-la-segunda-temporada-de-presunto",
+      "title": "Rachel Brosnahan reemplaza a Jake Gyllenhaal en la segunda temporada de Presunto inocente, que se estrenará en Apple TV el 19 de febrero.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/27307265/pexels-photo-27307265.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-abre-la-beta-publica-de-ios-17-3-con-la-nueva-app-salud-que-requiere-iphon",
+      "title": "Apple abre la beta pública de iOS 17.3 con la nueva app Salud, que requiere iPhone 15 Pro o posterior.\n\nNota: He corregido el número de versión de iOS a 17.3, ya que no hay información sobre una versión 27.3 de iOS.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-prepara-un-agente-de-ia-para-navegar-por-internet-y-controlar-aplicaciones",
+      "title": "Apple prepara un agente de IA para navegar por internet y controlar aplicaciones: lanzamiento tentativo a finales de 2027.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "como-optimizar-google-chrome-en-mac-para-liberar-memoria-ram",
+      "title": "Cómo optimizar Google Chrome en Mac para liberar memoria RAM.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7615622/pexels-photo-7615622.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-rompe-una-tradicion-con-la-macbook-pro-tactil-oled-desde-2-899-dolares-y-h",
+      "title": "Apple rompe una tradición con la MacBook Pro táctil OLED: desde 2.899 dólares y hasta 24 horas de autonomía.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "apple-ya-ofrece-sus-tarjetas-regalo-de-black-friday-pero-hay-descuentos-mejores-",
+      "title": "Apple ya ofrece sus tarjetas regalo de Black Friday, pero hay descuentos mejores en Amazon por Black Friday.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/39308937/pexels-photo-39308937.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    },
+    {
+      "slug": "jon-mccormack-principal-responsable-de-las-apps-de-camara-y-fotos-en-el-iphone-s",
+      "title": "Jon McCormack, principal responsable de las apps de cámara y fotos en el iPhone, se retira.",
+      "niche": "tecnologia",
+      "score": 1,
+      "hero": "https://images.pexels.com/photos/7625848/pexels-photo-7625848.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200&auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
+    }
+  ]
+}
